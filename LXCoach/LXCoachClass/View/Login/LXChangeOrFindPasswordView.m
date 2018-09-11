@@ -108,13 +108,30 @@
 #pragma mark - Event
 // 获取验证码
 - (void)obtainButtonAction:(UIButton *)testCodeBtn {
-    if ([self.delegate respondsToSelector:@selector(lx_obtainTestCodeButton:)]) {
-        [self.delegate lx_obtainTestCodeButton:testCodeBtn];
+    if (self.acountTextField.text.length == 0) {
+        [self makeToast:@"请输入手机号"];
+        return ;
+    }
+    if (self.acountTextField.text.length > 11) {
+        [self makeToast:@"手机号码格式不正确"];
+        return ;
+    }
+    if ([self.delegate respondsToSelector:@selector(lx_obtainTestCodeButton:andPhoneNumber:)]) {
+        [self.delegate lx_obtainTestCodeButton:testCodeBtn andPhoneNumber:self.acountTextField.text];
     }
 }
+// 确认
 - (void)affirmButtonAction {
-    if ([self.delegate respondsToSelector:@selector(lx_clickAffirmButton:)]) {
-        [self.delegate lx_clickAffirmButton:self.testCodeTextField.text];
+    if (self.acountTextField.text.length == 0) {
+        [self makeToast:@"请输入手机号"];
+        return ;
+    }
+    if (self.testCodeTextField.text.length == 0) {
+        [self makeToast:@"请输入验证码"];
+        return ;
+    }
+    if ([self.delegate respondsToSelector:@selector(lx_clickAffirmButton:andPhoneNumber:)]) {
+        [self.delegate lx_clickAffirmButton:self.testCodeTextField.text andPhoneNumber:self.acountTextField.text];
     }
 }
 
@@ -139,6 +156,8 @@
         _acountTextField.font = [UIFont systemFontOfSize:16];
         _acountTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _acountTextField.placeholder = @"请输入您的当前手机号";
+//        _acountTextField.text = @"18004710471";
+        _acountTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     return _acountTextField;
 }
@@ -164,6 +183,7 @@
         _testCodeTextField.font = [UIFont systemFontOfSize:16];
         _testCodeTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _testCodeTextField.placeholder = @"请输入您的验证码";
+        _testCodeTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     return _testCodeTextField;
 }

@@ -49,6 +49,16 @@
     CGFloat h = self.height;
     self.tableView.frame = CGRectMake(x, y, w, h);
 }
+#pragma mark - publicMethod
+/**
+ 刷新数据
+ 
+ @param model model
+ */
+- (void)lx_updateMineMessage:(LXMineModel *)model {
+    [self.headerView assignmentMineHeaderValue:model];
+}
+
 #pragma mark - UITableViewDataSource/UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger sectionNumber = 0;

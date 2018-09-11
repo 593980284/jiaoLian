@@ -7,6 +7,7 @@
 //
 
 #import "LXMainMessageHeaderView.h"
+#import "LXMineModel.h"
 
 @interface LXMainMessageHeaderView ()
 /// 背景图
@@ -131,16 +132,17 @@
     [self addSubview:self.secondBreakLine];
     [self addSubview:self.topDrivingName];
     [self addSubview:self.bottomDrivingName];
-    [self valuationToView];
 }
 
-- (void)valuationToView {
-    self.credentialsNumber.text = @"13112345678";
-    self.nameLicenseNumber.text = @"张三 苏AH1234";
-    self.topSchoolAge.text = @"5年";
-    self.topStudentNumber.text = @"8";
-    self.topDrivingName.text = @"小白驾校";
+- (void)assignmentMineHeaderValue:(LXMineModel *)headerModel {
+    self.credentialsNumber.text = headerModel.phone;
+    self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",headerModel.coachName,headerModel.carNo];
+    self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
+    self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
+    self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.photo]];
 }
+
 #pragma mark - Gesture
 - (void)headerViewTapGesture {
     self.clickHeadActionBlock();
@@ -241,6 +243,7 @@
         _topDrivingName.font = [UIFont systemFontOfSize:18];
         _topDrivingName.textAlignment = NSTextAlignmentCenter;
         _topDrivingName.textColor = [UIColor colorWithHexString:@"#333333"];
+        _topDrivingName.adjustsFontSizeToFitWidth = YES;
     }
     return _topDrivingName;
 }

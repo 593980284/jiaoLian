@@ -30,6 +30,11 @@ static NSString * const kUserInfo = @"coachSetting/getCoachInfo";
 
 ///  保存教练个人简介信息
 static NSString * const kSaveUserInfo = @"coachSetting/saveCoachInfo";
+/// 查询我的课程日期列表
+static NSString * const kfindMyCouseDateList = @"course/findMyCouseDateList";
+/// 教练上传头像图片接口
+static NSString * const kUploadCoachImage = @"coachSetting/uploadCoachImage";
+
 
 
 

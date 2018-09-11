@@ -24,7 +24,7 @@
 @property (nonatomic, copy)   NSString *photo;
 /// 当前教练车车牌号
 @property (nonatomic, copy)   NSString *carNo;
-
+/// 电话号码
 @property (nonatomic, copy)   NSString *phone;
 /// 教练个人简介
 @property (nonatomic, copy)   NSString *present;

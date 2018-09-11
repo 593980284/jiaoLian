@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class LXMineModel;
+
 @protocol LXMineMainSubViewDelegate <NSObject>
 @required
 - (NSInteger)lx_numberOfSectionsInTableView:(UITableView *)tableView;
@@ -26,4 +28,10 @@
 
 @interface LXMineMainSubView : UIView
 @property (nonatomic, assign) id <LXMineMainSubViewDelegate> mainMineDelegate;
+/**
+ 刷新数据
+ 
+ @param model model
+ */
+- (void)lx_updateMineMessage:(LXMineModel *)model;
 @end

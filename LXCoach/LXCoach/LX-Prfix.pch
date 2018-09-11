@@ -16,5 +16,6 @@
 #import "LXENUMDefine.h"
 #import "UIView+LXToast.h"
 #import "LXCacheManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #endif /* LX_Prfix_pch */

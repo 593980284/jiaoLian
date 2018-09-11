@@ -8,6 +8,10 @@
 
 #import "LXChangeOrFindPasswordController.h"
 #import "LXAlterOrFindStepTwoPasswordController.h"
+#import "LXCodeDataController.h"
+#import "LXCodeUrlSessionTask.h"
+#import "LXFindPassWordDataController.h"
+#import "LXFindPassWordUrlSessionTask.h"
 #import "LXChangeOrFindPasswordView.h"
 #import "LXCommonNavView.h"
 #import "UIButton+LXCountDown.h"
@@ -15,6 +19,8 @@
 @interface LXChangeOrFindPasswordController ()<LXChangeOrFindPasswordViewDelegate,LXCommonNavViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXChangeOrFindPasswordView *subView;
+@property (nonatomic, strong) LXCodeDataController *codeDataController;
+@property (nonatomic, strong) LXFindPassWordDataController *findPasswordStep1;
 @end
 
 @implementation LXChangeOrFindPasswordController
@@ -26,6 +32,7 @@
     [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
 }
+
 #pragma mark - LXCommonNavViewDelegate
 - (void)lx_clickLeftButton {
     [self.navigationController popViewControllerAnimated:YES];
@@ -34,25 +41,39 @@
 /**
  获取验证码
  
- @param testCodeButton 按钮
+ @param testCodeButton  按钮
+ @param phoneNumber     电话号码
  */
-- (void)lx_obtainTestCodeButton:(UIButton *)testCodeButton {
-    [testCodeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
-        
-    } isInteraction:NO];
+- (void)lx_obtainTestCodeButton:(UIButton *)testCodeButton andPhoneNumber:(NSString *)phoneNumber {
+    [self.codeDataController lxReuqestCodeWithPhone:phoneNumber completionBlock:^(LXCodeResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            [testCodeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
+                
+            } isInteraction:NO];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
 }
 
 /**
  点击确认
  
- @param testCode 验证码
+ @param  testCode 验证码
+ @param  phoneNumber 手机号
  */
-- (void)lx_clickAffirmButton:(NSString *)testCode {
+- (void)lx_clickAffirmButton:(NSString *)testCode andPhoneNumber:(NSString *)phoneNumber {
     if (self.type == 1) {
-        LXAlterOrFindStepTwoPasswordController *alterPasswordVC = [[LXAlterOrFindStepTwoPasswordController alloc] init];
-        alterPasswordVC.type = 1 ;
-        alterPasswordVC.navTitleString = @"找回密码";
-        [self.navigationController pushViewController:alterPasswordVC animated:YES];
+        [self.findPasswordStep1 lxReuqestFindPassWordWithPhone:phoneNumber msgCode:testCode completionBlock:^(LXFindPassWordResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
+                LXAlterOrFindStepTwoPasswordController *alterPasswordVC = [[LXAlterOrFindStepTwoPasswordController alloc] init];
+                alterPasswordVC.type = 1 ;
+                alterPasswordVC.navTitleString = @"找回密码";
+                [self.navigationController pushViewController:alterPasswordVC animated:YES];
+            }else {
+                [self.view makeToast:responseModel.msg];
+            }
+        }];
     }else if (self.type == 2){
         LXChangeOrFindPasswordController *findPasswordVC = [[LXChangeOrFindPasswordController alloc] init];
         findPasswordVC.type = 3;
@@ -60,7 +81,6 @@
     }else if (self.type == 3) {
         // 确认修改密码
     }
-    
 }
 
 #pragma mark - getter
@@ -96,6 +116,22 @@
     }
     return _subView;
 }
+- (LXCodeDataController *)codeDataController {
+    if (!_codeDataController) {
+        _codeDataController = [[LXCodeDataController alloc] init];
+    }
+    return _codeDataController;
+}
+- (LXFindPassWordDataController *)findPasswordStep1 {
+    if (!_findPasswordStep1) {
+        _findPasswordStep1 = [[LXFindPassWordDataController alloc] init];
+    }
+    return _findPasswordStep1;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -10,10 +10,15 @@
 #import "LXCommonNavView.h"
 #import "LXCourseSubView.h"
 #import "LXCourseListModel.h"
+#import "LXCourseDataController.h"
+#import "LXFindMyCouseDateListSessionTask.h"
+#import "LXMineModel.h"
 
 @interface LXCourseController ()
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseSubView *courseSubView;
+@property (nonatomic, strong) LXCourseDataController *dataController;
+@property (nonatomic, strong) LXMineModel *mineModel;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
@@ -21,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestFindMyCouseDateList];
     [self createUI];
 }
 
@@ -41,6 +47,15 @@
     }
 }
 
+#pragma mark - request
+- (void)requestFindMyCouseDateList {
+//    [self.dataController lxReuqestFindMyCouseDateListWithCertNo:self.mineModel.certNo completionBlock:^(LXFindMyCouseDateListResponseObject *responseModel) {
+//        if (responseModel.flg == 1) {
+//
+//        }
+//    }];
+}
+
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {
@@ -55,5 +70,16 @@
     }
     return _courseSubView;
 }
-
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
+}
+- (LXMineModel *)mineModel {
+    if (!_mineModel) {
+        _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    }
+    return _mineModel;
+}
 @end

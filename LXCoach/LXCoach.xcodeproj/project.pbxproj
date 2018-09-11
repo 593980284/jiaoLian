@@ -77,6 +77,10 @@
 		6A1620312147A76200438E14 /* LXCyhCalenbardate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1620302147A76200438E14 /* LXCyhCalenbardate.m */; };
 		6A1620342147A7CB00438E14 /* LXCalenCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1620332147A7CB00438E14 /* LXCalenCollectionViewCell.m */; };
 		6A1620372147A8B200438E14 /* LXCyhCalenbarview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1620362147A8B200438E14 /* LXCyhCalenbarview.m */; };
+		6A16203A2147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1620392147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m */; };
+		6A16203D2147EB4E00438E14 /* LXCourseFindDateListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16203C2147EB4E00438E14 /* LXCourseFindDateListModel.m */; };
+		6A1620402147ECC700438E14 /* LXCourseDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16203F2147ECC700438E14 /* LXCourseDataController.m */; };
+		6A162043214801E100438E14 /* LXUploadCoachImageSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A162042214801E100438E14 /* LXUploadCoachImageSessionTask.m */; };
 		6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */; };
 		6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */; };
 		6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */; };
@@ -234,6 +238,14 @@
 		6A1620332147A7CB00438E14 /* LXCalenCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCalenCollectionViewCell.m; sourceTree = "<group>"; };
 		6A1620352147A8B200438E14 /* LXCyhCalenbarview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCyhCalenbarview.h; sourceTree = "<group>"; };
 		6A1620362147A8B200438E14 /* LXCyhCalenbarview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCyhCalenbarview.m; sourceTree = "<group>"; };
+		6A1620382147E9A100438E14 /* LXFindMyCouseDateListSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFindMyCouseDateListSessionTask.h; sourceTree = "<group>"; };
+		6A1620392147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFindMyCouseDateListSessionTask.m; sourceTree = "<group>"; };
+		6A16203B2147EB4E00438E14 /* LXCourseFindDateListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseFindDateListModel.h; sourceTree = "<group>"; };
+		6A16203C2147EB4E00438E14 /* LXCourseFindDateListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseFindDateListModel.m; sourceTree = "<group>"; };
+		6A16203E2147ECC700438E14 /* LXCourseDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDataController.h; sourceTree = "<group>"; };
+		6A16203F2147ECC700438E14 /* LXCourseDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDataController.m; sourceTree = "<group>"; };
+		6A162041214801E100438E14 /* LXUploadCoachImageSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXUploadCoachImageSessionTask.h; sourceTree = "<group>"; };
+		6A162042214801E100438E14 /* LXUploadCoachImageSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXUploadCoachImageSessionTask.m; sourceTree = "<group>"; };
 		6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListController.h; sourceTree = "<group>"; };
 		6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListController.m; sourceTree = "<group>"; };
 		6A4F37C5214553A0007E41B8 /* LXStudentDetaileListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListCell.h; sourceTree = "<group>"; };
@@ -300,6 +312,8 @@
 		2F4CE88021440FD600275F69 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				6A16203B2147EB4E00438E14 /* LXCourseFindDateListModel.h */,
+				6A16203C2147EB4E00438E14 /* LXCourseFindDateListModel.m */,
 				2F4CE88121440FF100275F69 /* LXCourseListModel.h */,
 				2F4CE88221440FF100275F69 /* LXCourseListModel.m */,
 				2F4CE89B21442BE500275F69 /* LXCourseDetailModel.h */,
@@ -474,6 +488,10 @@
 				2F4CE86A2143E89A00275F69 /* LXUserInfoUrlSessionTask.m */,
 				2F4CE86F2143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.h */,
 				2F4CE8702143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m */,
+				6A1620382147E9A100438E14 /* LXFindMyCouseDateListSessionTask.h */,
+				6A1620392147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m */,
+				6A162041214801E100438E14 /* LXUploadCoachImageSessionTask.h */,
+				6A162042214801E100438E14 /* LXUploadCoachImageSessionTask.m */,
 			);
 			path = UrlSessionTask;
 			sourceTree = "<group>";
@@ -497,6 +515,8 @@
 				2F4CE85F2143DCB500275F69 /* LXSaveNewPhoneNumDataController.m */,
 				2F4CE86C2143E9CF00275F69 /* LXUserInfoDataController.h */,
 				2F4CE86D2143E9CF00275F69 /* LXUserInfoDataController.m */,
+				6A16203E2147ECC700438E14 /* LXCourseDataController.h */,
+				6A16203F2147ECC700438E14 /* LXCourseDataController.m */,
 			);
 			path = DataController;
 			sourceTree = "<group>";
@@ -861,17 +881,21 @@
 				324C4EAC214110A10067F95F /* LXMainMessageHeaderView.m in Sources */,
 				2FB7E32B213BD3BF00583B5C /* LXLoginView.m in Sources */,
 				2F4CE8942144207D00275F69 /* LXCourseDetailHeadView.m in Sources */,
+				6A16203D2147EB4E00438E14 /* LXCourseFindDateListModel.m in Sources */,
 				32C65C3F21422DE700B9CD1B /* LXCoureListSubViewController.m in Sources */,
 				2F4CE86B2143E89A00275F69 /* LXUserInfoUrlSessionTask.m in Sources */,
 				2F4CE8392143D1F600275F69 /* LXFindPassWordDataController.m in Sources */,
 				2FB7E30E213BC64800583B5C /* LXNetWorkCacheManager.m in Sources */,
 				6AD7D83D2143F63A000FB4EF /* LXMessageListCell.m in Sources */,
+				6A162043214801E100438E14 /* LXUploadCoachImageSessionTask.m in Sources */,
 				324C4EBB214142A00067F95F /* LXCourceListController.m in Sources */,
 				6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */,
+				6A16203A2147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m in Sources */,
 				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
 				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
 				6A16202D21479FDE00438E14 /* LXCacheManager.m in Sources */,
 				324C4EB8214138760067F95F /* LXAlterMessageCell.m in Sources */,
+				6A1620402147ECC700438E14 /* LXCourseDataController.m in Sources */,
 				2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */,
 				2F4CE89A21442B8200275F69 /* LXCourseDetailCell.m in Sources */,
 				6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */,

@@ -14,6 +14,7 @@
 #import "LXCommonNavView.h"
 #import "LXMineMainSubView.h"
 #import "LXMineCell.h"
+#import "LXMineModel.h"
 
 static NSString *cell_Identify = @"LXMineCell";
 
@@ -21,6 +22,7 @@ static NSString *cell_Identify = @"LXMineCell";
 @property (nonatomic, strong)LXCommonNavView *navView;
 @property (nonatomic, strong)LXMineMainSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) LXMineModel *mineModel;
 @end
 
 @implementation LXMineController
@@ -114,6 +116,7 @@ static NSString *cell_Identify = @"LXMineCell";
         _subView = [[LXMineMainSubView alloc] init];
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
         _subView.mainMineDelegate = self;
+        [_subView lx_updateMineMessage:self.mineModel];
     }
     return _subView;
 }
@@ -124,7 +127,13 @@ static NSString *cell_Identify = @"LXMineCell";
     }
     return _dataSource;
 }
-
+- (LXMineModel *)mineModel {
+    if (!_mineModel) {
+        // 读取数据
+        _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    }
+    return _mineModel;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

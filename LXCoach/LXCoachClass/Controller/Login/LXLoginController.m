@@ -66,19 +66,16 @@
  @param code 密码或者验证码
  */
 - (void)lx_clickLoginButton:(NSString *)acount andPasswordOrTestCode:(NSString *)code {
-    [self popContoller];
-//    [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
-//        if (responseModel.flg==1) {
-//            // 18004710471
-//            // 存储用户数据
-//            [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
-//            // 读取数据
-//            LXMineModel *model = [LXCacheManager objectForKey:@"LXMineModel"];
-//            [self popContoller];
-//        } else {
-//            [self.view makeToast:responseModel.msg];
-//        }
-//    }];
+    [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
+        if (responseModel.flg==1) {
+            // 18004710471
+            // 存储用户数据
+            [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
+            [self popContoller];
+        } else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
 }
 
 /**

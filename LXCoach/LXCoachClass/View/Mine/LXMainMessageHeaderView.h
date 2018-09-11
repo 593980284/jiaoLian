@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LXMineModel;
 
 @interface LXMainMessageHeaderView : UIView
 @property (nonatomic, copy) void (^clickHeadActionBlock)(void);
+- (void)assignmentMineHeaderValue:(LXMineModel *)headerModel;
 @end
