@@ -12,7 +12,6 @@
 #import "LXCourseListModel.h"
 
 @interface LXCourseController ()
-
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseSubView *courseSubView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
