@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>imageName</key>
+			<string>lx_mine_message_kcjl</string>
+			<key>textName</key>
+			<string>课程记录</string>
+			<key>clickType</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>lx_mine_message_people</string>
+			<key>textName</key>
+			<string>个人简介</string>
+			<key>clickType</key>
+			<string>2</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>imageName</key>
+			<string>lx_mine_message_sxhc</string>
+			<key>textName</key>
+			<string>刷新缓存</string>
+			<key>clickType</key>
+			<string>3</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>lx_mine_message_jcgx</string>
+			<key>textName</key>
+			<string>检查更新</string>
+			<key>clickType</key>
+			<string>4</string>
+		</dict>
+		<dict>
+			<key>imageName</key>
+			<string>lx_mine_message_gywm</string>
+			<key>textName</key>
+			<string>关于我们</string>
+			<key>clickType</key>
+			<string>5</string>
+		</dict>
+	</array>
+</array>
+</plist>

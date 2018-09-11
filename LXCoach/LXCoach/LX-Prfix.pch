@@ -1,0 +1,18 @@
+//
+//  LX-Prfix.pch
+//  LXCoach
+//
+//  Created by tanghaiyang on 2018/9/2.
+//  Copyright © 2018年 LeXiang. All rights reserved.
+//
+
+#ifndef LX_Prfix_pch
+#define LX_Prfix_pch
+
+#import <YYCategories/YYCategories.h>
+#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "LXCommon.h"
+#import "LXENUMDefine.h"
+#import "UIView+LXToast.h"
+
+#endif /* LX_Prfix_pch */

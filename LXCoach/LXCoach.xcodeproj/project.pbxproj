@@ -1,0 +1,1051 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */; };
+		2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */; };
+		2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */; };
+		2F4CE8332143CE2A00275F69 /* LXCodeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */; };
+		2F4CE8362143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8352143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m */; };
+		2F4CE8392143D1F600275F69 /* LXFindPassWordDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8382143D1F600275F69 /* LXFindPassWordDataController.m */; };
+		2F4CE83C2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE83B2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m */; };
+		2F4CE83F2143D3DF00275F69 /* LXSavePassWordDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE83E2143D3DF00275F69 /* LXSavePassWordDataController.m */; };
+		2F4CE8512143D50200275F69 /* LXChangePassWordDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8502143D50200275F69 /* LXChangePassWordDataController.m */; };
+		2F4CE8542143D51E00275F69 /* LXChangePassWordUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8532143D51E00275F69 /* LXChangePassWordUrlSessionTask.m */; };
+		2F4CE8572143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8562143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m */; };
+		2F4CE85A2143D8F700275F69 /* LXChangePhoneNumDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8592143D8F700275F69 /* LXChangePhoneNumDataController.m */; };
+		2F4CE85D2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE85C2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.m */; };
+		2F4CE8602143DCB500275F69 /* LXSaveNewPhoneNumDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE85F2143DCB500275F69 /* LXSaveNewPhoneNumDataController.m */; };
+		2F4CE8642143E00B00275F69 /* UIView+LXToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8632143E00B00275F69 /* UIView+LXToast.m */; };
+		2F4CE8682143E10700275F69 /* UIColor+LXColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8672143E10700275F69 /* UIColor+LXColor.m */; };
+		2F4CE86B2143E89A00275F69 /* LXUserInfoUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE86A2143E89A00275F69 /* LXUserInfoUrlSessionTask.m */; };
+		2F4CE86E2143E9CF00275F69 /* LXUserInfoDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE86D2143E9CF00275F69 /* LXUserInfoDataController.m */; };
+		2F4CE8712143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8702143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m */; };
+		2F4CE8742143FE2C00275F69 /* LXCourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8732143FE2C00275F69 /* LXCourseCell.m */; };
+		2F4CE88321440FF100275F69 /* LXCourseListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE88221440FF100275F69 /* LXCourseListModel.m */; };
+		2F4CE88621441CB100275F69 /* LXCourseDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE88521441CB100275F69 /* LXCourseDetailController.m */; };
+		2F4CE88A21441D7E00275F69 /* UIWindow+LXUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE88921441D7E00275F69 /* UIWindow+LXUIWindow.m */; };
+		2F4CE88E21441E4000275F69 /* LXNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE88D21441E4000275F69 /* LXNavigationManager.m */; };
+		2F4CE8912144205D00275F69 /* LXCourseDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8902144205D00275F69 /* LXCourseDetailView.m */; };
+		2F4CE8942144207D00275F69 /* LXCourseDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8932144207D00275F69 /* LXCourseDetailHeadView.m */; };
+		2F4CE8972144240D00275F69 /* LXCourseEvaluateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8962144240D00275F69 /* LXCourseEvaluateController.m */; };
+		2F4CE89A21442B8200275F69 /* LXCourseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE89921442B8200275F69 /* LXCourseDetailCell.m */; };
+		2F4CE89D21442BE500275F69 /* LXCourseDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE89C21442BE500275F69 /* LXCourseDetailModel.m */; };
+		2FB7E2CA213BBDFE00583B5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E2C9213BBDFE00583B5C /* AppDelegate.m */; };
+		2FB7E2D2213BBDFF00583B5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FB7E2D1213BBDFF00583B5C /* Assets.xcassets */; };
+		2FB7E2D8213BBDFF00583B5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E2D7213BBDFF00583B5C /* main.m */; };
+		2FB7E2EA213BBFA900583B5C /* LXMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E2E9213BBFA900583B5C /* LXMineModel.m */; };
+		2FB7E2EE213BC01A00583B5C /* LXMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E2ED213BC01A00583B5C /* LXMineCell.m */; };
+		2FB7E30E213BC64800583B5C /* LXNetWorkCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E30D213BC64800583B5C /* LXNetWorkCacheManager.m */; };
+		2FB7E314213BC7EC00583B5C /* LXNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E313213BC7EC00583B5C /* LXNetWorkManager.m */; };
+		2FB7E317213BC7FE00583B5C /* LXBaseUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E316213BC7FE00583B5C /* LXBaseUrlSessionTask.m */; };
+		2FB7E31D213BD10700583B5C /* LXLoginUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E31C213BD10700583B5C /* LXLoginUrlSessionTask.m */; };
+		2FB7E320213BD12B00583B5C /* LXLoginDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E31F213BD12B00583B5C /* LXLoginDataController.m */; };
+		2FB7E325213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E324213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.m */; };
+		2FB7E32B213BD3BF00583B5C /* LXLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E32A213BD3BF00583B5C /* LXLoginView.m */; };
+		324C4E772140DBD80067F95F /* LXCommonNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E752140DBD80067F95F /* LXCommonNavView.m */; };
+		324C4E7A2140DC9B0067F95F /* LXMineMainSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E792140DC9B0067F95F /* LXMineMainSubView.m */; };
+		324C4E89214109180067F95F /* LXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E87214109180067F95F /* LXTabBarController.m */; };
+		324C4E8D2141094C0067F95F /* LXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E8C2141094C0067F95F /* LXNavigationController.m */; };
+		324C4E94214109D30067F95F /* LXMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E92214109D30067F95F /* LXMineController.m */; };
+		324C4E97214109EC0067F95F /* LXStudentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E95214109EC0067F95F /* LXStudentController.m */; };
+		324C4E9A21410A1E0067F95F /* LXMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E9921410A1E0067F95F /* LXMessageController.m */; };
+		324C4E9D21410A4D0067F95F /* LXCourseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E9B21410A4D0067F95F /* LXCourseController.m */; };
+		324C4EA521410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4E9F21410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m */; };
+		324C4EA621410AB70067F95F /* LXLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EA321410AB70067F95F /* LXLoginController.m */; };
+		324C4EA721410AB70067F95F /* LXChangeOrFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EA421410AB70067F95F /* LXChangeOrFindPasswordController.m */; };
+		324C4EA921410B360067F95F /* LXMineMessageList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 324C4EA821410B360067F95F /* LXMineMessageList.plist */; };
+		324C4EAC214110A10067F95F /* LXMainMessageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EAB214110A10067F95F /* LXMainMessageHeaderView.m */; };
+		324C4EB2214133B10067F95F /* LXMineMessageAlterSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EB1214133B10067F95F /* LXMineMessageAlterSubView.m */; };
+		324C4EB5214133CB0067F95F /* LXMineMessageAlterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EB4214133CB0067F95F /* LXMineMessageAlterController.m */; };
+		324C4EB8214138760067F95F /* LXAlterMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EB7214138760067F95F /* LXAlterMessageCell.m */; };
+		324C4EBB214142A00067F95F /* LXCourceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EBA214142A00067F95F /* LXCourceListController.m */; };
+		324C4EBE214142DA0067F95F /* LXIntroMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EBD214142DA0067F95F /* LXIntroMineController.m */; };
+		324C4EC12141433F0067F95F /* LXAboutOursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EC02141433F0067F95F /* LXAboutOursViewController.m */; };
+		324C4EC52141646E0067F95F /* LXIntroMineSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C4EC42141646E0067F95F /* LXIntroMineSubView.m */; };
+		32C65C3F21422DE700B9CD1B /* LXCoureListSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C65C3E21422DE700B9CD1B /* LXCoureListSubViewController.m */; };
+		32C65C42214233CC00B9CD1B /* LXCourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C65C41214233CC00B9CD1B /* LXCourseListCell.m */; };
+		32F9028C213F940900BF94E4 /* LXChangeOrFindPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F9028B213F940900BF94E4 /* LXChangeOrFindPasswordView.m */; };
+		32F90292213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */; };
+		6A16202821477E4B00438E14 /* UIButton+LXCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */; };
+		6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */; };
+		6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */; };
+		6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */; };
+		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
+		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
+		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
+		6AD7D83C2143F63A000FB4EF /* LXCourseSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8302143F63A000FB4EF /* LXCourseSubView.m */; };
+		6AD7D83D2143F63A000FB4EF /* LXMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8342143F63A000FB4EF /* LXMessageListCell.m */; };
+		6AD7D83E2143F63A000FB4EF /* LXStudentSubViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8362143F63A000FB4EF /* LXStudentSubViewCell.m */; };
+		6AD7D83F2143F63A000FB4EF /* LXStudentDetaileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8372143F63A000FB4EF /* LXStudentDetaileHeaderView.m */; };
+		6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8382143F63A000FB4EF /* LXStudentSubView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXCoach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXCoach/Pods-LXCoach.debug.xcconfig"; sourceTree = "<group>"; };
+		2F4CE8252143C4A200275F69 /* LXNetWorkResponseBaseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkResponseBaseObject.h; sourceTree = "<group>"; };
+		2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkResponseBaseObject.m; sourceTree = "<group>"; };
+		2F4CE82E2143CD8C00275F69 /* LXCodeUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCodeUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCodeUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE8312143CE2A00275F69 /* LXCodeDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCodeDataController.h; sourceTree = "<group>"; };
+		2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCodeDataController.m; sourceTree = "<group>"; };
+		2F4CE8342143CF0D00275F69 /* LXFindPassWordUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFindPassWordUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE8352143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFindPassWordUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE8372143D1F600275F69 /* LXFindPassWordDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFindPassWordDataController.h; sourceTree = "<group>"; };
+		2F4CE8382143D1F600275F69 /* LXFindPassWordDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFindPassWordDataController.m; sourceTree = "<group>"; };
+		2F4CE83A2143D2F600275F69 /* LXSavePassWordUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSavePassWordUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE83B2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSavePassWordUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE83D2143D3DF00275F69 /* LXSavePassWordDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSavePassWordDataController.h; sourceTree = "<group>"; };
+		2F4CE83E2143D3DF00275F69 /* LXSavePassWordDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSavePassWordDataController.m; sourceTree = "<group>"; };
+		2F4CE84F2143D50200275F69 /* LXChangePassWordDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXChangePassWordDataController.h; sourceTree = "<group>"; };
+		2F4CE8502143D50200275F69 /* LXChangePassWordDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXChangePassWordDataController.m; sourceTree = "<group>"; };
+		2F4CE8522143D51E00275F69 /* LXChangePassWordUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXChangePassWordUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE8532143D51E00275F69 /* LXChangePassWordUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXChangePassWordUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE8552143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXChangePhoneNumUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE8562143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXChangePhoneNumUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE8582143D8F700275F69 /* LXChangePhoneNumDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXChangePhoneNumDataController.h; sourceTree = "<group>"; };
+		2F4CE8592143D8F700275F69 /* LXChangePhoneNumDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXChangePhoneNumDataController.m; sourceTree = "<group>"; };
+		2F4CE85B2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSaveNewPhoneNumUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE85C2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSaveNewPhoneNumUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE85E2143DCB500275F69 /* LXSaveNewPhoneNumDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSaveNewPhoneNumDataController.h; sourceTree = "<group>"; };
+		2F4CE85F2143DCB500275F69 /* LXSaveNewPhoneNumDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSaveNewPhoneNumDataController.m; sourceTree = "<group>"; };
+		2F4CE8622143E00B00275F69 /* UIView+LXToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LXToast.h"; sourceTree = "<group>"; };
+		2F4CE8632143E00B00275F69 /* UIView+LXToast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LXToast.m"; sourceTree = "<group>"; };
+		2F4CE8662143E10700275F69 /* UIColor+LXColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+LXColor.h"; sourceTree = "<group>"; };
+		2F4CE8672143E10700275F69 /* UIColor+LXColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LXColor.m"; sourceTree = "<group>"; };
+		2F4CE8692143E89A00275F69 /* LXUserInfoUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXUserInfoUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE86A2143E89A00275F69 /* LXUserInfoUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXUserInfoUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE86C2143E9CF00275F69 /* LXUserInfoDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXUserInfoDataController.h; sourceTree = "<group>"; };
+		2F4CE86D2143E9CF00275F69 /* LXUserInfoDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXUserInfoDataController.m; sourceTree = "<group>"; };
+		2F4CE86F2143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSaveUserInfoUrlSessionTask.h; sourceTree = "<group>"; };
+		2F4CE8702143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSaveUserInfoUrlSessionTask.m; sourceTree = "<group>"; };
+		2F4CE8722143FE2C00275F69 /* LXCourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseCell.h; sourceTree = "<group>"; };
+		2F4CE8732143FE2C00275F69 /* LXCourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseCell.m; sourceTree = "<group>"; };
+		2F4CE88121440FF100275F69 /* LXCourseListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseListModel.h; sourceTree = "<group>"; };
+		2F4CE88221440FF100275F69 /* LXCourseListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseListModel.m; sourceTree = "<group>"; };
+		2F4CE88421441CB100275F69 /* LXCourseDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDetailController.h; sourceTree = "<group>"; };
+		2F4CE88521441CB100275F69 /* LXCourseDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDetailController.m; sourceTree = "<group>"; };
+		2F4CE88821441D7E00275F69 /* UIWindow+LXUIWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LXUIWindow.h"; sourceTree = "<group>"; };
+		2F4CE88921441D7E00275F69 /* UIWindow+LXUIWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LXUIWindow.m"; sourceTree = "<group>"; };
+		2F4CE88C21441E4000275F69 /* LXNavigationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNavigationManager.h; sourceTree = "<group>"; };
+		2F4CE88D21441E4000275F69 /* LXNavigationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNavigationManager.m; sourceTree = "<group>"; };
+		2F4CE88F2144205D00275F69 /* LXCourseDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDetailView.h; sourceTree = "<group>"; };
+		2F4CE8902144205D00275F69 /* LXCourseDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDetailView.m; sourceTree = "<group>"; };
+		2F4CE8922144207D00275F69 /* LXCourseDetailHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDetailHeadView.h; sourceTree = "<group>"; };
+		2F4CE8932144207D00275F69 /* LXCourseDetailHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDetailHeadView.m; sourceTree = "<group>"; };
+		2F4CE8952144240D00275F69 /* LXCourseEvaluateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateController.h; sourceTree = "<group>"; };
+		2F4CE8962144240D00275F69 /* LXCourseEvaluateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateController.m; sourceTree = "<group>"; };
+		2F4CE89821442B8200275F69 /* LXCourseDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDetailCell.h; sourceTree = "<group>"; };
+		2F4CE89921442B8200275F69 /* LXCourseDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDetailCell.m; sourceTree = "<group>"; };
+		2F4CE89B21442BE500275F69 /* LXCourseDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseDetailModel.h; sourceTree = "<group>"; };
+		2F4CE89C21442BE500275F69 /* LXCourseDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseDetailModel.m; sourceTree = "<group>"; };
+		2FB7E2C5213BBDFE00583B5C /* LXCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FB7E2C8213BBDFE00583B5C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2FB7E2C9213BBDFE00583B5C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2FB7E2D1213BBDFF00583B5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FB7E2D6213BBDFF00583B5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FB7E2D7213BBDFF00583B5C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2FB7E2E8213BBFA900583B5C /* LXMineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMineModel.h; sourceTree = "<group>"; };
+		2FB7E2E9213BBFA900583B5C /* LXMineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMineModel.m; sourceTree = "<group>"; };
+		2FB7E2EC213BC01A00583B5C /* LXMineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMineCell.h; sourceTree = "<group>"; };
+		2FB7E2ED213BC01A00583B5C /* LXMineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMineCell.m; sourceTree = "<group>"; };
+		2FB7E308213BC48100583B5C /* LXUrlApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXUrlApi.h; sourceTree = "<group>"; };
+		2FB7E30C213BC64800583B5C /* LXNetWorkCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkCacheManager.h; sourceTree = "<group>"; };
+		2FB7E30D213BC64800583B5C /* LXNetWorkCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkCacheManager.m; sourceTree = "<group>"; };
+		2FB7E312213BC7EC00583B5C /* LXNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkManager.h; sourceTree = "<group>"; };
+		2FB7E313213BC7EC00583B5C /* LXNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkManager.m; sourceTree = "<group>"; };
+		2FB7E315213BC7FE00583B5C /* LXBaseUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBaseUrlSessionTask.h; sourceTree = "<group>"; };
+		2FB7E316213BC7FE00583B5C /* LXBaseUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseUrlSessionTask.m; sourceTree = "<group>"; };
+		2FB7E318213BC9A200583B5C /* LX-Prfix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LX-Prfix.pch"; sourceTree = "<group>"; };
+		2FB7E31B213BD10700583B5C /* LXLoginUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginUrlSessionTask.h; sourceTree = "<group>"; };
+		2FB7E31C213BD10700583B5C /* LXLoginUrlSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginUrlSessionTask.m; sourceTree = "<group>"; };
+		2FB7E31E213BD12B00583B5C /* LXLoginDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginDataController.h; sourceTree = "<group>"; };
+		2FB7E31F213BD12B00583B5C /* LXLoginDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginDataController.m; sourceTree = "<group>"; };
+		2FB7E323213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		2FB7E324213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		2FB7E329213BD3BF00583B5C /* LXLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginView.h; sourceTree = "<group>"; };
+		2FB7E32A213BD3BF00583B5C /* LXLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginView.m; sourceTree = "<group>"; };
+		2FB7E32F213BD9BA00583B5C /* LXCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCommon.h; sourceTree = "<group>"; };
+		324C4E752140DBD80067F95F /* LXCommonNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCommonNavView.m; sourceTree = "<group>"; };
+		324C4E762140DBD80067F95F /* LXCommonNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCommonNavView.h; sourceTree = "<group>"; };
+		324C4E782140DC9B0067F95F /* LXMineMainSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMineMainSubView.h; sourceTree = "<group>"; };
+		324C4E792140DC9B0067F95F /* LXMineMainSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMineMainSubView.m; sourceTree = "<group>"; };
+		324C4E87214109180067F95F /* LXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTabBarController.m; sourceTree = "<group>"; };
+		324C4E88214109180067F95F /* LXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTabBarController.h; sourceTree = "<group>"; };
+		324C4E8B2141094C0067F95F /* LXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNavigationController.h; sourceTree = "<group>"; };
+		324C4E8C2141094C0067F95F /* LXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNavigationController.m; sourceTree = "<group>"; };
+		324C4E92214109D30067F95F /* LXMineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMineController.m; sourceTree = "<group>"; };
+		324C4E93214109D30067F95F /* LXMineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMineController.h; sourceTree = "<group>"; };
+		324C4E95214109EC0067F95F /* LXStudentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentController.m; sourceTree = "<group>"; };
+		324C4E96214109EC0067F95F /* LXStudentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStudentController.h; sourceTree = "<group>"; };
+		324C4E9821410A1E0067F95F /* LXMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessageController.h; sourceTree = "<group>"; };
+		324C4E9921410A1E0067F95F /* LXMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessageController.m; sourceTree = "<group>"; };
+		324C4E9B21410A4D0067F95F /* LXCourseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCourseController.m; sourceTree = "<group>"; };
+		324C4E9C21410A4D0067F95F /* LXCourseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCourseController.h; sourceTree = "<group>"; };
+		324C4E9F21410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXAlterOrFindStepTwoPasswordController.m; sourceTree = "<group>"; };
+		324C4EA021410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXAlterOrFindStepTwoPasswordController.h; sourceTree = "<group>"; };
+		324C4EA121410AB70067F95F /* LXChangeOrFindPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXChangeOrFindPasswordController.h; sourceTree = "<group>"; };
+		324C4EA221410AB70067F95F /* LXLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXLoginController.h; sourceTree = "<group>"; };
+		324C4EA321410AB70067F95F /* LXLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXLoginController.m; sourceTree = "<group>"; };
+		324C4EA421410AB70067F95F /* LXChangeOrFindPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXChangeOrFindPasswordController.m; sourceTree = "<group>"; };
+		324C4EA821410B360067F95F /* LXMineMessageList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LXMineMessageList.plist; sourceTree = "<group>"; };
+		324C4EAA214110A10067F95F /* LXMainMessageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMainMessageHeaderView.h; sourceTree = "<group>"; };
+		324C4EAB214110A10067F95F /* LXMainMessageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMainMessageHeaderView.m; sourceTree = "<group>"; };
+		324C4EB0214133B10067F95F /* LXMineMessageAlterSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMineMessageAlterSubView.h; sourceTree = "<group>"; };
+		324C4EB1214133B10067F95F /* LXMineMessageAlterSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMineMessageAlterSubView.m; sourceTree = "<group>"; };
+		324C4EB3214133CB0067F95F /* LXMineMessageAlterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMineMessageAlterController.h; sourceTree = "<group>"; };
+		324C4EB4214133CB0067F95F /* LXMineMessageAlterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMineMessageAlterController.m; sourceTree = "<group>"; };
+		324C4EB6214138760067F95F /* LXAlterMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAlterMessageCell.h; sourceTree = "<group>"; };
+		324C4EB7214138760067F95F /* LXAlterMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterMessageCell.m; sourceTree = "<group>"; };
+		324C4EB9214142A00067F95F /* LXCourceListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourceListController.h; sourceTree = "<group>"; };
+		324C4EBA214142A00067F95F /* LXCourceListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourceListController.m; sourceTree = "<group>"; };
+		324C4EBC214142DA0067F95F /* LXIntroMineController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXIntroMineController.h; sourceTree = "<group>"; };
+		324C4EBD214142DA0067F95F /* LXIntroMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXIntroMineController.m; sourceTree = "<group>"; };
+		324C4EBF2141433F0067F95F /* LXAboutOursViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAboutOursViewController.h; sourceTree = "<group>"; };
+		324C4EC02141433F0067F95F /* LXAboutOursViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAboutOursViewController.m; sourceTree = "<group>"; };
+		324C4EC2214160740067F95F /* LXENUMDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXENUMDefine.h; sourceTree = "<group>"; };
+		324C4EC32141646E0067F95F /* LXIntroMineSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXIntroMineSubView.h; sourceTree = "<group>"; };
+		324C4EC42141646E0067F95F /* LXIntroMineSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXIntroMineSubView.m; sourceTree = "<group>"; };
+		32C65C3D21422DE700B9CD1B /* LXCoureListSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCoureListSubViewController.h; sourceTree = "<group>"; };
+		32C65C3E21422DE700B9CD1B /* LXCoureListSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCoureListSubViewController.m; sourceTree = "<group>"; };
+		32C65C40214233CC00B9CD1B /* LXCourseListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseListCell.h; sourceTree = "<group>"; };
+		32C65C41214233CC00B9CD1B /* LXCourseListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseListCell.m; sourceTree = "<group>"; };
+		32F9028A213F940900BF94E4 /* LXChangeOrFindPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXChangeOrFindPasswordView.h; sourceTree = "<group>"; };
+		32F9028B213F940900BF94E4 /* LXChangeOrFindPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXChangeOrFindPasswordView.m; sourceTree = "<group>"; };
+		32F90290213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAlterOrFindStepTwoPasswordView.h; sourceTree = "<group>"; };
+		32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterOrFindStepTwoPasswordView.m; sourceTree = "<group>"; };
+		48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXCoach.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A16202621477E4B00438E14 /* UIButton+LXCountDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LXCountDown.h"; sourceTree = "<group>"; };
+		6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LXCountDown.m"; sourceTree = "<group>"; };
+		6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListController.h; sourceTree = "<group>"; };
+		6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListController.m; sourceTree = "<group>"; };
+		6A4F37C5214553A0007E41B8 /* LXStudentDetaileListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListCell.h; sourceTree = "<group>"; };
+		6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListCell.m; sourceTree = "<group>"; };
+		6A4F37C82145566E007E41B8 /* LXStudentDetaileTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileTitleCell.h; sourceTree = "<group>"; };
+		6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileTitleCell.m; sourceTree = "<group>"; };
+		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
+		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
+		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
+		6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessgaeListController.m; sourceTree = "<group>"; };
+		6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetailController.m; sourceTree = "<group>"; };
+		6AD7D82D2143F5A6000FB4EF /* LXStudentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStudentDetailController.h; sourceTree = "<group>"; };
+		6AD7D8302143F63A000FB4EF /* LXCourseSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCourseSubView.m; sourceTree = "<group>"; };
+		6AD7D8312143F63A000FB4EF /* LXCourseSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCourseSubView.h; sourceTree = "<group>"; };
+		6AD7D8332143F63A000FB4EF /* LXMessageListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessageListCell.h; sourceTree = "<group>"; };
+		6AD7D8342143F63A000FB4EF /* LXMessageListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessageListCell.m; sourceTree = "<group>"; };
+		6AD7D8362143F63A000FB4EF /* LXStudentSubViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentSubViewCell.m; sourceTree = "<group>"; };
+		6AD7D8372143F63A000FB4EF /* LXStudentDetaileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileHeaderView.m; sourceTree = "<group>"; };
+		6AD7D8382143F63A000FB4EF /* LXStudentSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentSubView.m; sourceTree = "<group>"; };
+		6AD7D8392143F63A000FB4EF /* LXStudentSubViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStudentSubViewCell.h; sourceTree = "<group>"; };
+		6AD7D83A2143F63A000FB4EF /* LXStudentSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStudentSubView.h; sourceTree = "<group>"; };
+		6AD7D83B2143F63A000FB4EF /* LXStudentDetaileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileHeaderView.h; sourceTree = "<group>"; };
+		F517ABCFE75316F87A79E588 /* Pods-LXCoach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXCoach.release.xcconfig"; path = "Pods/Target Support Files/Pods-LXCoach/Pods-LXCoach.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FB7E2C2213BBDFE00583B5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080361B57BEA7C5E0D32C537 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F4CE8612143DFD600275F69 /* LXToast */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE8622143E00B00275F69 /* UIView+LXToast.h */,
+				2F4CE8632143E00B00275F69 /* UIView+LXToast.m */,
+			);
+			path = LXToast;
+			sourceTree = "<group>";
+		};
+		2F4CE8652143E0F400275F69 /* LXColor */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE8662143E10700275F69 /* UIColor+LXColor.h */,
+				2F4CE8672143E10700275F69 /* UIColor+LXColor.m */,
+			);
+			path = LXColor;
+			sourceTree = "<group>";
+		};
+		2F4CE88021440FD600275F69 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE88121440FF100275F69 /* LXCourseListModel.h */,
+				2F4CE88221440FF100275F69 /* LXCourseListModel.m */,
+				2F4CE89B21442BE500275F69 /* LXCourseDetailModel.h */,
+				2F4CE89C21442BE500275F69 /* LXCourseDetailModel.m */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		2F4CE88721441D3200275F69 /* LXWindow */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE88821441D7E00275F69 /* UIWindow+LXUIWindow.h */,
+				2F4CE88921441D7E00275F69 /* UIWindow+LXUIWindow.m */,
+			);
+			path = LXWindow;
+			sourceTree = "<group>";
+		};
+		2F4CE88B21441E2A00275F69 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE88C21441E4000275F69 /* LXNavigationManager.h */,
+				2F4CE88D21441E4000275F69 /* LXNavigationManager.m */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		2FB7E2BC213BBDFE00583B5C = {
+			isa = PBXGroup;
+			children = (
+				2FB7E2DE213BBE8700583B5C /* LXCoachClass */,
+				2FB7E2C7213BBDFE00583B5C /* LXCoach */,
+				2FB7E2C6213BBDFE00583B5C /* Products */,
+				76E6BFC37F686BCC4126E590 /* Pods */,
+				080361B57BEA7C5E0D32C537 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2FB7E2C6213BBDFE00583B5C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E2C5213BBDFE00583B5C /* LXCoach.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FB7E2C7213BBDFE00583B5C /* LXCoach */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E2C8213BBDFE00583B5C /* AppDelegate.h */,
+				2FB7E2C9213BBDFE00583B5C /* AppDelegate.m */,
+				2FB7E318213BC9A200583B5C /* LX-Prfix.pch */,
+				2FB7E32F213BD9BA00583B5C /* LXCommon.h */,
+				324C4EC2214160740067F95F /* LXENUMDefine.h */,
+				2FB7E2D1213BBDFF00583B5C /* Assets.xcassets */,
+				2FB7E2D6213BBDFF00583B5C /* Info.plist */,
+				2FB7E2D7213BBDFF00583B5C /* main.m */,
+			);
+			path = LXCoach;
+			sourceTree = "<group>";
+		};
+		2FB7E2DE213BBE8700583B5C /* LXCoachClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E321213BD1DD00583B5C /* Categary */,
+				2F4CE88B21441E2A00275F69 /* Plugins */,
+				324C4E85214108B30067F95F /* Source */,
+				324C4E84214108A60067F95F /* Controller */,
+				2FB7E31A213BD0CD00583B5C /* DataController */,
+				2FB7E2E2213BBEE400583B5C /* NetWork */,
+				2FB7E2E1213BBEC900583B5C /* Model */,
+				2FB7E2E0213BBEC300583B5C /* View */,
+			);
+			path = LXCoachClass;
+			sourceTree = "<group>";
+		};
+		2FB7E2E0213BBEC300583B5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6AD7D82F2143F63A000FB4EF /* Course */,
+				6AD7D8322143F63A000FB4EF /* Messages */,
+				6AD7D8352143F63A000FB4EF /* Student */,
+				324C4E742140DBCC0067F95F /* Navigation */,
+				2FB7E327213BD37600583B5C /* Login */,
+				2FB7E2EB213BBFFB00583B5C /* Mine */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2FB7E2E1213BBEC900583B5C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F4CE88021440FD600275F69 /* Course */,
+				2FB7E2E7213BBF3700583B5C /* Mine */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2FB7E2E2213BBEE400583B5C /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E319213BD0BD00583B5C /* UrlSessionTask */,
+				2FB7E2EF213BC06700583B5C /* BaseNetWork */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		2FB7E2E7213BBF3700583B5C /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E2E8213BBFA900583B5C /* LXMineModel.h */,
+				2FB7E2E9213BBFA900583B5C /* LXMineModel.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		2FB7E2EB213BBFFB00583B5C /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E782140DC9B0067F95F /* LXMineMainSubView.h */,
+				324C4E792140DC9B0067F95F /* LXMineMainSubView.m */,
+				324C4EAA214110A10067F95F /* LXMainMessageHeaderView.h */,
+				324C4EAB214110A10067F95F /* LXMainMessageHeaderView.m */,
+				2FB7E2EC213BC01A00583B5C /* LXMineCell.h */,
+				2FB7E2ED213BC01A00583B5C /* LXMineCell.m */,
+				324C4EB0214133B10067F95F /* LXMineMessageAlterSubView.h */,
+				324C4EB1214133B10067F95F /* LXMineMessageAlterSubView.m */,
+				324C4EB6214138760067F95F /* LXAlterMessageCell.h */,
+				324C4EB7214138760067F95F /* LXAlterMessageCell.m */,
+				32C65C40214233CC00B9CD1B /* LXCourseListCell.h */,
+				32C65C41214233CC00B9CD1B /* LXCourseListCell.m */,
+				324C4EC32141646E0067F95F /* LXIntroMineSubView.h */,
+				324C4EC42141646E0067F95F /* LXIntroMineSubView.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		2FB7E2EF213BC06700583B5C /* BaseNetWork */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E308213BC48100583B5C /* LXUrlApi.h */,
+				2FB7E30C213BC64800583B5C /* LXNetWorkCacheManager.h */,
+				2FB7E30D213BC64800583B5C /* LXNetWorkCacheManager.m */,
+				2FB7E312213BC7EC00583B5C /* LXNetWorkManager.h */,
+				2FB7E313213BC7EC00583B5C /* LXNetWorkManager.m */,
+				2FB7E315213BC7FE00583B5C /* LXBaseUrlSessionTask.h */,
+				2FB7E316213BC7FE00583B5C /* LXBaseUrlSessionTask.m */,
+				2F4CE8252143C4A200275F69 /* LXNetWorkResponseBaseObject.h */,
+				2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */,
+			);
+			path = BaseNetWork;
+			sourceTree = "<group>";
+		};
+		2FB7E319213BD0BD00583B5C /* UrlSessionTask */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E31B213BD10700583B5C /* LXLoginUrlSessionTask.h */,
+				2FB7E31C213BD10700583B5C /* LXLoginUrlSessionTask.m */,
+				2F4CE82E2143CD8C00275F69 /* LXCodeUrlSessionTask.h */,
+				2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */,
+				2F4CE8342143CF0D00275F69 /* LXFindPassWordUrlSessionTask.h */,
+				2F4CE8352143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m */,
+				2F4CE83A2143D2F600275F69 /* LXSavePassWordUrlSessionTask.h */,
+				2F4CE83B2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m */,
+				2F4CE8522143D51E00275F69 /* LXChangePassWordUrlSessionTask.h */,
+				2F4CE8532143D51E00275F69 /* LXChangePassWordUrlSessionTask.m */,
+				2F4CE8552143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.h */,
+				2F4CE8562143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m */,
+				2F4CE85B2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.h */,
+				2F4CE85C2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.m */,
+				2F4CE8692143E89A00275F69 /* LXUserInfoUrlSessionTask.h */,
+				2F4CE86A2143E89A00275F69 /* LXUserInfoUrlSessionTask.m */,
+				2F4CE86F2143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.h */,
+				2F4CE8702143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m */,
+			);
+			path = UrlSessionTask;
+			sourceTree = "<group>";
+		};
+		2FB7E31A213BD0CD00583B5C /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E31E213BD12B00583B5C /* LXLoginDataController.h */,
+				2FB7E31F213BD12B00583B5C /* LXLoginDataController.m */,
+				2F4CE8312143CE2A00275F69 /* LXCodeDataController.h */,
+				2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */,
+				2F4CE8372143D1F600275F69 /* LXFindPassWordDataController.h */,
+				2F4CE8382143D1F600275F69 /* LXFindPassWordDataController.m */,
+				2F4CE83D2143D3DF00275F69 /* LXSavePassWordDataController.h */,
+				2F4CE83E2143D3DF00275F69 /* LXSavePassWordDataController.m */,
+				2F4CE84F2143D50200275F69 /* LXChangePassWordDataController.h */,
+				2F4CE8502143D50200275F69 /* LXChangePassWordDataController.m */,
+				2F4CE8582143D8F700275F69 /* LXChangePhoneNumDataController.h */,
+				2F4CE8592143D8F700275F69 /* LXChangePhoneNumDataController.m */,
+				2F4CE85E2143DCB500275F69 /* LXSaveNewPhoneNumDataController.h */,
+				2F4CE85F2143DCB500275F69 /* LXSaveNewPhoneNumDataController.m */,
+				2F4CE86C2143E9CF00275F69 /* LXUserInfoDataController.h */,
+				2F4CE86D2143E9CF00275F69 /* LXUserInfoDataController.m */,
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		2FB7E321213BD1DD00583B5C /* Categary */ = {
+			isa = PBXGroup;
+			children = (
+				6A16202521477E1F00438E14 /* LXButton */,
+				2F4CE88721441D3200275F69 /* LXWindow */,
+				2F4CE8652143E0F400275F69 /* LXColor */,
+				2F4CE8612143DFD600275F69 /* LXToast */,
+				2FB7E322213BD1EA00583B5C /* LXFullScreenPopGesture */,
+			);
+			path = Categary;
+			sourceTree = "<group>";
+		};
+		2FB7E322213BD1EA00583B5C /* LXFullScreenPopGesture */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E323213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.h */,
+				2FB7E324213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.m */,
+			);
+			path = LXFullScreenPopGesture;
+			sourceTree = "<group>";
+		};
+		2FB7E327213BD37600583B5C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2FB7E329213BD3BF00583B5C /* LXLoginView.h */,
+				2FB7E32A213BD3BF00583B5C /* LXLoginView.m */,
+				32F9028A213F940900BF94E4 /* LXChangeOrFindPasswordView.h */,
+				32F9028B213F940900BF94E4 /* LXChangeOrFindPasswordView.m */,
+				32F90290213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.h */,
+				32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		324C4E742140DBCC0067F95F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E762140DBD80067F95F /* LXCommonNavView.h */,
+				324C4E752140DBD80067F95F /* LXCommonNavView.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		324C4E84214108A60067F95F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E9E21410A630067F95F /* Login */,
+				324C4E91214109AF0067F95F /* Course */,
+				324C4E90214109960067F95F /* Messages */,
+				324C4E8F214109720067F95F /* Student */,
+				324C4E8E214109610067F95F /* Mine */,
+				324C4E8A2141092F0067F95F /* Navigation */,
+				324C4E86214108F70067F95F /* Tabbar */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		324C4E85214108B30067F95F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				324C4EA821410B360067F95F /* LXMineMessageList.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		324C4E86214108F70067F95F /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E88214109180067F95F /* LXTabBarController.h */,
+				324C4E87214109180067F95F /* LXTabBarController.m */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		324C4E8A2141092F0067F95F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E8B2141094C0067F95F /* LXNavigationController.h */,
+				324C4E8C2141094C0067F95F /* LXNavigationController.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		324C4E8E214109610067F95F /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E93214109D30067F95F /* LXMineController.h */,
+				324C4E92214109D30067F95F /* LXMineController.m */,
+				324C4EB3214133CB0067F95F /* LXMineMessageAlterController.h */,
+				324C4EB4214133CB0067F95F /* LXMineMessageAlterController.m */,
+				324C4EB9214142A00067F95F /* LXCourceListController.h */,
+				324C4EBA214142A00067F95F /* LXCourceListController.m */,
+				32C65C3D21422DE700B9CD1B /* LXCoureListSubViewController.h */,
+				32C65C3E21422DE700B9CD1B /* LXCoureListSubViewController.m */,
+				324C4EBC214142DA0067F95F /* LXIntroMineController.h */,
+				324C4EBD214142DA0067F95F /* LXIntroMineController.m */,
+				324C4EBF2141433F0067F95F /* LXAboutOursViewController.h */,
+				324C4EC02141433F0067F95F /* LXAboutOursViewController.m */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		324C4E8F214109720067F95F /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E96214109EC0067F95F /* LXStudentController.h */,
+				324C4E95214109EC0067F95F /* LXStudentController.m */,
+				6AD7D82D2143F5A6000FB4EF /* LXStudentDetailController.h */,
+				6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */,
+				6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */,
+				6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */,
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		324C4E90214109960067F95F /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E9821410A1E0067F95F /* LXMessageController.h */,
+				324C4E9921410A1E0067F95F /* LXMessageController.m */,
+				6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */,
+				6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		324C4E91214109AF0067F95F /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				324C4E9C21410A4D0067F95F /* LXCourseController.h */,
+				324C4E9B21410A4D0067F95F /* LXCourseController.m */,
+				2F4CE88421441CB100275F69 /* LXCourseDetailController.h */,
+				2F4CE88521441CB100275F69 /* LXCourseDetailController.m */,
+				2F4CE8952144240D00275F69 /* LXCourseEvaluateController.h */,
+				2F4CE8962144240D00275F69 /* LXCourseEvaluateController.m */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		324C4E9E21410A630067F95F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				324C4EA221410AB70067F95F /* LXLoginController.h */,
+				324C4EA321410AB70067F95F /* LXLoginController.m */,
+				324C4EA121410AB70067F95F /* LXChangeOrFindPasswordController.h */,
+				324C4EA421410AB70067F95F /* LXChangeOrFindPasswordController.m */,
+				324C4EA021410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.h */,
+				324C4E9F21410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		6A16202521477E1F00438E14 /* LXButton */ = {
+			isa = PBXGroup;
+			children = (
+				6A16202621477E4B00438E14 /* UIButton+LXCountDown.h */,
+				6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */,
+			);
+			path = LXButton;
+			sourceTree = "<group>";
+		};
+		6AD7D82F2143F63A000FB4EF /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				6AD7D8312143F63A000FB4EF /* LXCourseSubView.h */,
+				6AD7D8302143F63A000FB4EF /* LXCourseSubView.m */,
+				2F4CE8722143FE2C00275F69 /* LXCourseCell.h */,
+				2F4CE8732143FE2C00275F69 /* LXCourseCell.m */,
+				2F4CE88F2144205D00275F69 /* LXCourseDetailView.h */,
+				2F4CE8902144205D00275F69 /* LXCourseDetailView.m */,
+				2F4CE89821442B8200275F69 /* LXCourseDetailCell.h */,
+				2F4CE89921442B8200275F69 /* LXCourseDetailCell.m */,
+				2F4CE8922144207D00275F69 /* LXCourseDetailHeadView.h */,
+				2F4CE8932144207D00275F69 /* LXCourseDetailHeadView.m */,
+				6A6D713321464EC40001943C /* LXCourseEvaluateView.h */,
+				6A6D713421464EC40001943C /* LXCourseEvaluateView.m */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		6AD7D8322143F63A000FB4EF /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				6AD7D8332143F63A000FB4EF /* LXMessageListCell.h */,
+				6AD7D8342143F63A000FB4EF /* LXMessageListCell.m */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		6AD7D8352143F63A000FB4EF /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				6AD7D83A2143F63A000FB4EF /* LXStudentSubView.h */,
+				6AD7D8382143F63A000FB4EF /* LXStudentSubView.m */,
+				6AD7D8392143F63A000FB4EF /* LXStudentSubViewCell.h */,
+				6AD7D8362143F63A000FB4EF /* LXStudentSubViewCell.m */,
+				6AD7D83B2143F63A000FB4EF /* LXStudentDetaileHeaderView.h */,
+				6AD7D8372143F63A000FB4EF /* LXStudentDetaileHeaderView.m */,
+				6A4F37C82145566E007E41B8 /* LXStudentDetaileTitleCell.h */,
+				6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */,
+				6A4F37C5214553A0007E41B8 /* LXStudentDetaileListCell.h */,
+				6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */,
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		76E6BFC37F686BCC4126E590 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */,
+				F517ABCFE75316F87A79E588 /* Pods-LXCoach.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FB7E2C4213BBDFE00583B5C /* LXCoach */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FB7E2DB213BBDFF00583B5C /* Build configuration list for PBXNativeTarget "LXCoach" */;
+			buildPhases = (
+				CE200F44D3FC585851205737 /* [CP] Check Pods Manifest.lock */,
+				2FB7E2C1213BBDFE00583B5C /* Sources */,
+				2FB7E2C2213BBDFE00583B5C /* Frameworks */,
+				2FB7E2C3213BBDFE00583B5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LXCoach;
+			productName = LXCoach;
+			productReference = 2FB7E2C5213BBDFE00583B5C /* LXCoach.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FB7E2BD213BBDFE00583B5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = LeXiang;
+				TargetAttributes = {
+					2FB7E2C4213BBDFE00583B5C = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 2FB7E2C0213BBDFE00583B5C /* Build configuration list for PBXProject "LXCoach" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FB7E2BC213BBDFE00583B5C;
+			productRefGroup = 2FB7E2C6213BBDFE00583B5C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FB7E2C4213BBDFE00583B5C /* LXCoach */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FB7E2C3213BBDFE00583B5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FB7E2D2213BBDFF00583B5C /* Assets.xcassets in Resources */,
+				324C4EA921410B360067F95F /* LXMineMessageList.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE200F44D3FC585851205737 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LXCoach-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FB7E2C1213BBDFE00583B5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324C4EB2214133B10067F95F /* LXMineMessageAlterSubView.m in Sources */,
+				32C65C42214233CC00B9CD1B /* LXCourseListCell.m in Sources */,
+				2FB7E325213BD1EA00583B5C /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				2F4CE8682143E10700275F69 /* UIColor+LXColor.m in Sources */,
+				2F4CE8362143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m in Sources */,
+				2F4CE8712143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m in Sources */,
+				6AD7D83F2143F63A000FB4EF /* LXStudentDetaileHeaderView.m in Sources */,
+				2F4CE89D21442BE500275F69 /* LXCourseDetailModel.m in Sources */,
+				2F4CE8972144240D00275F69 /* LXCourseEvaluateController.m in Sources */,
+				324C4EBE214142DA0067F95F /* LXIntroMineController.m in Sources */,
+				2F4CE88A21441D7E00275F69 /* UIWindow+LXUIWindow.m in Sources */,
+				324C4E8D2141094C0067F95F /* LXNavigationController.m in Sources */,
+				2F4CE83F2143D3DF00275F69 /* LXSavePassWordDataController.m in Sources */,
+				2FB7E314213BC7EC00583B5C /* LXNetWorkManager.m in Sources */,
+				2F4CE8512143D50200275F69 /* LXChangePassWordDataController.m in Sources */,
+				32F9028C213F940900BF94E4 /* LXChangeOrFindPasswordView.m in Sources */,
+				6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */,
+				2F4CE88321440FF100275F69 /* LXCourseListModel.m in Sources */,
+				6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */,
+				324C4EAC214110A10067F95F /* LXMainMessageHeaderView.m in Sources */,
+				2FB7E32B213BD3BF00583B5C /* LXLoginView.m in Sources */,
+				2F4CE8942144207D00275F69 /* LXCourseDetailHeadView.m in Sources */,
+				32C65C3F21422DE700B9CD1B /* LXCoureListSubViewController.m in Sources */,
+				2F4CE86B2143E89A00275F69 /* LXUserInfoUrlSessionTask.m in Sources */,
+				2F4CE8392143D1F600275F69 /* LXFindPassWordDataController.m in Sources */,
+				2FB7E30E213BC64800583B5C /* LXNetWorkCacheManager.m in Sources */,
+				6AD7D83D2143F63A000FB4EF /* LXMessageListCell.m in Sources */,
+				324C4EBB214142A00067F95F /* LXCourceListController.m in Sources */,
+				6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */,
+				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
+				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
+				324C4EB8214138760067F95F /* LXAlterMessageCell.m in Sources */,
+				2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */,
+				2F4CE89A21442B8200275F69 /* LXCourseDetailCell.m in Sources */,
+				6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */,
+				2FB7E2EE213BC01A00583B5C /* LXMineCell.m in Sources */,
+				2F4CE88E21441E4000275F69 /* LXNavigationManager.m in Sources */,
+				2F4CE8572143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m in Sources */,
+				2F4CE8742143FE2C00275F69 /* LXCourseCell.m in Sources */,
+				324C4EA521410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m in Sources */,
+				2FB7E317213BC7FE00583B5C /* LXBaseUrlSessionTask.m in Sources */,
+				2F4CE85A2143D8F700275F69 /* LXChangePhoneNumDataController.m in Sources */,
+				324C4E772140DBD80067F95F /* LXCommonNavView.m in Sources */,
+				324C4E97214109EC0067F95F /* LXStudentController.m in Sources */,
+				324C4EB5214133CB0067F95F /* LXMineMessageAlterController.m in Sources */,
+				2F4CE8912144205D00275F69 /* LXCourseDetailView.m in Sources */,
+				2F4CE8602143DCB500275F69 /* LXSaveNewPhoneNumDataController.m in Sources */,
+				2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */,
+				2FB7E2EA213BBFA900583B5C /* LXMineModel.m in Sources */,
+				6A16202821477E4B00438E14 /* UIButton+LXCountDown.m in Sources */,
+				2F4CE8542143D51E00275F69 /* LXChangePassWordUrlSessionTask.m in Sources */,
+				324C4E94214109D30067F95F /* LXMineController.m in Sources */,
+				6AD7D83C2143F63A000FB4EF /* LXCourseSubView.m in Sources */,
+				6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */,
+				2F4CE8332143CE2A00275F69 /* LXCodeDataController.m in Sources */,
+				2F4CE85D2143DBFB00275F69 /* LXSaveNewPhoneNumUrlSessionTask.m in Sources */,
+				32F90292213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m in Sources */,
+				324C4E9D21410A4D0067F95F /* LXCourseController.m in Sources */,
+				6AD7D83E2143F63A000FB4EF /* LXStudentSubViewCell.m in Sources */,
+				6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */,
+				324C4E7A2140DC9B0067F95F /* LXMineMainSubView.m in Sources */,
+				324C4EA721410AB70067F95F /* LXChangeOrFindPasswordController.m in Sources */,
+				324C4EC52141646E0067F95F /* LXIntroMineSubView.m in Sources */,
+				2F4CE83C2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m in Sources */,
+				2F4CE88621441CB100275F69 /* LXCourseDetailController.m in Sources */,
+				2F4CE86E2143E9CF00275F69 /* LXUserInfoDataController.m in Sources */,
+				324C4E9A21410A1E0067F95F /* LXMessageController.m in Sources */,
+				2FB7E320213BD12B00583B5C /* LXLoginDataController.m in Sources */,
+				2FB7E2CA213BBDFE00583B5C /* AppDelegate.m in Sources */,
+				324C4EC12141433F0067F95F /* LXAboutOursViewController.m in Sources */,
+				2FB7E31D213BD10700583B5C /* LXLoginUrlSessionTask.m in Sources */,
+				2F4CE8642143E00B00275F69 /* UIView+LXToast.m in Sources */,
+				324C4EA621410AB70067F95F /* LXLoginController.m in Sources */,
+				6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2FB7E2D9213BBDFF00583B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2FB7E2DA213BBDFF00583B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FB7E2DC213BBDFF00583B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R2U8SE68WE;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
+				INFOPLIST_FILE = LXCoach/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LeXiang.LXCoach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2FB7E2DD213BBDFF00583B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F517ABCFE75316F87A79E588 /* Pods-LXCoach.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R2U8SE68WE;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
+				INFOPLIST_FILE = LXCoach/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LeXiang.LXCoach;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FB7E2C0213BBDFE00583B5C /* Build configuration list for PBXProject "LXCoach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FB7E2D9213BBDFF00583B5C /* Debug */,
+				2FB7E2DA213BBDFF00583B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FB7E2DB213BBDFF00583B5C /* Build configuration list for PBXNativeTarget "LXCoach" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FB7E2DC213BBDFF00583B5C /* Debug */,
+				2FB7E2DD213BBDFF00583B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FB7E2BD213BBDFE00583B5C /* Project object */;
+}
