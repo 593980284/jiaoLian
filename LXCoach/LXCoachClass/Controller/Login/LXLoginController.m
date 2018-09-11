@@ -14,6 +14,7 @@
 #import "LXLoginDataController.h"
 #import "LXLoginUrlSessionTask.h"
 #import "UIButton+LXCountDown.h"
+#import "LXMineModel.h"
 
 @interface LXLoginController ()<LXLoginViewDelegete>
 @property (nonatomic, strong) LXLoginView *subView;
@@ -45,18 +46,18 @@
 /**
  点击账号密码登录
  */
-- (void)lx_clickAcountPasswordLoginButton{
-    [self.view endEditing:YES];
-    [self.subView alterViewStyle:1];
-}
+//- (void)lx_clickAcountPasswordLoginButton{
+//    [self.view endEditing:YES];
+//    [self.subView alterViewStyle:1];
+//}
 
 /**
  点击快捷登录
  */
-- (void)lx_clickAoucntSpeedyLoginButton{
-    [self.view endEditing:YES];
-    [self.subView alterViewStyle:2];
-}
+//- (void)lx_clickAoucntSpeedyLoginButton{
+//    [self.view endEditing:YES];
+//    [self.subView alterViewStyle:2];
+//}
 
 /**
  点击登录按钮
@@ -67,6 +68,11 @@
 - (void)lx_clickLoginButton:(NSString *)acount andPasswordOrTestCode:(NSString *)code {
     [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
         if (responseModel.flg==1) {
+            // 18004710471
+            // 存储用户数据
+            [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
+            // 读取数据
+            LXMineModel *model = [LXCacheManager objectForKey:@"LXMineModel"];
             [self popContoller];
         } else {
             [self.view makeToast:responseModel.msg];
@@ -88,11 +94,11 @@
  
  @param codeButton button
  */
-- (void)lx_obtainCodeTextCode:(UIButton *)codeButton {
-    [codeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
-        
-    } isInteraction:NO];
-}
+//- (void)lx_obtainCodeTextCode:(UIButton *)codeButton {
+//    [codeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
+//
+//    } isInteraction:NO];
+//}
 
 #pragma mark - getter
 - (LXLoginView *)subView {

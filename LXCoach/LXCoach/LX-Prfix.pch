@@ -10,9 +10,11 @@
 #define LX_Prfix_pch
 
 #import <YYCategories/YYCategories.h>
+#import <YYModel/YYModel.h>
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "LXCommon.h"
 #import "LXENUMDefine.h"
 #import "UIView+LXToast.h"
+#import "LXCacheManager.h"
 
 #endif /* LX_Prfix_pch */

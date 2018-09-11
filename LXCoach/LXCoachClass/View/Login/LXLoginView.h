@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol LXLoginViewDelegete  <NSObject>
-
+@optional
 /**
  点击账号密码登录
  */

@@ -107,8 +107,10 @@
 
 #pragma mark - Event
 // 获取验证码
-- (void)obtainButtonAction {
-    
+- (void)obtainButtonAction:(UIButton *)testCodeBtn {
+    if ([self.delegate respondsToSelector:@selector(lx_obtainTestCodeButton:)]) {
+        [self.delegate lx_obtainTestCodeButton:testCodeBtn];
+    }
 }
 - (void)affirmButtonAction {
     if ([self.delegate respondsToSelector:@selector(lx_clickAffirmButton:)]) {
@@ -172,7 +174,7 @@
         _obtainButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_obtainButton setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
         [_obtainButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [_obtainButton addTarget:self action:@selector(obtainButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [_obtainButton addTarget:self action:@selector(obtainButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _obtainButton;
 }

@@ -14,16 +14,15 @@
 /// 名称
 @property (nonatomic, strong) UILabel *lxName;
 /// 账号密码登录
-@property (nonatomic, strong) UIButton *acountLoginBtn;
+//@property (nonatomic, strong) UIButton *acountLoginBtn;
 /// 间隔线
-@property (nonatomic, strong) UIView * middleBreakView;
+//@property (nonatomic, strong) UIView * middleBreakView;
 /// 快捷登录
-@property (nonatomic, strong) UIButton *speedyLoginBtn;
+//@property (nonatomic, strong) UIButton *speedyLoginBtn;
 /// 登录方式分割线
-@property (nonatomic, strong) UIView *loginWayLine;
-
+//@property (nonatomic, strong) UIView *loginWayLine;
 /// 选中时的View
-@property (nonatomic, strong) UIView *selectView;
+//@property (nonatomic, strong) UIView *selectView;
 
 @property (nonatomic, strong) UIImageView *accountIconImage;
 /// 账号
@@ -71,6 +70,7 @@
     self.lxName.frame = CGRectMake(x, y, w, h);
     self.lxName.centerX = self.width / 2;
     
+    /*
     x = 0;
     y = CGRectGetMaxY(self.lxName.frame)+29.5;
     w = self.width/2;
@@ -101,9 +101,10 @@
     h = 1.5;
     self.selectView.frame = CGRectMake(x, y, w, h);
     self.selectView.centerX = self.acountLoginBtn.centerX;
+    */
     
     x = 30;
-    y = CGRectGetMaxY(self.loginWayLine.frame)+30;
+    y = CGRectGetMaxY(self.lxName.frame)+40;
     w = 18*kAutoSizeScaleX;
     h = 25*kAutoSizeScaleX;
     self.accountIconImage.frame = CGRectMake(x, y, w, h);
@@ -115,7 +116,7 @@
     self.accountBottomLine.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.accountIconImage.frame)+15;
-    y = CGRectGetMaxY(self.loginWayLine.frame) + 34;
+    y = CGRectGetMaxY(self.lxName.frame) + 44;
     w = self.width - (40+63);
     h = 16;
     self.accountTextField.frame = CGRectMake(x, y, w, h);
@@ -156,26 +157,26 @@
     h = 45;
     self.loginButton.frame = CGRectMake(x, y, w, h);
     
-    if (_type == 1) {
-        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
-        self.selectView.centerX = self.acountLoginBtn.centerX;
-    }else if (_type == 2) {
-        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63+75+15), 16);
-        self.selectView.centerX = self.speedyLoginBtn.centerX;
-    }else {
-        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
-        self.selectView.centerX = self.acountLoginBtn.centerX;
-    }
+//    if (_type == 1) {
+//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
+//        self.selectView.centerX = self.acountLoginBtn.centerX;
+//    }else if (_type == 2) {
+//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63+75+15), 16);
+//        self.selectView.centerX = self.speedyLoginBtn.centerX;
+//    }else {
+//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
+//        self.selectView.centerX = self.acountLoginBtn.centerX;
+//    }
 }
 
 - (void)subView {
     [self addSubview:self.iconImageView];
     [self addSubview:self.lxName];
-    [self addSubview:self.acountLoginBtn];
-    [self addSubview:self.speedyLoginBtn];
-    [self addSubview:self.middleBreakView];
-    [self addSubview:self.loginWayLine];
-    [self addSubview:self.selectView];
+//    [self addSubview:self.acountLoginBtn];
+//    [self addSubview:self.speedyLoginBtn];
+//    [self addSubview:self.middleBreakView];
+//    [self addSubview:self.loginWayLine];
+//    [self addSubview:self.selectView];
     [self addSubview:self.accountIconImage];
     [self addSubview:self.accountBottomLine];
     [self addSubview:self.accountTextField];
@@ -188,6 +189,7 @@
 }
 
 #pragma mark - publicMethod
+/*
 - (void)alterViewStyle:(NSInteger)type {
     _type = type;
     if (type == 1) {
@@ -211,20 +213,21 @@
         self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63+75+15), 16);
     }
 }
+*/
 #pragma mark - Event
 // 账号密码登录
-- (void)acountLoginBtnAction {
-    if ([self.delegate respondsToSelector:@selector(lx_clickAcountPasswordLoginButton)]) {
-        [self.delegate lx_clickAcountPasswordLoginButton];
-    }
-}
+//- (void)acountLoginBtnAction {
+//    if ([self.delegate respondsToSelector:@selector(lx_clickAcountPasswordLoginButton)]) {
+//        [self.delegate lx_clickAcountPasswordLoginButton];
+//    }
+//}
 
 // 快捷登录
-- (void)speedyLoginBtnAction {
-    if ([self.delegate respondsToSelector:@selector(lx_clickAoucntSpeedyLoginButton)]) {
-        [self.delegate lx_clickAoucntSpeedyLoginButton];
-    }
-}
+//- (void)speedyLoginBtnAction {
+//    if ([self.delegate respondsToSelector:@selector(lx_clickAoucntSpeedyLoginButton)]) {
+//        [self.delegate lx_clickAoucntSpeedyLoginButton];
+//    }
+//}
 
 // 忘记密码
 - (void)forgetButtonAction {
@@ -243,12 +246,14 @@
         [self.delegate lx_clickLoginButton:self.accountTextField.text andPasswordOrTestCode:self.passwordTextField.text];
     }
 }
+
 // 获取验证码
-- (void)obtainTextCodeAction:(UIButton *)obtainTextCode {
-    if ([self.delegate respondsToSelector:@selector(lx_obtainCodeTextCode:)]) {
-        [self.delegate lx_obtainCodeTextCode:obtainTextCode];
-    }
-}
+//- (void)obtainTextCodeAction:(UIButton *)obtainTextCode {
+//    if ([self.delegate respondsToSelector:@selector(lx_obtainCodeTextCode:)]) {
+//        [self.delegate lx_obtainCodeTextCode:obtainTextCode];
+//    }
+//}
+
 #pragma mark - getter
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {
@@ -274,47 +279,47 @@
     }
     return _lxName;
 }
-- (UIButton *)acountLoginBtn {
-    if (!_acountLoginBtn) {
-        _acountLoginBtn = [[UIButton alloc] init];
-        [_acountLoginBtn setTitle:@"账号密码登录" forState:UIControlStateNormal];
-        [_acountLoginBtn setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
-        _acountLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_acountLoginBtn addTarget:self action:@selector(acountLoginBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _acountLoginBtn;
-}
-- (UIButton *)speedyLoginBtn {
-    if (!_speedyLoginBtn) {
-        _speedyLoginBtn = [[UIButton alloc] init];
-        [_speedyLoginBtn setTitle:@"手机快捷登陆" forState:UIControlStateNormal];
-        [_speedyLoginBtn setTitleColor:[UIColor colorWithHexString:@"#999999"] forState:UIControlStateNormal];
-        _speedyLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_speedyLoginBtn addTarget:self action:@selector(speedyLoginBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _speedyLoginBtn;
-}
-- (UIView *)middleBreakView {
-    if (!_middleBreakView) {
-        _middleBreakView = [[UIView alloc] init];
-        _middleBreakView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-    }
-    return _middleBreakView;
-}
-- (UIView *)loginWayLine {
-    if (!_loginWayLine) {
-        _loginWayLine = [[UIView alloc] init];
-        _loginWayLine.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-    }
-    return _loginWayLine;
-}
-- (UIView *)selectView {
-    if (!_selectView) {
-        _selectView = [[UIView alloc] init];
-        _selectView.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
-    }
-    return _selectView;
-}
+//- (UIButton *)acountLoginBtn {
+//    if (!_acountLoginBtn) {
+//        _acountLoginBtn = [[UIButton alloc] init];
+//        [_acountLoginBtn setTitle:@"账号密码登录" forState:UIControlStateNormal];
+//        [_acountLoginBtn setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
+//        _acountLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//        [_acountLoginBtn addTarget:self action:@selector(acountLoginBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _acountLoginBtn;
+//}
+//- (UIButton *)speedyLoginBtn {
+//    if (!_speedyLoginBtn) {
+//        _speedyLoginBtn = [[UIButton alloc] init];
+//        [_speedyLoginBtn setTitle:@"手机快捷登陆" forState:UIControlStateNormal];
+//        [_speedyLoginBtn setTitleColor:[UIColor colorWithHexString:@"#999999"] forState:UIControlStateNormal];
+//        _speedyLoginBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//        [_speedyLoginBtn addTarget:self action:@selector(speedyLoginBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _speedyLoginBtn;
+//}
+//- (UIView *)middleBreakView {
+//    if (!_middleBreakView) {
+//        _middleBreakView = [[UIView alloc] init];
+//        _middleBreakView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
+//    }
+//    return _middleBreakView;
+//}
+//- (UIView *)loginWayLine {
+//    if (!_loginWayLine) {
+//        _loginWayLine = [[UIView alloc] init];
+//        _loginWayLine.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
+//    }
+//    return _loginWayLine;
+//}
+//- (UIView *)selectView {
+//    if (!_selectView) {
+//        _selectView = [[UIView alloc] init];
+//        _selectView.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
+//    }
+//    return _selectView;
+//}
 
 - (UIImageView *)accountIconImage {
     if (!_accountIconImage) {
@@ -331,7 +336,7 @@
         _accountTextField.textColor = [UIColor colorWithHexString:@"#999999"];
         _accountTextField.placeholder = @"请输入您的身份证或教练证";
         _accountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _accountTextField.text = @"1505003020016003006";        
+        _accountTextField.text = @"371501197308219544";
     }
     return _accountTextField;
 }
@@ -364,7 +369,7 @@
         _passwordTextField.placeholder = @"请输入密码";
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _passwordTextField.text = @"003006";
+        _passwordTextField.text = @"219544";
     }
     return _passwordTextField;
 }

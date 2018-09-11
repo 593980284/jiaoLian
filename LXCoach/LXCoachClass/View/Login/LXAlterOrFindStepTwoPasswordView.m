@@ -32,7 +32,9 @@
 @end
 
 @implementation LXAlterOrFindStepTwoPasswordView
-
+{
+    NSInteger _type;
+}
 - (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
@@ -101,6 +103,15 @@
     w = self.width - 30;
     h = 45;
     self.affirmButton.frame = CGRectMake(x, y, w, h);
+    
+    if (_type == 1) {
+        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*2 + 1);
+    }else if (_type == 2) {
+        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*3 + 1.5);
+    }else {
+        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*2 + 1);
+    }
+    
 }
 - (void)layoutIfNeeded {
     [super layoutIfNeeded];
@@ -126,6 +137,7 @@
 @param type type=1 忘记密码确认密码第二步； type=2 修改密码
 */
 - (void)adjustmentViewType:(NSInteger)type {
+    _type = type;
     if (type == 1) {
         self.oneTextFeild.placeholder = @"请输入六位数以上字母加数字";
         self.twoTextFeild.placeholder = @"请输入六位数以上字母加数字";

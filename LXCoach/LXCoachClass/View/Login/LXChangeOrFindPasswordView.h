@@ -10,6 +10,12 @@
 
 @protocol LXChangeOrFindPasswordViewDelegate <NSObject>
 /**
+ 获取验证码
+
+ @param testCodeButton 按钮
+ */
+- (void)lx_obtainTestCodeButton:(UIButton *)testCodeButton;
+/**
  点击确认
 
  @param testCode 验证码

@@ -10,6 +10,7 @@
 #import "LXAlterOrFindStepTwoPasswordController.h"
 #import "LXChangeOrFindPasswordView.h"
 #import "LXCommonNavView.h"
+#import "UIButton+LXCountDown.h"
 
 @interface LXChangeOrFindPasswordController ()<LXChangeOrFindPasswordViewDelegate,LXCommonNavViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
@@ -30,6 +31,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - LXChangeOrFindPasswordViewDelegate
+/**
+ 获取验证码
+ 
+ @param testCodeButton 按钮
+ */
+- (void)lx_obtainTestCodeButton:(UIButton *)testCodeButton {
+    [testCodeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
+        
+    } isInteraction:NO];
+}
+
 /**
  点击确认
  

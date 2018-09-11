@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LXMineModel : NSObject
+@interface LXMineModel : NSObject <NSCoding, NSCopying>
 
 /// 驾校名称
 @property (nonatomic, copy)   NSString *schoolName;
@@ -25,7 +25,7 @@
 /// 当前教练车车牌号
 @property (nonatomic, copy)   NSString *carNo;
 
-
+@property (nonatomic, copy)   NSString *phone;
 /// 教练个人简介
 @property (nonatomic, copy)   NSString *present;
 

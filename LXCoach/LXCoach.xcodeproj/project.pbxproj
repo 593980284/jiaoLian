@@ -73,6 +73,7 @@
 		32F9028C213F940900BF94E4 /* LXChangeOrFindPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F9028B213F940900BF94E4 /* LXChangeOrFindPasswordView.m */; };
 		32F90292213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */; };
 		6A16202821477E4B00438E14 /* UIButton+LXCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */; };
+		6A16202D21479FDE00438E14 /* LXCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16202C21479FDE00438E14 /* LXCacheManager.m */; };
 		6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */; };
 		6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */; };
 		6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */; };
@@ -222,6 +223,8 @@
 		48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXCoach.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A16202621477E4B00438E14 /* UIButton+LXCountDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LXCountDown.h"; sourceTree = "<group>"; };
 		6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LXCountDown.m"; sourceTree = "<group>"; };
+		6A16202B21479FDE00438E14 /* LXCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCacheManager.h; sourceTree = "<group>"; };
+		6A16202C21479FDE00438E14 /* LXCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCacheManager.m; sourceTree = "<group>"; };
 		6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListController.h; sourceTree = "<group>"; };
 		6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListController.m; sourceTree = "<group>"; };
 		6A4F37C5214553A0007E41B8 /* LXStudentDetaileListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListCell.h; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 		2FB7E2DE213BBE8700583B5C /* LXCoachClass */ = {
 			isa = PBXGroup;
 			children = (
+				6A16202921479F5600438E14 /* CommonTool */,
 				2FB7E321213BD1DD00583B5C /* Categary */,
 				2F4CE88B21441E2A00275F69 /* Plugins */,
 				324C4E85214108B30067F95F /* Source */,
@@ -649,6 +653,23 @@
 			path = LXButton;
 			sourceTree = "<group>";
 		};
+		6A16202921479F5600438E14 /* CommonTool */ = {
+			isa = PBXGroup;
+			children = (
+				6A16202A21479F6800438E14 /* LXCacheManager */,
+			);
+			path = CommonTool;
+			sourceTree = "<group>";
+		};
+		6A16202A21479F6800438E14 /* LXCacheManager */ = {
+			isa = PBXGroup;
+			children = (
+				6A16202B21479FDE00438E14 /* LXCacheManager.h */,
+				6A16202C21479FDE00438E14 /* LXCacheManager.m */,
+			);
+			path = LXCacheManager;
+			sourceTree = "<group>";
+		};
 		6AD7D82F2143F63A000FB4EF /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -825,6 +846,7 @@
 				6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */,
 				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
 				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
+				6A16202D21479FDE00438E14 /* LXCacheManager.m in Sources */,
 				324C4EB8214138760067F95F /* LXAlterMessageCell.m in Sources */,
 				2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */,
 				2F4CE89A21442B8200275F69 /* LXCourseDetailCell.m in Sources */,
