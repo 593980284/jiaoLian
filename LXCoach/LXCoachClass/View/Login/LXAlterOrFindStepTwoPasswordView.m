@@ -160,6 +160,28 @@
 #pragma mark - Event
 - (void)affirmButtonAction {
     if ([self.delegate respondsToSelector:@selector(lx_clickAffirmOldPassword:andNewPassword:andAffirmPassword:)]) {
+        if (_type == 1) {
+            // 1 忘记密码确认密码第二步
+            if (self.oneTextFeild.text.length < 6 || self.twoTextFeild.text.length < 6) {
+                [self makeToast:@"输入密码长度不够"];
+                return ;
+            }
+            if (![self.oneTextFeild.text isEqualToString:self.twoTextFeild.text]) {
+                [self makeToast:@"两次输入的密码不一致"];
+                return ;
+            }
+            
+        }else if (_type == 2) {
+            // 2 修改密码
+            if (self.twoTextFeild.text.length < 6 || self.threeTextFeild.text.length < 6) {
+                [self makeToast:@"输入密码长度不够"];
+                return ;
+            }
+            if (![self.twoTextFeild.text isEqualToString:self.threeTextFeild.text]) {
+                [self makeToast:@"两次输入的密码不一致"];
+                return ;
+            }
+        }
         [self.delegate lx_clickAffirmOldPassword:self.oneTextFeild.text andNewPassword:self.twoTextFeild.text andAffirmPassword:self.threeTextFeild.text];
     }
 }
@@ -185,6 +207,8 @@
         _oneTextFeild.font = [UIFont systemFontOfSize:16];
         _oneTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _oneTextFeild.placeholder = @"请输入六位数以上字母加数字";
+        _oneTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _oneTextFeild.secureTextEntry = YES;
     }
     return _oneTextFeild;
 }
@@ -208,6 +232,8 @@
         _oneTextFeild.font = [UIFont systemFontOfSize:16];
         _twoTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _twoTextFeild.placeholder = @"请输入六位数以上字母加数字";
+        _twoTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _twoTextFeild.secureTextEntry = YES;
     }
     return _twoTextFeild;
 }
@@ -231,6 +257,8 @@
         _threeTextFeild.font = [UIFont systemFontOfSize:16];
         _threeTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _threeTextFeild.placeholder = @"请输入六位数以上字母加数字";
+        _threeTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _threeTextFeild.secureTextEntry = YES;
     }
     return _threeTextFeild;
 }

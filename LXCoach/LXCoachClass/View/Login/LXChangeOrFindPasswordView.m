@@ -70,7 +70,7 @@
     
     x = CGRectGetMaxX(self.testCodeIconImagge.frame) + 13;
     y = CGRectGetMaxY(self.acountBottomLineView.frame) + 20;
-    w = self.width - (105+50);
+    w = self.width - (105+60);
     h = 16;
     self.testCodeTextField.frame = CGRectMake(x, y, w, h);
     
@@ -126,6 +126,10 @@
         [self makeToast:@"请输入手机号"];
         return ;
     }
+    if (self.acountTextField.text.length > 11) {
+        [self makeToast:@"手机号码格式不正确"];
+        return ;
+    }
     if (self.testCodeTextField.text.length == 0) {
         [self makeToast:@"请输入验证码"];
         return ;
@@ -156,8 +160,9 @@
         _acountTextField.font = [UIFont systemFontOfSize:16];
         _acountTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _acountTextField.placeholder = @"请输入您的当前手机号";
-//        _acountTextField.text = @"18004710471";
+        _acountTextField.text = @"18004710471";
         _acountTextField.keyboardType = UIKeyboardTypePhonePad;
+        _acountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
     return _acountTextField;
 }
@@ -184,6 +189,8 @@
         _testCodeTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _testCodeTextField.placeholder = @"请输入您的验证码";
         _testCodeTextField.keyboardType = UIKeyboardTypePhonePad;
+        _testCodeTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _testCodeTextField.secureTextEntry = YES;
     }
     return _testCodeTextField;
 }

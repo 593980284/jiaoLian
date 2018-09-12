@@ -64,16 +64,17 @@
  */
 - (void)lx_clickAffirmButton:(NSString *)testCode andPhoneNumber:(NSString *)phoneNumber {
     if (self.type == 1) {
-        [self.findPasswordStep1 lxReuqestFindPassWordWithPhone:phoneNumber msgCode:testCode completionBlock:^(LXFindPassWordResponseObject *responseModel) {
-            if (responseModel.flg == 1) {
+//        [self.findPasswordStep1 lxReuqestFindPassWordWithPhone:phoneNumber msgCode:testCode completionBlock:^(LXFindPassWordResponseObject *responseModel) {
+//            if (responseModel.flg == 1) {
                 LXAlterOrFindStepTwoPasswordController *alterPasswordVC = [[LXAlterOrFindStepTwoPasswordController alloc] init];
                 alterPasswordVC.type = 1 ;
                 alterPasswordVC.navTitleString = @"找回密码";
+                alterPasswordVC.phoneNumber = phoneNumber;
                 [self.navigationController pushViewController:alterPasswordVC animated:YES];
-            }else {
-                [self.view makeToast:responseModel.msg];
-            }
-        }];
+//            }else {
+//                [self.view makeToast:responseModel.msg];
+//            }
+//        }];
     }else if (self.type == 2){
         LXChangeOrFindPasswordController *findPasswordVC = [[LXChangeOrFindPasswordController alloc] init];
         findPasswordVC.type = 3;

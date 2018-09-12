@@ -14,13 +14,13 @@
 /**
  教练员找回密码第二步（保存密码）
  
- @param certNo 教练证
+ @param phoneNumber 手机号
  @param password 密码
  @param block LXSavePassWordResponseObject
  */
-- (void)lxReuqestSavePassWordWithCertNo:(NSString *)certNo password:(NSString *)password completionBlock:(void(^)(LXSavePassWordResponseObject *responseModel))block {
+- (void)lxReuqestSavePassWordWithPhoneNumber:(NSString *)phoneNumber password:(NSString *)password completionBlock:(void(^)(LXSavePassWordResponseObject *responseModel))block {
     LXSavePassWordUrlSessionTask *savePassWordUrlSessionTask = [LXSavePassWordUrlSessionTask new];
-    savePassWordUrlSessionTask.certNo = certNo;
+    savePassWordUrlSessionTask.phone = phoneNumber;
     savePassWordUrlSessionTask.password = password;
     [savePassWordUrlSessionTask lxReuqestSavePassWordWithCompletionBlock:^(LXSavePassWordResponseObject *responseModel) {
         block(responseModel);

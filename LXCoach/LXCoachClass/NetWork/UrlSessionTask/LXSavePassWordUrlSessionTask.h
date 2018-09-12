@@ -16,8 +16,8 @@
 @interface LXSavePassWordUrlSessionTask : LXBaseUrlSessionTask
 
 
-/// 教练证
-@property (nonatomic, copy)   NSString *certNo;
+/// 手机号
+@property (nonatomic, copy)   NSString *phone;
 /// 密码
 @property (nonatomic, copy)   NSString *password;
 

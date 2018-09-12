@@ -16,5 +16,5 @@
 /// 1 忘记密码确认密码第二步； 2 修改密码
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, copy) NSString *navTitleString;
-
+@property (nonatomic, copy) NSString *phoneNumber;
 @end

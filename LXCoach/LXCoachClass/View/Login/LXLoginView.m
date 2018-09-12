@@ -369,7 +369,7 @@
         _passwordTextField.placeholder = @"请输入密码";
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _passwordTextField.text = @"219544";
+        _passwordTextField.text = @"123456r"; //219544r
     }
     return _passwordTextField;
 }
@@ -379,7 +379,7 @@
         [_obtainTextCode setTitle:@"获取验证码" forState:UIControlStateNormal];
         _obtainTextCode.titleLabel.font = [UIFont systemFontOfSize:14];
         [_obtainTextCode setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
-        [_obtainTextCode addTarget:self action:@selector(obtainTextCodeAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [_obtainTextCode addTarget:self action:@selector(obtainTextCodeAction:) forControlEvents:UIControlEventTouchUpInside];
         _obtainTextCode.hidden = YES;
     }
     return _obtainTextCode;
