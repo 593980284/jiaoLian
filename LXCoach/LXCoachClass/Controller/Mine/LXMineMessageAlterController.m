@@ -9,6 +9,7 @@
 #import "LXMineMessageAlterController.h"
 #import "LXAlterOrFindStepTwoPasswordController.h"
 #import "LXChangeOrFindPasswordController.h"
+#import "LXLoginController.h"
 #import "LXCommonNavView.h"
 #import "LXMineMessageAlterSubView.h"
 #import "LXAlterMessageCell.h"
@@ -16,6 +17,8 @@
 #import "UIImage+Ext.h"
 #import "LXUploadCoachImageDataController.h"
 #import "LXUploadCoachImageSessionTask.h"
+#import "LXUserInfoDataController.h"
+#import "LXAppCoachLogoutSessionTask.h"
 #import "LXMineModel.h"
 
 static NSString *alterMessage_Identify = @"LXAlterMessageCell";
@@ -25,6 +28,7 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 @property (nonatomic, strong) LXMineMessageAlterSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) LXUploadCoachImageDataController *uploadHeaderImageDataController;
+@property (nonatomic, strong) LXUserInfoDataController *infoDataController;
 @end
 
 @implementation LXMineMessageAlterController
@@ -166,7 +170,17 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
         
     }
 }
-
+/// 退出登录
+- (void)lx_outLogin {
+    [self.infoDataController lxRequestAppCoachLogoutCompletionBlock:^(LXAppCoachLogoutResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            [LXCacheManager removeStoreObjectForKey:@"LXMineModel"];
+            LXLoginController *loginVC = [[LXLoginController alloc]init];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            window.rootViewController = loginVC;
+        }
+    }];
+}
 #pragma mark   - <LZActionSheetDelegate>
 - (void)LZActionSheet:(LZActionSheet *)actionSheet didClickedButtonAtIndex:(NSInteger)index{
     if(index == 0){
@@ -214,6 +228,13 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
     }
     return _uploadHeaderImageDataController;
 }
+- (LXUserInfoDataController *)infoDataController {
+    if (!_infoDataController) {
+        _infoDataController = [[LXUserInfoDataController alloc] init];
+    }
+    return _infoDataController;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

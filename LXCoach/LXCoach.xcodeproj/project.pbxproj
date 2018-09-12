@@ -89,6 +89,7 @@
 		6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */; };
 		6A5B4A042148EAF700206DF3 /* NSString+LXTelEmailRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */; };
 		6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */; };
+		6A5B4A0A2149428800206DF3 /* LXAppCoachLogoutSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
@@ -267,6 +268,8 @@
 		6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXTelEmailRegular.m"; sourceTree = "<group>"; };
 		6A5B4A052148F9BF00206DF3 /* LXAlterPromptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAlterPromptView.h; sourceTree = "<group>"; };
 		6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterPromptView.m; sourceTree = "<group>"; };
+		6A5B4A082149428800206DF3 /* LXAppCoachLogoutSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAppCoachLogoutSessionTask.h; sourceTree = "<group>"; };
+		6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppCoachLogoutSessionTask.m; sourceTree = "<group>"; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
@@ -505,6 +508,8 @@
 				2F4CE86A2143E89A00275F69 /* LXUserInfoUrlSessionTask.m */,
 				2F4CE86F2143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.h */,
 				2F4CE8702143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m */,
+				6A5B4A082149428800206DF3 /* LXAppCoachLogoutSessionTask.h */,
+				6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */,
 				6A1620382147E9A100438E14 /* LXFindMyCouseDateListSessionTask.h */,
 				6A1620392147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m */,
 				6A162041214801E100438E14 /* LXUploadCoachImageSessionTask.h */,
@@ -951,6 +956,7 @@
 				6A1620402147ECC700438E14 /* LXCourseDataController.m in Sources */,
 				2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */,
 				2F4CE89A21442B8200275F69 /* LXCourseDetailCell.m in Sources */,
+				6A5B4A0A2149428800206DF3 /* LXAppCoachLogoutSessionTask.m in Sources */,
 				6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */,
 				6A1620312147A76200438E14 /* LXCyhCalenbardate.m in Sources */,
 				2FB7E2EE213BC01A00583B5C /* LXMineCell.m in Sources */,

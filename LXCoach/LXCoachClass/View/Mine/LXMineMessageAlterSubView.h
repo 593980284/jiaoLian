@@ -15,6 +15,8 @@
 @optional
 - (CGFloat)lx_alterMessageTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)lx_alterMessageTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+/// 退出登录
+- (void)lx_outLogin;
 @end
 
 

@@ -10,6 +10,9 @@
 
 @interface LXMineMessageAlterSubView ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *footerView;
+/// 退出按钮
+@property (nonatomic, strong) UIButton *quiteButton;
 @end
 
 @implementation LXMineMessageAlterSubView
@@ -28,10 +31,23 @@
     CGFloat w = self.width;
     CGFloat h = self.height;
     self.tableView.frame = CGRectMake(x, y, w, h);
+    
+    h = self.height - (15+45+55*3);
+    self.footerView.frame = CGRectMake(x, y, w, h);
+    
+    x = 15;
+    y = CGRectGetHeight(self.footerView.frame) - 15;
+    w = self.width - 30;
+    h = 45;
+    self.quiteButton.frame = CGRectMake(x, y, w, h);
+    
+    
 }
 
 - (void)subView {
     [self addSubview:self.tableView];
+    [self.footerView addSubview:self.quiteButton];
+    self.tableView.tableFooterView = self.footerView;
     
 #ifdef __IPHONE_11_0
     if ([self.tableView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
@@ -41,7 +57,12 @@
     }
 #endif
 }
-
+#pragma mark - Event
+- (void)quiteButtonAction {
+    if ([self.alterMessageDelegate respondsToSelector:@selector(lx_outLogin)]) {
+        [self.alterMessageDelegate lx_outLogin];
+    }
+}
 #pragma mark - publicMethod
 - (void)uploadTableView {
     [self.tableView reloadData];
@@ -80,7 +101,28 @@
         _tableView.tableFooterView = [UIView new];
         _tableView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+       
     }
     return _tableView;
+}
+- (UIView *)footerView {
+    if (!_footerView) {
+        _footerView = [[UIView alloc] init];
+        _footerView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        _footerView.userInteractionEnabled = YES;
+    }
+    return _footerView;
+}
+- (UIButton *)quiteButton {
+    if (!_quiteButton) {
+        _quiteButton = [[UIButton alloc] init];
+        [_quiteButton setTitle:@"退出登录" forState:UIControlStateNormal];
+        [_quiteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _quiteButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        [_quiteButton setBackgroundColor:[UIColor colorWithHexString:@"#309CF5"]];
+        _quiteButton.layer.cornerRadius = 5;
+        [_quiteButton addTarget:self action:@selector(quiteButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _quiteButton;
 }
 @end

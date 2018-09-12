@@ -9,6 +9,7 @@
 #import "LXUserInfoDataController.h"
 #import "LXUserInfoUrlSessionTask.h"
 #import "LXSaveUserInfoUrlSessionTask.h"
+#import "LXAppCoachLogoutSessionTask.h"
 
 @implementation LXUserInfoDataController
 
@@ -38,6 +39,18 @@
     saveUserInfo.certNo = certNo;
     saveUserInfo.present = present;
     [saveUserInfo lxReuqestSaveUserInfoWithCompletionBlock:^(LXSaveUserInfoResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+
+/**
+ 退出登录
+ 
+ @param block block
+ */
+- (void)lxRequestAppCoachLogoutCompletionBlock:(void(^)(LXAppCoachLogoutResponseObject *responseModel))block {
+    LXAppCoachLogoutSessionTask *outLoginTask = [[LXAppCoachLogoutSessionTask alloc] init];
+    [outLoginTask lxReuqestAppCoachLogoutWithCompletionBlock:^(LXAppCoachLogoutResponseObject *responseModel) {
         block(responseModel);
     }];
 }

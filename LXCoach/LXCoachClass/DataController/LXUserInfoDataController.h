@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class LXUserInfoResponseObject;
-@class LXSaveUserInfoResponseObject;
+@class LXSaveUserInfoResponseObject,LXAppCoachLogoutResponseObject;
 
 @interface LXUserInfoDataController : NSObject
 
@@ -30,6 +30,14 @@
  @param block LXSaveUserInfoResponseObject
  */
 - (void)lxReuqestSaveUserInfoWithCertNo:(NSString *)certNo present:(NSString *)present completionBlock:(void(^)(LXSaveUserInfoResponseObject *responseModel))block;
+
+
+/**
+ 退出登录
+
+ @param block block
+ */
+- (void)lxRequestAppCoachLogoutCompletionBlock:(void(^)(LXAppCoachLogoutResponseObject *responseModel))block;
 
 
 @end
