@@ -21,4 +21,8 @@
  */
 @interface LXIntroMineSubView : UIView
 @property (nonatomic, assign) id <LXIntroMineSubViewDelegate> delegate;
+
+/// 个人简介描述
+@property (nonatomic, strong) UITextView *introDetaile;
+
 @end

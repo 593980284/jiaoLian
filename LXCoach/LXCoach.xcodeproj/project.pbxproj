@@ -88,6 +88,7 @@
 		6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */; };
 		6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */; };
 		6A5B4A042148EAF700206DF3 /* NSString+LXTelEmailRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */; };
+		6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
@@ -264,6 +265,8 @@
 		6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZActionSheet.m; sourceTree = "<group>"; };
 		6A5B4A022148EAF700206DF3 /* NSString+LXTelEmailRegular.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LXTelEmailRegular.h"; sourceTree = "<group>"; };
 		6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXTelEmailRegular.m"; sourceTree = "<group>"; };
+		6A5B4A052148F9BF00206DF3 /* LXAlterPromptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAlterPromptView.h; sourceTree = "<group>"; };
+		6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterPromptView.m; sourceTree = "<group>"; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				32C65C41214233CC00B9CD1B /* LXCourseListCell.m */,
 				324C4EC32141646E0067F95F /* LXIntroMineSubView.h */,
 				324C4EC42141646E0067F95F /* LXIntroMineSubView.m */,
+				6A5B4A052148F9BF00206DF3 /* LXAlterPromptView.h */,
+				6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -921,6 +926,7 @@
 				6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */,
 				6A1620372147A8B200438E14 /* LXCyhCalenbarview.m in Sources */,
 				2F4CE88321440FF100275F69 /* LXCourseListModel.m in Sources */,
+				6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */,
 				6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */,
 				324C4EAC214110A10067F95F /* LXMainMessageHeaderView.m in Sources */,
 				2FB7E32B213BD3BF00583B5C /* LXLoginView.m in Sources */,

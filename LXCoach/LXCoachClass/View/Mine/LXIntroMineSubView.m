@@ -7,6 +7,7 @@
 //
 
 #import "LXIntroMineSubView.h"
+#import "LXMineModel.h"
 
 @interface LXIntroMineSubView ()
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -20,10 +21,10 @@
 @property (nonatomic, strong) UILabel *schoolAge;
 /// 个人简介
 @property (nonatomic, strong) UILabel *introLabel;
-/// 个人简介描述
-@property (nonatomic, strong) UITextView *introDetaile;
+
 /// 确认按钮
 @property (nonatomic, strong) UIButton *confirmButton;
+@property (nonatomic, strong) LXMineModel *mineModel;
 @end
 
 @implementation LXIntroMineSubView
@@ -96,10 +97,11 @@
     
 }
 - (void)valueToView {
-    self.credentialsNumber.text = @"13112345678";
-    self.nameLicenseNumber.text = @"张三 苏AH1234";
-    self.schoolAge.text = @"教龄 4年";
-    self.introDetaile.text = @"专职驾考教练，劳动模范。";
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:self.mineModel.photo]];
+    self.credentialsNumber.text = self.mineModel.phone;
+    self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",self.mineModel.coachName,self.mineModel.carNo];
+    self.schoolAge.text = [NSString stringWithFormat:@"教龄  %@年",self.mineModel.teachAge];
+    self.introDetaile.text = [NSString stringWithFormat:@"%@",self.mineModel.present];
 }
 #pragma mark - Event
 - (void)confirmButtonAction {
@@ -181,5 +183,11 @@
         [_confirmButton addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmButton;
+}
+- (LXMineModel *)mineModel {
+    if (!_mineModel) {
+        _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    }
+    return _mineModel;
 }
 @end
