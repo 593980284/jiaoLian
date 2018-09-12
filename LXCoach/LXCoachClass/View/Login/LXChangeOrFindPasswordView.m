@@ -7,6 +7,7 @@
 //
 
 #import "LXChangeOrFindPasswordView.h"
+#import "NSString+LXTelEmailRegular.h"
 
 @interface LXChangeOrFindPasswordView()
 
@@ -108,12 +109,8 @@
 #pragma mark - Event
 // 获取验证码
 - (void)obtainButtonAction:(UIButton *)testCodeBtn {
-    if (self.acountTextField.text.length == 0) {
-        [self makeToast:@"请输入手机号"];
-        return ;
-    }
-    if (self.acountTextField.text.length > 11) {
-        [self makeToast:@"手机号码格式不正确"];
+    if (![NSString lxIsValidateMobilePhoneNumber:self.acountTextField.text]) {
+        [self makeToast:@"请正确输入手机号"];
         return ;
     }
     if ([self.delegate respondsToSelector:@selector(lx_obtainTestCodeButton:andPhoneNumber:)]) {
@@ -122,12 +119,8 @@
 }
 // 确认
 - (void)affirmButtonAction {
-    if (self.acountTextField.text.length == 0) {
-        [self makeToast:@"请输入手机号"];
-        return ;
-    }
-    if (self.acountTextField.text.length > 11) {
-        [self makeToast:@"手机号码格式不正确"];
+    if (![NSString lxIsValidateMobilePhoneNumber:self.acountTextField.text]) {
+        [self makeToast:@"请正确输入手机号"];
         return ;
     }
     if (self.testCodeTextField.text.length == 0) {

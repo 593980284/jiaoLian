@@ -8,19 +8,30 @@
 
 #import "LXChangeOrFindPasswordController.h"
 #import "LXAlterOrFindStepTwoPasswordController.h"
+#import "LXMineMessageAlterController.h"
 #import "LXCodeDataController.h"
 #import "LXCodeUrlSessionTask.h"
 #import "LXFindPassWordDataController.h"
 #import "LXFindPassWordUrlSessionTask.h"
+#import "LXChangePhoneNumDataController.h"
+#import "LXChangePhoneNumUrlSessionTask.h"
+#import "LXSaveNewPhoneNumDataController.h"
+#import "LXSaveNewPhoneNumUrlSessionTask.h"
 #import "LXChangeOrFindPasswordView.h"
 #import "LXCommonNavView.h"
 #import "UIButton+LXCountDown.h"
+#import "LXMineModel.h"
 
 @interface LXChangeOrFindPasswordController ()<LXChangeOrFindPasswordViewDelegate,LXCommonNavViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXChangeOrFindPasswordView *subView;
+/// 获取验证码
 @property (nonatomic, strong) LXCodeDataController *codeDataController;
 @property (nonatomic, strong) LXFindPassWordDataController *findPasswordStep1;
+/// 换手机号第一步
+@property (nonatomic, strong) LXChangePhoneNumDataController *changePhoneNumDataController;
+/// 换手机号第二步
+@property (nonatomic, strong) LXSaveNewPhoneNumDataController *saveNewPhoneNumDataController;
 @end
 
 @implementation LXChangeOrFindPasswordController
@@ -64,23 +75,44 @@
  */
 - (void)lx_clickAffirmButton:(NSString *)testCode andPhoneNumber:(NSString *)phoneNumber {
     if (self.type == 1) {
-//        [self.findPasswordStep1 lxReuqestFindPassWordWithPhone:phoneNumber msgCode:testCode completionBlock:^(LXFindPassWordResponseObject *responseModel) {
-//            if (responseModel.flg == 1) {
+        [self.findPasswordStep1 lxReuqestFindPassWordWithPhone:phoneNumber msgCode:testCode completionBlock:^(LXFindPassWordResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
                 LXAlterOrFindStepTwoPasswordController *alterPasswordVC = [[LXAlterOrFindStepTwoPasswordController alloc] init];
                 alterPasswordVC.type = 1 ;
                 alterPasswordVC.navTitleString = @"找回密码";
                 alterPasswordVC.phoneNumber = phoneNumber;
                 [self.navigationController pushViewController:alterPasswordVC animated:YES];
-//            }else {
-//                [self.view makeToast:responseModel.msg];
-//            }
-//        }];
+            }else {
+                [self.view makeToast:responseModel.msg];
+            }
+        }];
     }else if (self.type == 2){
-        LXChangeOrFindPasswordController *findPasswordVC = [[LXChangeOrFindPasswordController alloc] init];
-        findPasswordVC.type = 3;
-        [self.navigationController pushViewController:findPasswordVC animated:YES];
+        // 更换手机号第一步
+        LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+        [self.changePhoneNumDataController lxReuqestChangePhoneNumWithCertNo:mineModel.certNo phone:phoneNumber msgCode:testCode completionBlock:^(LXChangePhoneNumResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
+                LXChangeOrFindPasswordController *findPasswordVC = [[LXChangeOrFindPasswordController alloc] init];
+                findPasswordVC.type = 3;
+                [self.navigationController pushViewController:findPasswordVC animated:YES];
+            }else {
+                [self.view makeToast:responseModel.msg];
+            }
+        }];
     }else if (self.type == 3) {
-        // 确认修改密码
+        // 更换手机号第二步
+        LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+        [self.saveNewPhoneNumDataController lxReuqestSaveNewPhoneNumWithCertNo:mineModel.certNo phone:phoneNumber msgCode:testCode completionBlock:^(LXSaveNewPhoneNumResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
+                // 返回到个人设置页面
+                for (UIViewController *controller in self.navigationController.viewControllers) {
+                    if ([controller isKindOfClass:[LXMineMessageAlterController class]]) {
+                        [self.navigationController popToViewController:controller animated:YES];
+                    }
+                }
+            }else {
+                [self.view makeToast:responseModel.msg];
+            }
+        }];
     }
 }
 
@@ -128,6 +160,18 @@
         _findPasswordStep1 = [[LXFindPassWordDataController alloc] init];
     }
     return _findPasswordStep1;
+}
+- (LXChangePhoneNumDataController *)changePhoneNumDataController {
+    if (!_changePhoneNumDataController) {
+        _changePhoneNumDataController = [[LXChangePhoneNumDataController alloc] init];
+    }
+    return _changePhoneNumDataController;
+}
+- (LXSaveNewPhoneNumDataController *)saveNewPhoneNumDataController {
+    if (!_saveNewPhoneNumDataController) {
+        _saveNewPhoneNumDataController = [[LXSaveNewPhoneNumDataController alloc] init];
+    }
+    return _saveNewPhoneNumDataController;
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

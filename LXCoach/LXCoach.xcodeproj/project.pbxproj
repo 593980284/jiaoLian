@@ -87,6 +87,7 @@
 		6A5B49F82148B72100206DF3 /* LXUploadCoachImageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49F72148B72100206DF3 /* LXUploadCoachImageDataController.m */; };
 		6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */; };
 		6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */; };
+		6A5B4A042148EAF700206DF3 /* NSString+LXTelEmailRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
@@ -261,6 +262,8 @@
 		6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Ext.m"; sourceTree = "<group>"; };
 		6A5B49FE2148BEE700206DF3 /* LZActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZActionSheet.h; sourceTree = "<group>"; };
 		6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZActionSheet.m; sourceTree = "<group>"; };
+		6A5B4A022148EAF700206DF3 /* NSString+LXTelEmailRegular.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+LXTelEmailRegular.h"; sourceTree = "<group>"; };
+		6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXTelEmailRegular.m"; sourceTree = "<group>"; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
@@ -535,6 +538,7 @@
 		2FB7E321213BD1DD00583B5C /* Categary */ = {
 			isa = PBXGroup;
 			children = (
+				6A5B4A012148EAB700206DF3 /* LXString */,
 				6A5B49F92148BE8300206DF3 /* LXImage */,
 				6A16202521477E1F00438E14 /* LXButton */,
 				2F4CE88721441D3200275F69 /* LXWindow */,
@@ -740,6 +744,15 @@
 			path = LZActionSheet;
 			sourceTree = "<group>";
 		};
+		6A5B4A012148EAB700206DF3 /* LXString */ = {
+			isa = PBXGroup;
+			children = (
+				6A5B4A022148EAF700206DF3 /* NSString+LXTelEmailRegular.h */,
+				6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */,
+			);
+			path = LXString;
+			sourceTree = "<group>";
+		};
 		6AD7D82F2143F63A000FB4EF /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -918,6 +931,7 @@
 				2F4CE8392143D1F600275F69 /* LXFindPassWordDataController.m in Sources */,
 				2FB7E30E213BC64800583B5C /* LXNetWorkCacheManager.m in Sources */,
 				6AD7D83D2143F63A000FB4EF /* LXMessageListCell.m in Sources */,
+				6A5B4A042148EAF700206DF3 /* NSString+LXTelEmailRegular.m in Sources */,
 				6A162043214801E100438E14 /* LXUploadCoachImageSessionTask.m in Sources */,
 				324C4EBB214142A00067F95F /* LXCourceListController.m in Sources */,
 				6A5B49F82148B72100206DF3 /* LXUploadCoachImageDataController.m in Sources */,
