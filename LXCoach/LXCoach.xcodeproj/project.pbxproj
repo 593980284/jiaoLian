@@ -84,6 +84,9 @@
 		6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */; };
 		6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */; };
 		6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */; };
+		6A5B49F82148B72100206DF3 /* LXUploadCoachImageDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49F72148B72100206DF3 /* LXUploadCoachImageDataController.m */; };
+		6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */; };
+		6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
@@ -252,6 +255,12 @@
 		6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListCell.m; sourceTree = "<group>"; };
 		6A4F37C82145566E007E41B8 /* LXStudentDetaileTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileTitleCell.h; sourceTree = "<group>"; };
 		6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileTitleCell.m; sourceTree = "<group>"; };
+		6A5B49F62148B72100206DF3 /* LXUploadCoachImageDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXUploadCoachImageDataController.h; sourceTree = "<group>"; };
+		6A5B49F72148B72100206DF3 /* LXUploadCoachImageDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXUploadCoachImageDataController.m; sourceTree = "<group>"; };
+		6A5B49FA2148BEA600206DF3 /* UIImage+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Ext.h"; sourceTree = "<group>"; };
+		6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Ext.m"; sourceTree = "<group>"; };
+		6A5B49FE2148BEE700206DF3 /* LZActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZActionSheet.h; sourceTree = "<group>"; };
+		6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZActionSheet.m; sourceTree = "<group>"; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
@@ -513,6 +522,8 @@
 				2F4CE8592143D8F700275F69 /* LXChangePhoneNumDataController.m */,
 				2F4CE85E2143DCB500275F69 /* LXSaveNewPhoneNumDataController.h */,
 				2F4CE85F2143DCB500275F69 /* LXSaveNewPhoneNumDataController.m */,
+				6A5B49F62148B72100206DF3 /* LXUploadCoachImageDataController.h */,
+				6A5B49F72148B72100206DF3 /* LXUploadCoachImageDataController.m */,
 				2F4CE86C2143E9CF00275F69 /* LXUserInfoDataController.h */,
 				2F4CE86D2143E9CF00275F69 /* LXUserInfoDataController.m */,
 				6A16203E2147ECC700438E14 /* LXCourseDataController.h */,
@@ -524,6 +535,7 @@
 		2FB7E321213BD1DD00583B5C /* Categary */ = {
 			isa = PBXGroup;
 			children = (
+				6A5B49F92148BE8300206DF3 /* LXImage */,
 				6A16202521477E1F00438E14 /* LXButton */,
 				2F4CE88721441D3200275F69 /* LXWindow */,
 				2F4CE8652143E0F400275F69 /* LXColor */,
@@ -685,6 +697,7 @@
 		6A16202921479F5600438E14 /* CommonTool */ = {
 			isa = PBXGroup;
 			children = (
+				6A5B49FD2148BEE700206DF3 /* LZActionSheet */,
 				6A16202E2147A75800438E14 /* LXCyhCalenbardate */,
 				6A16202A21479F6800438E14 /* LXCacheManager */,
 			);
@@ -707,6 +720,24 @@
 				6A1620302147A76200438E14 /* LXCyhCalenbardate.m */,
 			);
 			path = LXCyhCalenbardate;
+			sourceTree = "<group>";
+		};
+		6A5B49F92148BE8300206DF3 /* LXImage */ = {
+			isa = PBXGroup;
+			children = (
+				6A5B49FA2148BEA600206DF3 /* UIImage+Ext.h */,
+				6A5B49FB2148BEA600206DF3 /* UIImage+Ext.m */,
+			);
+			path = LXImage;
+			sourceTree = "<group>";
+		};
+		6A5B49FD2148BEE700206DF3 /* LZActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				6A5B49FE2148BEE700206DF3 /* LZActionSheet.h */,
+				6A5B49FF2148BEE700206DF3 /* LZActionSheet.m */,
+			);
+			path = LZActionSheet;
 			sourceTree = "<group>";
 		};
 		6AD7D82F2143F63A000FB4EF /* Course */ = {
@@ -889,7 +920,9 @@
 				6AD7D83D2143F63A000FB4EF /* LXMessageListCell.m in Sources */,
 				6A162043214801E100438E14 /* LXUploadCoachImageSessionTask.m in Sources */,
 				324C4EBB214142A00067F95F /* LXCourceListController.m in Sources */,
+				6A5B49F82148B72100206DF3 /* LXUploadCoachImageDataController.m in Sources */,
 				6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */,
+				6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */,
 				6A16203A2147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m in Sources */,
 				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
 				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
@@ -926,6 +959,7 @@
 				324C4E9D21410A4D0067F95F /* LXCourseController.m in Sources */,
 				6AD7D83E2143F63A000FB4EF /* LXStudentSubViewCell.m in Sources */,
 				6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */,
+				6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */,
 				324C4E7A2140DC9B0067F95F /* LXMineMainSubView.m in Sources */,
 				324C4EA721410AB70067F95F /* LXChangeOrFindPasswordController.m in Sources */,
 				324C4EC52141646E0067F95F /* LXIntroMineSubView.m in Sources */,

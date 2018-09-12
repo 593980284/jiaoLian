@@ -21,5 +21,8 @@
 @interface LXMineMessageAlterSubView : UIView
 
 @property (nonatomic, assign) id <LXMineMessageAlterSubViewDelegate> alterMessageDelegate;
-
+/**
+ 刷新tableView
+ */
+- (void)uploadTableView;
 @end

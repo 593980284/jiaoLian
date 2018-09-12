@@ -21,6 +21,15 @@
     }
     return self;
 }
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGFloat x = 0;
+    CGFloat y = 0;
+    CGFloat w = self.width;
+    CGFloat h = self.height;
+    self.tableView.frame = CGRectMake(x, y, w, h);
+}
+
 - (void)subView {
     [self addSubview:self.tableView];
     
@@ -32,13 +41,10 @@
     }
 #endif
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 0;
-    CGFloat y = 0;
-    CGFloat w = self.width;
-    CGFloat h = self.height;
-    self.tableView.frame = CGRectMake(x, y, w, h);
+
+#pragma mark - publicMethod
+- (void)uploadTableView {
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource/UITableViewDelegate

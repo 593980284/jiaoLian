@@ -7,6 +7,8 @@
 //
 
 #import "LXMineController.h"
+#import "LXUserInfoDataController.h"
+#import "LXUserInfoUrlSessionTask.h"
 #import "LXCourceListController.h"
 #import "LXMineMessageAlterController.h"
 #import "LXAboutOursViewController.h"
@@ -22,10 +24,15 @@ static NSString *cell_Identify = @"LXMineCell";
 @property (nonatomic, strong)LXCommonNavView *navView;
 @property (nonatomic, strong)LXMineMainSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) LXMineModel *mineModel;
+@property (nonatomic, strong) LXUserInfoDataController *infoDataController;
 @end
 
 @implementation LXMineController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestUserInfoMessage];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +40,20 @@ static NSString *cell_Identify = @"LXMineCell";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
+    LXMineModel *mineModel =  [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.subView lx_updateMineMessage:mineModel];
+}
+
+#pragma mark - request
+- (void)requestUserInfoMessage {
+    LXMineModel *mineModel =  [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.infoDataController lxReuqestUserInfoWithCertNo:mineModel.certNo completionBlock:^(LXUserInfoResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            // 存储用户数据
+            [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
+            [self.subView lx_updateMineMessage:responseModel.data];
+        }
+    }];
 }
 
 #pragma mark - LXMineMainSubViewDelegate
@@ -116,7 +137,6 @@ static NSString *cell_Identify = @"LXMineCell";
         _subView = [[LXMineMainSubView alloc] init];
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
         _subView.mainMineDelegate = self;
-        [_subView lx_updateMineMessage:self.mineModel];
     }
     return _subView;
 }
@@ -127,12 +147,11 @@ static NSString *cell_Identify = @"LXMineCell";
     }
     return _dataSource;
 }
-- (LXMineModel *)mineModel {
-    if (!_mineModel) {
-        // 读取数据
-        _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+- (LXUserInfoDataController *)infoDataController {
+    if (!_infoDataController) {
+        _infoDataController = [[LXUserInfoDataController alloc] init];
     }
-    return _mineModel;
+    return _infoDataController;
 }
 
 - (void)didReceiveMemoryWarning {

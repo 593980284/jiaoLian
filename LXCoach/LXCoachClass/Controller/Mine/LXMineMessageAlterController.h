@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LXMineMessageAlterController : UIViewController
-
+/// 头像地址
+@property (nonatomic, copy)NSString *picUrl;
 @end

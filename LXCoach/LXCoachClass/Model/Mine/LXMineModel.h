@@ -22,6 +22,9 @@
 @property (nonatomic, copy)   NSString *studentNum;
 /// 头像地址
 @property (nonatomic, copy)   NSString *photo;
+/// 返回头像地址
+@property (nonatomic, copy)   NSString *picUrl;
+
 /// 当前教练车车牌号
 @property (nonatomic, copy)   NSString *carNo;
 /// 电话号码

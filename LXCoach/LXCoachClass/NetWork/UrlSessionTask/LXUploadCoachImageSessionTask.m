@@ -10,9 +10,14 @@
 
 @implementation LXUploadCoachImageSessionTask
 
+- (void)lxReuqestUploadCoachImageWithCompletionBlock:(void(^)(LXUploadCoachImageResponseObject *responseModel))block {
+    NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:[self yy_modelToJSONObject]];
+    [self lxRequestWithUrlString:[NSString stringWithFormat:@"%@%@",kBaseUrl, kUploadCoachImage] requestType:LXHttpRequestTypePost parameters:postParameters needCache:NO cacheParameters:nil reponseModelClass:[LXUploadCoachImageResponseObject class] completionBlock:block];
+}
+
 @end
 
-
 @implementation LXUploadCoachImageResponseObject
+
 
 @end

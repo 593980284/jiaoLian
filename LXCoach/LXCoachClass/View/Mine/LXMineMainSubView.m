@@ -57,6 +57,7 @@
  */
 - (void)lx_updateMineMessage:(LXMineModel *)model {
     [self.headerView assignmentMineHeaderValue:model];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource/UITableViewDelegate

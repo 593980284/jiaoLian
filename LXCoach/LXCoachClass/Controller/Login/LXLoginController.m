@@ -68,7 +68,6 @@
 - (void)lx_clickLoginButton:(NSString *)acount andPasswordOrTestCode:(NSString *)code {
     [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
         if (responseModel.flg==1) {
-            // 18004710471
             // 存储用户数据
             [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
             [self popContoller];

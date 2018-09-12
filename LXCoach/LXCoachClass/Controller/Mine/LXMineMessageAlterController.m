@@ -12,16 +12,26 @@
 #import "LXCommonNavView.h"
 #import "LXMineMessageAlterSubView.h"
 #import "LXAlterMessageCell.h"
+#import "LZActionSheet.h"
+#import "UIImage+Ext.h"
+#import "LXUploadCoachImageDataController.h"
+#import "LXUploadCoachImageSessionTask.h"
+#import "LXMineModel.h"
 
 static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 
-@interface LXMineMessageAlterController ()<LXCommonNavViewDelegate,LXMineMessageAlterSubViewDelegate>
+@interface LXMineMessageAlterController ()<LXCommonNavViewDelegate,LXMineMessageAlterSubViewDelegate,LZActionSheetDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXMineMessageAlterSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) LXUploadCoachImageDataController *uploadHeaderImageDataController;
 @end
 
 @implementation LXMineMessageAlterController
+{
+    NSInteger _photoType;
+    UIImage *_img;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,11 +40,83 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
     [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
 }
+
+#pragma mark - privateMethod
+- (void)openPicOrVideoWithSign:(NSInteger)photoType {
+    if (photoType == 0) {
+        //本地相簿
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.allowsEditing = YES;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes =  [[NSArray alloc] initWithObjects: @"public.image", nil];
+        imagePicker.delegate = self;
+        [self presentImagepickView:imagePicker];
+    }else if(photoType == 1) {
+        //相机
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.allowsEditing = YES;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.mediaTypes =  [[NSArray alloc] initWithObjects: @"public.image", nil];
+            imagePicker.delegate = self;
+            [self presentImagepickView:imagePicker];
+        }
+    }
+}
+- (void)presentImagepickView:(UIImagePickerController *)imagePicker {
+    [self.navigationController presentViewController:imagePicker animated:YES completion:nil];
+}
+
+/// 上传头像操作
+- (void)uploadHeaderImage:(UIImage *)headerImage {
+    NSData *imageData = UIImageJPEGRepresentation(headerImage, 0);
+    NSString *encodedImageStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.uploadHeaderImageDataController lxReuqestSaveNewPhoneNumWithCertNo:mineModel.certNo imageCodeString:encodedImageStr completionBlock:^(LXUploadCoachImageResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            self.picUrl = responseModel.data.picUrl;
+            [self.subView uploadTableView];
+        }
+    }];
+}
+
+//相机操作
+-  (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    // 这就是我们想要的image 头像
+    if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:@"public.image"])
+    {
+        _img = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        if (_photoType == 1)
+        {
+            UIImageWriteToSavedPhotosAlbum(_img,self, nil, nil);
+        }
+        //缩减图片
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.image = _img;
+        CGSize imgSize = [imageView image].size;
+        
+        if (imgSize.width > 256 )
+        {
+            _img = [UIImage imageWithImage:_img scaledToSize:CGSizeMake(256, 256)];
+        }
+        [self uploadHeaderImage:_img];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 #pragma mark - LXMineMessageAlterSubViewDelegate
 - (NSInteger)lx_alterMessageTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
-
 - (UITableViewCell *)lx_alterMessageTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LXAlterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:alterMessage_Identify];
     if (cell == nil) {
@@ -42,10 +124,12 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
     }
     if (indexPath.row == 0) {
         [cell hiddenCurrenViewType:1];
+        cell.imageName = self.picUrl;
     }else{
         [cell hiddenCurrenViewType:2];
         cell.nameString = self.dataSource[indexPath.row];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -57,6 +141,10 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
     switch (indexPath.row) {
         case 0:
             // 修改头像
+        {
+            LZActionSheet *actionSheet = [[LZActionSheet alloc]initWithDelegate:self cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"从相册选择"]]; //@[@"从相册选择",@"拍照"]
+            [actionSheet show];
+        }
             break;
         case 1:
             // 密码修改
@@ -76,6 +164,20 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
         }
             break;
         
+    }
+}
+
+#pragma mark   - <LZActionSheetDelegate>
+- (void)LZActionSheet:(LZActionSheet *)actionSheet didClickedButtonAtIndex:(NSInteger)index{
+    if(index == 0){
+        //相机
+        _photoType = 1;
+        [self openPicOrVideoWithSign:_photoType];
+    }
+    if (index == 1) {
+        //相册
+        _photoType = 0;
+        [self openPicOrVideoWithSign:_photoType];
     }
 }
 
@@ -105,6 +207,12 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
         _dataSource = [[NSMutableArray alloc] initWithArray:@[@"",@"密码修改",@"更换绑定手机号"]];
     }
     return _dataSource;
+}
+- (LXUploadCoachImageDataController *)uploadHeaderImageDataController {
+    if (!_uploadHeaderImageDataController) {
+        _uploadHeaderImageDataController = [[LXUploadCoachImageDataController alloc] init];
+    }
+    return _uploadHeaderImageDataController;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
