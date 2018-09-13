@@ -1,21 +1,23 @@
 //
-//  LXCoureListSubViewController.m
+//  LXCourseNoHaveListController.m
 //  LXCoach
 //
-//  Created by 李玉琴 on 2018/9/7.
+//  Created by GDD on 2018/9/13.
 //  Copyright © 2018年 LeXiang. All rights reserved.
 //
 
-#import "LXCoureListSubViewController.h"
+#import "LXCourseNoHaveListController.h"
 #import "LXCourseListCell.h"
 
-static NSString *courseList_Identify = @"LXCourseListCell";
 
-@interface LXCoureListSubViewController ()<UITableViewDataSource,UITableViewDelegate>
+static NSString *courseList_Identify = @"LXCourseListNotHaveCell";
+
+@interface LXCourseNoHaveListController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
+
 @end
 
-@implementation LXCoureListSubViewController
+@implementation LXCourseNoHaveListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +44,7 @@ static NSString *courseList_Identify = @"LXCourseListCell";
     if (cell == nil) {
         cell = [[LXCourseListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:courseList_Identify];
     }
-    [cell congfigCompletedValue:self.dataSource[indexPath.row]];    
+    [cell configNoHaveValue:self.dataSource[indexPath.row]];
     return cell;
 }
 #pragma mark - UITableViewDelegate
@@ -65,11 +67,11 @@ static NSString *courseList_Identify = @"LXCourseListCell";
     return _tableView;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
+
 
 
 @end

@@ -31,12 +31,27 @@ static NSString * const kUserInfo = @"coachSetting/getCoachInfo";
 static NSString * const kAppCoachLogout = @"login/appCoachLogout";
 ///  保存教练个人简介信息
 static NSString * const kSaveUserInfo = @"coachSetting/saveCoachInfo";
-/// 查询我的课程日期列表
-static NSString * const kfindMyCouseDateList = @"course/findMyCouseDateList";
 /// 教练上传头像图片接口
 static NSString * const kUploadCoachImage = @"coachSetting/uploadCoachImage";
 
+// -------------- 课程 -----------------
+/// 查询我的课程日期列表
+static NSString * const kfindMyCouseDateList = @"course/findMyCouseDateList";
+/// 课程记录查询
+static NSString * const kFindCoachCourseRecord = @"course/findCoachCourseRecord";
 
 
+// -------------- 学员 -----------------
+/// 我的学员列表
+static NSString * const kFindMyStudentList = @"coach/findMyStudent";
+/// 我的学员详情
+static NSString * const kFindMyStudentDetil = @"coach/findMyStudentDetil";
+
+// -------------- 消息 -----------------
+
+/// 查询此教练消息列表
+static NSString * const kFindCoachMsg = @"message/findCoachMsg";
+// 查询此教练单个消息
+static NSString * const kFindSingleCoachMsg = @"message/findSingleCoachMsg";
 
 #endif /* LXUrlApi_h */

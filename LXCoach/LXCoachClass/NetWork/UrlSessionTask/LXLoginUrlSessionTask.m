@@ -13,7 +13,7 @@
 
 - (void)lxReuqestLoginWithCompletionBlock:(void(^)(LXLoginResponseObject *responseModel))block {
     
-     NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:[self yy_modelToJSONObject]];
+    NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:[self yy_modelToJSONObject]];
     [self lxRequestWithUrlString:[NSString stringWithFormat:@"%@%@",kBaseUrl, kLoginUrl] requestType:LXHttpRequestTypePost parameters:postParameters needCache:NO cacheParameters:nil reponseModelClass:[LXLoginResponseObject class] completionBlock:block];
 }
 

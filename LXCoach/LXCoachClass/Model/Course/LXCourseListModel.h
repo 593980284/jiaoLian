@@ -24,24 +24,6 @@
 /// 剩余人数
 @property (nonatomic, assign) NSInteger noAppointmentNum;
 
-/**
- {
- "flg": 1,
- "msg": "查询成功!",
- "data": {
- "list": [
- {
- "appointmentId": 23,
- "subjectName": "科目二",
- "periodTime": "2018-09-07 09:00:00-11:00:00",
- "appointmentNum": 3,
- "noAppointmentNum": 1
- }
- ]
- }
- }}
-
- */
 @end
 
 

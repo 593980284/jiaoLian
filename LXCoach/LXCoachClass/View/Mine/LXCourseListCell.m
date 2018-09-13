@@ -7,10 +7,12 @@
 //
 
 #import "LXCourseListCell.h"
+#import "LXFindCourseRecordModel.h"
+
 @interface LXCourseListCell ()
 /// 头像
 @property (nonatomic, strong) UIImageView *headerImageView;
-/// 科目几
+/// 科目几 / 姓名
 @property (nonatomic, strong) UILabel *subjectNumber;
 /// 驾校名称
 @property (nonatomic, strong) UILabel *drivingSchoolName;
@@ -29,11 +31,11 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.headerImageView];
         [self.contentView addSubview:self.subjectNumber];
+//        [self.contentView addSubview:self.borderSubjectAge];
         [self.contentView addSubview:self.drivingSchoolName];
         [self.contentView addSubview:self.time];
         [self.contentView addSubview: self.studentState];
         [self.contentView addSubview:self.bottomLine];
-        [self valueToSubView];
     }
     return self;
 }
@@ -48,10 +50,16 @@
     
     x = CGRectGetMaxX(self.headerImageView.frame) + 10;
     y = 19;
-    w = self.width - (15+10+70 *kAutoSizeScaleX+16+100);
+    w = 150;
     h = 15;
     self.subjectNumber.frame = CGRectMake(x, y, w, h);
     
+//    x = CGRectGetMaxX(self.subjectNumber.frame) + 15;
+//    y = 19;
+//    w = 98;
+//    h = 15;
+//    self.borderSubjectAge.frame = CGRectMake(x, y, w, h);
+
     x = self.width - (16+100);
     y = 22;
     w = 100;
@@ -84,6 +92,26 @@
     self.studentState.text = @"学员：3人   缺课人员：0人";
 }
 
+#pragma mark - publicMethod
+/// 赋值已完成课程
+- (void)congfigCompletedValue:(LXFindCourseRecordModel *)completedCourseModel {
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:completedCourseModel.coachPhoto]];
+    self.subjectNumber.text = completedCourseModel.subjectName;
+    self.drivingSchoolName.text = completedCourseModel.schoolName;
+    self.time.text = completedCourseModel.periodTime;
+    self.studentState.text = [NSString stringWithFormat:@"学员：%ld人  缺课人员：%ld人",(long)completedCourseModel.reachStuNum,(long)completedCourseModel.noReachStuNum];
+//    [self valueToSubView];
+}
+
+/// 赋值未完成课程
+- (void)configNoHaveValue:(LXFindCourseRecordModel *)noHaveCourseModel {
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:noHaveCourseModel.coachPhoto]];
+    self.subjectNumber.text = noHaveCourseModel.subjectName;
+    self.drivingSchoolName.text = noHaveCourseModel.schoolName;
+    self.time.text = noHaveCourseModel.periodTime;
+     self.studentState.text = [NSString stringWithFormat:@"学员：%ld  学时：%ld学时",(long)noHaveCourseModel.reachStuNum,(long)noHaveCourseModel.hours];
+}
+
 #pragma mark - getter
 - (UIImageView *)headerImageView {
     if (!_headerImageView) {
@@ -102,6 +130,18 @@
     }
     return _subjectNumber;
 }
+//- (UILabel *)borderSubjectAge {
+//    if (!_borderSubjectAge) {
+//        _borderSubjectAge = [[UILabel alloc] init];
+//        _borderSubjectAge.layer.borderWidth = .5;
+//        _borderSubjectAge.layer.borderColor = [UIColor colorWithHexString:@"#333333"].CGColor;
+//        _borderSubjectAge.layer.cornerRadius = 3;
+//        _borderSubjectAge.textAlignment = NSTextAlignmentCenter;
+//        _borderSubjectAge.font = [UIFont systemFontOfSize:12];
+//        _borderSubjectAge.textColor = [UIColor colorWithHexString:@"#333333"];
+//    }
+//    return _borderSubjectAge;
+//}
 - (UILabel *)drivingSchoolName {
     if (!_drivingSchoolName) {
         _drivingSchoolName = [[UILabel alloc] init];

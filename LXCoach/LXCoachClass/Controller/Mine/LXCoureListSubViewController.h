@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 已完成viewController
+ */
 @interface LXCoureListSubViewController : UIViewController
-
+@property (nonatomic, strong) NSArray *dataSource;
 @end

@@ -8,13 +8,22 @@
 
 #import "LXCourceListController.h"
 #import <VTMagic/VTMagic.h>
+#import "LXCourseDataController.h"
+#import "LXFindCoachCourseRecordSessionTask.h"
 #import "LXCoureListSubViewController.h"
+#import "LXCourseNoHaveListController.h"
 #import "LXCommonNavView.h"
-
+#import "LXMineModel.h"
+#import "LXFindCourseRecordArrModel.h"
 
 @interface LXCourceListController ()<VTMagicViewDelegate,VTMagicViewDataSource,LXCommonNavViewDelegate>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
+@property (nonatomic, strong) LXCourseDataController *courseDataController;
+/// 已完成课程
+@property (nonatomic, strong) NSArray *clistArr;
+/// 未完成课程
+@property (nonatomic, strong) NSArray *ulistArr;
 @end
 
 @implementation LXCourceListController
@@ -26,7 +35,22 @@
     [self addChildViewController:self.magicController];
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
+    [self requestMyCourceList];
     [self.view addSubview:self.navView];
+}
+#pragma mark - request
+// 查询教练课程记录
+- (void)requestMyCourceList {
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.courseDataController lxReuqestFindCoachCourseRecordListWithCertNo:mineModel.certNo completionBlock:^(LXFindCoachCourseResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            self.clistArr = [NSArray arrayWithArray:responseModel.data.clist];
+            self.ulistArr = [NSArray arrayWithArray:responseModel.data.ulist];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
+    
 }
 
 #pragma mark - LXCommonNavViewDelegate
@@ -74,12 +98,24 @@
  *  @return 页面控制器
  */
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex{
-    static NSString *string = @"LXCoureListSubViewController";
-    LXCoureListSubViewController *tableView = [magicView dequeueReusablePageWithIdentifier:string];
-    if (!tableView) {
-        tableView = [[LXCoureListSubViewController alloc]init];
+    if (pageIndex == 0) {
+        static NSString *string = @"LXCoureListSubViewController";
+        LXCoureListSubViewController *tableView = [magicView dequeueReusablePageWithIdentifier:string];
+        if (!tableView) {
+            tableView = [[LXCoureListSubViewController alloc]init];
+        }
+        tableView.dataSource = self.clistArr;
+        return tableView;
+    }else if (pageIndex == 1) {
+        static NSString *string = @"LXCourseNoHaveListController";
+        LXCourseNoHaveListController *tableView = [magicView dequeueReusablePageWithIdentifier:string];
+        if (!tableView) {
+            tableView = [[LXCourseNoHaveListController alloc]init];
+        }
+        tableView.dataSource = self.ulistArr;
+        return tableView;
     }
-    return tableView;
+    return [UIViewController new];
 }
 #pragma mark - getter
 - (LXCommonNavView *)navView {
@@ -110,6 +146,12 @@
 //        [_magicController.magicView setSliderView:self.myCustomliderView];
     }
     return _magicController;
+}
+- (LXCourseDataController *)courseDataController {
+    if (!_courseDataController) {
+        _courseDataController = [[LXCourseDataController alloc] init];
+    }
+    return _courseDataController;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
