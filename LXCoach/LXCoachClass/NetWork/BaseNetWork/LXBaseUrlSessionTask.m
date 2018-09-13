@@ -28,7 +28,6 @@
     NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
     
     [LXNetWorkManager requestWithType:LXHttpRequestTypePost withUrlString:urlString withParaments:postParameters withSuccessBlock:^(NSDictionary *object) {
-        
         if (block) {
             LXNetWorkResponseBaseObject *responseModel = [LXNetWorkResponseBaseObject yy_modelWithJSON:object];
             NSInteger status = responseModel.flg;

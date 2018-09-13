@@ -16,4 +16,7 @@
 
 @interface LXStudentSubView : UIView
 @property (nonatomic, assign) id <LXStudentSubViewDelegate> studentSubViewDelegate;
+
+- (void)reloadTableView;
+
 @end

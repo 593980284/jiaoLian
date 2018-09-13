@@ -11,13 +11,18 @@
 #import "LXCommonNavView.h"
 #import "LXStudentSubView.h"
 #import "LXStudentSubViewCell.h"
+#import "LXStudentDataController.h"
+#import "LXFindMyStudentSessionTask.h"
+#import "LXMineModel.h"
+#import "LXMyStudentListModel.h"
 
 static NSString *studentList_Identify = @"LXStudentSubViewCell";
 
 @interface LXStudentController ()<LXCommonNavViewDelegate,LXStudentSubViewDelegate>
-@property (nonatomic, strong)LXCommonNavView *navView;
-@property (nonatomic, strong)LXStudentSubView *subView;
-@property (nonatomic, strong)NSMutableArray *dataSourceArr;
+@property (nonatomic, strong) LXCommonNavView *navView;
+@property (nonatomic, strong) LXStudentSubView *subView;
+@property (nonatomic, strong) NSMutableArray *dataSourceArr;
+@property (nonatomic, strong) LXStudentDataController *studentDataController;
 @end
 
 @implementation LXStudentController
@@ -27,17 +32,32 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.fd_prefersNavigationBarHidden = YES;
+    [self requestStudentList];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
 }
+
+#pragma mark - request
+- (void)requestStudentList {
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.studentDataController lxReuqestFindMyStudentListWithCertNo:mineModel.certNo completionBlock:^(LXFindMyStudentResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            self.dataSourceArr = [responseModel.data objectForKey:@"list"];
+            [self.subView reloadTableView];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
+}
+
 #pragma mark - private
 - (void)callMobile:(NSString *)mobile {
-    
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",mobile];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 #pragma mark - LXStudentSubViewDelegate
 - (NSInteger)lx_myStudentListTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //    return self.dataSourceArr.count;
-    return 10;
+    return self.dataSourceArr.count;
 }
 - (UITableViewCell *)lx_myStudentListTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXStudentSubViewCell *cell = [tableView dequeueReusableCellWithIdentifier:studentList_Identify];
@@ -45,10 +65,12 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
         cell = [[LXStudentSubViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:studentList_Identify];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    LXMyStudentListModel *model = self.dataSourceArr[indexPath.row];
+    [cell configStudentListModel:model];
     @weakify(self)
     [cell setCallMobileBlock:^{
         @strongify(self)
-        [self callMobile:@""];
+        [self callMobile:model.mobile];
     }];
     return cell;
 }
@@ -80,6 +102,12 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
         _dataSourceArr = [[NSMutableArray alloc] init];
     }
     return _dataSourceArr;
+}
+- (LXStudentDataController *)studentDataController {
+    if (!_studentDataController) {
+        _studentDataController = [[LXStudentDataController alloc] init];
+    }
+    return _studentDataController;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

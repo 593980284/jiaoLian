@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LXMyStudentListModel;
 @interface LXStudentSubViewCell : UITableViewCell
 @property (nonatomic, copy) void (^callMobileBlock)(void);
+
+- (void)configStudentListModel:(LXMyStudentListModel *)model;
+
 @end

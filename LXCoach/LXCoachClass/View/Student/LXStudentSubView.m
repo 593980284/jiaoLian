@@ -25,6 +25,10 @@
     [super layoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.width, self.height);
 }
+#pragma mark - publicMethod
+- (void)reloadTableView {
+    [self.tableView reloadData];
+}
 #pragma mark - delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self.studentSubViewDelegate respondsToSelector:@selector(lx_myStudentListTableView:numberOfRowsInSection:)]) {

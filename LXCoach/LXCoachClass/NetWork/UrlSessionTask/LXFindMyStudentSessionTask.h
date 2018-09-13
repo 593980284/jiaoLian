@@ -24,6 +24,6 @@
 
 @interface LXFindMyStudentResponseObject : LXNetWorkResponseBaseObject
 
-@property (nonatomic, copy) LXMyStudentListModel *data;
+@property (nonatomic, copy) NSDictionary *data;
 
 @end

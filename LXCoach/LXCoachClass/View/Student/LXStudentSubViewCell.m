@@ -7,6 +7,7 @@
 //
 
 #import "LXStudentSubViewCell.h"
+#import "LXMyStudentListModel.h"
 
 @interface LXStudentSubViewCell ()
 @property (nonatomic, strong) UIView *borderView;
@@ -32,7 +33,7 @@
         [self.borderView addSubview:self.subjectNumber];
         [self.borderView addSubview:self.iphoneNumber];
         [self.borderView addSubview:self.callMobile];
-        [self valueToSubView];
+//        [self valueToSubView];
     }
     return self;
 }
@@ -77,6 +78,13 @@
     self.nameLabel.text = @"张三";
     self.subjectNumber.text = @"科目二";
     self.iphoneNumber.text = @"17598785623";
+}
+#pragma mark - publicMethod
+- (void)configStudentListModel:(LXMyStudentListModel *)model {
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto]];
+    self.nameLabel.text = model.studentName;
+    self.subjectNumber.text = model.subjectName;
+    self.iphoneNumber.text = model.mobile;
 }
 #pragma mark - Gesture
 - (void)callMobileAction {
