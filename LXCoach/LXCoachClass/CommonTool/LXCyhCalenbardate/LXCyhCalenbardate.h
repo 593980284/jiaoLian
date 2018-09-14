@@ -16,7 +16,7 @@
 //一个月的第一天是星期几
 - (NSInteger)firstWeekdayInThisMonth:(NSDate *)date;
 //星期几
-- (NSString *)weekday:(NSDate *)date;
++ (NSString *)weekday:(NSDate *)date;
 //一个月有多少星期
 - (NSUInteger)numberOfWeeksInCurrentMonth:(NSDate *)date;
 //上个月日历
@@ -28,4 +28,13 @@
 - (NSDate *)nextyeasDate:(NSDate *)date;
 //上一年的月历
 - (NSDate *)lastYeasDate:(NSDate *)date;
+
++(NSInteger)timeSwitchTimestamp:(NSString *)formatTime andFormatter:(NSString *)format;
+/// 根据日期转为 NSDate
++ (NSDate *)timeSwitchDate:(NSString *)formateTime andFormatter:(NSString *)format;
+
+// 截取当前的日
++ (NSString *)obtainDateDay:(NSString *)date;
+// 截取当前的年-月
++ (NSString *)obtainDateYearAndMonth:(NSString *)date;
 @end

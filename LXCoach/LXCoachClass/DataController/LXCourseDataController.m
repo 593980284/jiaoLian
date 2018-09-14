@@ -10,6 +10,7 @@
 #import "LXFindMyCouseDateListSessionTask.h"
 #import "LXFindCoachCourseRecordSessionTask.h"
 #import "LXFindMyCouseListByDateSessionTask.h"
+#import "LXFindMyCouseDetailListSessionTask.h"
 
 @implementation LXCourseDataController
 
@@ -55,6 +56,20 @@
     task.certNo = certNo;
     task.date = date;
     [task lxReuqestFindMyCouseListByDateWithCompletionBlock:^(LXFindMyCouseListByDateResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+
+/**
+ 查询我的课程课程详情
+ 
+ @param appointmentId 约课id
+ @param block block
+ */
+- (void)lxReuqestFindMyCouseDetailListWithAppointmentId:(NSString *)appointmentId completionBlock:(void(^)(LXFindMyCouseDetailListResponseObject *responseModel))block {
+    LXFindMyCouseDetailListSessionTask *task = [[LXFindMyCouseDetailListSessionTask alloc] init];
+    task.appointmentId = appointmentId;
+    [task lxReuqestFindMyCouseDetailListWithCompletionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
         block(responseModel);
     }];
 }

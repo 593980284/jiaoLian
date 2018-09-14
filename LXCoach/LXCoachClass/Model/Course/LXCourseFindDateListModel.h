@@ -16,4 +16,12 @@
 @property (nonatomic, copy)NSString *date;
 ///0：无排课  1：有排课
 @property (nonatomic, assign)NSInteger has;
+
+/// 星期
+@property (nonatomic, copy) NSString  * week;
+/// 某一天的日期
+@property (nonatomic, copy) NSString  * oneDate;
+// 年-月
+@property (nonatomic, copy) NSString * yearAndMonth;
+
 @end

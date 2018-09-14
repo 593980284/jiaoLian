@@ -76,13 +76,8 @@
     _courseListModel = courseListModel;
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:nil];
     self.subjectLabel.text = _courseListModel.subjectName;
-    self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld  剩余 %ld",(long)_courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
+    self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld     剩余 %ld",(long)_courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
     self.timeLabel.text = _courseListModel.periodTime;
-    
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:nil];
-    self.subjectLabel.text = @"科目一";
-    self.numberLabel.text = [NSString stringWithFormat:@"报名 %d  剩余 %d",3, 1];
-    self.timeLabel.text = @"2018-07-12 8:00-10:00";
 }
 
 #pragma mark - getter

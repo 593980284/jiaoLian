@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class LXFindMyCouseDateListResponseObject,LXFindCoachCourseResponseObject;
-@class LXFindMyCouseListByDateResponseObject;
+@class LXFindMyCouseListByDateResponseObject,LXFindMyCouseDetailListResponseObject;
 
 @interface LXCourseDataController : NSObject
 
@@ -36,5 +36,13 @@
  @param block responseModel
  */
 - (void)lxReuqestFindMyCouseListByDateWithCertNo:(NSString *)certNo andDate:(NSString *)date completionBlock:(void(^)(LXFindMyCouseListByDateResponseObject *responseModel))block;
+
+/**
+ 查询我的课程课程详情
+
+ @param appointmentId 约课id
+ @param block block
+ */
+- (void)lxReuqestFindMyCouseDetailListWithAppointmentId:(NSString *)appointmentId completionBlock:(void(^)(LXFindMyCouseDetailListResponseObject *responseModel))block;
 
 @end

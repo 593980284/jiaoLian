@@ -12,8 +12,3 @@
 
 @end
 
-
-@implementation LXCourseStudentModel
-
-
-@end

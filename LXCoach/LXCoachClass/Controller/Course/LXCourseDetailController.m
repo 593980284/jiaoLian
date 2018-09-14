@@ -9,11 +9,16 @@
 #import "LXCourseDetailController.h"
 #import "LXCommonNavView.h"
 #import "LXCourseDetailView.h"
+#import "LXCourseListModel.h"
+#import "LXCourseDetailModel.h"
+#import "LXCourseDataController.h"
+#import "LXFindMyCouseDetailListSessionTask.h"
 
 @interface LXCourseDetailController ()<LXCommonNavViewDelegate>
 
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseDetailView *courseDetailView;
+@property (nonatomic, strong) LXCourseDataController *dataController;
 
 @end
 
@@ -21,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self requestMyCouseDetailList];
     [self createUI];
 }
 
@@ -42,7 +47,15 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 }
-
+#pragma mark - request
+- (void)requestMyCouseDetailList {
+    [self.dataController lxReuqestFindMyCouseDetailListWithAppointmentId:[NSString stringWithFormat:@"%ld",(long)self.courseSubjectModel.appointmentId] completionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            //LXCourseDetailModel
+            
+        }
+    }];
+}
 #pragma mark - delegate
 - (void)lx_clickLeftButton {
     [self.navigationController popViewControllerAnimated:YES];
@@ -61,7 +74,14 @@
 - (LXCourseDetailView *)courseDetailView {
     if (!_courseDetailView) {
         _courseDetailView = [[LXCourseDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame))];
+        _courseDetailView.topSubjectModel = self.courseSubjectModel;
     }
     return _courseDetailView;
+}
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
 }
 @end

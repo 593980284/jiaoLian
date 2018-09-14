@@ -37,7 +37,6 @@
 
 - (void)createUI {
     [self addSubview:self.headView];
-    self.headView.courseListModel = [LXCourseListModel new];
     [self addSubview:self.tableView];
 }
 
@@ -81,6 +80,10 @@
 }
 
 #pragma mark - setter
+- (void)setTopSubjectModel:(LXCourseListModel *)topSubjectModel {
+    _topSubjectModel = topSubjectModel;
+    self.headView.courseListModel = self.topSubjectModel;
+}
 - (void)setCourseDetailModel:(LXCourseDetailModel *)courseDetailModel {
     _courseDetailModel = courseDetailModel;
     [self.tableView reloadData];

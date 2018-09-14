@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class LXCourseDetailModel;
+@class LXCourseListModel;
 
 @interface LXCourseDetailView : UIView
 
 @property (nonatomic, strong) LXCourseDetailModel *courseDetailModel;
 
+@property (nonatomic, strong) LXCourseListModel *topSubjectModel;
 @end

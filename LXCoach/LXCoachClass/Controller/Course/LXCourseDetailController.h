@@ -14,6 +14,6 @@
  */
 @interface LXCourseDetailController : UIViewController
 
-@property (nonatomic, strong) LXCourseListModel *courseListModel;
+@property (nonatomic, strong) LXCourseListModel *courseSubjectModel;
 
 @end

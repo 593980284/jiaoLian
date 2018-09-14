@@ -67,7 +67,7 @@
     return weeks;
 }
 
-- (NSString *)weekday:(NSDate *)date
++ (NSString *)weekday:(NSDate *)date
 {
     NSCalendar * cal = [NSCalendar currentCalendar];
     
@@ -181,5 +181,48 @@
     NSDate * nextyeas = [calendar dateFromComponents:components];
     return nextyeas;
     
+}
+
+
+#pragma mark - 将某个时间转化成 时间戳
++(NSInteger)timeSwitchTimestamp:(NSString *)formatTime andFormatter:(NSString *)format {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:format]; //(@"YYYY-MM-dd hh:mm:ss") ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    
+    NSDate* date = [formatter dateFromString:formatTime]; //------------将字符串按formatter转成nsdate
+    //时间转时间戳的方法:
+    NSInteger timeSp = [[NSNumber numberWithDouble:[date timeIntervalSince1970]] integerValue];
+    
+    return timeSp;
+    
+}
+/// 根据日期转为 NSDate
++ (NSDate *)timeSwitchDate:(NSString *)formatTime andFormatter:(NSString *)format {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:format]; //(@"YYYY-MM-dd hh:mm:ss") ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    
+    NSDate* date = [formatter dateFromString:formatTime]; //------------将字符串按formatter转成nsdate
+    return date;
+}
+
+// 截取当前的日 （date格式：年-月-日）
++ (NSString *)obtainDateDay:(NSString *)date {
+    NSArray *arr = [date componentsSeparatedByString:@"-"];
+    NSString *currentDate = [arr lastObject];
+    return currentDate;
+}
+// 截取当前的年-月 （date格式：年-月-日）
++ (NSString *)obtainDateYearAndMonth:(NSString *)date {
+    NSArray *arr = [date componentsSeparatedByString:@"-"];
+    NSString *currentDate = [NSString stringWithFormat:@"%@-%@",[arr firstObject],arr[1]];
+    return currentDate;
 }
 @end

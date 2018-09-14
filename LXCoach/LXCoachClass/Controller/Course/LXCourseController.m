@@ -15,16 +15,17 @@
 #import "LXMineModel.h"
 #import "LXCourseFindDateListModel.h"
 #import "LXCourseListModel.h"
+#import "LXCyhCalenbardate.h"
 
-@interface LXCourseController ()
+@interface LXCourseController ()<LXCourseSubViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseSubView *courseSubView;
 @property (nonatomic, strong) LXCourseDataController *dataController;
 @property (nonatomic, strong) LXMineModel *mineModel;
 /// 日期Arr
-@property (nonatomic, strong) NSArray *dateSourceArr;
+@property (nonatomic, strong) NSMutableArray *dateSourceArr;
 /// 对应的课程列表Arr
-@property (nonatomic, strong) NSArray *courseListArr;
+@property (nonatomic, strong) NSArray<LXCourseListModel *> *courseListArr;
 @end
 
 @implementation LXCourseController
@@ -55,11 +56,28 @@
 #pragma mark - request
 //  查询我的课程日期列表
 - (void)requestFindMyCouseDateList {
+    self.dateSourceArr = [[NSMutableArray alloc] init];
     [self.dataController lxReuqestFindMyCouseDateListWithCertNo:self.mineModel.certNo completionBlock:^(LXFindMyCouseDateListResponseObject *responseModel) {
-        if (responseModel.flg == 1) { //LXCourseFindDateListModel
-            self.dateSourceArr = [NSArray yy_modelArrayWithClass:[LXCourseFindDateListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
+        if (responseModel.flg == 1) {
+            NSArray *listArr = [NSArray yy_modelArrayWithClass:[LXCourseFindDateListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
+            for (LXCourseFindDateListModel *dateModel in listArr) {
+                // 1. 算出今天星期几
+                // 1.1将时间转位时间戳
+                NSDate *currentDate = [LXCyhCalenbardate timeSwitchDate:dateModel.date andFormatter:@"YYYY-MM-dd"];
+                // 1.2根据时间戳来得到今天星期几
+                NSString *weakDay = [LXCyhCalenbardate weekday:currentDate];
+                NSString *str = [weakDay substringFromIndex:weakDay.length-1];
+                dateModel.week = str;
+                // 2. 得出是多少号
+                dateModel.oneDate = [LXCyhCalenbardate obtainDateDay:dateModel.date];
+                // 3. 当前的年-月
+                dateModel.yearAndMonth = [LXCyhCalenbardate obtainDateYearAndMonth:dateModel.date];
+                [self.dateSourceArr addObject:dateModel];
+            }
+            self.courseSubView.dateArr = self.dateSourceArr;
+            
             LXCourseFindDateListModel * model = [self.dateSourceArr firstObject];
-            [self requestToDateFindCouseListCerNo:self.mineModel.certNo andDate:@"2018-09-17"];
+            [self requestToDateFindCouseListCerNo:self.mineModel.certNo andDate:model.date];
         }
     }];
     
@@ -69,10 +87,22 @@
     [self.dataController lxReuqestFindMyCouseListByDateWithCertNo:cerNo andDate:date completionBlock:^(LXFindMyCouseListByDateResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             self.courseListArr = [NSArray yy_modelArrayWithClass:[LXCourseListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
+            self.courseSubView.dataSourse = self.courseListArr;
         }else {
             [self.view makeToast:responseModel.msg];
         }
     }];
+}
+
+#pragma mark - LXCourseSubViewDelegate
+/**
+ 点击对应的日期加载对应的数据
+ 
+ @param index 点击的下标
+ */
+- (void)lx_courseDidDateReloadSource:(NSInteger)index {
+    LXCourseFindDateListModel * model = self.dateSourceArr[index];
+    [self requestToDateFindCouseListCerNo:self.mineModel.certNo andDate:model.date];
 }
 
 #pragma mark - getter
@@ -86,6 +116,7 @@
 - (LXCourseSubView *)courseSubView {
     if (!_courseSubView) {
         _courseSubView = [[LXCourseSubView alloc]initWithFrame:CGRectMake(0, self.navView.height, kScreenWidth, kScreenHeight-self.navView.height-CGRectGetHeight(self.tabBarController.tabBar.frame))];
+        _courseSubView.delegate = self;
     }
     return _courseSubView;
 }
