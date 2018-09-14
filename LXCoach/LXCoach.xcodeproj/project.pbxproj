@@ -96,6 +96,7 @@
 		6A223A86214A54F700E20FD0 /* LXFindCoachMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A85214A54F700E20FD0 /* LXFindCoachMsgModel.m */; };
 		6A223A89214A57A000E20FD0 /* LXFindSingleCoachMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A88214A57A000E20FD0 /* LXFindSingleCoachMsgModel.m */; };
 		6A223A8F214A624000E20FD0 /* LXCourseNoHaveListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A223A8E214A624000E20FD0 /* LXCourseNoHaveListController.m */; };
+		6A48092C214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A48092B214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m */; };
 		6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */; };
 		6A4F37C7214553A0007E41B8 /* LXStudentDetaileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C6214553A0007E41B8 /* LXStudentDetaileListCell.m */; };
 		6A4F37CA2145566E007E41B8 /* LXStudentDetaileTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F37C92145566E007E41B8 /* LXStudentDetaileTitleCell.m */; };
@@ -297,6 +298,8 @@
 		6A223A88214A57A000E20FD0 /* LXFindSingleCoachMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFindSingleCoachMsgModel.m; sourceTree = "<group>"; };
 		6A223A8D214A624000E20FD0 /* LXCourseNoHaveListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseNoHaveListController.h; sourceTree = "<group>"; };
 		6A223A8E214A624000E20FD0 /* LXCourseNoHaveListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseNoHaveListController.m; sourceTree = "<group>"; };
+		6A48092A214B535800A39074 /* LXFindMyCouseListByDateSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFindMyCouseListByDateSessionTask.h; sourceTree = "<group>"; };
+		6A48092B214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFindMyCouseListByDateSessionTask.m; sourceTree = "<group>"; };
 		6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListController.h; sourceTree = "<group>"; };
 		6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetaileListController.m; sourceTree = "<group>"; };
 		6A4F37C5214553A0007E41B8 /* LXStudentDetaileListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetaileListCell.h; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 				6A162042214801E100438E14 /* LXUploadCoachImageSessionTask.m */,
 				6A1620382147E9A100438E14 /* LXFindMyCouseDateListSessionTask.h */,
 				6A1620392147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m */,
+				6A48092A214B535800A39074 /* LXFindMyCouseListByDateSessionTask.h */,
+				6A48092B214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m */,
 				6A223A5E214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.h */,
 				6A223A5F214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.m */,
 				6A223A6A214A159500E20FD0 /* LXFindMyStudentSessionTask.h */,
@@ -1048,6 +1053,7 @@
 				6A223A6F214A15C200E20FD0 /* LXFindMyStudentDetilSessionTask.m in Sources */,
 				6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */,
 				6A16203A2147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m in Sources */,
+				6A48092C214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m in Sources */,
 				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
 				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
 				6A16202D21479FDE00438E14 /* LXCacheManager.m in Sources */,

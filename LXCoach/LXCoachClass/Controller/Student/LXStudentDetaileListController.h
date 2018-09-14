@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LXStudentDetaileListController : UIViewController
-
+@property (nonatomic, strong)NSArray *dataArr;
 @end

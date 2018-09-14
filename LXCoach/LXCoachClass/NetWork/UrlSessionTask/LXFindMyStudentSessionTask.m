@@ -20,8 +20,4 @@
 
 @implementation LXFindMyStudentResponseObject
 
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"list" : [LXMyStudentListModel class]
-             };
-}
 @end

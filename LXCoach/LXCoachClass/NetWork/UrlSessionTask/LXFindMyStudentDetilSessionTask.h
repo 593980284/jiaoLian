@@ -23,5 +23,7 @@
 @end
 
 @interface LXFindMyStudentDetilResponseObject : LXNetWorkResponseBaseObject
-@property (nonatomic, copy) LXMyStudentDetailSubjectModel *data;
+
+@property (nonatomic, strong) LXMyStudentDetailSubjectModel *data;
+
 @end

@@ -53,7 +53,7 @@
     
     x = CGRectGetMaxX(self.iconImageView.frame) + 10;
     y = 26;
-    w = 40;
+    w = 60;
     h = 15;
     self.nameLabel.frame = CGRectMake(x, y, w, h);
     

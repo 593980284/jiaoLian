@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LXMyStudentListModel;
 
 /**
  学院详情头部view
  */
 @interface LXStudentDetaileHeaderView : UIView
 /// 几颗星评价
-@property (nonatomic, assign)NSInteger optionStartNumber;
+//@property (nonatomic, assign)NSInteger optionStartNumber;
+
+- (void)configValue:(LXMyStudentListModel *)model;
+
 @end

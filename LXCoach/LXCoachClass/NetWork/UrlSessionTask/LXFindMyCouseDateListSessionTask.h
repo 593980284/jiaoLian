@@ -8,7 +8,6 @@
 
 #import "LXBaseUrlSessionTask.h"
 @class LXFindMyCouseDateListResponseObject;
-@class LXCourseFindDateListModel;
 
 /**
  查询我的课程日期列表
@@ -23,6 +22,6 @@
 
 @interface LXFindMyCouseDateListResponseObject : LXNetWorkResponseBaseObject
 
-@property (nonatomic, strong)  NSArray *list;
+@property (nonatomic, strong)  NSDictionary *data;
 
 @end

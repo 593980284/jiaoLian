@@ -7,7 +7,7 @@
 //
 
 #import "LXFindMyStudentDetilSessionTask.h"
-#import "LXStudentSubjectDetailModel.h"
+//#import "LXStudentSubjectDetailModel.h"
 
 @implementation LXFindMyStudentDetilSessionTask
 - (void)lxReuqestFindMyStudentDetilWithCompletionBlock:(void(^)(LXFindMyStudentDetilResponseObject *responseModel))block {
@@ -17,11 +17,14 @@
 @end
 
 @implementation LXFindMyStudentDetilResponseObject
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"list_1" : [LXStudentSubjectDetailModel class],
-             @"list_2" : [LXStudentSubjectDetailModel class],
-             @"list_3" : [LXStudentSubjectDetailModel class],
-             @"list_4" : [LXStudentSubjectDetailModel class]
-             };
-}
+
+//+ (NSDictionary *)modelContainerPropertyGenericClass {
+//    return @{@"list_1" : [LXStudentSubjectDetailModel class],
+//             @"list_2" : [LXStudentSubjectDetailModel class],
+//             @"list_3" : [LXStudentSubjectDetailModel class],
+//             @"list_4" : [LXStudentSubjectDetailModel class]
+//             };
+//}
+
+
 @end

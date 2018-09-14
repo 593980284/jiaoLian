@@ -19,10 +19,5 @@
 
 @implementation LXFindMyCouseDateListResponseObject
 
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"list" : [LXCourseFindDateListModel class]
-             
-             };
-}
 
 @end

@@ -26,7 +26,7 @@ static NSString *detaileList_Identify = @"LXStudentDetaileListCell";
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArr.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -39,6 +39,7 @@ static NSString *detaileList_Identify = @"LXStudentDetaileListCell";
             cell = [[LXStudentDetaileListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:detaileList_Identify];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell configStudentSubjectDetailModel:self.dataArr[indexPath.row-1]];
         return cell;
     }
     return [UITableViewCell new];
@@ -67,7 +68,11 @@ static NSString *detaileList_Identify = @"LXStudentDetaileListCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.003;
 }
-
+#pragma mark - setter
+- (void)setDataArr:(NSArray *)dataArr {
+    _dataArr = dataArr;
+    [self.tableView reloadData];
+}
 #pragma mark - getter
 - (UITableView *)tableView {
     if (!_tableView) {

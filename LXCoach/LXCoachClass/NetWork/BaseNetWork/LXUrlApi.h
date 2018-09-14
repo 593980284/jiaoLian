@@ -37,6 +37,8 @@ static NSString * const kUploadCoachImage = @"coachSetting/uploadCoachImage";
 // -------------- 课程 -----------------
 /// 查询我的课程日期列表
 static NSString * const kfindMyCouseDateList = @"course/findMyCouseDateList";
+/// 我的课程根据日期查询排课
+static NSString * const kfindMyCouseListByDate = @"course/findMyCouseListByDate";
 /// 课程记录查询
 static NSString * const kFindCoachCourseRecord = @"course/findCoachCourseRecord";
 

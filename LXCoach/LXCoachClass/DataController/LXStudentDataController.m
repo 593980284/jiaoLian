@@ -35,7 +35,7 @@
 - (void)lxReuqestFindMyStudentDetilWithCertNo:(NSString *)certNo andStudentId:(NSString *)studentId completionBlock:(void(^)(LXFindMyStudentDetilResponseObject *responseModel))block {
     LXFindMyStudentDetilSessionTask *task = [[LXFindMyStudentDetilSessionTask alloc] init];
     task.certNo = certNo;
-    task.certNo = studentId;
+    task.studentId = studentId;
     [task lxReuqestFindMyStudentDetilWithCompletionBlock:^(LXFindMyStudentDetilResponseObject *responseModel) {
         block(responseModel);
     }];

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LXMyStudentListModel;
 /**
  我的学员详情
  */
 @interface LXStudentDetailController : UIViewController
+
+@property (nonatomic, strong)LXMyStudentListModel *headerModel;
 
 @end

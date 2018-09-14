@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LXStudentSubjectDetailModel;
 @interface LXStudentDetaileListCell : UITableViewCell
+
+- (void)configStudentSubjectDetailModel:(LXStudentSubjectDetailModel *)model;
 
 @end

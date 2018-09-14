@@ -7,6 +7,7 @@
 //
 
 #import "LXStudentDetaileListCell.h"
+#import "LXStudentSubjectDetailModel.h"
 
 @interface LXStudentDetaileListCell ()
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -21,7 +22,6 @@
         [self.contentView addSubview:self.dateLabel];
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.stateLabel];
-        [self valueToSubView];
     }
     return self;
 }
@@ -45,11 +45,22 @@
     h = 13;
     self.stateLabel.frame = CGRectMake(x, y, w, h);
 }
-- (void)valueToSubView {
-    _dateLabel.text = @"2018-07-08";
-    _timeLabel.text = @"08:00-10:00";
-    _stateLabel.text = @"已完成";
+
+#pragma mark - publicMethod
+- (void)configStudentSubjectDetailModel:(LXStudentSubjectDetailModel *)model {
+    self.dateLabel.text = model.date;
+    self.timeLabel.text = model.time;
+    if (model.status == 2 || model.status == 6) {
+        _stateLabel.text = @"已到";
+    }else if (model.status == 3 || model.status == 7) {
+        _stateLabel.text = @"缺勤";
+    }else if (model.status == 1 || model.status == 4 || model.status == 5) {
+        _stateLabel.text = @"未确认";
+    }else if (model.status == 10) {
+        _stateLabel.text = @"已取消";
+    }
 }
+
 #pragma mark - getter
 - (UILabel *)dateLabel {
     if (!_dateLabel) {

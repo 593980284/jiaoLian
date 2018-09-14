@@ -7,6 +7,7 @@
 //
 
 #import "LXStudentDetaileHeaderView.h"
+#import "LXMyStudentListModel.h"
 
 @interface LXStudentDetaileHeaderView()
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -15,13 +16,13 @@
 /// 手机号
 @property (nonatomic, strong) UILabel *phoneNumber;
 /// 星星的父视图
-@property (nonatomic, strong) UIView * startFatherView;
+//@property (nonatomic, strong) UIView * startFatherView;
 /// 评分
-@property (nonatomic, strong) UILabel *scoreNumber;
+//@property (nonatomic, strong) UILabel *scoreNumber;
 /// 分割线
 @property (nonatomic, strong) UIView *bottomBreakLine;
 
-@property (nonatomic, strong) NSMutableArray *startArr;
+//@property (nonatomic, strong) NSMutableArray *startArr;
 @end
 
 @implementation LXStudentDetaileHeaderView
@@ -31,10 +32,9 @@
         [self addSubview:self.iconImageView];
         [self addSubview:self.nameLabel];
         [self addSubview:self.phoneNumber];
-        [self addSubview:self.startFatherView];
-        [self addSubview:self.scoreNumber];
+//        [self addSubview:self.startFatherView];
+//        [self addSubview:self.scoreNumber];
         [self addSubview:self.bottomBreakLine];
-        [self valueToSubView];
     }
     return self;
 }
@@ -53,27 +53,27 @@
     self.nameLabel.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.iconImageView.frame) + 12;
-    y = CGRectGetMaxY(self.nameLabel.frame) + 11;
+    y = CGRectGetMaxY(self.nameLabel.frame) + 16;
     w = self.width - (100 * kAutoSizeScaleX +15+12+15);
     h = 11;
     self.phoneNumber.frame = CGRectMake(x, y, w, h);
     
-    x = CGRectGetMaxX(self.iconImageView.frame) + 11;
-    y = CGRectGetMaxY(self.phoneNumber.frame) + 11;
-    w = 15*kAutoSizeScaleX * 5 + 4 * 5;
-    h = 15*kAutoSizeScaleX;
-    self.startFatherView.frame = CGRectMake(x, y, w, h);
+//    x = CGRectGetMaxX(self.iconImageView.frame) + 11;
+//    y = CGRectGetMaxY(self.phoneNumber.frame) + 11;
+//    w = 15*kAutoSizeScaleX * 5 + 4 * 5;
+//    h = 15*kAutoSizeScaleX;
+//    self.startFatherView.frame = CGRectMake(x, y, w, h);
     
-    [self.startArr enumerateObjectsUsingBlock:^(UIImageView  *imageViewObj, NSUInteger idx, BOOL * _Nonnull stop) {
-        imageViewObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
-    }];
+//    [self.startArr enumerateObjectsUsingBlock:^(UIImageView  *imageViewObj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        imageViewObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
+//    }];
     
-    x = CGRectGetMaxX(self.startFatherView.frame)+10;
-    y =  CGRectGetMaxY(self.phoneNumber.frame) + 11;
-    w = 45;
-    h = 13;
-    self.scoreNumber.frame = CGRectMake(x, y, w, h);
-    self.scoreNumber.centerY = self.startFatherView.centerY;
+//    x = CGRectGetMaxX(self.startFatherView.frame)+10;
+//    y =  CGRectGetMaxY(self.phoneNumber.frame) + 11;
+//    w = 45;
+//    h = 13;
+//    self.scoreNumber.frame = CGRectMake(x, y, w, h);
+//    self.scoreNumber.centerY = self.startFatherView.centerY;
     
     x = 0;
     y = self.height - .5;
@@ -82,22 +82,22 @@
     self.bottomBreakLine.frame = CGRectMake(x, y, w, h);
 }
 
-- (void)valueToSubView {
-    self.nameLabel.text = @"张三";
-    self.phoneNumber.text = @"13436595848";
-    self.scoreNumber.text = @"9.7分";
+#pragma mark - publicMethod
+- (void)configValue:(LXMyStudentListModel *)model {
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto]];
+    self.nameLabel.text = model.studentName;
+    self.phoneNumber.text = model.mobile;
 }
-
 #pragma mark - setter
-- (void)setOptionStartNumber:(NSInteger)optionStartNumber {
-    _optionStartNumber = optionStartNumber;
-    if (_optionStartNumber > 0 && _optionStartNumber <= 5) {
-        for (NSInteger i = 0; i < _optionStartNumber; i++) {
-            UIImageView *imageView = [self viewWithTag:10+i];
-            imageView.image = [UIImage imageNamed:@"lx_cource_star_selected"];
-        }
-    }
-}
+//- (void)setOptionStartNumber:(NSInteger)optionStartNumber {
+//    _optionStartNumber = optionStartNumber;
+//    if (_optionStartNumber > 0 && _optionStartNumber <= 5) {
+//        for (NSInteger i = 0; i < _optionStartNumber; i++) {
+//            UIImageView *imageView = [self viewWithTag:10+i];
+//            imageView.image = [UIImage imageNamed:@"lx_cource_star_selected"];
+//        }
+//    }
+//}
 #pragma mark - getter
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {
@@ -124,28 +124,28 @@
     }
     return _phoneNumber;
 }
-- (UIView *)startFatherView {
-    if (!_startFatherView) {
-        _startFatherView = [[UIView alloc] init];
-        for (NSInteger i = 0; i < 5; i++) {
-            UIImageView *startImageView = [[UIImageView alloc] init];
-            startImageView.image = [UIImage imageNamed:@"lx_cource_star_normal"];
-            startImageView.tag = 10 + i;
-            [_startFatherView addSubview:startImageView];
-            [self.startArr addObject:startImageView];
-        }
-    }
-    return _startFatherView;
-}
-- (UILabel *)scoreNumber {
-    if (!_scoreNumber) {
-        _scoreNumber = [[UILabel alloc] init];
-        _scoreNumber.textAlignment = NSTextAlignmentLeft;
-        _scoreNumber.textColor = [UIColor colorWithHexString:@"#999999"];
-        _scoreNumber.font = [UIFont systemFontOfSize:14];
-    }
-    return _scoreNumber;
-}
+//- (UIView *)startFatherView {
+//    if (!_startFatherView) {
+//        _startFatherView = [[UIView alloc] init];
+//        for (NSInteger i = 0; i < 5; i++) {
+//            UIImageView *startImageView = [[UIImageView alloc] init];
+//            startImageView.image = [UIImage imageNamed:@"lx_cource_star_normal"];
+//            startImageView.tag = 10 + i;
+//            [_startFatherView addSubview:startImageView];
+//            [self.startArr addObject:startImageView];
+//        }
+//    }
+//    return _startFatherView;
+//}
+//- (UILabel *)scoreNumber {
+//    if (!_scoreNumber) {
+//        _scoreNumber = [[UILabel alloc] init];
+//        _scoreNumber.textAlignment = NSTextAlignmentLeft;
+//        _scoreNumber.textColor = [UIColor colorWithHexString:@"#999999"];
+//        _scoreNumber.font = [UIFont systemFontOfSize:14];
+//    }
+//    return _scoreNumber;
+//}
 - (UIView *)bottomBreakLine {
     if (!_bottomBreakLine) {
         _bottomBreakLine = [[UIView alloc] init];
@@ -153,10 +153,11 @@
     }
     return _bottomBreakLine;
 }
-- (NSMutableArray *)startArr {
-    if (!_startArr) {
-        _startArr = [[NSMutableArray alloc] init];
-    }
-    return _startArr;
-}
+
+//- (NSMutableArray *)startArr {
+//    if (!_startArr) {
+//        _startArr = [[NSMutableArray alloc] init];
+//    }
+//    return _startArr;
+//}
 @end

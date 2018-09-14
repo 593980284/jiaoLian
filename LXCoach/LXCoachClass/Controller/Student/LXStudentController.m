@@ -21,7 +21,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
 @interface LXStudentController ()<LXCommonNavViewDelegate,LXStudentSubViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXStudentSubView *subView;
-@property (nonatomic, strong) NSMutableArray *dataSourceArr;
+@property (nonatomic, strong) NSArray *dataSourceArr;
 @property (nonatomic, strong) LXStudentDataController *studentDataController;
 @end
 
@@ -42,7 +42,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
     [self.studentDataController lxReuqestFindMyStudentListWithCertNo:mineModel.certNo completionBlock:^(LXFindMyStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            self.dataSourceArr = [responseModel.data objectForKey:@"list"];
+            self.dataSourceArr = [NSArray yy_modelArrayWithClass:[LXMyStudentListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
             [self.subView reloadTableView];
         }else {
             [self.view makeToast:responseModel.msg];
@@ -79,6 +79,8 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
 }
 - (void)lx_myStudentListTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LXStudentDetailController *studentDetailVC = [[LXStudentDetailController alloc] init];
+    LXMyStudentListModel *model = self.dataSourceArr[indexPath.row];
+    studentDetailVC.headerModel = model;
     [self.navigationController pushViewController:studentDetailVC animated:YES];
     
 }
@@ -97,12 +99,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     }
     return _subView;
 }
-- (NSMutableArray *)dataSourceArr {
-    if (!_dataSourceArr) {
-        _dataSourceArr = [[NSMutableArray alloc] init];
-    }
-    return _dataSourceArr;
-}
+
 - (LXStudentDataController *)studentDataController {
     if (!_studentDataController) {
         _studentDataController = [[LXStudentDataController alloc] init];

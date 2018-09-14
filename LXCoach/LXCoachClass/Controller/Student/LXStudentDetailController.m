@@ -11,12 +11,21 @@
 #import "LXStudentDetaileListController.h"
 #import "LXCommonNavView.h"
 #import "LXStudentDetaileHeaderView.h"
-
+#import "LXMyStudentListModel.h"
+#import "LXStudentDataController.h"
+#import "LXFindMyStudentDetilSessionTask.h"
+#import "LXMineModel.h"
+#import "LXMyStudentDetailSubjectModel.h"
+#import "LXStudentSubjectDetailModel.h"
 
 @interface LXStudentDetailController ()<LXCommonNavViewDelegate,VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXStudentDetaileHeaderView *headerView;
 @property (nonatomic, strong) VTMagicController *magicController;
+@property (nonatomic, strong) LXStudentDataController *studentDataController;
+/// 科目预约数据
+@property (nonatomic, strong) NSMutableArray *listArr;
+
 @end
 
 @implementation LXStudentDetailController
@@ -25,11 +34,31 @@
     [super viewDidLoad];
     self.fd_prefersNavigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
+    [self requestSubject];
     [self addChildViewController:self.magicController];
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
     [self.view addSubview:self.navView];
     [self.view addSubview:self.headerView];
+    [self.headerView configValue:self.headerModel];
+}
+
+#pragma mark - request
+// 学员详情
+- (void)requestSubject {
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.studentDataController lxReuqestFindMyStudentDetilWithCertNo:mineModel.certNo andStudentId:self.headerModel.studentId completionBlock:^(LXFindMyStudentDetilResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            NSArray * list_1Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_1 yy_modelToJSONData]];
+            NSArray * list_2Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_2 yy_modelToJSONData]];
+            NSArray * list_3Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_3 yy_modelToJSONData]];
+            NSArray * list_4Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_4 yy_modelToJSONData]];
+            self.listArr = [[NSMutableArray alloc] initWithObjects:list_1Arr,list_2Arr, list_3Arr,list_4Arr,nil];
+            
+        }else {
+//            [self.view makeToast:responseModel.msg];
+        }
+    }];
 }
 
 #pragma mark - LXCommonNavViewDelegate
@@ -83,6 +112,10 @@
     }
     return tableView;
 }
+- (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex {
+    LXStudentDetaileListController *vc = (LXStudentDetaileListController *)viewController;
+    vc.dataArr = self.listArr[pageIndex];
+}
 
 #pragma mark - getter
 - (LXCommonNavView *)navView {
@@ -97,7 +130,6 @@
     if (!_headerView) {
         _headerView = [[LXStudentDetaileHeaderView alloc] init];
         _headerView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, 110*kAutoSizeScaleX);
-        _headerView.optionStartNumber = 3;
     }
     return _headerView;
 }
@@ -121,5 +153,10 @@
     }
     return _magicController;
 }
-
+- (LXStudentDataController *)studentDataController {
+    if (!_studentDataController) {
+        _studentDataController = [[LXStudentDataController alloc] init];
+    }
+    return _studentDataController;
+}
 @end
