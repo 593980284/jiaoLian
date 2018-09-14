@@ -20,10 +20,5 @@
 
 @implementation LXFindCoachCourseResponseObject
 
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"clist" : [LXFindCourseRecordModel class],
-             @"ulist" : [LXFindCourseRecordModel class]
-             };
-}
 @end
 

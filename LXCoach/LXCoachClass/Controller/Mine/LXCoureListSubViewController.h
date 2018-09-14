@@ -12,5 +12,5 @@
  已完成viewController
  */
 @interface LXCoureListSubViewController : UIViewController
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) NSArray *dataArr;
 @end

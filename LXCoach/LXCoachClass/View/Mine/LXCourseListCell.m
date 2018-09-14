@@ -93,23 +93,17 @@
 }
 
 #pragma mark - publicMethod
-/// 赋值已完成课程
-- (void)congfigCompletedValue:(LXFindCourseRecordModel *)completedCourseModel {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:completedCourseModel.coachPhoto]];
-    self.subjectNumber.text = completedCourseModel.subjectName;
-    self.drivingSchoolName.text = completedCourseModel.schoolName;
-    self.time.text = completedCourseModel.periodTime;
-    self.studentState.text = [NSString stringWithFormat:@"学员：%ld人  缺课人员：%ld人",(long)completedCourseModel.reachStuNum,(long)completedCourseModel.noReachStuNum];
-//    [self valueToSubView];
-}
-
-/// 赋值未完成课程
-- (void)configNoHaveValue:(LXFindCourseRecordModel *)noHaveCourseModel {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:noHaveCourseModel.coachPhoto]];
-    self.subjectNumber.text = noHaveCourseModel.subjectName;
-    self.drivingSchoolName.text = noHaveCourseModel.schoolName;
-    self.time.text = noHaveCourseModel.periodTime;
-     self.studentState.text = [NSString stringWithFormat:@"学员：%ld  学时：%ld学时",(long)noHaveCourseModel.reachStuNum,(long)noHaveCourseModel.hours];
+- (void)configCellValue:(LXFindCourseRecordModel *)model {
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.coachPhoto]];
+    self.subjectNumber.text = model.subjectName;
+    self.drivingSchoolName.text = model.schoolName;
+    self.time.text = model.periodTime;
+    if (model.courseState == 0) {
+        self.studentState.text = [NSString stringWithFormat:@"学员：%ld人     缺课人员：%ld人",(long)model.reachStuNum,(long)model.noReachStuNum];
+    }else if (model.courseState == 1) {
+        self.studentState.text = [NSString stringWithFormat:@"学员：%ld     学时：%ld学时",(long)model.reachStuNum,(long)model.hours];
+    }
+    
 }
 
 #pragma mark - getter

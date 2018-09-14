@@ -32,5 +32,7 @@
 @property (nonatomic, assign) NSInteger noReachStuNum;
 /// 学时
 @property (nonatomic, assign) NSInteger hours;
+/// 课程状态 0:已完成 1:未完成
+@property (nonatomic, assign) NSInteger courseState;
 
 @end

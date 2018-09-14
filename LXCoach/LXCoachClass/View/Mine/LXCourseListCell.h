@@ -16,9 +16,6 @@
 /// 未完成课程的科目几加教龄
 //@property (nonatomic, strong) UILabel *borderSubjectAge;
 
-/// 赋值已完成课程
-- (void)congfigCompletedValue:(LXFindCourseRecordModel *)completedCourseModel;
+- (void)configCellValue:(LXFindCourseRecordModel *)model;
 
-/// 赋值未完成课程
-- (void)configNoHaveValue:(LXFindCourseRecordModel *)noHaveCourseModel;
 @end

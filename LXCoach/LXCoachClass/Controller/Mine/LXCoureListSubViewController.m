@@ -34,7 +34,7 @@ static NSString *courseList_Identify = @"LXCourseListCell";
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -42,7 +42,7 @@ static NSString *courseList_Identify = @"LXCourseListCell";
     if (cell == nil) {
         cell = [[LXCourseListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:courseList_Identify];
     }
-    [cell congfigCompletedValue:self.dataSource[indexPath.row]];    
+    [cell configCellValue:self.dataArr[indexPath.row]];
     return cell;
 }
 #pragma mark - UITableViewDelegate
@@ -52,6 +52,12 @@ static NSString *courseList_Identify = @"LXCourseListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+#pragma mark - setter
+- (void)setDataArr:(NSArray *)dataArr {
+    _dataArr = dataArr;
+    [self.tableView reloadData];
+}
+
 #pragma mark - getter
 - (UITableView *)tableView {
     if (!_tableView) {
