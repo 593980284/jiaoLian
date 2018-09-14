@@ -7,6 +7,7 @@
 //
 
 #import "LXMessageListCell.h"
+#import "LXFindCoachMsgModel.h"
 
 @interface LXMessageListCell()
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -26,7 +27,6 @@
         [self.contentView addSubview:self.titleNameLabel];
         [self.contentView addSubview:self.subjectTimeLabel];
         [self.contentView addSubview:self.bottomBreakLine];
-        [self valueToSubView];
     }
     return self;
 }
@@ -56,10 +56,14 @@
     h = .5;
     self.bottomBreakLine.frame = CGRectMake(x, y, w, h);
 }
-- (void)valueToSubView {
-    self.titleNameLabel.text = @"您在30分钟将有科目二课程，请及时到达训练场";
-    self.subjectTimeLabel.text = @"科目一 8:00-10:00";
+
+#pragma mark - publicMethod
+- (void)configMessagListValue:(LXFindCoachMsgModel *)model {
+//    self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model]
+    self.titleNameLabel.text = model.content;
+    self.subjectTimeLabel.text = model.date;
 }
+
 #pragma mark - getter
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {

@@ -58,6 +58,8 @@
         _stateLabel.text = @"未确认";
     }else if (model.status == 10) {
         _stateLabel.text = @"已取消";
+    }else if (model.status == 0) {
+        _stateLabel.text = @"已预约";
     }
 }
 

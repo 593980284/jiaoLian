@@ -10,10 +10,17 @@
 #import "LXMessgaeListController.h"
 #import "LXCommonNavView.h"
 #import <VTMagic/VTMagic.h>
+#import "LXMessageDataController.h"
+#import "LXFfindCoachMsgSessionTask.h"
+#import "LXMineModel.h"
 
 @interface LXMessageController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
+@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) LXMessageDataController *dataController;
+@property (nonatomic, strong) LXMineModel *mineModel;
+
 @end
 
 @implementation LXMessageController
@@ -26,6 +33,22 @@
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
     [self.view addSubview:self.navView];
+}
+
+#pragma mark - request
+- (void)requestMyMessageViewController:(LXMessgaeListController *)viewController andMessageType:(NSInteger)type {
+    NSString *messageType ;
+    if (type == 0) {
+        messageType = @"1";
+    }else if (type == 1) {
+        messageType = @"2";
+    }
+    [self.dataController lxReuqestFindCoachMsgWithCertNo:self.mineModel.certNo andMessageTyep:messageType completionBlock:^(LXFindCoachMsgResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            self.dataArr = responseModel.data;
+            viewController.dataArr = self.dataArr;
+        }
+    }];
 }
 
 #pragma mark - VTMagicViewDataSource
@@ -76,6 +99,10 @@
     return tableView;
 }
 
+- (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex {
+    [self requestMyMessageViewController:viewController andMessageType:pageIndex];
+}
+
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {
@@ -103,6 +130,19 @@
         //        [_magicController.magicView setSliderView:self.myCustomliderView];
     }
     return _magicController;
+}
+
+- (LXMessageDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXMessageDataController alloc] init];        
+    }
+    return _dataController;
+}
+- (LXMineModel *)mineModel {
+    if (!_mineModel) {
+        _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    }
+    return _mineModel;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

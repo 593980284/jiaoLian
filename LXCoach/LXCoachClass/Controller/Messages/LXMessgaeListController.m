@@ -13,7 +13,6 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 
 @interface LXMessgaeListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
 @end
 
 @implementation LXMessgaeListController
@@ -37,14 +36,14 @@ static NSString *messageList_Identify = @"LXMessageListCell";
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.dataSource.count;
-    return 2;
+    return self.dataArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXMessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:messageList_Identify];
     if (cell == nil) {
         cell = [[LXMessageListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageList_Identify];
     }
+    [cell configMessagListValue:self.dataArr[indexPath.row]];
     return cell;
 }
 
@@ -64,6 +63,11 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return nil;
 }
+#pragma mark - setter
+- (void)setDataArr:(NSArray *)dataArr {
+    _dataArr = dataArr;
+    [self.tableView reloadData];
+}
 #pragma mark - getter
 - (UITableView *)tableView {
     if (!_tableView) {
@@ -79,12 +83,7 @@ static NSString *messageList_Identify = @"LXMessageListCell";
     }
     return _tableView;
 }
-- (NSMutableArray *)dataSource {
-    if (!_dataSource) {
-        _dataSource = [[NSMutableArray alloc] init];
-    }
-    return _dataSource;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

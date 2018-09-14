@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LXFindCoachMsgModel;
 @interface LXMessageListCell : UITableViewCell
+
+- (void)configMessagListValue:(LXFindCoachMsgModel *)model;
 
 @end

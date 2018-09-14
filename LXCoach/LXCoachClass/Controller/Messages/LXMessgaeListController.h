@@ -10,4 +10,8 @@
 
 @interface LXMessgaeListController : UIViewController
 
+/**
+ 数据源
+ */
+@property (nonatomic, strong) NSArray *dataArr;
 @end
