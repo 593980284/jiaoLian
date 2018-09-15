@@ -11,6 +11,7 @@
 #import "LXFindCoachCourseRecordSessionTask.h"
 #import "LXFindMyCouseListByDateSessionTask.h"
 #import "LXFindMyCouseDetailListSessionTask.h"
+#import "LXMyCoachAttendanceStudentSessionTask.h"
 
 @implementation LXCourseDataController
 
@@ -70,6 +71,22 @@
     LXFindMyCouseDetailListSessionTask *task = [[LXFindMyCouseDetailListSessionTask alloc] init];
     task.appointmentId = appointmentId;
     [task lxReuqestFindMyCouseDetailListWithCompletionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+
+/**
+ 我的课程教练对学员的课程考勤
+ 
+ @param courseRecordId 约课记录id
+ @param status 课程考勤状态
+ @param block block
+ */
+- (void)lxReuqestMyCoachAttendanceStudentWithCourseRecordId:(NSNumber *)courseRecordId andStatus:(NSNumber *)status completionBlock:(void(^)(LXMyCoachAttendanceStudentResponseObject *responseModel))block {
+    LXMyCoachAttendanceStudentSessionTask *task = [[LXMyCoachAttendanceStudentSessionTask alloc] init];
+    task.courseRecordId = courseRecordId;
+    task.status = status;
+    [task lxReuqestMyCoachAttendanceStudentWithCompletionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
         block(responseModel);
     }];
 }

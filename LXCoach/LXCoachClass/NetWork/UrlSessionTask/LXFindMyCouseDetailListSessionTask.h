@@ -9,6 +9,9 @@
 #import "LXBaseUrlSessionTask.h"
 @class LXFindMyCouseDetailListResponseObject;
 
+/**
+ 查询我的课程课程详情
+ */
 @interface LXFindMyCouseDetailListSessionTask : LXBaseUrlSessionTask
 /// 约课id
 @property (nonatomic, copy) NSString *appointmentId;

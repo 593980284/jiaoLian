@@ -42,7 +42,7 @@
 
 #pragma mark - delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.courseDetailArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifier = @"LXCourseDetailCell";
@@ -50,13 +50,30 @@
     if (!cell) {
         cell = [[LXCourseDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifier];
     }
-    cell.courseStudentModel = [LXCourseStudentModel new];
+    cell.courseStudentModel = self.courseDetailArr[indexPath.row];
     cell.optionStartNumber = 4;
+    @weakify(self);
+    [cell setStudentOperationBtn1Block:^{
+        @strongify(self);
+        [self.delegate lx_button1Click:indexPath];
+    }];
+    [cell setStudentOperationBtn2Block:^{
+        @strongify(self);
+        [self.delegate lx_button2Click:indexPath];
+    }];
+    
     [cell layoutIfNeeded];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.isEvaluate == 0) {
+        // 去评价
+        
+    }else {
+        // 已经评价
+        
+    }
 //    LXCourseListModel *courseListModel = self.dataSourse[indexPath.row];
     LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
 //    courseDetailController.courseListModel = courseListModel;
@@ -84,11 +101,13 @@
     _topSubjectModel = topSubjectModel;
     self.headView.courseListModel = self.topSubjectModel;
 }
-- (void)setCourseDetailModel:(LXCourseDetailModel *)courseDetailModel {
-    _courseDetailModel = courseDetailModel;
+- (void)setCourseDetailArr:(NSArray<LXCourseDetailModel *> *)courseDetailArr {
+    _courseDetailArr = courseDetailArr;
     [self.tableView reloadData];
 }
-
+- (void)setIsEvaluate:(NSInteger)isEvaluate {
+    _isEvaluate = isEvaluate;
+}
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
     if (!_headView) {

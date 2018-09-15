@@ -24,6 +24,9 @@
 
 @property (nonatomic, strong) NSMutableArray *startArr;
 
+@property (nonatomic, strong) UIButton *button1;
+@property (nonatomic, strong) UIButton *button2;
+
 @end
 
 
@@ -78,31 +81,91 @@
     w = kScreenWidth;
     h = 1;
     self.lineView.frame = CGRectMake(x, y, w, h);
+    
+    x = self.contentView.width - (15 + 75);
+    y = 15;
+    w = 75;
+    h = 30;
+    self.button1.frame = CGRectMake(x, y, w, h);
+    
+    x = CGRectGetMinX(self.button1.frame) - (8+75);
+    y = 15;
+    w = 75;
+    h = 30;
+    self.button2.frame = CGRectMake(x, y, w, h);
 }
 
 - (void)createUI {
     [self.contentView addSubview:self.leftImageView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.subjectNameLabel];
-    [self addSubview:self.startFatherView];
+    [self.contentView addSubview:self.startFatherView];
     [self.contentView addSubview:self.studentScoreLabel];
     [self.contentView addSubview:self.lineView];
+    [self.contentView addSubview:self.button1];
+    [self.contentView addSubview:self.button2];
+}
+
+#pragma mark - Event
+- (void)button1Action:(UIButton *)button {
+    self.studentOperationBtn1Block();
+}
+
+- (void)button2Action:(UIButton *)button {
+    self.studentOperationBtn2Block();
 }
 
 #pragma mark - setter
-- (void)setCourseStudentModel:(LXCourseStudentModel *)courseStudentModel {
+- (void)setCourseStudentModel:(LXCourseDetailModel *)courseStudentModel {
     _courseStudentModel = courseStudentModel;
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:_courseStudentModel.studentPhoto] placeholderImage:nil];
-    self.nameLabel.text = _courseStudentModel.studentName;
-    self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",_courseStudentModel.subjectName, (long)_courseStudentModel.hours];
-    self.studentScoreLabel.text = _courseStudentModel.studentScore;
-    
-    self.nameLabel.text = @"张三";
-    self.subjectNameLabel.text = @"科目一   2学时";
-    self.studentScoreLabel.text = @"9.7分";
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.courseStudentModel.studentPhoto] placeholderImage:nil];
+    self.nameLabel.text = self.courseStudentModel.studentName;
+    self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",self.courseStudentModel.subjectName, (long)self.courseStudentModel.hours];
+    self.studentScoreLabel.text = self.courseStudentModel.studentScore;
+    // 根据status来判断显示的按钮
+    if (courseStudentModel.status == 0) {
+        // 已预约（显示状态）
+        self.button2.hidden = YES;
+        self.button1.hidden = NO;
+        self.button1.enabled = NO;
+        [self.button1 setTitle:@"已预约" forState:UIControlStateNormal];
+        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
+        
+    }else if (courseStudentModel.status == 1 || courseStudentModel.status == 4) {
+        // 1 学员点击了签到（显示已到、缺勤按钮） 4 学员未点击签到（显示已到、缺勤按钮）
+        self.button1.hidden = NO;
+        self.button2.hidden = NO;
+        self.button1.enabled = YES;
+        self.button2.enabled = YES;
+        [self.button1 setTitle:@"缺勤" forState:UIControlStateNormal];
+        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#FF3F3F"]];
+        [self.button2 setTitle:@"已到" forState:UIControlStateNormal];
+        [self.button2 setBackgroundColor:[UIColor colorWithHexString:@"#35B2ED"]];
+        
+    }else if (courseStudentModel.status == 2  || courseStudentModel.status == 6) {
+        // 已到（显示状态）
+        self.button2.hidden = YES;
+        self.button1.hidden = NO;
+        self.button1.enabled = NO;
+        [self.button1 setTitle:@"已到" forState:UIControlStateNormal];
+        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
+    }else if (courseStudentModel.status == 3 || courseStudentModel.status == 7) {
+        // 缺勤（显示状态）
+        self.button2.hidden = YES;
+        self.button1.hidden = NO;
+        self.button1.enabled = NO;
+        [self.button1 setTitle:@"缺勤" forState:UIControlStateNormal];
+        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
+    }else if (courseStudentModel.status == 5) {
+        // 未确认（显示状态）
+        self.button2.hidden = YES;
+        self.button1.hidden = NO;
+        self.button1.enabled = NO;
+        [self.button1 setTitle:@"未确认" forState:UIControlStateNormal];
+        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
+    }
 }
 
-#pragma mark - setter
 - (void)setOptionStartNumber:(NSInteger)optionStartNumber {
     _optionStartNumber = optionStartNumber;
     if (_optionStartNumber > 0 && _optionStartNumber <= 5) {
@@ -172,6 +235,26 @@
         _lineView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
     }
     return _lineView;
+}
+
+- (UIButton *)button1 {
+    if (!_button1) {
+        _button1 = [[UIButton alloc] init];
+        _button1.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_button1 addTarget:self action:@selector(button1Action:) forControlEvents:UIControlEventTouchUpInside];
+        _button1.layer.cornerRadius = 5;
+    }
+    return _button1;
+}
+
+- (UIButton *)button2 {
+    if (!_button2) {
+        _button2 = [[UIButton alloc] init];
+        _button2.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_button2 addTarget:self action:@selector(button2Action:) forControlEvents:UIControlEventTouchUpInside];
+        _button2.layer.cornerRadius = 5;
+    }
+    return _button2;
 }
 
 - (NSMutableArray *)startArr {

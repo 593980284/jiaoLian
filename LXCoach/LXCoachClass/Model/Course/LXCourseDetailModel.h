@@ -34,7 +34,7 @@
 3，7：缺勤（显示状态）
 5：未确认（显示状态）
  */
-@property (nonatomic, copy)   NSString *status;
+@property (nonatomic, assign)   NSInteger status;
 /// 学时
 @property (nonatomic, assign) NSInteger hours;
 /// 学员手机号

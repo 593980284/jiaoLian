@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LXCourseStudentModel;
+@class LXCourseDetailModel;
 
 @interface LXCourseDetailCell : UITableViewCell
 
-@property (nonatomic, strong) LXCourseStudentModel *courseStudentModel;
+@property (nonatomic, strong) LXCourseDetailModel *courseStudentModel;
 /// 几颗星评价
 @property (nonatomic, assign)NSInteger optionStartNumber;
+@property (nonatomic, copy) void (^studentOperationBtn1Block)(void);
+@property (nonatomic, copy) void (^studentOperationBtn2Block)(void);
 @end
