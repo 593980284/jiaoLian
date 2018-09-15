@@ -33,20 +33,20 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat x = 15;
-    CGFloat y = 15;
-    CGFloat w = 100 * kAutoSizeScaleX;
-    CGFloat h = 80 * kAutoSizeScaleX;
+    CGFloat y = 23;
+    CGFloat w = 66;
+    CGFloat h = 66;
     self.iconImageView.frame = CGRectMake(x, y, w, h);
     
-    x = CGRectGetMaxX(self.iconImageView.frame) + 10;
-    y = 20;
-    w = self.contentView.width - (15 + 100*kAutoSizeScaleX + 10 + 24);
-    h = 40;
+    x = CGRectGetMaxX(self.iconImageView.frame) + 16;
+    y = 28;
+    w = self.contentView.width - (15 + 66 + 16 + 40);
+    h = 32;
     self.titleNameLabel.frame = CGRectMake(x, y, w, h);
     
-    x = CGRectGetMaxX(self.iconImageView.frame) + 10;
-    y = CGRectGetMaxY(self.titleNameLabel.frame) + 12;
-    w = self.contentView.width - (15 + 100*kAutoSizeScaleX + 10 + 24);
+    x = CGRectGetMaxX(self.iconImageView.frame) + 16;
+    y = CGRectGetMaxY(self.titleNameLabel.frame) + 11;
+    w = self.contentView.width - (15 + 66 + 16 + 40);
     h = 13;
     self.subjectTimeLabel.frame = CGRectMake(x, y, w, h);
     
@@ -69,6 +69,7 @@
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
+        _iconImageView.image = [UIImage imageNamed:@"lx_new_message"];
     }
     return _iconImageView;
 }
