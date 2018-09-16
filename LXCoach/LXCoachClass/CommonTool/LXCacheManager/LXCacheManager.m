@@ -70,7 +70,7 @@ static NSString *const LXCacheManagerFile = @"LXCacheManagerFile";
  
  @return 返回清除后的缓存
  */
-+ (NSString *)cleanCacheSize;
++ (void)cleanCacheSize;
 {
     NSString * cachePath = [NSSearchPathForDirectoriesInDomains (NSCachesDirectory , NSUserDomainMask , YES ) firstObject];
     NSArray * files = [[NSFileManager defaultManager ] subpathsAtPath :cachePath];
@@ -85,7 +85,7 @@ static NSString *const LXCacheManagerFile = @"LXCacheManagerFile";
         }
     }
     //清除后读取缓存大小
-    return [self readCacheSize];
+//    return [self readCacheSize];
 }
 
 

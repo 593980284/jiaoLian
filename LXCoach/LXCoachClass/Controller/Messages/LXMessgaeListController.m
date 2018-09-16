@@ -13,6 +13,7 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 
 @interface LXMessgaeListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 @implementation LXMessgaeListController
@@ -48,6 +49,7 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
 }
 
 #pragma mark - UITableViewDelegate

@@ -17,14 +17,20 @@
 #import "LXMineMainSubView.h"
 #import "LXMineCell.h"
 #import "LXMineModel.h"
+#import "LXAlterPromptView.h"
 
 static NSString *cell_Identify = @"LXMineCell";
 
-@interface LXMineController ()<LXMineMainSubViewDelegate>
+@interface LXMineController ()<LXMineMainSubViewDelegate,LXAlterPromptViewDelegate>
+
 @property (nonatomic, strong)LXCommonNavView *navView;
 @property (nonatomic, strong)LXMineMainSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) LXUserInfoDataController *infoDataController;
+/// 背景图
+@property (nonatomic, strong) UIView *alterBgView;
+@property (nonatomic, strong) LXAlterPromptView *promptView;
+
 @end
 
 @implementation LXMineController
@@ -54,6 +60,19 @@ static NSString *cell_Identify = @"LXMineCell";
             [self.subView lx_updateMineMessage:responseModel.data];
         }
     }];
+}
+
+#pragma mark - LXAlterPromptViewDelegate
+/// 取消按钮
+- (void)lx_cancelClickButton {
+    [self.alterBgView removeFromSuperview];
+}
+
+/// 确认按钮
+- (void)lx_enterClickButton {
+    [LXCacheManager cleanCacheSize];
+    [self.alterBgView removeFromSuperview];
+    [self.view makeToast:@"清除成功"];
 }
 
 #pragma mark - LXMineMainSubViewDelegate
@@ -102,11 +121,22 @@ static NSString *cell_Identify = @"LXMineCell";
         case LXMineSlectTypeRefreshCache:
         {
             // 刷新缓存
+            NSString *size = [LXCacheManager readCacheSize];
+            if ([size integerValue] == 0) {
+                [self.view makeToast:@"没有可清理的缓存数据"];
+            }else {
+                [self.view addSubview:self.alterBgView];
+                [self.alterBgView addSubview:self.promptView];
+                self.promptView.centerX = self.alterBgView.centerX;
+                self.promptView.centerY = self.alterBgView.centerY;
+                self.promptView.alterString = [NSString stringWithFormat:@"是否清除%@的缓存？",size];
+            }
         }
             break;
         case LXMineSlectTypeCheckUpdate:
         {
             // 检查更新
+            
         }
             break;
         case LXMineSlectTypeAboutOurs:
@@ -152,6 +182,23 @@ static NSString *cell_Identify = @"LXMineCell";
         _infoDataController = [[LXUserInfoDataController alloc] init];
     }
     return _infoDataController;
+}
+
+- (UIView *)alterBgView {
+    if (!_alterBgView) {
+        _alterBgView = [[UIView alloc] init];
+        _alterBgView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        _alterBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
+    }
+    return _alterBgView;
+}
+- (LXAlterPromptView *)promptView {
+    if (!_promptView) {
+        _promptView = [[LXAlterPromptView alloc] init];
+        _promptView.frame = CGRectMake(73, 100, 230, 140);
+        _promptView.delegate = self;
+    }
+    return _promptView;
 }
 
 - (void)didReceiveMemoryWarning {

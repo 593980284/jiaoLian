@@ -46,5 +46,5 @@
  
  @return 返回清除后的缓存
  */
-+ (NSString *)cleanCacheSize;
++ (void)cleanCacheSize;
 @end
