@@ -26,10 +26,13 @@
 
 @implementation LXCourseDetailController
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestMyCouseDetailList];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requestMyCouseDetailList];
+//    [self requestMyCouseDetailList];
     [self createUI];
 }
 
@@ -51,6 +54,7 @@
     }
 }
 #pragma mark - request
+// 获取对应科目的学员列表
 - (void)requestMyCouseDetailList {
     @weakify(self);
     [self.dataController lxReuqestFindMyCouseDetailListWithAppointmentId:[NSString stringWithFormat:@"%ld",(long)self.courseSubjectModel.appointmentId] completionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
@@ -58,7 +62,7 @@
         if (responseModel.flg == 1) {
             self.courceListArr = [NSArray yy_modelArrayWithClass:[LXCourseDetailModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
             self.courseDetailView.courseDetailArr = self.courceListArr;
-            self.courseDetailView.isEvaluate = responseModel.isEvaluate;
+            self.courseDetailView.isEvaluate = [[responseModel.data objectForKey:@"isEvaluate"] integerValue];
         }
     }];
 }
@@ -112,6 +116,7 @@
         _courseDetailView = [[LXCourseDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame))];
         _courseDetailView.topSubjectModel = self.courseSubjectModel;
         _courseDetailView.delegate = self;
+        _courseDetailView.cheekPageOption = self.cheekPageOption;
     }
     return _courseDetailView;
 }

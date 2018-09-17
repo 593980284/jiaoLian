@@ -23,11 +23,13 @@
 /// 对应科目的所有学员
 @property (nonatomic, strong) NSArray <LXCourseDetailModel*> *courseDetailArr;
 
+/// 头部的model
 @property (nonatomic, strong) LXCourseListModel *topSubjectModel;
  /*
 0：未评价
 1：评价
 */
 @property (nonatomic, assign) NSInteger isEvaluate;
-
+/// 区分查看的是我的学员还是查看评价详情 1:学员详情 2:查看评价
+@property (nonatomic, assign) NSInteger cheekPageOption;
 @end

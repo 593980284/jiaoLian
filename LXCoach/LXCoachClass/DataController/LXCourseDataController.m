@@ -12,6 +12,7 @@
 #import "LXFindMyCouseListByDateSessionTask.h"
 #import "LXFindMyCouseDetailListSessionTask.h"
 #import "LXMyCoachAttendanceStudentSessionTask.h"
+#import "LXMyCoachEvaluationStudentsSessionTask.h"
 
 @implementation LXCourseDataController
 
@@ -89,6 +90,25 @@
     [task lxReuqestMyCoachAttendanceStudentWithCompletionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
         block(responseModel);
     }];
+}
+
+/**
+ 提交我的课程评价
+ 
+ @param courseRecordIds 约课记录id组
+ @param studentScores 课程评价分数组
+ @param studentEvaluationContents 课程评价内容
+ @param block block
+ */
+- (void)lxReuqestMyCoachEvaluationStudentsWithCourseRecordIds:(NSString *)courseRecordIds andStudentScores:(NSString *)studentScores andStudentEvaluationContents:(NSString *)studentEvaluationContents completionBlock:(void(^)(LXMyCoachEvaluationStudentsResponseObject *responseModel))block {
+    LXMyCoachEvaluationStudentsSessionTask *task = [[LXMyCoachEvaluationStudentsSessionTask alloc] init];
+    task.courseRecordIds = courseRecordIds;
+    task.studentScores = studentScores;
+    task.studentEvaluationContents = studentEvaluationContents;
+    [task lxReuqestMyCoachEvaluationStudentsWithCompletionBlock:^(LXMyCoachEvaluationStudentsResponseObject *responseModel) {
+        block(responseModel);
+    }];
+    
 }
 
 @end

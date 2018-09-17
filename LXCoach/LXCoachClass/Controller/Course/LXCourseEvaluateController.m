@@ -9,11 +9,19 @@
 #import "LXCourseEvaluateController.h"
 #import "LXCommonNavView.h"
 #import "LXCourseEvaluateView.h"
+#import "LXCourseDataController.h"
+#import "LXMyCoachEvaluationStudentsSessionTask.h"
+#import "LXAlterPromptView.h"
 
-@interface LXCourseEvaluateController ()<LXCommonNavViewDelegate>
+@interface LXCourseEvaluateController ()<LXCommonNavViewDelegate,LXCourseEvaluateViewDelegate,LXAlterPromptViewDelegate>
 
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseEvaluateView *subView;
+@property (nonatomic, strong) LXCourseDataController *dataController;
+
+/// 背景图
+@property (nonatomic, strong) UIView *alterBgView;
+@property (nonatomic, strong) LXAlterPromptView *promptView;
 
 @end
 
@@ -40,8 +48,58 @@
     }
 }
 
+#pragma mark - LXCourseEvaluateViewDelegate
+/**
+ 提交评价
+ 
+ @param courseRecordIds 约课记录id
+ @param studentScores 课程评价分数
+ @param studentEvaluationContents 课程评价内容
+ */
+- (void)lx_courseAssessSubmitCourseRecordIds:(NSMutableArray *)courseRecordIds andStudentScores:(NSMutableArray *)studentScores andStudentEvaluationContents:(NSMutableArray *)studentEvaluationContents {
+    NSString *courseRecordIdsString;
+    NSString *studentScoresString;
+    NSString *studentEvaluationContentsString;
+    if (self.studentListArr.count == 1) {
+        courseRecordIdsString = [courseRecordIds firstObject];
+        studentScoresString = [studentScores firstObject];
+        studentEvaluationContentsString = [studentEvaluationContents firstObject];
+    }else {
+        courseRecordIdsString = [courseRecordIds componentsJoinedByString:@","];
+        studentScoresString = [studentScores componentsJoinedByString:@","];
+        studentEvaluationContentsString = [studentEvaluationContents componentsJoinedByString:@"~!~"];
+    }
+    [self.dataController lxReuqestMyCoachEvaluationStudentsWithCourseRecordIds:courseRecordIdsString andStudentScores:studentScoresString andStudentEvaluationContents:studentEvaluationContentsString completionBlock:^(LXMyCoachEvaluationStudentsResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
+}
+
 #pragma mark - delegate
 - (void)lx_clickLeftButton {
+    [self.view addSubview:self.alterBgView];
+    if (self.isEvaluate == 0) {
+        [self.alterBgView addSubview:self.promptView];
+        self.promptView.centerX = self.alterBgView.centerX;
+        self.promptView.centerY = self.alterBgView.centerY;
+        self.promptView.alterString = @"是否放弃本次评论？";
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
+#pragma mark - LXAlterPromptViewDelegate
+/// 取消按钮
+- (void)lx_cancelClickButton {
+    [self.alterBgView removeFromSuperview];
+}
+
+/// 确认按钮
+- (void)lx_enterClickButton {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -59,8 +117,33 @@
     if (!_subView) {
         _subView = [[LXCourseEvaluateView alloc] init];
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
+        _subView.delegate = self;
+        _subView.topSubjectModel = self.topSubjectModel;
+        _subView.courseListDetaileArr = self.studentListArr;
     }
     return _subView;
+}
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
+}
+- (UIView *)alterBgView {
+    if (!_alterBgView) {
+        _alterBgView = [[UIView alloc] init];
+        _alterBgView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        _alterBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
+    }
+    return _alterBgView;
+}
+- (LXAlterPromptView *)promptView {
+    if (!_promptView) {
+        _promptView = [[LXAlterPromptView alloc] init];
+        _promptView.frame = CGRectMake(73, 100, 230, 140);
+        _promptView.delegate = self;
+    }
+    return _promptView;
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];

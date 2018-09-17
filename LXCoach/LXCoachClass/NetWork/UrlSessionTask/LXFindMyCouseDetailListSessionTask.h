@@ -22,6 +22,5 @@
 
 @interface LXFindMyCouseDetailListResponseObject : LXNetWorkResponseBaseObject
 @property (nonatomic, strong) NSDictionary *data;
-@property (nonatomic, assign) NSInteger  isEvaluate;
 
 @end

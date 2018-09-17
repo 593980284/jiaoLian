@@ -35,4 +35,9 @@
 /// 课程状态 0:已完成 1:未完成
 @property (nonatomic, assign) NSInteger courseState;
 
+/// 报名人数
+@property (nonatomic, assign) NSInteger appointmentNum;
+/// 剩余人数
+@property (nonatomic, assign) NSInteger noAppointmentNum;
+
 @end

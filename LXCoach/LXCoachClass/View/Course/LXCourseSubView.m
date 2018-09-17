@@ -66,6 +66,7 @@
     LXCourseListModel *courseListModel = self.dataSourse[indexPath.row];
     LXCourseDetailController *courseDetailController = [[LXCourseDetailController alloc]init];
     courseDetailController.courseSubjectModel = courseListModel;
+    courseDetailController.cheekPageOption = 1;
     [[LXNavigationManager lx_currentNavigationController] pushViewController:courseDetailController animated:YES];
 }
  

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class LXFindMyCouseDateListResponseObject,LXFindCoachCourseResponseObject;
 @class LXFindMyCouseListByDateResponseObject,LXFindMyCouseDetailListResponseObject;
-@class LXMyCoachAttendanceStudentResponseObject;
+@class LXMyCoachAttendanceStudentResponseObject,LXMyCoachEvaluationStudentsResponseObject;
 
 @interface LXCourseDataController : NSObject
 
@@ -54,4 +54,15 @@
  @param block block
  */
 - (void)lxReuqestMyCoachAttendanceStudentWithCourseRecordId:(NSNumber *)courseRecordId andStatus:(NSNumber *)status completionBlock:(void(^)(LXMyCoachAttendanceStudentResponseObject *responseModel))block;
+
+/**
+ 提交我的课程评价
+
+ @param courseRecordIds 约课记录id组
+ @param studentScores 课程评价分数组
+ @param studentEvaluationContents 课程评价内容
+ @param block block
+ */
+- (void)lxReuqestMyCoachEvaluationStudentsWithCourseRecordIds:(NSString *)courseRecordIds andStudentScores:(NSString *)studentScores andStudentEvaluationContents:(NSString *)studentEvaluationContents completionBlock:(void(^)(LXMyCoachEvaluationStudentsResponseObject *responseModel))block;
+
 @end

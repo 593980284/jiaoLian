@@ -108,6 +108,7 @@
 		6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */; };
 		6A5B4A0A2149428800206DF3 /* LXAppCoachLogoutSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
+		6A7FF05E214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF05D214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
 		6AD7D83C2143F63A000FB4EF /* LXCourseSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8302143F63A000FB4EF /* LXCourseSubView.m */; };
@@ -323,6 +324,8 @@
 		6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppCoachLogoutSessionTask.m; sourceTree = "<group>"; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
+		6A7FF05C214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyCoachEvaluationStudentsSessionTask.h; sourceTree = "<group>"; };
+		6A7FF05D214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyCoachEvaluationStudentsSessionTask.m; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
 		6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessgaeListController.m; sourceTree = "<group>"; };
 		6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetailController.m; sourceTree = "<group>"; };
@@ -577,6 +580,8 @@
 				6A480934214BE8C000A39074 /* LXFindMyCouseDetailListSessionTask.m */,
 				6A457A4A214D011100CDAA87 /* LXMyCoachAttendanceStudentSessionTask.h */,
 				6A457A4B214D011100CDAA87 /* LXMyCoachAttendanceStudentSessionTask.m */,
+				6A7FF05C214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.h */,
+				6A7FF05D214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m */,
 				6A223A5E214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.h */,
 				6A223A5F214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.m */,
 				6A223A6A214A159500E20FD0 /* LXFindMyStudentSessionTask.h */,
@@ -1073,6 +1078,7 @@
 				2F4CE88E21441E4000275F69 /* LXNavigationManager.m in Sources */,
 				2F4CE8572143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m in Sources */,
 				2F4CE8742143FE2C00275F69 /* LXCourseCell.m in Sources */,
+				6A7FF05E214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m in Sources */,
 				6A457A4C214D011100CDAA87 /* LXMyCoachAttendanceStudentSessionTask.m in Sources */,
 				324C4EA521410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m in Sources */,
 				6A223A63214A109200E20FD0 /* LXFindCourseRecordModel.m in Sources */,

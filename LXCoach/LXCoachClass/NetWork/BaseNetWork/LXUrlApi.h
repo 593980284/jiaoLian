@@ -42,10 +42,12 @@ static NSString * const kfindMyCouseListByDate = @"course/findMyCouseListByDate"
 /// 查询我的课程课程详情
 static NSString * const kfindMyCouseDetailList =  @"course/findMyCouseDetailList";
 /// 我的课程教练对学员的课程考勤
-
+static NSString * const kMyCoachAttendanceStudent =  @"course/myCoachAttendanceStudent";
+/// 提交我的课程评价
+static NSString * const kMyCoachEvaluationStudents = @"course/myCoachEvaluationStudents";
 /// 课程记录查询
 static NSString * const kFindCoachCourseRecord = @"course/findCoachCourseRecord";
-static NSString * const kMyCoachAttendanceStudent =  @"course/myCoachAttendanceStudent";
+
 
 // -------------- 学员 -----------------
 /// 我的学员列表

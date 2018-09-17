@@ -9,6 +9,8 @@
 #import "LXCourseEvaluateView.h"
 #import "LXCourseDetailHeadView.h"
 #import "LXCourseListModel.h"
+#import "LXCourseDetailModel.h"
+
 @interface LXCourseEvaluateView ()<UITextViewDelegate>
 @property (nonatomic, strong) LXCourseDetailHeadView *headView;
 /// 本次学员评价课程
@@ -23,13 +25,23 @@
 @property (nonatomic, strong) UITextView *assessTextView;
 /// 下一步
 @property (nonatomic, strong) UIButton *nextStepButton;
-
+/// 存储星星view的Arr
 @property (nonatomic, strong) NSMutableArray *startArr;
-
+/// 约课记录id Arr
+@property (nonatomic, strong) NSMutableArray *courseRecordIdsArr;
+/// 课程评价分数Arr
+@property (nonatomic, strong) NSMutableArray *studentScoresArr;
+/// 课程评价内容Arr
+@property (nonatomic, strong) NSMutableArray *studentEvaluationContentsArr;
 @end
 
 @implementation LXCourseEvaluateView
-
+{
+    /// 评价的分数
+    NSInteger _score;
+    /// 记录当前是第几个评价
+    NSInteger _recordCurrentIndex;
+}
 - (instancetype)init {
     if (self = [super init]) {
         [self createUI];
@@ -76,13 +88,11 @@
 }
 - (void)createUI {
     [self addSubview:self.headView];
-    self.headView.courseListModel = [LXCourseListModel new];
-    
     [self addSubview:self.studentCourceLabel];
     [self addSubview:self.nameLabel];
     [self addSubview:self.startFatherView];
-    [self.startArr enumerateObjectsUsingBlock:^(UIImageView  *imageViewObj, NSUInteger idx, BOOL * _Nonnull stop) {
-        imageViewObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
+    [self.startArr enumerateObjectsUsingBlock:^(UIButton  *startImageObj, NSUInteger idx, BOOL * _Nonnull stop) {
+        startImageObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
     }];
     [self addSubview:self.assessTextView];
     [self.assessTextView addSubview:self.placeholderLabel];
@@ -90,11 +100,81 @@
 }
 
 #pragma mark - Event
+/// 下一步/提交评价
 - (void)nextStepButtonAction {
-    if ([self.delegate respondsToSelector:@selector(lx_courseAssessNextStep:)]) {
-        [self.delegate lx_courseAssessNextStep:self.assessTextView.text];
+    if (self.courseListDetaileArr.count == 1) {
+        // ------ 情况1: 只有一个学员的时候 ------
+        if (_score == 0) {
+            [self makeToast:@"请对学员做出评分！"];
+        }else {
+            // 1. 将对应的值添加到数组中
+            LXCourseDetailModel *model = [self.courseListDetaileArr firstObject];
+            [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
+            [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
+            if (self.assessTextView.text.length != 0) {
+                [self.studentEvaluationContentsArr addObject:self.assessTextView.text];
+            }else {
+                [self.studentEvaluationContentsArr addObject:@""];
+            }
+            // 2. 提交评价
+            if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
+                [self.delegate lx_courseAssessSubmitCourseRecordIds:self.courseRecordIdsArr andStudentScores:self.studentScoresArr andStudentEvaluationContents:self.studentEvaluationContentsArr];
+            }
+        }
+    }else if (_recordCurrentIndex <= self.courseListDetaileArr.count) {
+        // ------- 情况2：有多个学员的时候 -------
+        if (_score == 0) {
+            [self makeToast:@"请对学员做出评分！"];
+        }else {
+            // 确认按钮value
+            if (_recordCurrentIndex+1 < self.courseListDetaileArr.count) {
+                [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
+            }else {
+                // 提交评价
+                [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+            }
+            // 1. 存储已经评价的值
+            LXCourseDetailModel *model = self.courseListDetaileArr[_recordCurrentIndex-1];
+            [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
+            [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
+            if (self.assessTextView.text.length != 0) {
+                [self.studentEvaluationContentsArr addObject:self.assessTextView.text];
+            }else {
+                [self.studentEvaluationContentsArr addObject:@""];
+            }
+            // 2.让界面的值刷新
+            model = self.courseListDetaileArr[_recordCurrentIndex];
+            self.nameLabel.text = model.studentName;
+            [self startClearInitial];
+            self.assessTextView.text = nil;
+            self.placeholderLabel.text = @"请输入学员的课程评价";
+            // 3. 累计+1
+            _recordCurrentIndex += 1;
+            
+            // 4. 判断是否是最后一个学员
+            if (_recordCurrentIndex == self.courseListDetaileArr.count) {
+                if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
+                    [self.delegate lx_courseAssessSubmitCourseRecordIds:self.courseRecordIdsArr andStudentScores:self.studentScoresArr andStudentEvaluationContents:self.studentEvaluationContentsArr];
+                }
+            }
+        }
     }
 }
+/// 点击星星
+- (void)startButtonAction:(UIButton *)startButton {
+    // tag [10,14]
+    _score = 0;
+    for (NSInteger i = 10; i <= startButton.tag; i++) {
+        UIButton *button = [self viewWithTag:i];
+        [button setImage:[UIImage imageNamed:@"lx_cource_star_selected"] forState:UIControlStateNormal];
+        _score += 1;
+    }
+    for (NSInteger j = startButton.tag+1; j < 15 ; j++) {
+        UIButton *button = [self viewWithTag:j];
+        [button setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     self.placeholderLabel.text = @"";
@@ -102,11 +182,36 @@
 }
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     if (textView.text.length == 0) {
-        _placeholderLabel.text = @"请输入学员的课程评价";
+        self.placeholderLabel.text = @"请输入学员的课程评价";
     }
     return YES;
 }
+#pragma mark - privateMethod
+/// 将评分清0
+- (void)startClearInitial {
+    _score = 0;
+    for (NSInteger i = 0; i < 15; i++) {
+        UIButton *button = [self viewWithTag:i];
+        [button setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
+    }
+}
+#pragma mark - setter
+- (void)setCourseListDetaileArr:(NSArray<LXCourseDetailModel *> *)courseListDetaileArr {
+    _courseListDetaileArr = courseListDetaileArr;
+    LXCourseDetailModel *model = self.courseListDetaileArr[0];
+    self.nameLabel.text = model.studentName;
+    _recordCurrentIndex = 1;
+    if (self.courseListDetaileArr.count == 1) {
+        [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+    }else {
+        [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
+    }
+}
 
+- (void)setTopSubjectModel:(LXCourseListModel *)topSubjectModel {
+    _topSubjectModel = topSubjectModel;
+    self.headView.courseListModel = self.topSubjectModel;
+}
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
     if (!_headView) {
@@ -136,11 +241,12 @@
     if (!_startFatherView) {
         _startFatherView = [[UIView alloc] init];
         for (NSInteger i = 0; i < 5; i++) {
-            UIImageView *startImageView = [[UIImageView alloc] init];
-            startImageView.image = [UIImage imageNamed:@"lx_cource_star_normal"];
-            startImageView.tag = 10 + i;
-            [_startFatherView addSubview:startImageView];
-            [self.startArr addObject:startImageView];
+            UIButton *startButton = [[UIButton alloc] init];
+            [startButton setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
+            startButton.tag = 10 + i;
+            [startButton addTarget:self action:@selector(startButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+            [_startFatherView addSubview:startButton];
+            [self.startArr addObject:startButton];
         }
     }
     return _startFatherView;
@@ -183,5 +289,23 @@
         _startArr = [[NSMutableArray alloc] init];
     }
     return _startArr;
+}
+- (NSMutableArray *)courseRecordIdsArr {
+    if (!_courseRecordIdsArr) {
+        _courseRecordIdsArr = [[NSMutableArray alloc] init];
+    }
+    return _courseRecordIdsArr;
+}
+- (NSMutableArray *)studentScoresArr {
+    if (!_studentScoresArr) {
+        _studentScoresArr = [[NSMutableArray alloc] init];
+    }
+    return _studentScoresArr;
+}
+- (NSMutableArray *)studentEvaluationContentsArr {
+    if (!_studentEvaluationContentsArr) {
+        _studentEvaluationContentsArr = [[NSMutableArray alloc] init];
+    }
+    return _studentEvaluationContentsArr;
 }
 @end
