@@ -112,6 +112,12 @@
 		6A7FF061214FA8610067D6AC /* LXFindCoachEvaluationStudentSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF060214FA8610067D6AC /* LXFindCoachEvaluationStudentSessionTask.m */; };
 		6A7FF0642150A2C80067D6AC /* LXSearchCourseRecordJudgeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF0632150A2C80067D6AC /* LXSearchCourseRecordJudgeModel.m */; };
 		6A7FF0672150B0C70067D6AC /* LXCoachEvaluationStudentSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF0662150B0C70067D6AC /* LXCoachEvaluationStudentSessionTask.m */; };
+		6A7FF0692150E6AC0067D6AC /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FF0682150E6AC0067D6AC /* UserNotifications.framework */; };
+		6A7FF06B2150E6C00067D6AC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FF06A2150E6C00067D6AC /* CoreTelephony.framework */; };
+		6A7FF06D2150E6D70067D6AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FF06C2150E6D70067D6AC /* SystemConfiguration.framework */; };
+		6A7FF06F2150E6E20067D6AC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FF06E2150E6E20067D6AC /* libz.tbd */; };
+		6A7FF0722150E9B00067D6AC /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FF0712150E9B00067D6AC /* libXG-SDK.a */; };
+		6A7FF0742150F4F00067D6AC /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7FF0732150F4F00067D6AC /* LaunchImage.xcassets */; };
 		6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */; };
 		6AD7D82E2143F5A7000FB4EF /* LXStudentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */; };
 		6AD7D83C2143F63A000FB4EF /* LXCourseSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7D8302143F63A000FB4EF /* LXCourseSubView.m */; };
@@ -335,6 +341,13 @@
 		6A7FF0632150A2C80067D6AC /* LXSearchCourseRecordJudgeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSearchCourseRecordJudgeModel.m; sourceTree = "<group>"; };
 		6A7FF0652150B0C60067D6AC /* LXCoachEvaluationStudentSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCoachEvaluationStudentSessionTask.h; sourceTree = "<group>"; };
 		6A7FF0662150B0C70067D6AC /* LXCoachEvaluationStudentSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCoachEvaluationStudentSessionTask.m; sourceTree = "<group>"; };
+		6A7FF0682150E6AC0067D6AC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		6A7FF06A2150E6C00067D6AC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6A7FF06C2150E6D70067D6AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6A7FF06E2150E6E20067D6AC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6A7FF0702150E70D0067D6AC /* LXCoach.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LXCoach.entitlements; sourceTree = "<group>"; };
+		6A7FF0712150E9B00067D6AC /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libXG-SDK.a"; path = "Pods/QQ_XGPush/XGPush/libXG-SDK.a"; sourceTree = "<group>"; };
+		6A7FF0732150F4F00067D6AC /* LaunchImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchImage.xcassets; sourceTree = "<group>"; };
 		6AD7D8292143F579000FB4EF /* LXMessgaeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessgaeListController.h; sourceTree = "<group>"; };
 		6AD7D82A2143F579000FB4EF /* LXMessgaeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessgaeListController.m; sourceTree = "<group>"; };
 		6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetailController.m; sourceTree = "<group>"; };
@@ -357,6 +370,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7FF0722150E9B00067D6AC /* libXG-SDK.a in Frameworks */,
+				6A7FF06F2150E6E20067D6AC /* libz.tbd in Frameworks */,
+				6A7FF06D2150E6D70067D6AC /* SystemConfiguration.framework in Frameworks */,
+				6A7FF06B2150E6C00067D6AC /* CoreTelephony.framework in Frameworks */,
+				6A7FF0692150E6AC0067D6AC /* UserNotifications.framework in Frameworks */,
 				0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +385,11 @@
 		080361B57BEA7C5E0D32C537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A7FF0712150E9B00067D6AC /* libXG-SDK.a */,
+				6A7FF06E2150E6E20067D6AC /* libz.tbd */,
+				6A7FF06C2150E6D70067D6AC /* SystemConfiguration.framework */,
+				6A7FF06A2150E6C00067D6AC /* CoreTelephony.framework */,
+				6A7FF0682150E6AC0067D6AC /* UserNotifications.framework */,
 				48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */,
 			);
 			name = Frameworks;
@@ -449,11 +472,13 @@
 		2FB7E2C7213BBDFE00583B5C /* LXCoach */ = {
 			isa = PBXGroup;
 			children = (
+				6A7FF0702150E70D0067D6AC /* LXCoach.entitlements */,
 				2FB7E2C8213BBDFE00583B5C /* AppDelegate.h */,
 				2FB7E2C9213BBDFE00583B5C /* AppDelegate.m */,
 				2FB7E318213BC9A200583B5C /* LX-Prfix.pch */,
 				2FB7E32F213BD9BA00583B5C /* LXCommon.h */,
 				324C4EC2214160740067F95F /* LXENUMDefine.h */,
+				6A7FF0732150F4F00067D6AC /* LaunchImage.xcassets */,
 				2FB7E2D1213BBDFF00583B5C /* Assets.xcassets */,
 				2FB7E2D6213BBDFF00583B5C /* Info.plist */,
 				2FB7E2D7213BBDFF00583B5C /* main.m */,
@@ -974,6 +999,14 @@
 				TargetAttributes = {
 					2FB7E2C4213BBDFE00583B5C = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1000,6 +1033,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7FF0742150F4F00067D6AC /* LaunchImage.xcassets in Resources */,
 				2FB7E2D2213BBDFF00583B5C /* Assets.xcassets in Resources */,
 				324C4EA921410B360067F95F /* LXMineMessageList.plist in Resources */,
 			);
@@ -1263,6 +1297,8 @@
 			baseConfigurationReference = 1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATF33JU4XU;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
@@ -1272,7 +1308,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LeXiang.LXCoach;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuosen.cocachDrivie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1283,6 +1323,8 @@
 			baseConfigurationReference = F517ABCFE75316F87A79E588 /* Pods-LXCoach.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATF33JU4XU;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
@@ -1292,7 +1334,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = LeXiang.LXCoach;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhuosen.cocachDrivie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -15,4 +15,5 @@ target 'LXCoach' do
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'SDWebImage', '~> 4.3.3'
   pod 'SDWebImage/GIF', '~> 4.3.3'
+  pod 'QQ_XGPush'
 end
