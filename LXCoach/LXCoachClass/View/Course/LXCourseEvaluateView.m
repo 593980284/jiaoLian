@@ -10,6 +10,7 @@
 #import "LXCourseDetailHeadView.h"
 #import "LXCourseListModel.h"
 #import "LXCourseDetailModel.h"
+#import "LXSearchCourseRecordJudgeModel.h"
 
 @interface LXCourseEvaluateView ()<UITextViewDelegate>
 @property (nonatomic, strong) LXCourseDetailHeadView *headView;
@@ -102,23 +103,31 @@
 #pragma mark - Event
 /// 下一步/提交评价
 - (void)nextStepButtonAction {
-    if (self.courseListDetaileArr.count == 1) {
+    if (self.courseListDetaileArr.count == 1 || self.courseJudgeType == 1) {
         // ------ 情况1: 只有一个学员的时候 ------
         if (_score == 0) {
             [self makeToast:@"请对学员做出评分！"];
         }else {
-            // 1. 将对应的值添加到数组中
-            LXCourseDetailModel *model = [self.courseListDetaileArr firstObject];
-            [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
-            [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
-            if (self.assessTextView.text.length != 0) {
-                [self.studentEvaluationContentsArr addObject:self.assessTextView.text];
-            }else {
-                [self.studentEvaluationContentsArr addObject:@""];
-            }
-            // 2. 提交评价
-            if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
-                [self.delegate lx_courseAssessSubmitCourseRecordIds:self.courseRecordIdsArr andStudentScores:self.studentScoresArr andStudentEvaluationContents:self.studentEvaluationContentsArr];
+            if (self.courseListDetaileArr.count == 1 ) {
+                /// 我的课程--->学员详情--->课程评价
+                // 1. 将对应的值添加到数组中
+                LXCourseDetailModel *model = [self.courseListDetaileArr firstObject];
+                [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
+                [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
+                if (self.assessTextView.text.length != 0) {
+                    [self.studentEvaluationContentsArr addObject:self.assessTextView.text];
+                }else {
+                    [self.studentEvaluationContentsArr addObject:@""];
+                }
+                // 2. 提交评价
+                if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
+                    [self.delegate lx_courseAssessSubmitCourseRecordIds:self.courseRecordIdsArr andStudentScores:self.studentScoresArr andStudentEvaluationContents:self.studentEvaluationContentsArr];
+                }
+            }else if (self.courseJudgeType == 1) {
+                // 我的--->课程记录---->课程评价
+                if ([self.delegate respondsToSelector:@selector(lx_singleCourseRecordSubmitStudentScore:andStudentEvaluationContent:)]) {
+                    [self.delegate lx_singleCourseRecordSubmitStudentScore:_score*2 andStudentEvaluationContent:self.assessTextView.text];
+                }
             }
         }
     }else if (_recordCurrentIndex <= self.courseListDetaileArr.count) {
@@ -207,11 +216,46 @@
         [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
     }
 }
-
 - (void)setTopSubjectModel:(LXCourseListModel *)topSubjectModel {
     _topSubjectModel = topSubjectModel;
     self.headView.courseListModel = self.topSubjectModel;
 }
+
+- (void)setCourseJudgeType:(NSInteger)courseJudgeType {
+    _courseJudgeType = courseJudgeType;
+    if (self.courseJudgeType == 1) {
+        // 评价
+        self.nextStepButton.hidden = NO;
+        self.assessTextView.editable = YES;
+        [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+        for (NSInteger i = 10; i < 15; i++) {
+            UIButton *startBtn = [self viewWithTag:i];
+            startBtn.enabled = YES;
+            [startBtn setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
+        }
+    }else if (self.courseJudgeType == 2) {
+        // 查看
+        self.nextStepButton.hidden = YES;
+        self.assessTextView.editable = NO;
+        NSInteger scoreNumber = self.readCourseRecordModel.studentScore/2;
+        for (NSInteger i = 10; i < 15; i++) {
+            UIButton *startBtn = [self viewWithTag:i];
+            startBtn.enabled = NO;
+            if ((i-9) <= scoreNumber) {
+                [startBtn setImage:[UIImage imageNamed:@"lx_cource_star_selected"] forState:UIControlStateNormal];
+            }else {
+                [startBtn setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
+            }
+        }
+        self.assessTextView.text = self.readCourseRecordModel.studentEvaluationContent;
+        self.placeholderLabel.text = nil;
+    }
+}
+
+- (void)setReadCourseRecordModel:(LXSearchCourseRecordJudgeModel *)readCourseRecordModel {
+    _readCourseRecordModel = readCourseRecordModel;
+}
+
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
     if (!_headView) {

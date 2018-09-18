@@ -11,6 +11,7 @@
 #import "LXCourseEvaluateView.h"
 #import "LXCourseDataController.h"
 #import "LXMyCoachEvaluationStudentsSessionTask.h"
+#import "LXCoachEvaluationStudentSessionTask.h"
 #import "LXAlterPromptView.h"
 
 @interface LXCourseEvaluateController ()<LXCommonNavViewDelegate,LXCourseEvaluateViewDelegate,LXAlterPromptViewDelegate>
@@ -48,6 +49,24 @@
     }
 }
 
+#pragma mark - LXCommonNavViewDelegate
+- (void)lx_clickLeftButton {
+    [self.view addSubview:self.alterBgView];
+    if (self.isEvaluate == 0 || self.courseJudgeType == 1) {
+        if (self.courseJudgeType == 2) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return ;
+        }
+        [self.alterBgView addSubview:self.promptView];
+        self.promptView.centerX = self.alterBgView.centerX;
+        self.promptView.centerY = self.alterBgView.centerY;
+        self.promptView.alterString = @"是否放弃本次评论？";
+        
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark - LXCourseEvaluateViewDelegate
 /**
  提交评价
@@ -78,20 +97,21 @@
     }];
 }
 
-#pragma mark - delegate
-- (void)lx_clickLeftButton {
-    [self.view addSubview:self.alterBgView];
-    if (self.isEvaluate == 0) {
-        [self.alterBgView addSubview:self.promptView];
-        self.promptView.centerX = self.alterBgView.centerX;
-        self.promptView.centerY = self.alterBgView.centerY;
-        self.promptView.alterString = @"是否放弃本次评论？";
-    }else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
+/**
+ 课程记录进入---单个课程评价
+ 
+ @param studentScore 课程评价分数
+ @param studentEvaluationContent 课程评价内容
+ */
+- (void)lx_singleCourseRecordSubmitStudentScore:(NSInteger)studentScore andStudentEvaluationContent:(NSString *)studentEvaluationContent {
+    [self.dataController lxReuqestCoachEvaluationStudentWithCourseRecordId:[NSNumber numberWithInteger:self.courseRecordId] andStudentScore:[NSNumber numberWithInteger:studentScore] andStudentEvaluationContent:studentEvaluationContent completionBlock:^(LXCoachEvaluationStudentResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
 }
-
 #pragma mark - LXAlterPromptViewDelegate
 /// 取消按钮
 - (void)lx_cancelClickButton {
@@ -119,7 +139,15 @@
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
         _subView.delegate = self;
         _subView.topSubjectModel = self.topSubjectModel;
-        _subView.courseListDetaileArr = self.studentListArr;
+        if (self.studentListArr) {
+            _subView.courseListDetaileArr = self.studentListArr;
+        }
+        if (self.readCourseRecordModel) {
+            _subView.readCourseRecordModel = self.readCourseRecordModel;
+        }
+        if (self.courseJudgeType) {
+            _subView.courseJudgeType = self.courseJudgeType;
+        }
     }
     return _subView;
 }

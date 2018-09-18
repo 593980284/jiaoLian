@@ -10,6 +10,7 @@
 @class LXFindMyCouseDateListResponseObject,LXFindCoachCourseResponseObject;
 @class LXFindMyCouseListByDateResponseObject,LXFindMyCouseDetailListResponseObject;
 @class LXMyCoachAttendanceStudentResponseObject,LXMyCoachEvaluationStudentsResponseObject;
+@class LXFindCoachEvaluationStudentResponseObject,LXCoachEvaluationStudentResponseObject;
 
 @interface LXCourseDataController : NSObject
 
@@ -64,5 +65,24 @@
  @param block block
  */
 - (void)lxReuqestMyCoachEvaluationStudentsWithCourseRecordIds:(NSString *)courseRecordIds andStudentScores:(NSString *)studentScores andStudentEvaluationContents:(NSString *)studentEvaluationContents completionBlock:(void(^)(LXMyCoachEvaluationStudentsResponseObject *responseModel))block;
+
+/**
+ 查询教练课程记录评价
+
+ @param courseRecordId 约课记录id
+ @param block block
+ */
+- (void)lxReuqestFindCoachEvaluationStudentWithCourseRecordId:(NSString *)courseRecordId completionBlock:(void(^)(LXFindCoachEvaluationStudentResponseObject *responseModel))block;
+
+
+/**
+ 我的---课程记录----教练课程记录评价
+
+ @param courseRecordId 约课记录id
+ @param studentScore 课程评价分数
+ @param studentEvaluationContent 课程评价内容
+ @param block block
+ */
+- (void)lxReuqestCoachEvaluationStudentWithCourseRecordId:(NSNumber *)courseRecordId andStudentScore:(NSNumber *)studentScore andStudentEvaluationContent:(NSString *)studentEvaluationContent completionBlock:(void(^)(LXCoachEvaluationStudentResponseObject *responseModel))block;
 
 @end

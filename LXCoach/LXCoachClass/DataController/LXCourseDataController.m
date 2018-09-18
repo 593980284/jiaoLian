@@ -13,6 +13,8 @@
 #import "LXFindMyCouseDetailListSessionTask.h"
 #import "LXMyCoachAttendanceStudentSessionTask.h"
 #import "LXMyCoachEvaluationStudentsSessionTask.h"
+#import "LXFindCoachEvaluationStudentSessionTask.h"
+#import "LXCoachEvaluationStudentSessionTask.h"
 
 @implementation LXCourseDataController
 
@@ -108,7 +110,38 @@
     [task lxReuqestMyCoachEvaluationStudentsWithCompletionBlock:^(LXMyCoachEvaluationStudentsResponseObject *responseModel) {
         block(responseModel);
     }];
-    
 }
+
+/**
+ 查询教练课程记录评价
+ 
+ @param courseRecordId 约课记录id
+ @param block block
+ */
+- (void)lxReuqestFindCoachEvaluationStudentWithCourseRecordId:(NSString *)courseRecordId completionBlock:(void(^)(LXFindCoachEvaluationStudentResponseObject *responseModel))block {
+    LXFindCoachEvaluationStudentSessionTask *task = [[LXFindCoachEvaluationStudentSessionTask alloc] init];
+    task.courseRecordId = courseRecordId;
+    [task lxReuqestFindCoachEvaluationStudentWithCompletionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+/**
+ 我的---课程记录----教练课程记录评价
+ 
+ @param courseRecordId 约课记录id
+ @param studentScore 课程评价分数
+ @param studentEvaluationContent 课程评价内容
+ @param block block
+ */
+- (void)lxReuqestCoachEvaluationStudentWithCourseRecordId:(NSNumber *)courseRecordId andStudentScore:(NSNumber *)studentScore andStudentEvaluationContent:(NSString *)studentEvaluationContent completionBlock:(void(^)(LXCoachEvaluationStudentResponseObject *responseModel))block {
+    LXCoachEvaluationStudentSessionTask *task = [[LXCoachEvaluationStudentSessionTask alloc] init];
+    task.courseRecordId = courseRecordId;
+    task.studentScore = studentScore;
+    task.studentEvaluationContent = studentEvaluationContent;
+    [task lxReuqestCoachEvaluationStudentWithCompletionBlock:^(LXCoachEvaluationStudentResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+
 
 @end

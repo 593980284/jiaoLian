@@ -15,6 +15,9 @@
 #import "LXMyStudentListModel.h"
 #import "LXStudentDetailController.h"
 #import "LXCourseEvaluateController.h"
+#import "LXCourseDataController.h"
+#import "LXFindCoachEvaluationStudentSessionTask.h"
+#import "LXSearchCourseRecordJudgeModel.h"
 
 @interface LXCourseDetailView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,6 +25,8 @@
 @property (nonatomic, strong) LXCourseDetailHeadView *headView;
 /// 评价button
 @property (nonatomic, strong) UIButton *judgeButton;
+
+@property (nonatomic, strong) LXCourseDataController *dataController;
 
 @end
 
@@ -109,7 +114,26 @@
         [[LXNavigationManager lx_currentNavigationController] pushViewController:detailVC animated:YES];
     }else if (self.cheekPageOption == 2) {
         // 查看评价
-        
+        // 1. 请求数据是否有对应的评价
+        LXCourseDetailModel *model = self.courseDetailArr[indexPath.row];
+        [self.dataController lxReuqestFindCoachEvaluationStudentWithCourseRecordId:[NSString stringWithFormat:@"%ld",model.courseRecordId] completionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
+                if (responseModel.data) {
+                    // 1.1 有评价 ---查看评价
+                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
+                    courseEvaluateController.courseJudgeType = 2;
+                    courseEvaluateController.readCourseRecordModel = responseModel.data;
+                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+                }else {
+                    // 1.2 没有评价 --- 去评价
+                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
+                    courseEvaluateController.courseJudgeType = 1;                    
+                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+                }
+            }
+        }];
     }
 }
 
@@ -193,5 +217,11 @@
         [_judgeButton addTarget:self action:@selector(judgeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _judgeButton;
+}
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
 }
 @end

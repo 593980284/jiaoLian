@@ -47,7 +47,10 @@ static NSString * const kMyCoachAttendanceStudent =  @"course/myCoachAttendanceS
 static NSString * const kMyCoachEvaluationStudents = @"course/myCoachEvaluationStudents";
 /// 课程记录查询
 static NSString * const kFindCoachCourseRecord = @"course/findCoachCourseRecord";
+/// 查询教练课程记录评价
+static NSString * const kFindCoachEvaluationStudent = @"course/findCoachEvaluationStudent";
 
+static NSString * const kCoachEvaluationStudent = @"course/coachEvaluationStudent";
 
 // -------------- 学员 -----------------
 /// 我的学员列表
