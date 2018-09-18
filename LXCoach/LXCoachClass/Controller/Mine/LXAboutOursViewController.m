@@ -8,9 +8,11 @@
 
 #import "LXAboutOursViewController.h"
 #import "LXCommonNavView.h"
+#import "LXAboutOursSubView.h"
 
 @interface LXAboutOursViewController ()<LXCommonNavViewDelegate>
 @property (nonatomic, strong)LXCommonNavView *navView;
+@property (nonatomic, strong)LXAboutOursSubView *subView;
 @end
 
 @implementation LXAboutOursViewController
@@ -20,6 +22,7 @@
     self.fd_prefersNavigationBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.navView];
+    [self.view addSubview:self.subView];
 }
 
 #pragma mark - LXCommonNavViewDelegate
@@ -36,7 +39,13 @@
     }
     return _navView;
 }
-
+- (LXAboutOursSubView *)subView {
+    if (!_subView) {
+        _subView = [[LXAboutOursSubView alloc] init];
+        _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
+    }
+    return _subView;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

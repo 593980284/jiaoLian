@@ -31,8 +31,6 @@
     //调用信鸽的初始化方法
     [[XGPush defaultManager] startXGWithAppID:0 appKey:@"" delegate:self];
     
-
-
     [self.window makeKeyAndVisible];
     return YES;
 }
