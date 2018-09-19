@@ -29,7 +29,7 @@
     // debug
     [[XGPush defaultManager] setEnableDebug:YES];
     //调用信鸽的初始化方法
-    [[XGPush defaultManager] startXGWithAppID:0 appKey:@"" delegate:self];
+    [[XGPush defaultManager] startXGWithAppID:2200311659 appKey:@"IE8626NJZV4S" delegate:self];
     
     [self.window makeKeyAndVisible];
     return YES;

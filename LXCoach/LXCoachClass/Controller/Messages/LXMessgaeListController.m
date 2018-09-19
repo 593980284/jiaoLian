@@ -8,12 +8,17 @@
 
 #import "LXMessgaeListController.h"
 #import "LXMessageListCell.h"
-
+#import "LXFindCoachMsgModel.h"
+#import "LXCourseDataController.h"
+#import "LXFindMyCouseListByDateSessionTask.h"
+#import "LXMineModel.h"
+#import "LXCourseListModel.h"
+#import "LXCourseDetailController.h"
 static NSString *messageList_Identify = @"LXMessageListCell";
 
 @interface LXMessgaeListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) LXCourseDataController *dataController;
 @end
 
 @implementation LXMessgaeListController
@@ -30,6 +35,24 @@ static NSString *messageList_Identify = @"LXMessageListCell";
         }
     }
 #endif
+}
+
+#pragma mark - request
+- (void)requestDateToSubject:(NSString *)date {
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    [self.dataController lxReuqestFindMyCouseListByDateWithCertNo:mineModel.certNo andDate:date completionBlock:^(LXFindMyCouseListByDateResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            NSArray *courseListArr = [NSArray yy_modelArrayWithClass:[LXCourseListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
+            if (courseListArr != nil) {
+                LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
+                detaileVC.courseSubjectModel = [courseListArr lastObject];
+                [self.navigationController pushViewController:detaileVC animated:YES];
+            }
+            
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -49,7 +72,11 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+    LXFindCoachMsgModel *msgModel = self.dataArr[indexPath.row];
+    if ([msgModel.msgType integerValue] == 3) {
+        // 教学提醒消息
+        [self requestDateToSubject:msgModel.date];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -87,6 +114,13 @@ static NSString *messageList_Identify = @"LXMessageListCell";
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
+}
+
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
 }
 
 - (void)didReceiveMemoryWarning {
