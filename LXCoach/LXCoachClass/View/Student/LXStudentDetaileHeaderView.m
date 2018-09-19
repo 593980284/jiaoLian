@@ -84,7 +84,7 @@
 
 #pragma mark - publicMethod
 - (void)configValue:(LXMyStudentListModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = model.studentName;
     self.phoneNumber.text = model.mobile;
 }
@@ -103,6 +103,7 @@
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
+        _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
 }

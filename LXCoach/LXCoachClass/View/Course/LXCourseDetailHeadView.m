@@ -75,7 +75,7 @@
 #pragma mark - setter
 - (void)setCourseListModel:(LXCourseListModel *)courseListModel {
     _courseListModel = courseListModel;
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:nil];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectLabel.text = _courseListModel.subjectName;
     self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld     剩余 %ld",(long)_courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
     self.timeLabel.text = _courseListModel.periodTime;
@@ -86,6 +86,7 @@
     if (!_leftImageView) {
         _leftImageView = [[FLAnimatedImageView alloc]init];
         _leftImageView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        _leftImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _leftImageView;
 }

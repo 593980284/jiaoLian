@@ -140,7 +140,8 @@
     self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
     self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
     self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.photo]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.photo] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    
 }
 
 #pragma mark - Gesture
@@ -162,6 +163,8 @@
         _headerImageView.userInteractionEnabled = YES;
         _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _headerImageView.layer.cornerRadius = 60*kAutoSizeScaleX/2;
+        _headerImageView.clipsToBounds = YES;
+        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewTapGesture)];
         [_headerImageView addGestureRecognizer:tapGesture];
     }

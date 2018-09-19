@@ -59,7 +59,7 @@
 
 #pragma mark - publicMethod
 - (void)configMessagListValue:(LXFindCoachMsgModel *)model {
-//    self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model]
+//    self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"];
     self.titleNameLabel.text = model.content;
     self.subjectTimeLabel.text = model.date;
 }
@@ -70,6 +70,7 @@
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _iconImageView.image = [UIImage imageNamed:@"lx_new_message"];
+        _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
 }

@@ -97,7 +97,7 @@
     
 }
 - (void)valueToView {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:self.mineModel.photo]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:self.mineModel.photo] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     self.credentialsNumber.text = self.mineModel.phone;
     self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",self.mineModel.coachName,self.mineModel.carNo];
     self.schoolAge.text = [NSString stringWithFormat:@"教龄  %@年",self.mineModel.teachAge];
@@ -116,6 +116,10 @@
         _headerImageView.userInteractionEnabled = YES;
         _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _headerImageView.layer.cornerRadius = 60*kAutoSizeScaleX/2;
+        _headerImageView.clipsToBounds = YES;
+        _headerImageView.layer.borderColor = [UIColor colorWithHexString:@"#DDDDDD"].CGColor;
+        _headerImageView.layer.borderWidth = .5;
+        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _headerImageView;
 }

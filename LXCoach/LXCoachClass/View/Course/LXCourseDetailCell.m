@@ -118,7 +118,7 @@
 #pragma mark - setter
 - (void)setCourseStudentModel:(LXCourseDetailModel *)courseStudentModel {
     _courseStudentModel = courseStudentModel;
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.courseStudentModel.studentPhoto] placeholderImage:nil];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.courseStudentModel.studentPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
     self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",self.courseStudentModel.subjectName, (long)self.courseStudentModel.hours];
     self.studentScoreLabel.text = self.courseStudentModel.studentScore;
@@ -181,6 +181,7 @@
     if (!_leftImageView) {
         _leftImageView = [[FLAnimatedImageView alloc]init];
         _leftImageView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        _leftImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _leftImageView;
 }

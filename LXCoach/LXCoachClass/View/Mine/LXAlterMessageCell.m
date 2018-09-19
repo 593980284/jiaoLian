@@ -66,7 +66,8 @@
 #pragma mark - setter
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
-    self.iconImageView.image = [UIImage imageNamed:_imageName];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.imageName] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    
 }
 - (void)setNameString:(NSString *)nameString {
     _nameString = nameString;
@@ -78,6 +79,10 @@
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _iconImageView.layer.cornerRadius = 40*kAutoSizeScaleX/2;
+        _iconImageView.clipsToBounds = YES;
+        _iconImageView.layer.borderColor = [UIColor colorWithHexString:@"#DDDDDD"].CGColor;
+        _iconImageView.layer.borderWidth = 1;
+        _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
 }

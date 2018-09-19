@@ -94,7 +94,7 @@
 
 #pragma mark - publicMethod
 - (void)configCellValue:(LXFindCourseRecordModel *)model {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.coachPhoto]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.coachPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectNumber.text = model.subjectName;
     self.drivingSchoolName.text = model.schoolName;
     self.time.text = model.periodTime;
@@ -112,6 +112,8 @@
         _headerImageView = [[UIImageView alloc] init];
         _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _headerImageView.layer.cornerRadius = 70 *kAutoSizeScaleX/2;
+        _headerImageView.clipsToBounds = YES;
+        _headerImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _headerImageView;
 }
