@@ -10,6 +10,7 @@
 #import "LXNavigationController.h"
 #import "LXLoginController.h"
 #import <QQ_XGPush/XGPush.h>
+#import "LXMineModel.h"
 
 @interface AppDelegate ()<XGPushDelegate>
 
@@ -25,11 +26,23 @@
     LXLoginController *login = [[LXLoginController alloc] init];
     LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:login];
     self.window.rootViewController = navc;
-    
+
     // debug
     [[XGPush defaultManager] setEnableDebug:YES];
+    XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
+    XGNotificationAction *action2 = [XGNotificationAction actionWithIdentifier:@"xgaction002" title:@"xgAction2" options:XGNotificationActionOptionDestructive];
+    if (action1 && action2) {
+        XGNotificationCategory *category = [XGNotificationCategory categoryWithIdentifier:@"xgCategory" actions:@[action1, action2] intentIdentifiers:@[] options:XGNotificationCategoryOptionNone];
+        
+        XGNotificationConfigure *configure = [XGNotificationConfigure configureNotificationWithCategories:[NSSet setWithObject:category] types:XGUserNotificationTypeAlert|XGUserNotificationTypeBadge|XGUserNotificationTypeSound];
+        if (configure) {
+            [[XGPush defaultManager] setNotificationConfigure:configure];
+        }
+    }
     //调用信鸽的初始化方法
     [[XGPush defaultManager] startXGWithAppID:2200311659 appKey:@"IE8626NJZV4S" delegate:self];
+    [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
+    [[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -44,6 +57,8 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
+    
+    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -66,6 +81,7 @@
     [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
     
+    
 }
 #endif
 
@@ -79,7 +95,13 @@
  @param error 信鸽推送启动错误的信息
  */
 - (void)xgPushDidFinishStart:(BOOL)isSuccess error:(nullable NSError *)error {
-    
+    NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    if (mineModel.certNo.length > 0) {
+        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:mineModel.certNo type:XGPushTokenBindTypeAccount];
+    }else {
+        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"" type:XGPushTokenBindTypeAccount];
+    }
 }
 
 /**
@@ -93,7 +115,9 @@
     
 }
 
-
+- (void)xgPushDidFinishStop:(BOOL)isSuccess error:(NSError *)error {
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
