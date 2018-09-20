@@ -11,6 +11,7 @@
 #import "LXLoginController.h"
 #import <QQ_XGPush/XGPush.h>
 #import "LXMineModel.h"
+#import "LXTabBarController.h"
 
 @interface AppDelegate ()<XGPushDelegate>
 
@@ -23,9 +24,15 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    LXLoginController *login = [[LXLoginController alloc] init];
-    LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:login];
-    self.window.rootViewController = navc;
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    if (mineModel == nil) {
+        LXLoginController *login = [[LXLoginController alloc] init];
+        LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = navc;
+    }else {
+        LXTabBarController *tabBarController = [[LXTabBarController alloc] init];
+        self.window.rootViewController = tabBarController;
+    }
 
     // debug
     [[XGPush defaultManager] setEnableDebug:YES];

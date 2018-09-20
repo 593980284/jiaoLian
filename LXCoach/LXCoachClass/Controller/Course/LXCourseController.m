@@ -30,6 +30,7 @@
 
 @implementation LXCourseController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self requestFindMyCouseDateList];
