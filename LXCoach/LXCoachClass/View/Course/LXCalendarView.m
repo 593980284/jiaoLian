@@ -18,7 +18,9 @@
 @end
 
 @implementation LXCalendarView
-
+{
+    LXCalendarCourseCell *tendCell;
+}
 - (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
@@ -52,7 +54,15 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXCalendarCourseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
-    [cell congfigCourseFindDateListModel:self.dataArr[indexPath.row]];
+    LXCourseFindDateListModel *model = self.dataArr[indexPath.row];
+    [cell congfigCourseFindDateListModel:model];
+    if (model.firstIsOption == 1) {
+        cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
+        cell.dateLabel.textColor = [UIColor whiteColor];
+        model.firstIsOption = 0;
+        tendCell = cell;
+        [self.dataArr replaceObjectAtIndex:indexPath.row withObject:model];
+    }
     return cell;
 }
 
@@ -64,6 +74,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tendCell != nil) {
+        tendCell.dateLabel.backgroundColor = [UIColor clearColor];
+        tendCell.dateLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+        tendCell = nil;
+    }
     LXCalendarCourseCell * cell = (LXCalendarCourseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
     cell.dateLabel.textColor = [UIColor whiteColor];
@@ -78,17 +93,14 @@
 }
 
 #pragma mark - setter
-- (void)setDataArr:(NSArray<LXCourseFindDateListModel *> *)dataArr {
+- (void)setDataArr:(NSMutableArray<LXCourseFindDateListModel *> *)dataArr {
     _dataArr = dataArr;
     [self.collectionView reloadData];
     LXCourseFindDateListModel *model = [self.dataArr firstObject];
     self.currentOptionDate.text = model.yearAndMonth;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.dataArr.count > 0) {
-            [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-        }
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//    });
 }
 
 #pragma mark - getter

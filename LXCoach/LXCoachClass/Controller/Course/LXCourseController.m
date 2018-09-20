@@ -60,7 +60,11 @@
     [self.dataController lxReuqestFindMyCouseDateListWithCertNo:self.mineModel.certNo completionBlock:^(LXFindMyCouseDateListResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             NSArray *listArr = [NSArray yy_modelArrayWithClass:[LXCourseFindDateListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
-            for (LXCourseFindDateListModel *dateModel in listArr) {
+            for (NSInteger i = 0; i < listArr.count; i++) {
+                LXCourseFindDateListModel *dateModel = listArr[i];
+                if (i == 0) {
+                    dateModel.firstIsOption = 1;
+                }
                 // 1. 算出今天星期几
                 // 1.1将时间转位时间戳
                 NSDate *currentDate = [LXCyhCalenbardate timeSwitchDate:dateModel.date andFormatter:@"YYYY-MM-dd"];

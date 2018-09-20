@@ -14,7 +14,7 @@
  */
 @interface LXCalendarView : UIView
 
-@property (nonatomic, strong)NSArray<LXCourseFindDateListModel *> *dataArr;
+@property (nonatomic, strong)NSMutableArray <LXCourseFindDateListModel *> *dataArr;
 
 @property (nonatomic, copy) void (^collectionCellDidSelectBlock)(NSInteger);
 

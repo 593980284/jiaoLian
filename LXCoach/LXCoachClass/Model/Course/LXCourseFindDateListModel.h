@@ -23,5 +23,6 @@
 @property (nonatomic, copy) NSString  * oneDate;
 // 年-月
 @property (nonatomic, copy) NSString * yearAndMonth;
-
+/// 默认第一个被选中 1:选中 0:不选中
+@property (nonatomic, assign) NSInteger firstIsOption;
 @end

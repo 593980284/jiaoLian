@@ -88,7 +88,7 @@
 #pragma mark - setter
 - (void)setDateArr:(NSArray<LXCourseFindDateListModel *> *)dateArr {
     _dateArr = dateArr;
-    self.topDateView.dataArr = self.dateArr;
+    self.topDateView.dataArr = [[NSMutableArray alloc] initWithArray:self.dateArr];
 }
 - (void)setDataSourse:(NSArray<LXCourseListModel *> *)dataSourse {
     _dataSourse = dataSourse;
