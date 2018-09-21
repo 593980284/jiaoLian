@@ -1323,7 +1323,7 @@
 				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6MZFMA6Y84;
+				DEVELOPMENT_TEAM = VTKB7X6455;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
 				INFOPLIST_FILE = LXCoach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1335,7 +1335,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhuosen.coach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nav.enjoylearning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1352,7 +1352,7 @@
 				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6MZFMA6Y84;
+				DEVELOPMENT_TEAM = VTKB7X6455;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
 				INFOPLIST_FILE = LXCoach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1364,7 +1364,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhuosen.coach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nav.enjoylearning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -30,16 +30,6 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    if (mineModel == nil) {
-        LXLoginController *login = [[LXLoginController alloc] init];
-        LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:login];
-        self.window.rootViewController = navc;
-    }else {
-        LXTabBarController *tabBarController = [[LXTabBarController alloc] init];
-        self.window.rootViewController = tabBarController;
-    }
-
     // debug
     [[XGPush defaultManager] setEnableDebug:YES];
     XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
@@ -53,9 +43,19 @@
         }
     }
     //调用信鸽的初始化方法
-    [[XGPush defaultManager] startXGWithAppID:2200311659 appKey:@"IE8626NJZV4S" delegate:self];
+    [[XGPush defaultManager] startXGWithAppID:2200312050 appKey:@"IHFU54S128VR" delegate:self];
     [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
     [[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
+    
+    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+    if (mineModel == nil) {
+        LXLoginController *login = [[LXLoginController alloc] init];
+        LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:login];
+        self.window.rootViewController = navc;
+    }else {
+        LXTabBarController *tabBarController = [[LXTabBarController alloc] init];
+        self.window.rootViewController = tabBarController;
+    }
     
     [self.window makeKeyAndVisible];
     return YES;
