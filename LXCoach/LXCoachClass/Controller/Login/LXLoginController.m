@@ -15,6 +15,7 @@
 #import "LXLoginUrlSessionTask.h"
 #import "UIButton+LXCountDown.h"
 #import "LXMineModel.h"
+#import <QQ_XGPush/XGPush.h>
 
 @interface LXLoginController ()<LXLoginViewDelegete>
 @property (nonatomic, strong) LXLoginView *subView;
@@ -68,6 +69,8 @@
 - (void)lx_clickLoginButton:(NSString *)acount andPasswordOrTestCode:(NSString *)code {
     [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
         if (responseModel.flg==1) {
+            // 绑定推送帐号
+            [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:responseModel.data.certNo type:XGPushTokenBindTypeAccount];
             // 存储用户数据
             [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
             [self popContoller];

@@ -9,6 +9,7 @@
 #import "LXMineController.h"
 #import "LXUserInfoDataController.h"
 #import "LXUserInfoUrlSessionTask.h"
+#import "LXVersionUpdateSessionTask.h"
 #import "LXCourceListController.h"
 #import "LXMineMessageAlterController.h"
 #import "LXAboutOursViewController.h"
@@ -18,6 +19,7 @@
 #import "LXMineCell.h"
 #import "LXMineModel.h"
 #import "LXAlterPromptView.h"
+#import "LXVersionUpdateModel.h"
 
 static NSString *cell_Identify = @"LXMineCell";
 
@@ -58,6 +60,36 @@ static NSString *cell_Identify = @"LXMineCell";
             // 存储用户数据
             [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
             [self.subView lx_updateMineMessage:responseModel.data];
+        }
+    }];
+}
+/// 检查更新
+- (void)requstVersionUpdate {
+    [self.infoDataController lxReuqestVersionUpdateWithTitle:@"乐享教练APP版本(iOS)" completionBlock:^(LXVersionUpdateResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            [self.view makeToast:@"未检测到新版本"];
+            /*
+            NSDictionary *infDictionary = [[NSBundle mainBundle] infoDictionary];
+            CFShow((__bridge CFTypeRef)(infDictionary));
+            NSString *appVersion = [infDictionary objectForKey:@"CFBundleShortVersionString"];
+            NSString *requstVersion = responseModel.data.version;
+            BOOL updateState;
+            if (updateState) {
+                //更新
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"有新的版本上线啦～" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *enter = [UIAlertAction actionWithTitle:@"更新" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%@",@""]]];
+                }];
+                UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                [alertVC addAction:enter];
+                [alertVC addAction:cancel];
+                [self presentViewController:alertVC animated:YES completion:nil];
+            }else {
+                [self.view makeToast:@"未检测到新版本"];
+            }
+            */
         }
     }];
 }
@@ -136,9 +168,10 @@ static NSString *cell_Identify = @"LXMineCell";
         case LXMineSlectTypeCheckUpdate:
         {
             // 检查更新
-            
+            [self requstVersionUpdate];
         }
             break;
+            
         case LXMineSlectTypeAboutOurs:
         {
             // 关于我们
@@ -146,9 +179,6 @@ static NSString *cell_Identify = @"LXMineCell";
             [self.navigationController pushViewController:aboutOursVC animated:YES];
         }
             break;
-        
-            
-       
     }
 }
 - (void)lx_clickHeaderAction {

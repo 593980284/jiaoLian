@@ -33,6 +33,8 @@ static NSString * const kAppCoachLogout = @"login/appCoachLogout";
 static NSString * const kSaveUserInfo = @"coachSetting/saveCoachInfo";
 /// 教练上传头像图片接口
 static NSString * const kUploadCoachImage = @"coachSetting/uploadCoachImage";
+/// 检查更新
+static NSString *const kVersionUpdate = @"homePage/versionUpdate";
 
 // -------------- 课程 -----------------
 /// 查询我的课程日期列表

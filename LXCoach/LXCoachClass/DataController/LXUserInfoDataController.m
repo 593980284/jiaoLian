@@ -10,6 +10,7 @@
 #import "LXUserInfoUrlSessionTask.h"
 #import "LXSaveUserInfoUrlSessionTask.h"
 #import "LXAppCoachLogoutSessionTask.h"
+#import "LXVersionUpdateSessionTask.h"
 
 @implementation LXUserInfoDataController
 
@@ -51,6 +52,20 @@
 - (void)lxRequestAppCoachLogoutCompletionBlock:(void(^)(LXAppCoachLogoutResponseObject *responseModel))block {
     LXAppCoachLogoutSessionTask *outLoginTask = [[LXAppCoachLogoutSessionTask alloc] init];
     [outLoginTask lxReuqestAppCoachLogoutWithCompletionBlock:^(LXAppCoachLogoutResponseObject *responseModel) {
+        block(responseModel);
+    }];
+}
+
+/**
+ 检查版本更新
+ 
+ @param title app名称
+ @param block block
+ */
+- (void)lxReuqestVersionUpdateWithTitle:(NSString *)title completionBlock:(void(^)(LXVersionUpdateResponseObject *responseModel))block {
+    LXVersionUpdateSessionTask *task = [[LXVersionUpdateSessionTask alloc] init];
+    task.title = title;
+    [task lxReuqestVersionUpdateWithCompletionBlock:^(LXVersionUpdateResponseObject *responseModel) {
         block(responseModel);
     }];
 }

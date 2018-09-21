@@ -104,12 +104,11 @@
 - (void)xgPushDidFinishStart:(BOOL)isSuccess error:(nullable NSError *)error {
     NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
     LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"371501197308219544" type:XGPushTokenBindTypeAccount];
-//    if (mineModel.certNo.length > 0) {
-//        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:mineModel.certNo type:XGPushTokenBindTypeAccount];
-//    }else {
-//        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"" type:XGPushTokenBindTypeAccount];
-//    }
+    if (mineModel.certNo.length > 0) {
+        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:mineModel.certNo type:XGPushTokenBindTypeAccount];
+    }else {
+        [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"" type:XGPushTokenBindTypeAccount];
+    }
 }
 
 /**

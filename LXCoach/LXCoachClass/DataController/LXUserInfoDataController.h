@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class LXUserInfoResponseObject;
 @class LXSaveUserInfoResponseObject,LXAppCoachLogoutResponseObject;
+@class LXVersionUpdateResponseObject;
 
 @interface LXUserInfoDataController : NSObject
 
@@ -39,5 +40,13 @@
  */
 - (void)lxRequestAppCoachLogoutCompletionBlock:(void(^)(LXAppCoachLogoutResponseObject *responseModel))block;
 
+
+/**
+ 检查版本更新
+
+ @param title app名称
+ @param block block
+ */
+- (void)lxReuqestVersionUpdateWithTitle:(NSString *)title completionBlock:(void(^)(LXVersionUpdateResponseObject *responseModel))block;
 
 @end
