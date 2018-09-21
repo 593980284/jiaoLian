@@ -107,6 +107,7 @@
 		6A5B4A042148EAF700206DF3 /* NSString+LXTelEmailRegular.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A032148EAF700206DF3 /* NSString+LXTelEmailRegular.m */; };
 		6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */; };
 		6A5B4A0A2149428800206DF3 /* LXAppCoachLogoutSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */; };
+		6A6004942153C9BF009E5B0C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A6004932153C9BF009E5B0C /* libsqlite3.0.tbd */; };
 		6A6D713521464EC40001943C /* LXCourseEvaluateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D713421464EC40001943C /* LXCourseEvaluateView.m */; };
 		6A7FF05E214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF05D214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m */; };
 		6A7FF061214FA8610067D6AC /* LXFindCoachEvaluationStudentSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7FF060214FA8610067D6AC /* LXFindCoachEvaluationStudentSessionTask.m */; };
@@ -332,6 +333,7 @@
 		6A5B4A062148F9BF00206DF3 /* LXAlterPromptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterPromptView.m; sourceTree = "<group>"; };
 		6A5B4A082149428800206DF3 /* LXAppCoachLogoutSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAppCoachLogoutSessionTask.h; sourceTree = "<group>"; };
 		6A5B4A092149428800206DF3 /* LXAppCoachLogoutSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppCoachLogoutSessionTask.m; sourceTree = "<group>"; };
+		6A6004932153C9BF009E5B0C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		6A6D713321464EC40001943C /* LXCourseEvaluateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCourseEvaluateView.h; sourceTree = "<group>"; };
 		6A6D713421464EC40001943C /* LXCourseEvaluateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCourseEvaluateView.m; sourceTree = "<group>"; };
 		6A7FF05C214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyCoachEvaluationStudentsSessionTask.h; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A6004942153C9BF009E5B0C /* libsqlite3.0.tbd in Frameworks */,
 				6A7FF0722150E9B00067D6AC /* libXG-SDK.a in Frameworks */,
 				6A7FF06F2150E6E20067D6AC /* libz.tbd in Frameworks */,
 				6A7FF06D2150E6D70067D6AC /* SystemConfiguration.framework in Frameworks */,
@@ -388,6 +391,7 @@
 		080361B57BEA7C5E0D32C537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A6004932153C9BF009E5B0C /* libsqlite3.0.tbd */,
 				6A7FF0712150E9B00067D6AC /* libXG-SDK.a */,
 				6A7FF06E2150E6E20067D6AC /* libz.tbd */,
 				6A7FF06C2150E6D70067D6AC /* SystemConfiguration.framework */,
