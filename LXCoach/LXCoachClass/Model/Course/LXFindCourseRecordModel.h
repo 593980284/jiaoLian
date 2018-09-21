@@ -26,6 +26,8 @@
 @property (nonatomic, copy) NSString *periodTime;
 /// 教练头像路径
 @property (nonatomic, copy) NSString *coachPhoto;
+/// 科目图片路径
+@property (nonatomic, copy) NSString *subjectPhoto;
 /// 到达学员
 @property (nonatomic, assign) NSInteger reachStuNum;
 /// 未到达学员

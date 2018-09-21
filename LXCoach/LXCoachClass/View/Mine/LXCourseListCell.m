@@ -94,7 +94,7 @@
 
 #pragma mark - publicMethod
 - (void)configCellValue:(LXFindCourseRecordModel *)model {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.coachPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.subjectPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectNumber.text = model.subjectName;
     self.drivingSchoolName.text = model.schoolName;
     self.time.text = model.periodTime;
