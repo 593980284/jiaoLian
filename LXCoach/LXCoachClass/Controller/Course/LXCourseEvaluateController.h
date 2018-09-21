@@ -13,7 +13,7 @@
  */
 @interface LXCourseEvaluateController : UIViewController
 /// 头部的model
-@property (nonatomic, strong) LXCourseListModel *topSubjectModel;
+@property (nonatomic, strong) LXCourseDetailModel *topSubjectModel;
 /// 学员相关信息
 @property (nonatomic, strong) NSArray <LXCourseToStudentModel *> *studentListArr;
 /*

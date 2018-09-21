@@ -74,7 +74,7 @@
 #pragma mark - setter
 - (void)setCourseListModel:(LXCourseListModel *)courseListModel {
     _courseListModel = courseListModel;    
-//    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:courseListModel] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:courseListModel.subjectPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectLabel.text = self.courseListModel.subjectName;
     self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld       剩余 %ld",(long)self.courseListModel.appointmentNum, (long)self.courseListModel.noAppointmentNum];
     self.timeLabel.text = self.courseListModel.periodTime;

@@ -59,7 +59,6 @@
 
 #pragma mark - publicMethod
 - (void)configMessagListValue:(LXFindCoachMsgModel *)model {
-//    self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"];
     self.titleNameLabel.text = model.content;
     self.subjectTimeLabel.text = model.date;
 }

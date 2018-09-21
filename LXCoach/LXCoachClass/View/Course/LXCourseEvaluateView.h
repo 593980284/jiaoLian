@@ -33,7 +33,7 @@
 
 @property (nonatomic, assign) id <LXCourseEvaluateViewDelegate> delegate;
 /// 头部的model
-@property (nonatomic, strong) LXCourseListModel *topSubjectModel;
+@property (nonatomic, strong) LXCourseDetailModel *topSubjectModel;
 /// 学员listArr
 @property (nonatomic, strong) NSArray <LXCourseToStudentModel *> *courseListDetaileArr;
 

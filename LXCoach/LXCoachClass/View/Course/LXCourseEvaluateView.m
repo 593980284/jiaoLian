@@ -59,7 +59,7 @@
     
     x = 15;
     y = CGRectGetMaxY(self.studentCourceLabel.frame)+25;
-    w = 60;
+    w = 80;
     h = 17;
     self.nameLabel.frame = CGRectMake(x, y, w, h);
     
@@ -216,7 +216,7 @@
         [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
     }
 }
-- (void)setTopSubjectModel:(LXCourseListModel *)topSubjectModel {
+- (void)setTopSubjectModel:(LXCourseDetailModel *)topSubjectModel {
     _topSubjectModel = topSubjectModel;
     self.headView.courseListModel = self.topSubjectModel;
 }
@@ -278,6 +278,7 @@
         _nameLabel.font = [UIFont systemFontOfSize:18];
         _nameLabel.textColor = [UIColor colorWithHexString:@"#666666"];
         _nameLabel.text = @"张三";
+        _nameLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _nameLabel;
 }

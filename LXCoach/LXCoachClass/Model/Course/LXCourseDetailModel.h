@@ -20,7 +20,9 @@
 /// 课程id
 @property (nonatomic, assign) NSInteger appointmentId;
 /// 科目id
-@property (nonatomic, assign) NSInteger subjectId; 
+@property (nonatomic, assign) NSInteger subjectId;
+/// 科目图片
+@property (nonatomic, copy) NSString *subjectPhoto;
 /// 科目名称
 @property (nonatomic, copy) NSString *subjectName;
 /// 约课时间段

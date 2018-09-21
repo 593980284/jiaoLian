@@ -23,6 +23,8 @@
 @property (nonatomic, assign) NSInteger appointmentNum;
 /// 剩余人数
 @property (nonatomic, assign) NSInteger noAppointmentNum;
+/// 图片地址
+@property (nonatomic, copy) NSString *subjectPhoto;
 
 @end
 
