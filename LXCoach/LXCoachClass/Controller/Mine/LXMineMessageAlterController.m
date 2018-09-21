@@ -20,6 +20,7 @@
 #import "LXUserInfoDataController.h"
 #import "LXAppCoachLogoutSessionTask.h"
 #import "LXMineModel.h"
+#import <QQ_XGPush/XGPush.h>
 
 static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 
@@ -174,6 +175,11 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 - (void)lx_outLogin {
     [self.infoDataController lxRequestAppCoachLogoutCompletionBlock:^(LXAppCoachLogoutResponseObject *responseModel) {
         if (responseModel.flg == 1) {
+            LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+            // 取消推送绑定
+            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:@"371501197308219544" type:XGPushTokenBindTypeAccount];
+//            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:mineModel.certNo type:XGPushTokenBindTypeAccount];
+            // 移除个人信息
             [LXCacheManager removeStoreObjectForKey:@"LXMineModel"];
             LXLoginController *loginVC = [[LXLoginController alloc]init];
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
