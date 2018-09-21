@@ -65,7 +65,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LXCourseListModel *courseListModel = self.dataSourse[indexPath.row];
     LXCourseDetailController *courseDetailController = [[LXCourseDetailController alloc]init];
-    courseDetailController.courseSubjectModel = courseListModel;
+    courseDetailController.appointmentId = courseListModel.appointmentId;
     courseDetailController.cheekPageOption = 1;
     [[LXNavigationManager lx_currentNavigationController] pushViewController:courseDetailController animated:YES];
 }

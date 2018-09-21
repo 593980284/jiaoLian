@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LXCourseListModel,LXCourseDetailModel,LXSearchCourseRecordJudgeModel;
+@class LXCourseListModel,LXCourseDetailModel,LXSearchCourseRecordJudgeModel,LXCourseToStudentModel;
 
 @protocol LXCourseEvaluateViewDelegate <NSObject>
 /**
@@ -35,7 +35,7 @@
 /// 头部的model
 @property (nonatomic, strong) LXCourseListModel *topSubjectModel;
 /// 学员listArr
-@property (nonatomic, strong) NSArray <LXCourseDetailModel *> *courseListDetaileArr;
+@property (nonatomic, strong) NSArray <LXCourseToStudentModel *> *courseListDetaileArr;
 
 /**
  区分查看评价还是进行评价

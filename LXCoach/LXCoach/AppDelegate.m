@@ -13,6 +13,12 @@
 #import "LXMineModel.h"
 #import "LXTabBarController.h"
 
+#import "LXMessageDataController.h"
+#import "LXFindSingleCoachMsgSessionTask.h"
+#import "LXFindSingleCoachMsgModel.h"
+#import "LXCourseDetailController.h"
+#import "LXNavigationManager.h"
+
 @interface AppDelegate ()<XGPushDelegate>
 
 @end
@@ -64,8 +70,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
-    
-    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -78,6 +82,18 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >=     __IPHONE_10_0
 - (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler
 {
+    //1. 获取msgId参数
+    NSString *msgId = [response.notification.request.content.userInfo valueForKey:@"msgId"];
+    //2. 根据msgId来获取详细
+    LXMessageDataController *mesDataController= [[LXMessageDataController alloc] init];
+    [mesDataController lxReuqestFindSingleCoachMsgWithMsgId:msgId completionBlock:^(LXFindSingleCoachMsgResponseObject *responseModel) {
+        if (responseModel.flg == 1) {
+            //3. 跳转课程详情页面
+            LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
+            detaileVC.appointmentId = [responseModel.data.appointmentId integerValue];
+            [[LXNavigationManager lx_currentNavigationController] pushViewController:detaileVC animated:YES];
+        }
+    }];
     [[XGPush defaultManager] reportXGNotificationResponse:response];
     completionHandler();
 }
@@ -125,6 +141,8 @@
 - (void)xgPushDidFinishStop:(BOOL)isSuccess error:(NSError *)error {
     
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

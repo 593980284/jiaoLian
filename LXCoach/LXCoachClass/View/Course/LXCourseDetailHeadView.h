@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LXCourseListModel;
+@class LXCourseDetailModel;
 
 @interface LXCourseDetailHeadView : UIView
 
-@property (nonatomic, strong) LXCourseListModel *courseListModel;
+@property (nonatomic, strong) LXCourseDetailModel *courseListModel;
 
 @end

@@ -9,16 +9,16 @@
 #import "LXMessgaeListController.h"
 #import "LXMessageListCell.h"
 #import "LXFindCoachMsgModel.h"
-#import "LXCourseDataController.h"
-#import "LXFindMyCouseListByDateSessionTask.h"
-#import "LXMineModel.h"
-#import "LXCourseListModel.h"
+#import "LXMessageDataController.h"
+#import "LXFindSingleCoachMsgSessionTask.h"
+#import "LXFindSingleCoachMsgModel.h"
 #import "LXCourseDetailController.h"
+
 static NSString *messageList_Identify = @"LXMessageListCell";
 
 @interface LXMessgaeListController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) LXCourseDataController *dataController;
+@property (nonatomic, strong) LXMessageDataController *dataController;
 @end
 
 @implementation LXMessgaeListController
@@ -38,17 +38,12 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 }
 
 #pragma mark - request
-- (void)requestDateToSubject:(NSString *)date {
-    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    [self.dataController lxReuqestFindMyCouseListByDateWithCertNo:mineModel.certNo andDate:date completionBlock:^(LXFindMyCouseListByDateResponseObject *responseModel) {
+- (void)requestMsgIdToSubject:(NSString *)msgId {
+    [self.dataController lxReuqestFindSingleCoachMsgWithMsgId:msgId completionBlock:^(LXFindSingleCoachMsgResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            NSArray *courseListArr = [NSArray yy_modelArrayWithClass:[LXCourseListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
-            if (courseListArr != nil) {
-                LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
-                detaileVC.courseSubjectModel = [courseListArr lastObject];
-                [self.navigationController pushViewController:detaileVC animated:YES];
-            }
-            
+            LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
+            detaileVC.appointmentId = [responseModel.data.appointmentId integerValue];
+            [self.navigationController pushViewController:detaileVC animated:YES];
         }else {
             [self.view makeToast:responseModel.msg];
         }
@@ -75,7 +70,8 @@ static NSString *messageList_Identify = @"LXMessageListCell";
     LXFindCoachMsgModel *msgModel = self.dataArr[indexPath.row];
     if ([msgModel.msgType integerValue] == 3) {
         // 教学提醒消息
-        [self requestDateToSubject:msgModel.date];
+        // 1. 根据msgId 跳转到课程详情
+        [self requestMsgIdToSubject:[NSString stringWithFormat:@"%ld", msgModel.msgId]];
     }
 }
 
@@ -116,9 +112,9 @@ static NSString *messageList_Identify = @"LXMessageListCell";
     return _tableView;
 }
 
-- (LXCourseDataController *)dataController {
+- (LXMessageDataController *)dataController {
     if (!_dataController) {
-        _dataController = [[LXCourseDataController alloc] init];
+        _dataController = [[LXMessageDataController alloc] init];
     }
     return _dataController;
 }

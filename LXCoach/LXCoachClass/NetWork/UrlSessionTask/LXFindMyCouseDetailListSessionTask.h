@@ -8,7 +8,7 @@
 
 #import "LXBaseUrlSessionTask.h"
 @class LXFindMyCouseDetailListResponseObject;
-
+@class LXCourseDetailModel;
 /**
  查询我的课程课程详情
  */
@@ -21,6 +21,6 @@
 @end
 
 @interface LXFindMyCouseDetailListResponseObject : LXNetWorkResponseBaseObject
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) LXCourseDetailModel *data;
 
 @end

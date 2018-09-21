@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class LXCourseDetailModel;
-@class LXCourseListModel;
+@class LXCourseToStudentModel;
 
 @protocol LXCourseDetailViewDelegate <NSObject>
 
@@ -20,11 +20,12 @@
 @interface LXCourseDetailView : UIView
 
 @property (nonatomic, assign) id <LXCourseDetailViewDelegate> delegate;
+
 /// 对应科目的所有学员
-@property (nonatomic, strong) NSArray <LXCourseDetailModel*> *courseDetailArr;
+@property (nonatomic, strong) NSArray <LXCourseToStudentModel*> *courseDetailArr;
 
 /// 头部的model
-@property (nonatomic, strong) LXCourseListModel *topSubjectModel;
+@property (nonatomic, strong) LXCourseDetailModel *topSubjectModel;
  /*
 0：未评价
 1：评价

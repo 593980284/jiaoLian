@@ -67,9 +67,6 @@
         courseEvaluateController.topSubjectModel = self.topSubjectModel;
         courseEvaluateController.isEvaluate = self.isEvaluate;
         [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
-    }else if (self.isEvaluate == 1) {
-        // 查看评价
-        
     }
 }
 #pragma mark - delegate
@@ -82,7 +79,7 @@
     if (!cell) {
         cell = [[LXCourseDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifier];
     }
-    LXCourseDetailModel *detaileModel = self.courseDetailArr[indexPath.row];
+    LXCourseToStudentModel *detaileModel = self.courseDetailArr[indexPath.row];
     cell.courseStudentModel = detaileModel;
     cell.optionStartNumber = [detaileModel.studentScore integerValue] / 2;
     @weakify(self);
@@ -102,7 +99,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.cheekPageOption == 1) {
         // 跳转去学员详情
-        LXCourseDetailModel *model = self.courseDetailArr[indexPath.row];
+        LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
         LXMyStudentListModel *studentModel = [[LXMyStudentListModel alloc] init];
         studentModel.studentId = model.studentId;
         studentModel.studentName = model.studentName;
@@ -115,7 +112,7 @@
     }else if (self.cheekPageOption == 2) {
         // 查看评价
         // 1. 请求数据是否有对应的评价
-        LXCourseDetailModel *model = self.courseDetailArr[indexPath.row];
+        LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
         [self.dataController lxReuqestFindCoachEvaluationStudentWithCourseRecordId:[NSString stringWithFormat:@"%ld",model.courseRecordId] completionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
             if (responseModel.flg == 1) {
                 if (responseModel.data) {
@@ -154,11 +151,11 @@
 }
 
 #pragma mark - setter
-- (void)setTopSubjectModel:(LXCourseListModel *)topSubjectModel {
+- (void)setTopSubjectModel:(LXCourseDetailModel *)topSubjectModel {
     _topSubjectModel = topSubjectModel;
     self.headView.courseListModel = self.topSubjectModel;
 }
-- (void)setCourseDetailArr:(NSArray<LXCourseDetailModel *> *)courseDetailArr {
+- (void)setCourseDetailArr:(NSArray<LXCourseToStudentModel *> *)courseDetailArr {
     _courseDetailArr = courseDetailArr;
     [self.tableView reloadData];
 }

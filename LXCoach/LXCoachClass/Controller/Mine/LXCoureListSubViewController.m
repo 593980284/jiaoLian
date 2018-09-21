@@ -55,14 +55,8 @@ static NSString *courseList_Identify = @"LXCourseListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LXFindCourseRecordModel *recordModel = self.dataArr[indexPath.row];
-    LXCourseListModel *headerStuffModel = [[LXCourseListModel alloc] init];
-    headerStuffModel.subjectName = recordModel.subjectName;
-    headerStuffModel.appointmentId =  [recordModel.appointmentId integerValue];
-    headerStuffModel.periodTime  = recordModel.periodTime;
-    headerStuffModel.appointmentNum = recordModel.appointmentNum;
-    headerStuffModel.noAppointmentNum = recordModel.noAppointmentNum;
     LXCourseDetailController *detailVC = [[LXCourseDetailController alloc] init];
-    detailVC.courseSubjectModel = headerStuffModel;
+    detailVC.appointmentId = [recordModel.appointmentId integerValue];
     detailVC.cheekPageOption = 2;
     [self.navigationController pushViewController:detailVC animated:YES];
     

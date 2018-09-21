@@ -153,7 +153,7 @@
         _acountTextField.font = [UIFont systemFontOfSize:16];
         _acountTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
         _acountTextField.placeholder = @"请输入您的当前手机号";
-        _acountTextField.text = @"18004710471";
+//        _acountTextField.text = @"18004710471";
         _acountTextField.keyboardType = UIKeyboardTypePhonePad;
         _acountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }

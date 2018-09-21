@@ -9,6 +9,13 @@
 #import "LXCourseDetailModel.h"
 
 @implementation LXCourseDetailModel
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"list" : [LXCourseToStudentModel class]
+             
+             };
+}
 @end
 
+@implementation LXCourseToStudentModel
+
+@end

@@ -14,8 +14,10 @@
  */
 @interface LXCourseDetailController : UIViewController
 
-@property (nonatomic, strong) LXCourseListModel *courseSubjectModel;
+/// 约课ID
+@property (nonatomic, assign) NSInteger appointmentId;
 
 /// 区分查看的是我的学员还是查看评价详情 1:学员详情 2:查看评价
 @property (nonatomic, assign) NSInteger cheekPageOption;
+
 @end

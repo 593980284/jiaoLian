@@ -9,7 +9,7 @@
 #import "LXCourseDetailHeadView.h"
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "LXCourseListModel.h"
+#import "LXCourseDetailModel.h"
 
 @interface LXCourseDetailHeadView()
 
@@ -73,11 +73,11 @@
 }
 
 #pragma mark - setter
-- (void)setCourseListModel:(LXCourseListModel *)courseListModel {
+- (void)setCourseListModel:(LXCourseDetailModel *)courseListModel {
     _courseListModel = courseListModel;
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectLabel.text = _courseListModel.subjectName;
-    self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld     剩余 %ld",(long)_courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
+    self.numberLabel.text = [NSString stringWithFormat:@"报名 %@     剩余 %ld", _courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
     self.timeLabel.text = _courseListModel.periodTime;
 }
 

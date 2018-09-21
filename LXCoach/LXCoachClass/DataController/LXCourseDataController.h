@@ -40,7 +40,7 @@
 - (void)lxReuqestFindMyCouseListByDateWithCertNo:(NSString *)certNo andDate:(NSString *)date completionBlock:(void(^)(LXFindMyCouseListByDateResponseObject *responseModel))block;
 
 /**
- 查询我的课程课程详情
+ 根据约课id 查询我的课程课程详情
 
  @param appointmentId 约课id
  @param block block

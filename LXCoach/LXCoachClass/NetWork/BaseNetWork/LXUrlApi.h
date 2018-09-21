@@ -41,7 +41,7 @@ static NSString *const kVersionUpdate = @"homePage/versionUpdate";
 static NSString * const kfindMyCouseDateList = @"course/findMyCouseDateList";
 /// 我的课程根据日期查询排课
 static NSString * const kfindMyCouseListByDate = @"course/findMyCouseListByDate";
-/// 查询我的课程课程详情
+/// 根据约约课id查询我的课程课程详情
 static NSString * const kfindMyCouseDetailList =  @"course/findMyCouseDetailList";
 /// 我的课程教练对学员的课程考勤
 static NSString * const kMyCoachAttendanceStudent =  @"course/myCoachAttendanceStudent";

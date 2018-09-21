@@ -21,7 +21,7 @@
 @property (nonatomic, strong) LXCourseDetailView *courseDetailView;
 @property (nonatomic, strong) LXCourseDataController *dataController;
 /// 对应科目的课程列表
-@property (nonatomic, strong) NSArray <LXCourseDetailModel*> *courceListArr;
+@property (nonatomic, strong) NSArray <LXCourseToStudentModel *> *courceListArr;
 @end
 
 @implementation LXCourseDetailController
@@ -57,12 +57,13 @@
 // 获取对应科目的学员列表
 - (void)requestMyCouseDetailList {
     @weakify(self);
-    [self.dataController lxReuqestFindMyCouseDetailListWithAppointmentId:[NSString stringWithFormat:@"%ld",(long)self.courseSubjectModel.appointmentId] completionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
+    [self.dataController lxReuqestFindMyCouseDetailListWithAppointmentId:[NSString stringWithFormat:@"%ld",(long)self.appointmentId] completionBlock:^(LXFindMyCouseDetailListResponseObject *responseModel) {
         @strongify(self);
         if (responseModel.flg == 1) {
-            self.courceListArr = [NSArray yy_modelArrayWithClass:[LXCourseDetailModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
-            self.courseDetailView.courseDetailArr = self.courceListArr;
-            self.courseDetailView.isEvaluate = [[responseModel.data objectForKey:@"isEvaluate"] integerValue];
+            self.courseDetailView.topSubjectModel = responseModel.data;
+            self.courseDetailView.courseDetailArr = responseModel.data.list;
+            self.courceListArr = [NSArray arrayWithArray:responseModel.data.list];
+            self.courseDetailView.isEvaluate = responseModel.data.isEvaluate;
         }
     }];
 }
@@ -75,7 +76,7 @@
 #pragma mark - LXCourseDetailViewDelegate
 - (void)lx_button1Click:(NSIndexPath *)indexPath {
     // 缺勤 3
-    LXCourseDetailModel *model = self.courceListArr[indexPath.row];
+    LXCourseToStudentModel *model = self.courceListArr[indexPath.row];
     [self.dataController lxReuqestMyCoachAttendanceStudentWithCourseRecordId:[NSNumber numberWithInteger:model.courseRecordId] andStatus:[NSNumber numberWithInteger:3] completionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             [self requestMyCouseDetailList];
@@ -85,7 +86,7 @@
 
 - (void)lx_button2Click:(NSIndexPath *)indexPath {
     // 已到 学员点击签到 2;  学员未点击签到 5;
-    LXCourseDetailModel *model = self.courceListArr[indexPath.row];
+    LXCourseToStudentModel *model = self.courceListArr[indexPath.row];
     NSInteger status = 0;
     if (model.status == 1) {
         // 学员点击了签到
@@ -114,7 +115,6 @@
 - (LXCourseDetailView *)courseDetailView {
     if (!_courseDetailView) {
         _courseDetailView = [[LXCourseDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame))];
-        _courseDetailView.topSubjectModel = self.courseSubjectModel;
         _courseDetailView.delegate = self;
         _courseDetailView.cheekPageOption = self.cheekPageOption;
     }

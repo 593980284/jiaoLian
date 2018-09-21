@@ -111,7 +111,7 @@
             if (self.courseListDetaileArr.count == 1 ) {
                 /// 我的课程--->学员详情--->课程评价
                 // 1. 将对应的值添加到数组中
-                LXCourseDetailModel *model = [self.courseListDetaileArr firstObject];
+                LXCourseToStudentModel *model = [self.courseListDetaileArr firstObject];
                 [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
                 [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
                 if (self.assessTextView.text.length != 0) {
@@ -143,7 +143,7 @@
                 [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
             }
             // 1. 存储已经评价的值
-            LXCourseDetailModel *model = self.courseListDetaileArr[_recordCurrentIndex-1];
+            LXCourseToStudentModel *model = self.courseListDetaileArr[_recordCurrentIndex-1];
             [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
             [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
             if (self.assessTextView.text.length != 0) {
@@ -205,9 +205,9 @@
     }
 }
 #pragma mark - setter
-- (void)setCourseListDetaileArr:(NSArray<LXCourseDetailModel *> *)courseListDetaileArr {
+- (void)setCourseListDetaileArr:(NSArray<LXCourseToStudentModel *> *)courseListDetaileArr {
     _courseListDetaileArr = courseListDetaileArr;
-    LXCourseDetailModel *model = self.courseListDetaileArr[0];
+    LXCourseToStudentModel *model = self.courseListDetaileArr[0];
     self.nameLabel.text = model.studentName;
     _recordCurrentIndex = 1;
     if (self.courseListDetaileArr.count == 1) {

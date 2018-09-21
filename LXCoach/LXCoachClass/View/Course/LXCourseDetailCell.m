@@ -116,7 +116,7 @@
 }
 
 #pragma mark - setter
-- (void)setCourseStudentModel:(LXCourseDetailModel *)courseStudentModel {
+- (void)setCourseStudentModel:(LXCourseToStudentModel *)courseStudentModel {
     _courseStudentModel = courseStudentModel;
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:self.courseStudentModel.studentPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
