@@ -8,6 +8,7 @@
 
 #import "LXMainMessageHeaderView.h"
 #import "LXMineModel.h"
+#import "LXUrlApi.h"
 
 @interface LXMainMessageHeaderView ()
 /// 背景图
@@ -140,7 +141,8 @@
     self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
     self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
     self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.photo] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,headerModel.photo];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     
 }
 

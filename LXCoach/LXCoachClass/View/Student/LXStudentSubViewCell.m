@@ -8,6 +8,7 @@
 
 #import "LXStudentSubViewCell.h"
 #import "LXMyStudentListModel.h"
+#import "LXUrlApi.h"
 
 @interface LXStudentSubViewCell ()
 @property (nonatomic, strong) UIView *borderView;
@@ -81,7 +82,8 @@
 }
 #pragma mark - publicMethod
 - (void)configStudentListModel:(LXMyStudentListModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,model.studentPhoto];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = model.studentName;
     self.subjectNumber.text = model.subjectName;
     self.iphoneNumber.text = model.mobile;

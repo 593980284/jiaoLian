@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *date;
 /// 消息id主键
 @property (nonatomic, assign) NSInteger msgId;
-///  2 驾校发布消息 3 教学提醒消息
+///  1 驾校发布消息（系统消息） 2 教学提醒消息
 @property (nonatomic, copy) NSString *msgType;
 
 @end

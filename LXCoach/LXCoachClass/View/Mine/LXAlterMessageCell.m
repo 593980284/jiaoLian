@@ -7,6 +7,7 @@
 //
 
 #import "LXAlterMessageCell.h"
+#import "LXUrlApi.h"
 
 @interface LXAlterMessageCell ()
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -63,12 +64,14 @@
         self.iconImageView.hidden = YES;
     }
 }
+
 #pragma mark - setter
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.imageName] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
-    
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,self.imageName];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
 }
+
 - (void)setNameString:(NSString *)nameString {
     _nameString = nameString;
     self.titleName.text = _nameString;

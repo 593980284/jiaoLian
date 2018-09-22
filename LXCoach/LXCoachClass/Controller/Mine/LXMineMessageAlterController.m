@@ -122,6 +122,7 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 - (NSInteger)lx_alterMessageTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
+
 - (UITableViewCell *)lx_alterMessageTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LXAlterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:alterMessage_Identify];
     if (cell == nil) {
@@ -177,8 +178,8 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
         if (responseModel.flg == 1) {
             LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
             // 取消推送绑定
-            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:@"371501197308219544" type:XGPushTokenBindTypeAccount];
-//            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:mineModel.certNo type:XGPushTokenBindTypeAccount];
+//            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:@"371501197308219544" type:XGPushTokenBindTypeAccount];
+            [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:mineModel.certNo type:XGPushTokenBindTypeAccount];
             // 移除个人信息
             [LXCacheManager removeStoreObjectForKey:@"LXMineModel"];
             LXLoginController *loginVC = [[LXLoginController alloc]init];
@@ -205,6 +206,12 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 - (void)lx_clickLeftButton {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - setter
+- (void)setPicUrl:(NSString *)picUrl {
+    _picUrl = picUrl;
+}
+
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {

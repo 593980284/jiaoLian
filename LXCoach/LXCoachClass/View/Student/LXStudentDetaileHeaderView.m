@@ -8,7 +8,7 @@
 
 #import "LXStudentDetaileHeaderView.h"
 #import "LXMyStudentListModel.h"
-
+#import "LXUrlApi.h"
 @interface LXStudentDetaileHeaderView()
 @property (nonatomic, strong) UIImageView *iconImageView;
 /// 姓名
@@ -84,7 +84,8 @@
 
 #pragma mark - publicMethod
 - (void)configValue:(LXMyStudentListModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.studentPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,model.studentPhoto];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = model.studentName;
     self.phoneNumber.text = model.mobile;
 }

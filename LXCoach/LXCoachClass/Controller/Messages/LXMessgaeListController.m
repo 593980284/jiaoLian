@@ -13,6 +13,7 @@
 #import "LXFindSingleCoachMsgSessionTask.h"
 #import "LXFindSingleCoachMsgModel.h"
 #import "LXCourseDetailController.h"
+#import "LXMessgeDetaileController.h"
 
 static NSString *messageList_Identify = @"LXMessageListCell";
 
@@ -42,7 +43,7 @@ static NSString *messageList_Identify = @"LXMessageListCell";
     [self.dataController lxReuqestFindSingleCoachMsgWithMsgId:msgId completionBlock:^(LXFindSingleCoachMsgResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
-            detaileVC.appointmentId = [responseModel.data.appointmentId integerValue];
+            detaileVC.appointmentId = responseModel.data.appointmentId;
             [self.navigationController pushViewController:detaileVC animated:YES];
         }else {
             [self.view makeToast:responseModel.msg];
@@ -68,10 +69,15 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LXFindCoachMsgModel *msgModel = self.dataArr[indexPath.row];
-    if ([msgModel.msgType integerValue] == 3) {
-        // 教学提醒消息
+    if ([msgModel.msgType integerValue] == 2) {
+        //  教学提醒消息
         // 1. 根据msgId 跳转到课程详情
         [self requestMsgIdToSubject:[NSString stringWithFormat:@"%ld", msgModel.msgId]];
+    }else if ([msgModel.msgType integerValue] == 1)  {
+        // 消息详情
+        LXMessgeDetaileController *messageDetileVC = [[LXMessgeDetaileController alloc] init];
+        messageDetileVC.msgId = msgModel.msgId;
+        [self.navigationController pushViewController:messageDetileVC animated:YES];
     }
 }
 

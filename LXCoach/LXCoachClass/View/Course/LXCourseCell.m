@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import "LXCourseListModel.h"
+#import "LXUrlApi.h"
 
 @interface LXCourseCell()
 @property (nonatomic, strong) FLAnimatedImageView *leftImageView;
@@ -73,8 +74,9 @@
 
 #pragma mark - setter
 - (void)setCourseListModel:(LXCourseListModel *)courseListModel {
-    _courseListModel = courseListModel;    
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:courseListModel.subjectPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    _courseListModel = courseListModel;
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,courseListModel.subjectPhoto];
+    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.subjectLabel.text = self.courseListModel.subjectName;
     self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld       剩余 %ld",(long)self.courseListModel.appointmentNum, (long)self.courseListModel.noAppointmentNum];
     self.timeLabel.text = self.courseListModel.periodTime;
@@ -85,7 +87,7 @@
     if (!_leftImageView) {
         _leftImageView = [[FLAnimatedImageView alloc]init];
         _leftImageView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
-        _leftImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _leftImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _leftImageView;
 }

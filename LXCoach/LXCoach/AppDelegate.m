@@ -18,6 +18,7 @@
 #import "LXFindSingleCoachMsgModel.h"
 #import "LXCourseDetailController.h"
 #import "LXNavigationManager.h"
+#import "LXMessgeDetaileController.h"
 
 @interface AppDelegate ()<XGPushDelegate>
 
@@ -88,10 +89,16 @@
     LXMessageDataController *mesDataController= [[LXMessageDataController alloc] init];
     [mesDataController lxReuqestFindSingleCoachMsgWithMsgId:msgId completionBlock:^(LXFindSingleCoachMsgResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            //3. 跳转课程详情页面
-            LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
-            detaileVC.appointmentId = [responseModel.data.appointmentId integerValue];
-            [[LXNavigationManager lx_currentNavigationController] pushViewController:detaileVC animated:YES];
+            if (responseModel.data.msgType == 1) {
+                LXMessgeDetaileController *detaileVC = [[LXMessgeDetaileController alloc] init];
+                detaileVC.msgId = [msgId integerValue];
+                [[LXNavigationManager lx_currentNavigationController] pushViewController:detaileVC animated:YES];
+            }else if (responseModel.data.msgType == 2) {
+                //3. 跳转课程详情页面
+                LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
+                detaileVC.appointmentId = responseModel.data.appointmentId;
+                [[LXNavigationManager lx_currentNavigationController] pushViewController:detaileVC animated:YES];
+            }
         }
     }];
     [[XGPush defaultManager] reportXGNotificationResponse:response];

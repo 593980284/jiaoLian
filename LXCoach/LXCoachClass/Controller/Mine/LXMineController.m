@@ -183,6 +183,8 @@ static NSString *cell_Identify = @"LXMineCell";
 }
 - (void)lx_clickHeaderAction {
     LXMineMessageAlterController *mineAlterVC = [[LXMineMessageAlterController alloc] init];
+    LXMineModel *mineModel =  [LXCacheManager objectForKey:@"LXMineModel"];
+    mineAlterVC.picUrl = mineModel.photo;
     [self.navigationController pushViewController:mineAlterVC animated:YES];
 }
 #pragma mark - getter

@@ -8,6 +8,7 @@
 
 #import "LXCourseListCell.h"
 #import "LXFindCourseRecordModel.h"
+#import "LXUrlApi.h"
 
 @interface LXCourseListCell ()
 /// 头像
@@ -94,7 +95,8 @@
 
 #pragma mark - publicMethod
 - (void)configCellValue:(LXFindCourseRecordModel *)model {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.subjectPhoto] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,model.subjectPhoto];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     self.subjectNumber.text = model.subjectName;
     self.drivingSchoolName.text = model.schoolName;
     self.time.text = model.periodTime;
@@ -113,7 +115,7 @@
         _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
         _headerImageView.layer.cornerRadius = 70 *kAutoSizeScaleX/2;
         _headerImageView.clipsToBounds = YES;
-        _headerImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _headerImageView;
 }

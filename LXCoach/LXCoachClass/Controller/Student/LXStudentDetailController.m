@@ -74,7 +74,7 @@
  *  @return header数组
  */
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
-    NSArray *titleArr = @[@"科目一",@"科目二",@"科目三",@"科目四"];
+    NSArray *titleArr = @[@"科目一",@"科目二",@"科目三",@"文明驾驶"];
     return titleArr;
 }
 /**

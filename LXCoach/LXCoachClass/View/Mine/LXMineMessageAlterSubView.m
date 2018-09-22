@@ -32,22 +32,21 @@
     CGFloat h = self.height;
     self.tableView.frame = CGRectMake(x, y, w, h);
     
-    h = self.height - (15+45+55*3);
+    y = 55*3;
+    h = self.height - 55*3;
     self.footerView.frame = CGRectMake(x, y, w, h);
     
     x = 15;
-    y = CGRectGetHeight(self.footerView.frame) - 15;
+    y = CGRectGetHeight(self.footerView.frame) - 15 - 45;
     w = self.width - 30;
     h = 45;
     self.quiteButton.frame = CGRectMake(x, y, w, h);
-    
     
 }
 
 - (void)subView {
     [self addSubview:self.tableView];
     [self.footerView addSubview:self.quiteButton];
-    self.tableView.tableFooterView = self.footerView;
     
 #ifdef __IPHONE_11_0
     if ([self.tableView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
@@ -98,9 +97,9 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableFooterView = [UIView new];
         _tableView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.tableFooterView = self.footerView;
        
     }
     return _tableView;

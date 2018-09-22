@@ -22,5 +22,5 @@
 @end
 
 @interface LXFindSingleCoachMsgResponseObject : LXNetWorkResponseBaseObject
-@property (nonatomic, copy) LXFindSingleCoachMsgModel *data;
+@property (nonatomic, strong) LXFindSingleCoachMsgModel *data;
 @end

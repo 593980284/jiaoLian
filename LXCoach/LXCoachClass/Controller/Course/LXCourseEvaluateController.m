@@ -122,7 +122,15 @@
 - (void)lx_enterClickButton {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark - setter
+- (void)setCourseJudgeType:(NSInteger)courseJudgeType {
+    _courseJudgeType = courseJudgeType;
+    if (self.courseJudgeType == 1) {
+        [self.navView updateNavigationTitle:@"课程评价"];
+    }else if (self.courseJudgeType == 2) {
+        [self.navView updateNavigationTitle:@"查看评价"];
+    }
+}
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {

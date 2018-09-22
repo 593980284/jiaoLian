@@ -28,7 +28,7 @@
 /// 约课时间段
 @property (nonatomic, copy) NSString *periodTime;
 /// 报名人数
-@property (nonatomic, copy) NSString *appointmentNum;
+@property (nonatomic, assign) NSInteger appointmentNum;
 /// 剩余人数
 @property (nonatomic, assign) NSInteger noAppointmentNum;
 /// 学员列表

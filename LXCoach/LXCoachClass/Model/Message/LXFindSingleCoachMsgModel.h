@@ -14,11 +14,11 @@
 @property (nonatomic, copy) NSString *content;
 /// 消息发布时间
 @property (nonatomic, copy) NSString *date;
-/// 2 驾校发布消息 3 教学提醒消息
+/// 1 驾校发布消息（系统消息） 2 教学提醒消息
 @property (nonatomic, assign) NSInteger msgType;
 /// 消息标题
 @property (nonatomic, copy) NSString *title;
 /// 约课id
-@property (nonatomic, copy) NSString *appointmentId;
+@property (nonatomic, assign) NSInteger appointmentId;
 
 @end
