@@ -81,8 +81,8 @@
     self.iphoneNumber.text = @"17598785623";
 }
 #pragma mark - publicMethod
-- (void)configStudentListModel:(LXMyStudentListModel *)model {
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,model.studentPhoto];
+- (void)configStudentListModel:(LXMyStudentListModel *)model {    
+    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = model.studentName;
     self.subjectNumber.text = model.subjectName;

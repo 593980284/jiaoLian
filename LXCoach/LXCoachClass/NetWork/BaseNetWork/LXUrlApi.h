@@ -12,7 +12,7 @@
 /// baseURL
 static NSString * const kBaseUrl = @"http://111.39.245.156:8087/app/lexiang/";
 /// 图片地址
-static NSString * const kBaseImageUrl = @"http://111.39.245.156:8087/";
+static NSString * const kBaseImageUrl = @"http://111.39.245.156:8087";
 /// 教练账号密码接口
 static NSString * const kLoginUrl = @"login/appCoachLogin";
 /// 获得短信验证码接口

@@ -95,7 +95,7 @@
 
 #pragma mark - publicMethod
 - (void)configCellValue:(LXFindCourseRecordModel *)model {
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,model.subjectPhoto];
+    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.subjectPhoto];
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     self.subjectNumber.text = model.subjectName;
     self.drivingSchoolName.text = model.schoolName;

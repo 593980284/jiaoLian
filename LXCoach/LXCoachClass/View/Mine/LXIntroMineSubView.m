@@ -8,6 +8,7 @@
 
 #import "LXIntroMineSubView.h"
 #import "LXMineModel.h"
+#import "LXUrlApi.h"
 
 @interface LXIntroMineSubView ()
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -97,7 +98,8 @@
     
 }
 - (void)valueToView {
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:self.mineModel.photo] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.mineModel.photo];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     self.credentialsNumber.text = self.mineModel.phone;
     self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",self.mineModel.coachName,self.mineModel.carNo];
     self.schoolAge.text = [NSString stringWithFormat:@"教龄  %@年",self.mineModel.teachAge];

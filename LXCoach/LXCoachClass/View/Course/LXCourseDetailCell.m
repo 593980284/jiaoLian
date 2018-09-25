@@ -118,7 +118,7 @@
 #pragma mark - setter
 - (void)setCourseStudentModel:(LXCourseToStudentModel *)courseStudentModel {
     _courseStudentModel = courseStudentModel;
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,self.courseStudentModel.studentPhoto];
+    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.courseStudentModel.studentPhoto];
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
     self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",self.courseStudentModel.subjectName, (long)self.courseStudentModel.hours];

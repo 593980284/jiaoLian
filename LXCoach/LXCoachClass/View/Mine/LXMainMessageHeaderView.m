@@ -140,8 +140,8 @@
     self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",headerModel.coachName,headerModel.carNo];
     self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
     self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
-    self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",kBaseImageUrl,headerModel.photo];
+    self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];    
+    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:headerModel.photo];
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     
 }
