@@ -82,15 +82,15 @@
     h = 1;
     self.lineView.frame = CGRectMake(x, y, w, h);
     
-    x = self.contentView.width - (15 + 75);
+    x = self.contentView.width - (10 + 72*kAutoSizeScaleX);
     y = 15;
-    w = 75;
+    w = 72*kAutoSizeScaleX;
     h = 30;
     self.button1.frame = CGRectMake(x, y, w, h);
     
-    x = CGRectGetMinX(self.button1.frame) - (8+75);
+    x = CGRectGetMinX(self.button1.frame) - (8+72*kAutoSizeScaleX);
     y = 15;
-    w = 75;
+    w = 72*kAutoSizeScaleX;
     h = 30;
     self.button2.frame = CGRectMake(x, y, w, h);
 }

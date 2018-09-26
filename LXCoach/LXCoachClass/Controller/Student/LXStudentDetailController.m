@@ -47,14 +47,20 @@
 // 学员详情
 - (void)requestSubject {
     LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    [self.studentDataController lxReuqestFindMyStudentDetilWithCertNo:mineModel.certNo andStudentId:self.headerModel.studentId completionBlock:^(LXFindMyStudentDetilResponseObject *responseModel) {
+    NSString *cerNo;
+    if (self.cerNoState) {
+        cerNo = mineModel.certNo;
+    }else {
+        cerNo = @"";
+    }
+    [self.studentDataController lxReuqestFindMyStudentDetilWithCertNo:cerNo andStudentId:self.headerModel.studentId completionBlock:^(LXFindMyStudentDetilResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             NSArray * list_1Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_1 yy_modelToJSONData]];
             NSArray * list_2Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_2 yy_modelToJSONData]];
             NSArray * list_3Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_3 yy_modelToJSONData]];
             NSArray * list_4Arr = [NSArray yy_modelArrayWithClass:[LXStudentSubjectDetailModel class] json:[responseModel.data.list_4 yy_modelToJSONData]];
             self.listArr = [[NSMutableArray alloc] initWithObjects:list_1Arr,list_2Arr, list_3Arr,list_4Arr,nil];
-            
+            [self.magicController.magicView reloadData];
         }else {
 //            [self.view makeToast:responseModel.msg];
         }

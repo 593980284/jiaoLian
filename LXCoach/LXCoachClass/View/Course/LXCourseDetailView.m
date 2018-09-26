@@ -108,6 +108,7 @@
         studentModel.subjectName = model.subjectName;
         LXStudentDetailController *detailVC = [[LXStudentDetailController alloc] init];
         detailVC.headerModel = studentModel;
+        detailVC.cerNoState = NO;
         [[LXNavigationManager lx_currentNavigationController] pushViewController:detailVC animated:YES];
     }else if (self.cheekPageOption == 2) {
         // 查看评价

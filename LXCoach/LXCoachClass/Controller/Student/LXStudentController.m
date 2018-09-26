@@ -81,6 +81,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     LXStudentDetailController *studentDetailVC = [[LXStudentDetailController alloc] init];
     LXMyStudentListModel *model = self.dataSourceArr[indexPath.row];
     studentDetailVC.headerModel = model;
+    studentDetailVC.cerNoState = YES;
     [self.navigationController pushViewController:studentDetailVC animated:YES];
     
 }

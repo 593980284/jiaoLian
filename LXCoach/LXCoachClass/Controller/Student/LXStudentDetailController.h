@@ -14,5 +14,6 @@
 @interface LXStudentDetailController : UIViewController
 
 @property (nonatomic, strong)LXMyStudentListModel *headerModel;
-
+/// yes:需要传 no:不需要传
+@property (nonatomic, assign) BOOL cerNoState;
 @end
