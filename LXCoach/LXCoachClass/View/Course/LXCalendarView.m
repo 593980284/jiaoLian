@@ -20,6 +20,7 @@
 @implementation LXCalendarView
 {
     LXCalendarCourseCell *tendCell;
+    NSInteger _selectIndex; /// 选中时的下标
 }
 - (instancetype)init {
     if (self = [super init]) {
@@ -52,16 +53,14 @@
     return self.dataArr.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXCalendarCourseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
     LXCourseFindDateListModel *model = self.dataArr[indexPath.row];
     [cell congfigCourseFindDateListModel:model];
     if (model.firstIsOption == 1) {
         cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
         cell.dateLabel.textColor = [UIColor whiteColor];
-        model.firstIsOption = 0;
         tendCell = cell;
-        [self.dataArr replaceObjectAtIndex:indexPath.row withObject:model];
     }
     return cell;
 }
@@ -77,12 +76,22 @@
     if (tendCell != nil) {
         tendCell.dateLabel.backgroundColor = [UIColor clearColor];
         tendCell.dateLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+        /// 修改默认选中的状态值
+        LXCourseFindDateListModel *model = [self.dataArr firstObject];
+        model.firstIsOption = 0;
+        [self.dataArr replaceObjectAtIndex:0 withObject:model];
         tendCell = nil;
     }
     LXCalendarCourseCell * cell = (LXCalendarCourseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
     cell.dateLabel.textColor = [UIColor whiteColor];
+    // 存储已经是选中状态
+    LXCourseFindDateListModel *selectModel = self.dataArr[indexPath.row];
+    selectModel.firstIsOption = 1;
+    [self.dataArr replaceObjectAtIndex:indexPath.row withObject:selectModel];
+    _selectIndex = indexPath.row;
     self.collectionCellDidSelectBlock(indexPath.row);
+    self.currentOptionDate.text = selectModel.yearAndMonth;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -90,6 +99,10 @@
     LXCalendarCourseCell * cell = (LXCalendarCourseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.dateLabel.backgroundColor = [UIColor clearColor];
     cell.dateLabel.textColor = [UIColor colorWithHexString:@"#666666"];
+    // 存储取消选中状态
+    LXCourseFindDateListModel *deselectModel = self.dataArr[indexPath.row];
+    deselectModel.firstIsOption = 0;
+    [self.dataArr replaceObjectAtIndex:indexPath.row withObject:deselectModel];
 }
 
 #pragma mark - setter
@@ -98,7 +111,8 @@
     [self.collectionView reloadData];
     LXCourseFindDateListModel *model = [self.dataArr firstObject];
     self.currentOptionDate.text = model.yearAndMonth;
-//    dispatch_async(dispatch_get_main_queue(), ^{
+    
+    //    dispatch_async(dispatch_get_main_queue(), ^{
 //
 //    });
 }
@@ -121,8 +135,6 @@
         layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 0;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [_collectionView setContentOffset:CGPointMake(self.width/7 * self.dataArr.count, 0)];
-        _collectionView.pagingEnabled = YES;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[LXCalendarCourseCell class] forCellWithReuseIdentifier:@"cellID"];
