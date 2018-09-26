@@ -20,7 +20,6 @@
 @implementation LXCalendarView
 {
     LXCalendarCourseCell *tendCell;
-    NSInteger _selectIndex; /// 选中时的下标
 }
 - (instancetype)init {
     if (self = [super init]) {
@@ -89,7 +88,6 @@
     LXCourseFindDateListModel *selectModel = self.dataArr[indexPath.row];
     selectModel.firstIsOption = 1;
     [self.dataArr replaceObjectAtIndex:indexPath.row withObject:selectModel];
-    _selectIndex = indexPath.row;
     self.collectionCellDidSelectBlock(indexPath.row);
     self.currentOptionDate.text = selectModel.yearAndMonth;
 }
