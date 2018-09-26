@@ -69,11 +69,11 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LXFindCoachMsgModel *msgModel = self.dataArr[indexPath.row];
-    if ([msgModel.msgType integerValue] == 2) {
+    if ([msgModel.msgType integerValue] == 3) {
         //  教学提醒消息
         // 1. 根据msgId 跳转到课程详情
         [self requestMsgIdToSubject:[NSString stringWithFormat:@"%ld", msgModel.msgId]];
-    }else if ([msgModel.msgType integerValue] == 1)  {
+    }else if ([msgModel.msgType integerValue] == 1 || [msgModel.msgType integerValue] == 2)  {
         // 消息详情
         LXMessgeDetaileController *messageDetileVC = [[LXMessgeDetaileController alloc] init];
         messageDetileVC.msgId = msgModel.msgId;
