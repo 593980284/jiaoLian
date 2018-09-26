@@ -199,7 +199,7 @@
 /// 将评分清0
 - (void)startClearInitial {
     _score = 0;
-    for (NSInteger i = 0; i < 15; i++) {
+    for (NSInteger i = 10; i < 15; i++) {
         UIButton *button = [self viewWithTag:i];
         [button setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
     }
