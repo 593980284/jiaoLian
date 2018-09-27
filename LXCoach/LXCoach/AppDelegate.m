@@ -89,11 +89,11 @@
     LXMessageDataController *mesDataController= [[LXMessageDataController alloc] init];
     [mesDataController lxReuqestFindSingleCoachMsgWithMsgId:msgId completionBlock:^(LXFindSingleCoachMsgResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            if (responseModel.data.msgType == 1) {
+            if (responseModel.data.msgType == 1 || responseModel.data.msgType == 2) {
                 LXMessgeDetaileController *detaileVC = [[LXMessgeDetaileController alloc] init];
                 detaileVC.msgId = [msgId integerValue];
                 [[LXNavigationManager lx_currentNavigationController] pushViewController:detaileVC animated:YES];
-            }else if (responseModel.data.msgType == 2) {
+            }else if (responseModel.data.msgType == 3) {
                 //3. 跳转课程详情页面
                 LXCourseDetailController *detaileVC = [[LXCourseDetailController alloc] init];
                 detaileVC.appointmentId = responseModel.data.appointmentId;
