@@ -153,12 +153,17 @@
     
     self.LZActionSheet.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     self.coverView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);//self.LZActionSheet.bounds;
-    
-    CGFloat actionHeight = (self.btnArray.count + 1) * LZActionSheetBaseHeight + 5;
+    CGFloat actionHeight;
+    if (@available(iOS 11, *)) {
+        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+        actionHeight = (self.btnArray.count + 1) * LZActionSheetBaseHeight + 5 + keyWindow.safeAreaInsets.bottom;
+        self.cancelBtn.frame = CGRectMake(0, actionHeight - LZActionSheetBaseHeight-keyWindow.safeAreaInsets.bottom,self.av_w, LZActionSheetBaseHeight);
+    }else {
+        actionHeight = (self.btnArray.count + 1) * LZActionSheetBaseHeight + 5;
+        self.cancelBtn.frame = CGRectMake(0, actionHeight - LZActionSheetBaseHeight,self.av_w, LZActionSheetBaseHeight);
+    }
     self.actionSheet.frame = CGRectMake(0, self.av_h, kScreenWidth, actionHeight);
 //    self.actionSheet.backgroundColor = [UIColor greenColor];
-    
-    self.cancelBtn.frame = CGRectMake(0, actionHeight - LZActionSheetBaseHeight,self.av_w, LZActionSheetBaseHeight);
     
     
     CGFloat btnW = self.av_w;

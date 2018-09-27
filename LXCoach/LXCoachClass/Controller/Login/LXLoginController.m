@@ -16,6 +16,7 @@
 #import "UIButton+LXCountDown.h"
 #import "LXMineModel.h"
 #import <QQ_XGPush/XGPush.h>
+#import "LXNavigationManager.h"
 
 @interface LXLoginController ()<LXLoginViewDelegete>
 @property (nonatomic, strong) LXLoginView *subView;
@@ -86,7 +87,7 @@
 - (void)lx_clickForgetPasswordButton {
     LXChangeOrFindPasswordController *findPasswordVC = [[LXChangeOrFindPasswordController alloc] init];
     findPasswordVC.type = 1;
-    [self.navigationController pushViewController:findPasswordVC animated:YES];
+    [[LXNavigationManager lx_currentNavigationController] pushViewController:findPasswordVC animated:YES];
 }
 
 /**

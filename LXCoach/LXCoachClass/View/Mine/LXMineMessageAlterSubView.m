@@ -37,7 +37,12 @@
     self.footerView.frame = CGRectMake(x, y, w, h);
     
     x = 15;
-    y = CGRectGetHeight(self.footerView.frame) - 15 - 45;
+    if (@available(iOS 11, *)) {
+        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+        y = CGRectGetHeight(self.footerView.frame) - 15 - 45 - keyWindow.safeAreaInsets.bottom;
+    } else {
+        y = CGRectGetHeight(self.footerView.frame) - 15 - 45;
+    }
     w = self.width - 30;
     h = 45;
     self.quiteButton.frame = CGRectMake(x, y, w, h);

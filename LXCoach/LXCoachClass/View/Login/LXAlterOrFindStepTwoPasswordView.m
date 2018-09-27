@@ -99,7 +99,12 @@
     self.threeTextFeild.frame = CGRectMake(x, y, w, h);
     
     x = 15;
-    y = self.height-(45+15);
+    if (@available(iOS 11, *)) {
+        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+        y = self.height-(45+15) - keyWindow.safeAreaInsets.bottom;
+    } else {
+        y = self.height-(45+15);
+    }
     w = self.width - 30;
     h = 45;
     self.affirmButton.frame = CGRectMake(x, y, w, h);
