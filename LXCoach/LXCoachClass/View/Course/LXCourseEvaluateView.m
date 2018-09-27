@@ -114,10 +114,14 @@
                 LXCourseToStudentModel *model = [self.courseListDetaileArr firstObject];
                 [self.courseRecordIdsArr addObject:[NSString stringWithFormat:@"%ld",model.courseRecordId]];
                 [self.studentScoresArr addObject:[NSString stringWithFormat:@"%ld",_score*2]];
-                if (self.assessTextView.text.length != 0) {
+                if (self.assessTextView.text.length != 0 && self.assessTextView.text.length <= 500) {
                     [self.studentEvaluationContentsArr addObject:self.assessTextView.text];
                 }else {
-                    [self.studentEvaluationContentsArr addObject:@""];
+                    if (self.assessTextView.text.length > 500) {
+                        [self makeToast:@"评价内容不能超过500字"];
+                    }else if (self.assessTextView.text.length == 0){
+                        [self.studentEvaluationContentsArr addObject:@""];
+                    }
                 }
                 // 2. 提交评价
                 if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
@@ -125,8 +129,12 @@
                 }
             }else if (self.courseJudgeType == 1) {
                 // 我的--->课程记录---->课程评价
-                if ([self.delegate respondsToSelector:@selector(lx_singleCourseRecordSubmitStudentScore:andStudentEvaluationContent:)]) {
-                    [self.delegate lx_singleCourseRecordSubmitStudentScore:_score*2 andStudentEvaluationContent:self.assessTextView.text];
+                if (self.assessTextView.text.length > 500) {
+                    [self makeToast:@"评价内容不能超过500字"];
+                }else {
+                    if ([self.delegate respondsToSelector:@selector(lx_singleCourseRecordSubmitStudentScore:andStudentEvaluationContent:)]) {
+                        [self.delegate lx_singleCourseRecordSubmitStudentScore:_score*2 andStudentEvaluationContent:self.assessTextView.text];
+                    }
                 }
             }
         }

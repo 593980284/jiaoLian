@@ -107,8 +107,12 @@
 }
 #pragma mark - Event
 - (void)confirmButtonAction {
-    if ([self.delegate respondsToSelector:@selector(lx_alterMineMessage:)]) {
-        [self.delegate lx_alterMineMessage:self.introDetaile.text];
+    if (self.introDetaile.text.length <= 500) {
+        if ([self.delegate respondsToSelector:@selector(lx_alterMineMessage:)]) {
+            [self.delegate lx_alterMineMessage:self.introDetaile.text];
+        }
+    }else {
+        [self makeToast:@"个人简介字数不得大于500个"];
     }
 }
 #pragma mark - getter
