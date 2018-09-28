@@ -46,5 +46,6 @@
 
 /// 查看课程评价的model
 @property (nonatomic, copy) LXSearchCourseRecordJudgeModel *readCourseRecordModel;
-
+/// 学生姓名
+@property (nonatomic, copy) NSString *studentName;
 @end

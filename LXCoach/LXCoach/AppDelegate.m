@@ -31,6 +31,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
+    // 程序启动的时候把保存的cookie替换掉
+    [self loadCookies];
     // debug
     [[XGPush defaultManager] setEnableDebug:YES];
     XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
@@ -175,6 +177,18 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+//加载Cookie 一般都是app刚刚启动的时候
+- (void)loadCookies
+{
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"org.skyfox.cookie"]];
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (NSHTTPCookie *cookie  in cookies) {
+        [cookieStorage setCookie:cookie];
+    }
 }
 
 

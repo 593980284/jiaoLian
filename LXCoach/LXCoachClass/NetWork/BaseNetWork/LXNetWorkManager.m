@@ -82,5 +82,4 @@ static AFHTTPSessionManager *_sessionManager;
             break;
     }
 }
-
 @end

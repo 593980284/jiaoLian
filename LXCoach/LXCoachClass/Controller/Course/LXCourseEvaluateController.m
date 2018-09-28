@@ -147,6 +147,7 @@
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
         _subView.delegate = self;
         _subView.topSubjectModel = self.topSubjectModel;
+        _subView.studentName = self.studentName;
         if (self.studentListArr) {
             _subView.courseListDetaileArr = self.studentListArr;
         }

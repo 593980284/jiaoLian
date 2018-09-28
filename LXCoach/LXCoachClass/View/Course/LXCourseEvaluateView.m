@@ -65,8 +65,8 @@
     
     x = CGRectGetMaxX(self.nameLabel.frame)+15;
     y = CGRectGetMaxY(self.studentCourceLabel.frame)+24;
-    w = 15*kAutoSizeScaleX * 5 + 4 * 5;
-    h = 15*kAutoSizeScaleX;
+    w = 20*kAutoSizeScaleX * 5 + 4 * 5;
+    h = 20*kAutoSizeScaleX;
     self.startFatherView.frame = CGRectMake(x, y, w, h);
     
     x = 15;
@@ -93,7 +93,7 @@
     [self addSubview:self.nameLabel];
     [self addSubview:self.startFatherView];
     [self.startArr enumerateObjectsUsingBlock:^(UIButton  *startImageObj, NSUInteger idx, BOOL * _Nonnull stop) {
-        startImageObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
+        startImageObj.frame = CGRectMake((20*kAutoSizeScaleX+5) * idx , 0, 20*kAutoSizeScaleX, 20*kAutoSizeScaleX);
     }];
     [self addSubview:self.assessTextView];
     [self.assessTextView addSubview:self.placeholderLabel];
@@ -238,7 +238,7 @@
         [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
         for (NSInteger i = 10; i < 15; i++) {
             UIButton *startBtn = [self viewWithTag:i];
-            startBtn.enabled = YES;
+            startBtn.userInteractionEnabled = YES;
             [startBtn setImage:[UIImage imageNamed:@"lx_cource_star_normal"] forState:UIControlStateNormal];
         }
     }else if (self.courseJudgeType == 2) {
@@ -248,7 +248,7 @@
         NSInteger scoreNumber = self.readCourseRecordModel.studentScore/2;
         for (NSInteger i = 10; i < 15; i++) {
             UIButton *startBtn = [self viewWithTag:i];
-            startBtn.enabled = NO;
+            startBtn.userInteractionEnabled = NO;
             if ((i-9) <= scoreNumber) {
                 [startBtn setImage:[UIImage imageNamed:@"lx_cource_star_selected"] forState:UIControlStateNormal];
             }else {
@@ -262,8 +262,13 @@
 
 - (void)setReadCourseRecordModel:(LXSearchCourseRecordJudgeModel *)readCourseRecordModel {
     _readCourseRecordModel = readCourseRecordModel;
+    self.nameLabel.text = _readCourseRecordModel.studentName;
 }
 
+- (void)setStudentName:(NSString *)studentName {
+    _studentName = studentName;
+    self.nameLabel.text = self.studentName;
+}
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
     if (!_headView) {
@@ -285,7 +290,7 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = [UIFont systemFontOfSize:18];
         _nameLabel.textColor = [UIColor colorWithHexString:@"#666666"];
-        _nameLabel.text = @"张三";
+        _nameLabel.text = @"";
         _nameLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _nameLabel;

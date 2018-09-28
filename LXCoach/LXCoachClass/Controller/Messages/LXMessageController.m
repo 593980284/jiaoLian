@@ -13,6 +13,7 @@
 #import "LXMessageDataController.h"
 #import "LXFfindCoachMsgSessionTask.h"
 #import "LXMineModel.h"
+#import "LXLoginController.h"
 
 @interface LXMessageController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) VTMagicController *magicController;
@@ -47,6 +48,11 @@
         if (responseModel.flg == 1) {
             self.dataArr = responseModel.data;
             viewController.dataArr = self.dataArr;
+        }else if (responseModel.flg == -2) {
+            // 用户未登录
+            LXLoginController *loginVC = [[LXLoginController alloc]init];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            window.rootViewController = loginVC;
         }
     }];
 }

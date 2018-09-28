@@ -20,6 +20,7 @@
 #import "LXMineModel.h"
 #import "LXAlterPromptView.h"
 #import "LXVersionUpdateModel.h"
+#import "LXLoginController.h"
 
 static NSString *cell_Identify = @"LXMineCell";
 
@@ -60,6 +61,11 @@ static NSString *cell_Identify = @"LXMineCell";
             // 存储用户数据
             [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
             [self.subView lx_updateMineMessage:responseModel.data];
+        }else if (responseModel.flg == -2) {
+            // 用户未登录
+            LXLoginController *loginVC = [[LXLoginController alloc]init];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            window.rootViewController = loginVC;
         }
     }];
 }

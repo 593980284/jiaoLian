@@ -16,6 +16,7 @@
 #import "LXCourseFindDateListModel.h"
 #import "LXCourseListModel.h"
 #import "LXCyhCalenbardate.h"
+#import "LXLoginController.h"
 
 @interface LXCourseController ()<LXCourseSubViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
@@ -83,6 +84,11 @@
             
             LXCourseFindDateListModel * model = [self.dateSourceArr firstObject];
             [self requestToDateFindCouseListCerNo:self.mineModel.certNo andDate:model.date];
+        }else if (responseModel.flg == -2) {
+            // 用户未登录
+            LXLoginController *loginVC = [[LXLoginController alloc]init];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            window.rootViewController = loginVC;
         }
     }];
     

@@ -35,4 +35,5 @@
 /// 约课记录id
 @property (nonatomic, assign) NSInteger courseRecordId;
 
+@property (nonatomic, copy) NSString *studentName;
 @end

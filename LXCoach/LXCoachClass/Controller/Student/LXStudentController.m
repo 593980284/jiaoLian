@@ -15,6 +15,7 @@
 #import "LXFindMyStudentSessionTask.h"
 #import "LXMineModel.h"
 #import "LXMyStudentListModel.h"
+#import "LXLoginController.h"
 
 static NSString *studentList_Identify = @"LXStudentSubViewCell";
 
@@ -44,6 +45,11 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
         if (responseModel.flg == 1) {
             self.dataSourceArr = [NSArray yy_modelArrayWithClass:[LXMyStudentListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
             [self.subView reloadTableView];
+        }else if (responseModel.flg == -2) {
+            // 用户未登录
+            LXLoginController *loginVC = [[LXLoginController alloc]init];
+            UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+            window.rootViewController = loginVC;
         }else {
             [self.view makeToast:responseModel.msg];
         }

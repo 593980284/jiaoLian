@@ -52,6 +52,8 @@
                 }
                 [self logUrl:urlString parameters:postParameters responseData:object];
             }
+            // 保存Cookie
+            [self saveCookies];
         }
     } withFailureBlock:^(NSError *error) {
         [self logUrl:urlString parameters:postParameters responseData:error];
@@ -112,5 +114,14 @@
 }
 
     
+//保存Cookie
+- (void)saveCookies
+{
+    NSData*cookiesData = [NSKeyedArchiver archivedDataWithRootObject:[[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:cookiesData forKey:@"org.skyfox.cookie"];
+    [defaults synchronize];
+}
 
 @end

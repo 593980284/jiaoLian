@@ -116,18 +116,20 @@
         LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
         [self.dataController lxReuqestFindCoachEvaluationStudentWithCourseRecordId:[NSString stringWithFormat:@"%ld",model.courseRecordId] completionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
             if (responseModel.flg == 1) {
-                if (responseModel.data) {
-                    // 1.1 有评价 ---查看评价
+                if (responseModel.data.studentScore==0 && [responseModel.data.studentEvaluationContent isEqualToString:@""]) {
+                    // 1.1 没有评价 --- 去评价
+                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
+                    courseEvaluateController.courseJudgeType = 1;
+                    courseEvaluateController.studentName = model.studentName;
+                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+                } else {
+                    // 1.2 有评价 ---查看评价
                     LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
                     courseEvaluateController.topSubjectModel = self.topSubjectModel;
                     courseEvaluateController.courseJudgeType = 2;
+                    responseModel.data.studentName = model.studentName;
                     courseEvaluateController.readCourseRecordModel = responseModel.data;
-                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
-                }else {
-                    // 1.2 没有评价 --- 去评价
-                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
-                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
-                    courseEvaluateController.courseJudgeType = 1;                    
                     [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
                 }
             }

@@ -19,4 +19,7 @@
 /// 课程评价内容
 @property (nonatomic, copy) NSString *studentEvaluationContent;
 
+/// 学员名称
+@property (nonatomic, copy) NSString *studentName;
+
 @end
