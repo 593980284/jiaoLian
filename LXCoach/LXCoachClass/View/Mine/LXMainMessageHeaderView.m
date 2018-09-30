@@ -136,7 +136,7 @@
 }
 
 - (void)assignmentMineHeaderValue:(LXMineModel *)headerModel {
-    self.credentialsNumber.text = headerModel.phone;
+    self.credentialsNumber.text = headerModel.certNo;
     self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",headerModel.coachName,headerModel.carNo];
     self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
     self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
