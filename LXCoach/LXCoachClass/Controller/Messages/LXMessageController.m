@@ -14,6 +14,7 @@
 #import "LXFfindCoachMsgSessionTask.h"
 #import "LXMineModel.h"
 #import "LXLoginController.h"
+#import "LXNavigationController.h"
 
 @interface LXMessageController ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) VTMagicController *magicController;
@@ -52,7 +53,8 @@
             // 用户未登录
             LXLoginController *loginVC = [[LXLoginController alloc]init];
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            window.rootViewController = loginVC;
+            LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:loginVC];
+            window.rootViewController = navc;
         }
     }];
 }

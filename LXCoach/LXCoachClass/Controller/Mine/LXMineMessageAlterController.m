@@ -21,6 +21,7 @@
 #import "LXAppCoachLogoutSessionTask.h"
 #import "LXMineModel.h"
 #import <QQ_XGPush/XGPush.h>
+#import "LXNavigationController.h"
 
 static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 
@@ -181,9 +182,11 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
             [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:mineModel.certNo type:XGPushTokenBindTypeAccount];
             // 移除个人信息
             [LXCacheManager removeStoreObjectForKey:@"LXMineModel"];
+            // 用户未登录
             LXLoginController *loginVC = [[LXLoginController alloc]init];
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            window.rootViewController = loginVC;
+            LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:loginVC];
+            window.rootViewController = navc;
         }
     }];
 }

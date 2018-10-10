@@ -21,6 +21,7 @@
 #import "LXAlterPromptView.h"
 #import "LXVersionUpdateModel.h"
 #import "LXLoginController.h"
+#import "LXNavigationController.h"
 
 static NSString *cell_Identify = @"LXMineCell";
 
@@ -65,7 +66,8 @@ static NSString *cell_Identify = @"LXMineCell";
             // 用户未登录
             LXLoginController *loginVC = [[LXLoginController alloc]init];
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            window.rootViewController = loginVC;
+            LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:loginVC];
+            window.rootViewController = navc;
         }
     }];
 }

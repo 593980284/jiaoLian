@@ -17,6 +17,7 @@
 #import "LXCourseListModel.h"
 #import "LXCyhCalenbardate.h"
 #import "LXLoginController.h"
+#import "LXNavigationController.h"
 
 @interface LXCourseController ()<LXCourseSubViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
@@ -88,7 +89,8 @@
             // 用户未登录
             LXLoginController *loginVC = [[LXLoginController alloc]init];
             UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-            window.rootViewController = loginVC;
+            LXNavigationController *navc = [[LXNavigationController alloc] initWithRootViewController:loginVC];
+            window.rootViewController = navc;
         }
     }];
     
