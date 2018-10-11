@@ -42,10 +42,16 @@
  */
 - (void)lx_alterMineMessage:(NSString *)introMessage {
     [self.saveIntoDataController lxReuqestSaveUserInfoWithCertNo:self.mineModel.certNo present:introMessage completionBlock:^(LXSaveUserInfoResponseObject *responseModel) {
-        [self.view makeToast:responseModel.msg];
-        self.mineModel.present = introMessage;
-        // 保存更新后的model
-        [LXCacheManager storeObject:self.mineModel forKey:@"LXMineModel"];
+        if (responseModel.flg == 1) {
+            [self.view makeToast:responseModel.msg];
+            self.mineModel.present = introMessage;
+            // 保存更新后的model
+            [LXCacheManager storeObject:self.mineModel forKey:@"LXMineModel"];
+            [self performSelector:@selector(lx_enterClickButton) withObject:nil afterDelay:1.0];
+        }else {
+            [self.view makeToast:responseModel.msg];
+        }
+        
     }];
 }
 

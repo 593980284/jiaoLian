@@ -122,7 +122,12 @@
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
     self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",self.courseStudentModel.subjectName, (long)self.courseStudentModel.hours];
-    self.studentScoreLabel.text = self.courseStudentModel.studentScore;
+    if (self.courseStudentModel.studentScore.length == 0) {
+        self.studentScoreLabel.text = @"0分";
+    }else {
+        self.studentScoreLabel.text = [NSString stringWithFormat:@"%@分",self.courseStudentModel.studentScore];
+    }
+    
     // 根据status来判断显示的按钮
     if (courseStudentModel.status == 0) {
         // 已预约（显示状态）

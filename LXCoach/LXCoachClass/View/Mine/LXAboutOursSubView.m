@@ -65,7 +65,6 @@
 - (UITextView *)textView {
     if (!_textView) {
         _textView = [[UITextView alloc] init];
-        _textView.font = [UIFont systemFontOfSize:14];
         _textView.textColor = [UIColor colorWithHexString:@"#000000"];
         _textView.editable = NO;
         NSString *labelText = @"    乐享学驾app是中寰卫星导航通信有限公司联合运管、南京各大驾校联合打造南京驾培行业服务品牌，进一步促进市场的公平公正、管理服务高效便捷，满足人民群众对培训质量、学驾体验度日益增强的美好学驾需求。\n    本App运行过程中，可能产生移动通信费用，费用由通信运营商收取。";
@@ -75,6 +74,7 @@
         paragraphStyle.alignment = NSTextAlignmentLeft;
         [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
         _textView.attributedText = attributedString;
+        _textView.font = [UIFont systemFontOfSize:14];
         [_textView sizeToFit];
     }
     return _textView;

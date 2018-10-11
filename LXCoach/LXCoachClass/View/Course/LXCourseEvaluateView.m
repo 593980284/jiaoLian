@@ -65,7 +65,7 @@
     
     x = CGRectGetMaxX(self.nameLabel.frame)+15;
     y = CGRectGetMaxY(self.studentCourceLabel.frame)+24;
-    w = 20*kAutoSizeScaleX * 5 + 4 * 5;
+    w = 20*kAutoSizeScaleX * 5 + 4 * 2;
     h = 20*kAutoSizeScaleX;
     self.startFatherView.frame = CGRectMake(x, y, w, h);
     
@@ -93,7 +93,7 @@
     [self addSubview:self.nameLabel];
     [self addSubview:self.startFatherView];
     [self.startArr enumerateObjectsUsingBlock:^(UIButton  *startImageObj, NSUInteger idx, BOOL * _Nonnull stop) {
-        startImageObj.frame = CGRectMake((20*kAutoSizeScaleX+5) * idx , 0, 20*kAutoSizeScaleX, 20*kAutoSizeScaleX);
+        startImageObj.frame = CGRectMake((20*kAutoSizeScaleX+2) * idx , 0, 20*kAutoSizeScaleX, 20*kAutoSizeScaleX);
     }];
     [self addSubview:self.assessTextView];
     [self.assessTextView addSubview:self.placeholderLabel];
@@ -148,7 +148,7 @@
                 [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
             }else {
                 // 提交评价
-                [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+                [self.nextStepButton setTitle:@"确认" forState:UIControlStateNormal];
             }
             // 1. 存储已经评价的值
             LXCourseToStudentModel *model = self.courseListDetaileArr[_recordCurrentIndex-1];
@@ -219,7 +219,7 @@
     self.nameLabel.text = model.studentName;
     _recordCurrentIndex = 1;
     if (self.courseListDetaileArr.count == 1) {
-        [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+        [self.nextStepButton setTitle:@"确认" forState:UIControlStateNormal];
     }else {
         [_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
     }
@@ -235,7 +235,7 @@
         // 评价
         self.nextStepButton.hidden = NO;
         self.assessTextView.editable = YES;
-        [self.nextStepButton setTitle:@"提交评价" forState:UIControlStateNormal];
+        [self.nextStepButton setTitle:@"确认" forState:UIControlStateNormal];
         for (NSInteger i = 10; i < 15; i++) {
             UIButton *startBtn = [self viewWithTag:i];
             startBtn.userInteractionEnabled = YES;

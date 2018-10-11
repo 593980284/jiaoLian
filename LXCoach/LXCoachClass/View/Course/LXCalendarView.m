@@ -109,10 +109,6 @@
     [self.collectionView reloadData];
     LXCourseFindDateListModel *model = [self.dataArr firstObject];
     self.currentOptionDate.text = model.yearAndMonth;
-    
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//    });
 }
 
 #pragma mark - getter

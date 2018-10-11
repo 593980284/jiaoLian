@@ -39,13 +39,13 @@
     self.iconImageView.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.iconImageView.frame) + 16;
-    y = 28;
+    y = 26;
     w = self.contentView.width - (15 + 66 + 16 + 40);
-    h = 32;
+    h = 34;
     self.titleNameLabel.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.iconImageView.frame) + 16;
-    y = CGRectGetMaxY(self.titleNameLabel.frame) + 11;
+    y = CGRectGetMaxY(self.titleNameLabel.frame) + 10;
     w = self.contentView.width - (15 + 66 + 16 + 40);
     h = 13;
     self.subjectTimeLabel.frame = CGRectMake(x, y, w, h);
@@ -76,10 +76,10 @@
 - (UILabel *)titleNameLabel {
     if (!_titleNameLabel) {
         _titleNameLabel = [[UILabel alloc] init];
-        _titleNameLabel.font = [UIFont systemFontOfSize:16];
+        _titleNameLabel.font = [UIFont systemFontOfSize:14];
         _titleNameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
         _titleNameLabel.textAlignment = NSTextAlignmentLeft;
-        _titleNameLabel.numberOfLines = 0;
+        _titleNameLabel.numberOfLines = 2;
     }
     return _titleNameLabel;
 }

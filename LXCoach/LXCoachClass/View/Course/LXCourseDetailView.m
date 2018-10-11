@@ -122,6 +122,7 @@
                     courseEvaluateController.topSubjectModel = self.topSubjectModel;
                     courseEvaluateController.courseJudgeType = 1;
                     courseEvaluateController.studentName = model.studentName;
+                    courseEvaluateController.courseRecordId = model.courseRecordId;
                     [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
                 } else {
                     // 1.2 有评价 ---查看评价

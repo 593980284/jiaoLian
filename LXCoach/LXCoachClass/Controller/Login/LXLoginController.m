@@ -70,12 +70,13 @@
 - (void)lx_clickLoginButton:(NSString *)acount andPasswordOrTestCode:(NSString *)code {
     [self.loginDataController lxReuqestLoginWithCertNo:acount password:code completionBlock:^(LXLoginResponseObject *responseModel) {
         if (responseModel.flg==1) {
+            [self.view makeToast:responseModel.msg];
             // 绑定推送帐号
             [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:responseModel.data.certNo type:XGPushTokenBindTypeAccount];
             // 存储用户数据
             [LXCacheManager storeObject:responseModel.data forKey:@"LXMineModel"];
-            [self popContoller];
-        } else {
+            [self  performSelector:@selector(popContoller) withObject:nil afterDelay:1.0f];
+        }else {
             [self.view makeToast:responseModel.msg];
         }
     }];

@@ -83,7 +83,7 @@
 #pragma mark - publicMethod
 - (void)configStudentListModel:(LXMyStudentListModel *)model {    
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     self.nameLabel.text = model.studentName;
     self.subjectNumber.text = model.subjectName;
     self.iphoneNumber.text = model.mobile;

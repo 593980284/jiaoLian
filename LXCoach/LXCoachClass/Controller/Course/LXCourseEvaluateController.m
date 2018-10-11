@@ -30,9 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.fd_interactivePopDisabled = YES;
     [self createUI];
 }
-
 - (void)viewSafeAreaInsetsDidChange {
     [super viewSafeAreaInsetsDidChange];
 }
