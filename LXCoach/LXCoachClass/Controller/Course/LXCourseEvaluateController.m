@@ -90,7 +90,8 @@
     }
     [self.dataController lxReuqestMyCoachEvaluationStudentsWithCourseRecordIds:courseRecordIdsString andStudentScores:studentScoresString andStudentEvaluationContents:studentEvaluationContentsString completionBlock:^(LXMyCoachEvaluationStudentsResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.view makeToast:responseModel.msg];
+            [self performSelector:@selector(lx_enterClickButton) withObject:nil afterDelay:1.0];
         }else {
             [self.view makeToast:responseModel.msg];
         }
@@ -106,7 +107,8 @@
 - (void)lx_singleCourseRecordSubmitStudentScore:(NSInteger)studentScore andStudentEvaluationContent:(NSString *)studentEvaluationContent {
     [self.dataController lxReuqestCoachEvaluationStudentWithCourseRecordId:[NSNumber numberWithInteger:self.courseRecordId] andStudentScore:[NSNumber numberWithInteger:studentScore] andStudentEvaluationContent:studentEvaluationContent completionBlock:^(LXCoachEvaluationStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.view makeToast:responseModel.msg];
+            [self performSelector:@selector(lx_enterClickButton) withObject:nil afterDelay:1.0];
         }else {
             [self.view makeToast:responseModel.msg];
         }
