@@ -54,6 +54,8 @@
     self.dateLabel.text = model.oneDate;
     if (model.has == 1) {
         self.reservationView.hidden = NO;
+    }else {
+        self.reservationView.hidden = YES;
     }
 }
 

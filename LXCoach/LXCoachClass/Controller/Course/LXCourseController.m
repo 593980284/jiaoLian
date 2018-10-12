@@ -35,8 +35,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self requestFindMyCouseDateList];
     [self createUI];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestFindMyCouseDateList];
 }
 
 - (void)viewSafeAreaInsetsDidChange {
@@ -85,6 +88,7 @@
             
             LXCourseFindDateListModel * model = [self.dateSourceArr firstObject];
             [self requestToDateFindCouseListCerNo:self.mineModel.certNo andDate:model.date];
+            
         }else if (responseModel.flg == -2) {
             // 用户未登录
             LXLoginController *loginVC = [[LXLoginController alloc]init];

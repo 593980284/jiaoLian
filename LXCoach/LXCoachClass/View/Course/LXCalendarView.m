@@ -24,6 +24,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
+        self.dataArr = [[NSMutableArray alloc] init];
         [self addSubview:self.currentOptionDate];
         [self addSubview:self.collectionView];
     }
@@ -60,6 +61,9 @@
         cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
         cell.dateLabel.textColor = [UIColor whiteColor];
         tendCell = cell;
+    }else {
+        cell.dateLabel.backgroundColor = [UIColor whiteColor];
+        cell.dateLabel.textColor = [UIColor colorWithHexString:@"666666"];
     }
     return cell;
 }

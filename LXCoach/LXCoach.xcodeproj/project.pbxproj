@@ -72,6 +72,7 @@
 		32C65C42214233CC00B9CD1B /* LXCourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C65C41214233CC00B9CD1B /* LXCourseListCell.m */; };
 		32F9028C213F940900BF94E4 /* LXChangeOrFindPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F9028B213F940900BF94E4 /* LXChangeOrFindPasswordView.m */; };
 		32F90292213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */; };
+		489625272170900E00B25D13 /* NSObject+LXTimeExchangeDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 489625262170900E00B25D13 /* NSObject+LXTimeExchangeDate.m */; };
 		6A16202821477E4B00438E14 /* UIButton+LXCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */; };
 		6A16202D21479FDE00438E14 /* LXCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A16202C21479FDE00438E14 /* LXCacheManager.m */; };
 		6A1620312147A76200438E14 /* LXCyhCalenbardate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1620302147A76200438E14 /* LXCyhCalenbardate.m */; };
@@ -268,6 +269,8 @@
 		32F90290213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAlterOrFindStepTwoPasswordView.h; sourceTree = "<group>"; };
 		32F90291213FE95F00BF94E4 /* LXAlterOrFindStepTwoPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAlterOrFindStepTwoPasswordView.m; sourceTree = "<group>"; };
 		48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXCoach.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		489625252170900E00B25D13 /* NSObject+LXTimeExchangeDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXTimeExchangeDate.h"; sourceTree = "<group>"; };
+		489625262170900E00B25D13 /* NSObject+LXTimeExchangeDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LXTimeExchangeDate.m"; sourceTree = "<group>"; };
 		6A16202621477E4B00438E14 /* UIButton+LXCountDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LXCountDown.h"; sourceTree = "<group>"; };
 		6A16202721477E4B00438E14 /* UIButton+LXCountDown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LXCountDown.m"; sourceTree = "<group>"; };
 		6A16202B21479FDE00438E14 /* LXCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCacheManager.h; sourceTree = "<group>"; };
@@ -698,6 +701,7 @@
 		2FB7E321213BD1DD00583B5C /* Categary */ = {
 			isa = PBXGroup;
 			children = (
+				4896251E21708E9300B25D13 /* LXDate */,
 				6A5B4A012148EAB700206DF3 /* LXString */,
 				6A5B49F92148BE8300206DF3 /* LXImage */,
 				6A16202521477E1F00438E14 /* LXButton */,
@@ -849,6 +853,15 @@
 				324C4E9F21410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4896251E21708E9300B25D13 /* LXDate */ = {
+			isa = PBXGroup;
+			children = (
+				489625252170900E00B25D13 /* NSObject+LXTimeExchangeDate.h */,
+				489625262170900E00B25D13 /* NSObject+LXTimeExchangeDate.m */,
+			);
+			path = LXDate;
 			sourceTree = "<group>";
 		};
 		6A16202521477E1F00438E14 /* LXButton */ = {
@@ -1206,6 +1219,7 @@
 				324C4EA721410AB70067F95F /* LXChangeOrFindPasswordController.m in Sources */,
 				324C4EC52141646E0067F95F /* LXIntroMineSubView.m in Sources */,
 				2F4CE83C2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m in Sources */,
+				489625272170900E00B25D13 /* NSObject+LXTimeExchangeDate.m in Sources */,
 				2F4CE88621441CB100275F69 /* LXCourseDetailController.m in Sources */,
 				2F4CE86E2143E9CF00275F69 /* LXUserInfoDataController.m in Sources */,
 				324C4E9A21410A1E0067F95F /* LXMessageController.m in Sources */,

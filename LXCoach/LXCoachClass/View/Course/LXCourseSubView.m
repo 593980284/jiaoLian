@@ -85,7 +85,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
 }
-#pragma mark - setter
+#pragma mark - setter 
 - (void)setDateArr:(NSArray<LXCourseFindDateListModel *> *)dateArr {
     _dateArr = dateArr;
     self.topDateView.dataArr = [[NSMutableArray alloc] initWithArray:self.dateArr];

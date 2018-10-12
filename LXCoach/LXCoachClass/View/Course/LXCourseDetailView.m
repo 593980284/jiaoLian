@@ -18,6 +18,7 @@
 #import "LXCourseDataController.h"
 #import "LXFindCoachEvaluationStudentSessionTask.h"
 #import "LXSearchCourseRecordJudgeModel.h"
+#import "NSObject+LXTimeExchangeDate.h"
 
 @interface LXCourseDetailView()<UITableViewDelegate,UITableViewDataSource>
 
@@ -61,12 +62,26 @@
 /// 课程评价
 - (void)judgeButtonAction:(UIButton *)button {
     if (self.isEvaluate == 0) {
-        // 去评价        
-        LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
-        courseEvaluateController.studentListArr = self.courseDetailArr;
-        courseEvaluateController.topSubjectModel = self.topSubjectModel;
-        courseEvaluateController.isEvaluate = self.isEvaluate;
-        [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+        NSString * periodTime =  self.topSubjectModel.periodTime;
+        NSArray *timeArray = [periodTime componentsSeparatedByString:@" "];
+        NSArray *ourArray = [[timeArray lastObject] componentsSeparatedByString:@"-"];
+        NSString *lastTimeString = [NSString stringWithFormat:@"%@ %@:00",[timeArray firstObject],[ourArray lastObject]];
+        // 后台返回时间段 - 时间戳
+        NSInteger backTimeSp = [NSObject exchangeTimeSwitchTimeStamp:@"YYYY-MM-dd hh:mm:ss" andFormatter:lastTimeString];
+        // 当前时间戳 1539342000
+        NSInteger currentTimeSp = [NSObject currentTimeStamp]; //1539332876
+        if (backTimeSp >= currentTimeSp) {
+            [self makeToast:@"请在课程结束后评价"];
+        }else {
+            // 去评价
+            LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+            courseEvaluateController.studentListArr = self.courseDetailArr;
+            courseEvaluateController.topSubjectModel = self.topSubjectModel;
+            courseEvaluateController.isEvaluate = self.isEvaluate;
+            [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+        }
+        
+        
     }
 }
 #pragma mark - delegate
