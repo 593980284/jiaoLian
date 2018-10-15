@@ -159,21 +159,21 @@
             }else {
                 [self.studentEvaluationContentsArr addObject:@""];
             }
-            // 2.让界面的值刷新
-            model = self.courseListDetaileArr[_recordCurrentIndex];
-            self.nameLabel.text = model.studentName;
-            [self startClearInitial];
-            self.assessTextView.text = nil;
-            self.placeholderLabel.text = @"请输入学员的课程评价";
-            // 3. 累计+1
-            _recordCurrentIndex += 1;
-            
-            // 4. 判断是否是最后一个学员
+            // 2.1 判断是否是最后一个学员
             if (_recordCurrentIndex == self.courseListDetaileArr.count) {
                 if ([self.delegate respondsToSelector:@selector(lx_courseAssessSubmitCourseRecordIds:andStudentScores:andStudentEvaluationContents:)]) {
                     [self.delegate lx_courseAssessSubmitCourseRecordIds:self.courseRecordIdsArr andStudentScores:self.studentScoresArr andStudentEvaluationContents:self.studentEvaluationContentsArr];
                 }
+            }else {
+                // 2.2 让界面的值刷新
+                model = self.courseListDetaileArr[_recordCurrentIndex];
+                self.nameLabel.text = model.studentName;
+                [self startClearInitial];
+                self.assessTextView.text = nil;
+                self.placeholderLabel.text = @"请输入学员的课程评价";
             }
+            // 3. 累计+1
+            _recordCurrentIndex += 1;
         }
     }
 }

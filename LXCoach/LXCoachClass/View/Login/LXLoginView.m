@@ -336,7 +336,8 @@
         _accountTextField.textColor = [UIColor colorWithHexString:@"#999999"];
         _accountTextField.placeholder = @"请输入您的身份证或教练证";
         _accountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _accountTextField.text = @"371501197308219544";
+//        _accountTextField.text = @"371501197308219544";
+        _accountTextField.text = @"152321198003162427";
     }
     return _accountTextField;
 }
@@ -369,7 +370,8 @@
         _passwordTextField.placeholder = @"请输入密码";
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _passwordTextField.text = @"123456r"; //219544r
+//        _passwordTextField.text = @"123456r"; //219544r
+        _passwordTextField.text = @"162427";
     }
     return _passwordTextField;
 }
