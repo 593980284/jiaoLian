@@ -17,5 +17,5 @@
 #import "UIView+LXToast.h"
 #import "LXCacheManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "Masonry.h"
 #endif /* LX_Prfix_pch */

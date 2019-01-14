@@ -16,4 +16,5 @@ target 'LXCoach' do
   pod 'SDWebImage', '~> 4.3.3'
   pod 'SDWebImage/GIF', '~> 4.3.3'
   pod 'QQ_XGPush'
+  pod 'Masonry'
 end

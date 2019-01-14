@@ -7,7 +7,7 @@
 //
 
 #import "LXLoginView.h"
-
+#import "LX_ImageText_View.h"
 @interface LXLoginView()
 /// icon
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -51,123 +51,19 @@
     if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
         [self subView];
+        LX_ImageText_View *acout = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"sss"];
+        [self addSubview:acout];
+        [acout mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.passwordTextField.mas_bottom).offset(130);
+            make.left.equalTo(self).offset(30);
+            make.right.equalTo(self).offset(-30);
+            make.height.mas_equalTo(68);
+        }];
     }
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = (self.width - (96*kAutoSizeScaleX))/2;
-    CGFloat y = 96.5*kAutoSizeScaleX;
-    CGFloat w = 96*kAutoSizeScaleX;
-    CGFloat h = 93.5*kAutoSizeScaleX;
-    self.iconImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMinX(_iconImageView.frame);
-    y = CGRectGetMaxY(_iconImageView.frame)+23;
-    w = CGRectGetWidth(_iconImageView.frame);
-    h = 50;
-    self.lxName.frame = CGRectMake(x, y, w, h);
-    self.lxName.centerX = self.width / 2;
-    
-    /*
-    x = 0;
-    y = CGRectGetMaxY(self.lxName.frame)+29.5;
-    w = self.width/2;
-    h = 15;
-    self.acountLoginBtn.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.acountLoginBtn.frame);
-    y = CGRectGetMaxY(self.lxName.frame)+29.5;
-    w = self.width/2;
-    h = 15;
-    self.speedyLoginBtn.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.acountLoginBtn.frame);
-    y = CGRectGetMaxY(self.lxName.frame)+29;
-    w = .5;
-    h = 15.5;
-    self.middleBreakView.frame = CGRectMake(x, y, w, h);
-    
-    x = 30;
-    y = CGRectGetMaxY(self.acountLoginBtn.frame)+13;
-    w = self.width-(30+40);
-    h = .5;
-    self.loginWayLine.frame = CGRectMake(x, y, w, h);
-    
-    x = 0;
-    y = CGRectGetMaxY(self.acountLoginBtn.frame)+13;
-    w = 50;
-    h = 1.5;
-    self.selectView.frame = CGRectMake(x, y, w, h);
-    self.selectView.centerX = self.acountLoginBtn.centerX;
-    */
-    
-    x = 30;
-    y = CGRectGetMaxY(self.lxName.frame)+40;
-    w = 18*kAutoSizeScaleX;
-    h = 25*kAutoSizeScaleX;
-    self.accountIconImage.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.accountIconImage.frame)+15;
-    y = CGRectGetMaxY(self.accountIconImage.frame) + 4;
-    w = self.width - (40+63);
-    h = .5;
-    self.accountBottomLine.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.accountIconImage.frame)+15;
-    y = CGRectGetMaxY(self.lxName.frame) + 44;
-    w = self.width - (40+63);
-    h = 16;
-    self.accountTextField.frame = CGRectMake(x, y, w, h);
-    
-    x = 30;
-    y = CGRectGetMaxY(self.accountBottomLine.frame)+46;
-    w = 19*kAutoSizeScaleX;
-    h = 24*kAutoSizeScaleX;
-    self.passwordIconImage.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.passwordIconImage.frame) + 14;
-    y = CGRectGetMaxY(self.passwordIconImage.frame) + 4;
-    w = self.width - (40+63);
-    h = .5;
-    self.passwordBottomLine.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.passwordIconImage.frame) + 14;
-    y = CGRectGetMaxY(self.accountBottomLine.frame)+ 50;
-    w = self.width - (40+63);
-    h = 16;
-    self.passwordTextField.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.passwordBottomLine.frame) - 75;
-    y = CGRectGetMaxY(self.accountBottomLine.frame) + 51;
-    w = 75;
-    h = 13;
-    self.obtainTextCode.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.passwordBottomLine.frame) - 60;
-    y = CGRectGetMaxY(self.passwordBottomLine.frame) + 15;
-    w = 60;
-    h = 14;
-    self.forgetButton.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.forgetButton.frame) + 17;
-    w = self.width - 30;
-    h = 45;
-    self.loginButton.frame = CGRectMake(x, y, w, h);
-    
-//    if (_type == 1) {
-//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
-//        self.selectView.centerX = self.acountLoginBtn.centerX;
-//    }else if (_type == 2) {
-//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63+75+15), 16);
-//        self.selectView.centerX = self.speedyLoginBtn.centerX;
-//    }else {
-//        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
-//        self.selectView.centerX = self.acountLoginBtn.centerX;
-//    }
-}
+
 
 - (void)subView {
     [self addSubview:self.iconImageView];
@@ -189,45 +85,8 @@
 }
 
 #pragma mark - publicMethod
-/*
-- (void)alterViewStyle:(NSInteger)type {
-    _type = type;
-    if (type == 1) {
-        // 账号密码登录
-        [self.acountLoginBtn setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
-        [self.speedyLoginBtn setTitleColor:[UIColor colorWithHexString:@"#999999"] forState:UIControlStateNormal];
-        self.forgetButton.hidden = NO;
-        self.obtainTextCode.hidden = YES;
-        self.accountTextField.placeholder = @"请输入您的身份证或教练证";
-        self.passwordTextField.placeholder = @"请输入密码";
-        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63), 16);
-    }
-    if (type == 2) {
-        // 手机快捷登录
-        [self.acountLoginBtn setTitleColor:[UIColor colorWithHexString:@"#999999"] forState:UIControlStateNormal];
-        [self.speedyLoginBtn setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateNormal];
-        self.obtainTextCode.hidden = NO;
-        self.forgetButton.hidden = YES;
-        self.accountTextField.placeholder = @"请输入手机号";
-        self.passwordTextField.placeholder = @"请输入验证码";
-        self.passwordTextField.frame = CGRectMake(CGRectGetMaxX(self.passwordIconImage.frame) + 14, CGRectGetMaxY(self.accountBottomLine.frame)+ 50, self.width - (40+63+75+15), 16);
-    }
-}
-*/
-#pragma mark - Event
-// 账号密码登录
-//- (void)acountLoginBtnAction {
-//    if ([self.delegate respondsToSelector:@selector(lx_clickAcountPasswordLoginButton)]) {
-//        [self.delegate lx_clickAcountPasswordLoginButton];
-//    }
-//}
 
-// 快捷登录
-//- (void)speedyLoginBtnAction {
-//    if ([self.delegate respondsToSelector:@selector(lx_clickAoucntSpeedyLoginButton)]) {
-//        [self.delegate lx_clickAoucntSpeedyLoginButton];
-//    }
-//}
+#pragma mark - Event
 
 // 忘记密码
 - (void)forgetButtonAction {
@@ -246,13 +105,6 @@
         [self.delegate lx_clickLoginButton:self.accountTextField.text andPasswordOrTestCode:self.passwordTextField.text];
     }
 }
-
-// 获取验证码
-//- (void)obtainTextCodeAction:(UIButton *)obtainTextCode {
-//    if ([self.delegate respondsToSelector:@selector(lx_obtainCodeTextCode:)]) {
-//        [self.delegate lx_obtainCodeTextCode:obtainTextCode];
-//    }
-//}
 
 #pragma mark - getter
 - (UIImageView *)iconImageView {

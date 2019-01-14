@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */; };
+		25F3FF4D21E9D22500099AA3 /* LX_ImageText_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */; };
 		2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */; };
 		2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */; };
 		2F4CE8332143CE2A00275F69 /* LXCodeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */; };
@@ -137,6 +138,8 @@
 
 /* Begin PBXFileReference section */
 		1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXCoach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXCoach/Pods-LXCoach.debug.xcconfig"; sourceTree = "<group>"; };
+		25F3FF4B21E9D22500099AA3 /* LX_ImageText_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX_ImageText_View.h; sourceTree = "<group>"; };
+		25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX_ImageText_View.m; sourceTree = "<group>"; };
 		2F4CE8252143C4A200275F69 /* LXNetWorkResponseBaseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkResponseBaseObject.h; sourceTree = "<group>"; };
 		2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkResponseBaseObject.m; sourceTree = "<group>"; };
 		2F4CE82E2143CD8C00275F69 /* LXCodeUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCodeUrlSessionTask.h; sourceTree = "<group>"; };
@@ -420,6 +423,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		25F3FF4721E9CC1000099AA3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				25F3FF4B21E9D22500099AA3 /* LX_ImageText_View.h */,
+				25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		2F4CE8612143DFD600275F69 /* LXToast */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +542,7 @@
 		2FB7E2E0213BBEC300583B5C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25F3FF4721E9CC1000099AA3 /* Common */,
 				6AD7D82F2143F63A000FB4EF /* Course */,
 				6AD7D8322143F63A000FB4EF /* Messages */,
 				6AD7D8352143F63A000FB4EF /* Student */,
@@ -1135,6 +1148,7 @@
 				32F9028C213F940900BF94E4 /* LXChangeOrFindPasswordView.m in Sources */,
 				6AD7D82B2143F57A000FB4EF /* LXMessgaeListController.m in Sources */,
 				6A223A89214A57A000E20FD0 /* LXFindSingleCoachMsgModel.m in Sources */,
+				25F3FF4D21E9D22500099AA3 /* LX_ImageText_View.m in Sources */,
 				2F4CE88321440FF100275F69 /* LXCourseListModel.m in Sources */,
 				6A223A82214A54B300E20FD0 /* LXFindSingleCoachMsgSessionTask.m in Sources */,
 				6A5B4A072148F9BF00206DF3 /* LXAlterPromptView.m in Sources */,

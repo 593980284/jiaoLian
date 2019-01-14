@@ -47,6 +47,4 @@
 
 @property (nonatomic, assign) id <LXLoginViewDelegete> delegate;
 
-- (void)alterViewStyle:(NSInteger)type;
-
 @end
