@@ -19,7 +19,7 @@
 #import "LXCourseDetailController.h"
 #import "LXNavigationManager.h"
 #import "LXMessgeDetaileController.h"
-
+#import "IQKeyboardManager.h"
 @interface AppDelegate ()<XGPushDelegate>
 
 @end
@@ -31,6 +31,11 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
+    //
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.enableAutoToolbar = NO;
+    manager.shouldResignOnTouchOutside = YES;
     // 程序启动的时候把保存的cookie替换掉
     [self loadCookies];
     // debug

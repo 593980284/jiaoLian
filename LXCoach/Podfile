@@ -17,4 +17,5 @@ target 'LXCoach' do
   pod 'SDWebImage/GIF', '~> 4.3.3'
   pod 'QQ_XGPush'
   pod 'Masonry'
+  pod 'IQKeyboardManager'
 end

@@ -10,15 +10,6 @@
 
 @protocol LXLoginViewDelegete  <NSObject>
 @optional
-/**
- 点击账号密码登录
- */
-- (void)lx_clickAcountPasswordLoginButton;
-
-/**
- 点击快捷登录
- */
-- (void)lx_clickAoucntSpeedyLoginButton;
 
 /**
  点击登录按钮
@@ -32,14 +23,6 @@
  点击忘记密码按钮
  */
 - (void)lx_clickForgetPasswordButton;
-
-/**
- 获取验证码
-
- @param codeButton button
- */
-- (void)lx_obtainCodeTextCode:(UIButton *)codeButton;
-
 
 @end
 

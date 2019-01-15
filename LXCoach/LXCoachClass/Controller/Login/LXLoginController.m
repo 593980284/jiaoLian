@@ -45,21 +45,6 @@
     
 }
 #pragma mark - LXLoginViewDelegete
-/**
- 点击账号密码登录
- */
-//- (void)lx_clickAcountPasswordLoginButton{
-//    [self.view endEditing:YES];
-//    [self.subView alterViewStyle:1];
-//}
-
-/**
- 点击快捷登录
- */
-//- (void)lx_clickAoucntSpeedyLoginButton{
-//    [self.view endEditing:YES];
-//    [self.subView alterViewStyle:2];
-//}
 
 /**
  点击登录按钮
@@ -90,17 +75,6 @@
     findPasswordVC.type = 1;
     [[LXNavigationManager lx_currentNavigationController] pushViewController:findPasswordVC animated:YES];
 }
-
-/**
- 获取验证码
- 
- @param codeButton button
- */
-//- (void)lx_obtainCodeTextCode:(UIButton *)codeButton {
-//    [codeButton countDownWithTime:60 withTitle:@"重新获取" andCountDownTitle:@"" countDoneBlock:^(UIButton *testCode) {
-//
-//    } isInteraction:NO];
-//}
 
 #pragma mark - getter
 - (LXLoginView *)subView {
