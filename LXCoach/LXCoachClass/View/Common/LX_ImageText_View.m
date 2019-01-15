@@ -16,7 +16,7 @@
         [self addSubview:_imgView];
         
         _textField = [UITextField new];
-        _textField.font = TEXT_FONT(18);
+        _textField.font = TEXT_FONT(14);
         _textField.textColor = TEXT_COLOR_BLACK;
         _textField.placeholder = placehold;
         [self addSubview:_textField];
@@ -26,22 +26,18 @@
         [self addSubview:lineView];
         
         [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self);
-            make.left.equalTo(lineView);
+            make.centerY.left.equalTo(self);
             make.size.mas_equalTo(image.size);
         }];
         
         [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.imgView.mas_right).offset(20);
-            make.centerY.equalTo(self);
-            make.right.equalTo(lineView);
+            make.left.equalTo(self.imgView.mas_right).offset(16);
+            make.centerY.right.equalTo(self);
         }];
         
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self);
             make.height.mas_equalTo(0.5);
-            make.left.equalTo(self).offset(20);
-            make.right.equalTo(self).offset(-20);
+            make.left.right.bottom.equalTo(self);
         }];
     }
     return self;

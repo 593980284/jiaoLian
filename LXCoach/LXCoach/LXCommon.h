@@ -10,6 +10,7 @@
 #define LXCommon_h
 
 #define LXNavigationViewHeight 44
+#define LXNavigationStatusBar (LXNavigationViewHeight+CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]))
 
 #define kAutoSizeScaleX [UIScreen mainScreen].bounds.size.width/375
 #define kAutoSizeScaleY [UIScreen mainScreen].bounds.size.height/667
