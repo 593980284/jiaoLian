@@ -13,6 +13,6 @@
  */
 @interface LXChangeOrFindPasswordController : UIViewController
 
-/// 1: 找回密码； 2: 更换手机号第一步 3: 更换手机号第二步
+// 1: 找回密码第一步； 2: 更换手机号第一步 3: 更换手机号第二步
 @property (nonatomic, assign) NSInteger type;
 @end

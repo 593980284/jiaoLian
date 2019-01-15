@@ -116,20 +116,15 @@
     }
 }
 
-#pragma mark - getter
+#pragma mark - setter
 - (void)setType:(NSInteger)type {
     _type = type;
     if (self.type == 1) {
         [self.navView updateNavigationTitle:@"找回密码"];
-        self.subView.acountTextField.placeholder = @"请输入您的当前手机号";
     }else {
         [self.navView updateNavigationTitle:@"更换登录手机号"];
-        if (self.type == 2) {
-            self.subView.acountTextField.placeholder = @"请输入您的当前手机号";
-        }else if (self.type == 3) {
-            self.subView.acountTextField.placeholder = @"请输入您的新手机号";
-        }
     }
+    self.subView.type = type;
 }
 
 #pragma mark - getter

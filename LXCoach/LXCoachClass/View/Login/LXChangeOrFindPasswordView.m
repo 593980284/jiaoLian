@@ -8,10 +8,12 @@
 
 #import "LXChangeOrFindPasswordView.h"
 #import "NSString+LXTelEmailRegular.h"
+#import "LX_Step_View.h"
 
 @interface LXChangeOrFindPasswordView()
 
 @property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) LX_Step_View *step_View;
 /// 手机号
 @property (nonatomic, strong) UIImageView *acountIconImage;
 
@@ -101,6 +103,11 @@
 }
 - (void)subView {
     [self addSubview:self.bgView];
+    _step_View = [LX_Step_View new];
+    [self addSubview:_step_View];
+    [_step_View mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+    }];
     [self.bgView addSubview:self.acountIconImage];
     [self.bgView addSubview:self.acountTextField];
     [self.bgView addSubview:self.acountBottomLineView];
@@ -137,6 +144,21 @@
     }
 }
 
+#pragma mark - setter
+- (void)setType:(NSInteger)type {
+    _type = type;
+    if (self.type == 1) {
+        self.acountTextField.placeholder = @"请输入您的手机号";
+    }else {
+        if (self.type == 2) {
+            self.acountTextField.placeholder = @"请输入您当前手机号";
+        }else if (self.type == 3) {
+            self.acountTextField.placeholder = @"请输入您的新手机号";
+        }
+    }
+    _step_View.selectedIndex = 1;
+}
+
 #pragma mark - getter
 - (UIView *)bgView {
     if (!_bgView) {
@@ -148,7 +170,7 @@
 - (UIImageView *)acountIconImage {
     if (!_acountIconImage) {
         _acountIconImage = [[UIImageView alloc] init];
-        _acountIconImage.image = [UIImage imageNamed:@"lx_change_mobile"];
+        _acountIconImage.image = [UIImage imageNamed:@"lx_login_bmobile"];
     }
     return _acountIconImage;
 }
@@ -157,8 +179,6 @@
         _acountTextField = [[UITextField alloc] init];
         _acountTextField.font = [UIFont systemFontOfSize:16];
         _acountTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
-        _acountTextField.placeholder = @"请输入您的当前手机号";
-//        _acountTextField.text = @"18004710471";
         _acountTextField.keyboardType = UIKeyboardTypePhonePad;
         _acountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
@@ -185,7 +205,7 @@
         _testCodeTextField = [[UITextField alloc] init];
         _testCodeTextField.font = [UIFont systemFontOfSize:16];
         _testCodeTextField.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
-        _testCodeTextField.placeholder = @"请输入您的验证码";
+        _testCodeTextField.placeholder = @"请输入短信验证码";
         _testCodeTextField.keyboardType = UIKeyboardTypePhonePad;
         _testCodeTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _testCodeTextField.secureTextEntry = YES;
