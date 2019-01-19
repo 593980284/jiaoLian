@@ -118,18 +118,18 @@
 - (LXMainMessageHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[LXMainMessageHeaderView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, kScreenWidth, 168*kAutoSizeScaleX+90);
+        _headerView.frame = CGRectMake(0, 0, kScreenWidth, LXNavigationStatusBar + (133+ 65) *kAutoSizeScaleX);
     }
     return _headerView;
 }
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = self.headerView;
         _tableView.tableFooterView = [UIView new];
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;

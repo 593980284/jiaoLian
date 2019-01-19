@@ -14,9 +14,7 @@
 /// 背景图
 @property (nonatomic, strong) UIImageView *bgImageView;
 @property (nonatomic, strong) UIImageView *headerImageView;
-/// 证件号
-@property (nonatomic, strong) UILabel *credentialsNumber;
-/// 姓名+车牌号
+/// 车牌号
 @property (nonatomic, strong) UILabel *nameLicenseNumber;
 /// 教龄
 @property (nonatomic, strong) UILabel *topSchoolAge;
@@ -42,104 +40,91 @@
     }
     return self;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 0;
-    CGFloat y = 0;
-    CGFloat w = self.width;
-    CGFloat h = 168 * kAutoSizeScaleX;
-    self.bgImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = 54;
-    w = 60*kAutoSizeScaleX;
-    h = 60*kAutoSizeScaleX;
-    self.headerImageView.frame = CGRectMake(x, y, w, h);
-    self.headerImageView.centerY = self.bgImageView.centerY;
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 10;
-    y = 69*kAutoSizeScaleX;
-    w = self.width - (60*kAutoSizeScaleX+10+15+15);
-    h = 12;
-    self.credentialsNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 11;
-    y = CGRectGetMaxY(self.credentialsNumber.frame) + 11;
-    w = self.width - (60*kAutoSizeScaleX+11+15+15);
-    h = 13;
-    self.nameLicenseNumber.frame = CGRectMake(x, y, w, h);
-    
-    CGFloat averageWidth = self.width / 3.0;
-    x = 0;
-    y = CGRectGetMaxY(self.bgImageView.frame)+25;
-    w = averageWidth;
-    h = 17;
-    self.topSchoolAge.frame = CGRectMake(x, y, w, h);
-    
-    x = 0;
-    y = CGRectGetMaxY(self.topSchoolAge.frame) + 14;
-    w = averageWidth;
-    h = 13;
-    self.bottomSchoolAge.frame = CGRectMake(x, y, w, h);
-    
-    x = averageWidth - .5;
-    y = CGRectGetMaxY(self.bgImageView.frame) + 15;
-    w = .5;
-    h = 60;
-    self.firstBreakLine.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.topSchoolAge.frame);
-    y = CGRectGetMaxY(self.bgImageView.frame)+25;
-    w = averageWidth;
-    h = 17;
-    self.topStudentNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.topSchoolAge.frame);
-    y = CGRectGetMaxY(self.topStudentNumber.frame) + 15;
-    w = averageWidth;
-    h = 14;
-    self.bottomStudentNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.topStudentNumber.frame)-.5;
-    y = CGRectGetMaxY(self.bgImageView.frame) + 15;
-    w = .5;
-    h = 60;
-    self.secondBreakLine.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.topStudentNumber.frame) ;
-    y = CGRectGetMaxY(self.bgImageView.frame)+25;
-    w = averageWidth;
-    h = 17;
-    self.topDrivingName.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.topStudentNumber.frame) ;
-    y = CGRectGetMaxY(self.topDrivingName.frame) + 13;
-    w = averageWidth;
-    h = 14;
-    self.bottomDrivingName.frame = CGRectMake(x, y, w, h);
-    
-    
-}
+
 - (void)subView {
     [self addSubview:self.bgImageView];
+    [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(-65*kAutoSizeScaleX);
+        make.left.right.top.equalTo(self);
+    }];
+    
     [self.bgImageView addSubview:self.headerImageView];
-    [self.bgImageView addSubview: self.credentialsNumber];
     [self.bgImageView addSubview:self.nameLicenseNumber];
-    [self addSubview:self.topSchoolAge];
-    [self addSubview:self.bottomSchoolAge];
-    [self addSubview:self.firstBreakLine];
-    [self addSubview:self.topStudentNumber];
-    [self addSubview:self.bottomStudentNumber];
-    [self addSubview:self.secondBreakLine];
-    [self addSubview:self.topDrivingName];
-    [self addSubview:self.bottomDrivingName];
+    [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(LXNavigationStatusBar);make.centerX.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(76*kAutoSizeScaleX, 76*kAutoSizeScaleX));
+    }];
+    [_nameLicenseNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.headerImageView.mas_bottom).offset(11*kAutoSizeScaleX);
+        make.left.right.equalTo(self);
+    }];
+    
+    UIView *tempView = [UIView new];
+    tempView.backgroundColor = [UIColor whiteColor];
+    tempView.layer.cornerRadius = 8.0;
+    tempView.layer.shadowColor = [UIColor blackColor].CGColor;
+    tempView.layer.shadowOffset = CGSizeMake(2, 2);
+    tempView.layer.shadowRadius = 8.0;
+    tempView.layer.shadowOpacity = 0.2;
+    [self addSubview:tempView];
+    [tempView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self);make.left.equalTo(self).offset(18);make.right.equalTo(self).offset(-18);
+        make.height.mas_equalTo(85 * kAutoSizeScaleX);
+    }];
+    [tempView addSubview:self.topSchoolAge];
+    [tempView addSubview:self.bottomSchoolAge];
+    [tempView addSubview:self.firstBreakLine];
+    [tempView addSubview:self.topStudentNumber];
+    [tempView addSubview:self.bottomStudentNumber];
+    [tempView addSubview:self.secondBreakLine];
+    [tempView addSubview:self.topDrivingName];
+    [tempView addSubview:self.bottomDrivingName];
+    
+    [_firstBreakLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(tempView.mas_right).multipliedBy(1/3.0);
+        make.centerY.equalTo(tempView);
+        make.size.mas_equalTo(CGSizeMake(0.5, 33));
+    }];
+    [_secondBreakLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(tempView.mas_right).multipliedBy(2/3.0);
+        make.centerY.equalTo(tempView);
+        make.size.mas_equalTo(CGSizeMake(0.5, 33));
+    }];
+    
+    [_topSchoolAge mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(tempView.mas_centerY).offset(-6);
+        make.left.equalTo(tempView);make.right.equalTo(self.firstBreakLine.mas_left);
+    }];
+    [_bottomSchoolAge mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(tempView.mas_centerY).offset(6);
+        make.left.right.equalTo(self.topSchoolAge);
+    }];
+    
+    [_topStudentNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.firstBreakLine.mas_right);
+        make.right.equalTo(self.secondBreakLine.mas_left);
+        make.centerY.equalTo(self.topSchoolAge);
+    }];
+    [_bottomStudentNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.topStudentNumber);
+        make.centerY.equalTo(self.bottomSchoolAge);
+    }];
+
+    [_topDrivingName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.secondBreakLine.mas_right);make.right.equalTo(tempView);
+        make.centerY.equalTo(self.topSchoolAge);
+    }];
+
+    [_bottomDrivingName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.topDrivingName);
+        make.centerY.equalTo(self.bottomSchoolAge);
+    }];
 }
 
 - (void)assignmentMineHeaderValue:(LXMineModel *)headerModel {
-    self.credentialsNumber.text = headerModel.certNo;
-    self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",headerModel.coachName,headerModel.carNo];
+    self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@",headerModel.carNo];
     self.topSchoolAge.text = [NSString stringWithFormat:@"%@年",headerModel.teachAge];
-    self.topStudentNumber.text = [NSString stringWithFormat:@"%@",headerModel.studentNum];
+    self.topStudentNumber.text = [NSString stringWithFormat:@"%@位",headerModel.studentNum];
     self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];    
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:headerModel.photo];
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
@@ -163,8 +148,7 @@
     if (!_headerImageView) {
         _headerImageView = [[UIImageView alloc] init];
         _headerImageView.userInteractionEnabled = YES;
-        _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-        _headerImageView.layer.cornerRadius = 60*kAutoSizeScaleX/2;
+        _headerImageView.layer.cornerRadius = 76*kAutoSizeScaleX/2;
         _headerImageView.clipsToBounds = YES;
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerViewTapGesture)];
@@ -172,20 +156,11 @@
     }
     return _headerImageView;
 }
-- (UILabel *)credentialsNumber {
-    if (!_credentialsNumber) {
-        _credentialsNumber = [[UILabel alloc] init];
-        _credentialsNumber.font = [UIFont systemFontOfSize:15];
-        _credentialsNumber.textColor = [UIColor whiteColor];
-        _credentialsNumber.textAlignment = NSTextAlignmentLeft;
-    }
-    return _credentialsNumber;
-}
 - (UILabel *)nameLicenseNumber {
     if (!_nameLicenseNumber) {
         _nameLicenseNumber = [[UILabel alloc] init];
-        _nameLicenseNumber.font = [UIFont systemFontOfSize:14];
-        _nameLicenseNumber.textAlignment = NSTextAlignmentLeft;
+        _nameLicenseNumber.font = [UIFont systemFontOfSize:16];
+        _nameLicenseNumber.textAlignment = NSTextAlignmentCenter;
         _nameLicenseNumber.textColor = [UIColor whiteColor];
     }
     return _nameLicenseNumber;

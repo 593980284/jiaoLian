@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LXMineCell : UITableViewCell
-
+@property (nonatomic,strong) UILabel *rightLabel;
 /**
  给每个cell赋值
 

@@ -14,7 +14,6 @@
 #import "LXMineMessageAlterController.h"
 #import "LXAboutOursViewController.h"
 #import "LXIntroMineController.h"
-#import "LXCommonNavView.h"
 #import "LXMineMainSubView.h"
 #import "LXMineCell.h"
 #import "LXMineModel.h"
@@ -27,7 +26,6 @@ static NSString *cell_Identify = @"LXMineCell";
 
 @interface LXMineController ()<LXMineMainSubViewDelegate,LXAlterPromptViewDelegate>
 
-@property (nonatomic, strong)LXCommonNavView *navView;
 @property (nonatomic, strong)LXMineMainSubView *subView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, strong) LXUserInfoDataController *infoDataController;
@@ -48,7 +46,7 @@ static NSString *cell_Identify = @"LXMineCell";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.fd_prefersNavigationBarHidden = YES;
-    [self.view addSubview:self.navView];
+//    [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
     LXMineModel *mineModel =  [LXCacheManager objectForKey:@"LXMineModel"];
     [self.subView lx_updateMineMessage:mineModel];
@@ -135,7 +133,7 @@ static NSString *cell_Identify = @"LXMineCell";
     return 55;
 }
 - (CGFloat)lx_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
+    return 8;
 }
 - (CGFloat)lx_tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.02;
@@ -196,16 +194,11 @@ static NSString *cell_Identify = @"LXMineCell";
     [self.navigationController pushViewController:mineAlterVC animated:YES];
 }
 #pragma mark - getter
-- (LXCommonNavView *)navView {
-    if (!_navView) {
-        _navView = [[LXCommonNavView alloc] initWithTitle:@"我的"];
-    }
-    return _navView;
-}
+
 - (LXMineMainSubView *)subView {
     if (!_subView) {
         _subView = [[LXMineMainSubView alloc] init];
-        _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame)-self.tabBarController.tabBar.bounds.size.height);
+        _subView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.tabBarController.tabBar.bounds.size.height);
         _subView.mainMineDelegate = self;
     }
     return _subView;

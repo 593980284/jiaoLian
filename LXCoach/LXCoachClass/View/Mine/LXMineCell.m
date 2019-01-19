@@ -26,6 +26,11 @@
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.rightArrow];
         [self.contentView addSubview: self.bottomLine];
+        [self.contentView addSubview:self.rightLabel];
+        [_rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).offset(-44);
+            make.centerY.equalTo(self.contentView);
+        }];
     }
     return self;
 }
@@ -53,14 +58,19 @@
     self.rightArrow.frame = CGRectMake(x, y, w, h);
     self.rightArrow.centerY = self.contentView.centerY;
     
-    x = 55;
+    x = 25;
     y = self.height-.5;
-    w = self.width - 55;
+    w = self.width - 25 - 18;
     h = .5;
     self.bottomLine.frame = CGRectMake(x, y, w, h);
 }
 
 - (void)mineCellValuation:(NSDictionary *)value {
+    if ([[value objectForKey:@"clickType"]integerValue] == 4 ) {
+        _rightLabel.text = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+    }else{
+        _rightLabel.text = @"";
+    }
     _iconImageView.image = [UIImage imageNamed:[value objectForKey:@"imageName"]];
     _nameLabel.text = [value objectForKey:@"textName"];
 }
@@ -77,10 +87,18 @@
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
-        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.font = [UIFont systemFontOfSize:16];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _nameLabel;
+}
+-(UILabel *)rightLabel{
+    if (!_rightLabel) {
+        _rightLabel = [UILabel new];
+        _rightLabel.textColor = TEXT_COLOR_BLACK;
+        _rightLabel.font = TEXT_FONT(15);
+    }
+    return _rightLabel;
 }
 - (UIImageView *)rightArrow {
     if (!_rightArrow) {
