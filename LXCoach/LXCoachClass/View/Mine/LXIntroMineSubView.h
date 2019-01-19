@@ -13,16 +13,16 @@
 
  @param introMessage 修改后的简介
  */
-- (void)lx_alterMineMessage:(NSString *)introMessage;
+//- (void)lx_alterMineMessage:(NSString *)introMessage;
 @end
 
 /**
  个人简介view
  */
 @interface LXIntroMineSubView : UIView
-@property (nonatomic, assign) id <LXIntroMineSubViewDelegate> delegate;
+//@property (nonatomic, assign) id <LXIntroMineSubViewDelegate> delegate;
 
 /// 个人简介描述
-@property (nonatomic, strong) UITextView *introDetaile;
+//@property (nonatomic, strong) UITextView *introDetaile;
 
 @end

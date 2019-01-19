@@ -31,23 +31,10 @@
     CGFloat w = self.width;
     CGFloat h = self.height;
     self.tableView.frame = CGRectMake(x, y, w, h);
-    
-    y = self.width;
-    h = 116;
-    self.footerView.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = 116 - 44;
-    w = self.width - 30;
-    h = 44;
-    self.quiteButton.frame = CGRectMake(x, y, w, h);
-    
 }
 
 - (void)subView {
     [self addSubview:self.tableView];
-    [self.footerView addSubview:self.quiteButton];
-    
 #ifdef __IPHONE_11_0
     if ([self.tableView respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
         if (@available(iOS 11.0, *)) {
@@ -106,12 +93,15 @@
 - (UIView *)footerView {
     if (!_footerView) {
         _footerView = [[UIView alloc] init];
+        _footerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 116);
+        [_footerView addSubview:self.quiteButton];
     }
     return _footerView;
 }
 - (UIButton *)quiteButton {
     if (!_quiteButton) {
         _quiteButton = [[UIButton alloc] init];
+        _quiteButton.frame = CGRectMake(15, 116 - 44,[UIScreen mainScreen].bounds.size.width - 30, 44);
         [_quiteButton setTitle:@"退出登录" forState:UIControlStateNormal];
         [_quiteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _quiteButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];

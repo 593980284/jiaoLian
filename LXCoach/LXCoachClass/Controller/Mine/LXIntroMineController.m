@@ -41,33 +41,35 @@
  @param introMessage 修改后的简介
  */
 - (void)lx_alterMineMessage:(NSString *)introMessage {
-    [self.saveIntoDataController lxReuqestSaveUserInfoWithCertNo:self.mineModel.certNo present:introMessage completionBlock:^(LXSaveUserInfoResponseObject *responseModel) {
-        if (responseModel.flg == 1) {
-            [self.view makeToast:responseModel.msg];
-            self.mineModel.present = introMessage;
-            // 保存更新后的model
-            [LXCacheManager storeObject:self.mineModel forKey:@"LXMineModel"];
-            [self performSelector:@selector(lx_enterClickButton) withObject:nil afterDelay:1.0];
-        }else {
-            [self.view makeToast:responseModel.msg];
-        }
-        
-    }];
+//    [self.saveIntoDataController lxReuqestSaveUserInfoWithCertNo:self.mineModel.certNo present:introMessage completionBlock:^(LXSaveUserInfoResponseObject *responseModel) {
+//        if (responseModel.flg == 1) {
+//            [self.view makeToast:responseModel.msg];
+//            self.mineModel.present = introMessage;
+//            // 保存更新后的model
+//            [LXCacheManager storeObject:self.mineModel forKey:@"LXMineModel"];
+//            [self performSelector:@selector(lx_enterClickButton) withObject:nil afterDelay:1.0];
+//        }else {
+//            [self.view makeToast:responseModel.msg];
+//        }
+//
+//    }];
 }
 
 #pragma mark - LXCommonNavViewDelegate
 
 - (void)lx_clickLeftButton {
-    if (![self.mineModel.present isEqualToString:self.subView.introDetaile.text]) {
-        // 提示简介没有保存
-        [self.view addSubview:self.alterBgView];
-        [self.alterBgView addSubview:self.alterView];
-        self.alterView.centerX = self.alterBgView.centerX;
-        self.alterView.centerY = self.alterBgView.centerY;
-        self.alterView.alterString = @"是否放弃个人简介的编辑？";
-    }else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
+
+//    if (![self.mineModel.present isEqualToString:self.subView.introDetaile.text]) {
+//        // 提示简介没有保存
+//        [self.view addSubview:self.alterBgView];
+//        [self.alterBgView addSubview:self.alterView];
+//        self.alterView.centerX = self.alterBgView.centerX;
+//        self.alterView.centerY = self.alterBgView.centerY;
+//        self.alterView.alterString = @"是否放弃个人简介的编辑？";
+//    }else {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 
 #pragma mark - LXAlterPromptViewDelegate
@@ -83,7 +85,7 @@
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {
-        _navView = [[LXCommonNavView alloc] initWithTitle:@"个人简介"];
+        _navView = [[LXCommonNavView alloc] initWithTitle:@"教练信息"];
         _navView.delegate = self;
         _navView.leftButtonImage = [UIImage imageNamed:@"lx_nav_back"];
     }
@@ -93,7 +95,7 @@
     if (!_subView) {
         _subView = [[LXIntroMineSubView alloc] init];
         _subView.frame = CGRectMake(0, CGRectGetMaxY(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame));
-        _subView.delegate = self;
+//        _subView.delegate = self;
     }
     return _subView;
 }

@@ -18,13 +18,20 @@
 @property (nonatomic, copy)   NSString *certNo;
 /// 教龄
 @property (nonatomic, copy)   NSString *teachAge;
+//科目一/安全
+@property (nonatomic, copy)   NSString *teachType;
 /// 当前学员数
 @property (nonatomic, copy)   NSString *studentNum;
 /// 头像地址
 @property (nonatomic, copy)   NSString *photo;
 /// 返回头像地址
 @property (nonatomic, copy)   NSString *picUrl;
-
+//身份标识
+@property (nonatomic, copy)   NSString *identity;
+//标签
+@property (nonatomic, copy)   NSString *coachLabel;
+//6.8
+@property (nonatomic, copy)   NSString *coachStar;
 /// 当前教练车车牌号
 @property (nonatomic, copy)   NSString *carNo;
 /// 电话号码

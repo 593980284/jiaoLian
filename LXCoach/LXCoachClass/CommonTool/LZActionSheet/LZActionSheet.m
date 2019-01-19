@@ -10,7 +10,7 @@
 
 #define LZActionSheetCancelTag 9999
 #define LZActionSheetCancelBaseTag 1000
-#define LZActionSheetBaseHeight 44
+#define LZActionSheetBaseHeight 55
 #define LZActionSheetBaseAnimationDuration 0.25
 
 @interface LZActionSheet ()
@@ -71,7 +71,7 @@
         
         // 操作action
         for (int i = 0; i < otherButtonTitles.count; i++) {
-            [self createBtnWithTitle:otherButtonTitles[i] backgroundColor:[UIColor colorWithWhite:1 alpha:1] titleColor:[UIColor blackColor] tagIndex:i + LZActionSheetCancelBaseTag];
+            [self createBtnWithTitle:otherButtonTitles[i] backgroundColor:[UIColor colorWithWhite:1 alpha:1] titleColor:[UIColor colorWithHex:0x4498ff] tagIndex:i + LZActionSheetCancelBaseTag];
         }
         
         
@@ -80,9 +80,9 @@
         cancelBtn.tag = LZActionSheetCancelTag;
         cancelBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
         cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
+        cancelBtn.titleLabel.font = [UIFont systemFontOfSize:18];
         [cancelBtn setTitle:cancleTitle forState:UIControlStateNormal];
-        [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [cancelBtn setTitleColor:[UIColor colorWithHex:0x4498ff] forState:UIControlStateNormal];
         [cancelBtn addTarget:self action:@selector(actionSheetClickedButtonAtIndex:) forControlEvents:UIControlEventTouchUpInside];
         self.cancelBtn = cancelBtn;
         [self.actionSheet addSubview:cancelBtn];
@@ -98,7 +98,7 @@
 - (void)createBtnWithTitle:(NSString *)title backgroundColor:(UIColor *)backgroudColor titleColor:(UIColor *)textColor tagIndex:(NSInteger)tagIndex{
     UIButton *actionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     actionBtn.tag = tagIndex;
-    actionBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    actionBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     actionBtn.backgroundColor = backgroudColor;
     actionBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [actionBtn setTitle:title forState:UIControlStateNormal];

@@ -156,7 +156,7 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
         case 0:
             // 修改头像
         {
-            LZActionSheet *actionSheet = [[LZActionSheet alloc]initWithDelegate:self cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"从相册选择"]]; //@[@"从相册选择",@"拍照"]
+            LZActionSheet *actionSheet = [[LZActionSheet alloc]initWithDelegate:self cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"相册"]]; //@[@"从相册选择",@"拍照"]
             [actionSheet show];
         }
             break;

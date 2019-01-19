@@ -11,20 +11,9 @@
 #import "LXUrlApi.h"
 
 @interface LXIntroMineSubView ()
-@property (nonatomic, strong) UIImageView *headerImageView;
-/// 证件号
-@property (nonatomic, strong) UILabel *credentialsNumber;
-/// 姓名+车牌号
-@property (nonatomic, strong) UILabel *nameLicenseNumber;
-/// 分割线
-@property (nonatomic, strong) UIView *breakLineView;
-/// 教龄
-@property (nonatomic, strong) UILabel *schoolAge;
-/// 个人简介
-@property (nonatomic, strong) UILabel *introLabel;
-
-/// 确认按钮
-@property (nonatomic, strong) UIButton *confirmButton;
+@property (nonatomic, strong) UIView *identityView;
+@property (nonatomic, strong) UIView *starView;
+@property (nonatomic, strong) UIView *coachLabelView;
 @property (nonatomic, strong) LXMineModel *mineModel;
 @end
 
@@ -32,168 +21,241 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.headerImageView];
-        [self addSubview:self.credentialsNumber];
-        [self addSubview:self.nameLicenseNumber];
-        [self addSubview:self.breakLineView];
-        [self addSubview:self.schoolAge];
-        [self addSubview:self.introLabel];
-        [self addSubview:self.introDetaile];
-        [self addSubview:self.confirmButton];
+        self.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        UIView *headerView = [UIView new];
+        headerView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:headerView];
+        [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self);
+            make.height.mas_equalTo(102);
+        }];
+        //头像
+        UIImageView *headerImageView = [UIImageView new];
+        [headerView addSubview:headerImageView];
+        NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.mineModel.photo];
+        [headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+        //名称
+        UILabel *nameLabel = [UILabel new];
+        nameLabel.text = _mineModel.coachName;
+        nameLabel.textColor = TEXT_COLOR_BLACK;
+        nameLabel.font = TEXT_FONT(18);
+        [headerView addSubview:nameLabel];
+        //星星
+        [headerView addSubview:self.starView];
+        //标签
+        [headerView addSubview:self.identityView];
+        //教龄
+        UILabel *teachTypeLabel = [UILabel new];
+        teachTypeLabel.text = [NSString stringWithFormat:@"%@年教龄 · %@",_mineModel.teachAge,_mineModel.teachType];
+        teachTypeLabel.textColor = TEXT_COLOR_GRAY;
+        teachTypeLabel.font = TEXT_FONT(15);
+        [headerView addSubview:teachTypeLabel];
         
-        [self valueToView];
+        [headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(headerView).offset(20);
+            make.centerY.equalTo(headerView);
+            make.size.mas_equalTo(CGSizeMake(63, 63));
+        }];
+        [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(headerImageView.mas_right).offset(13);
+            make.top.equalTo(headerImageView);
+        }];
+        [_starView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(nameLabel.mas_right);
+            make.right.equalTo(headerView);
+            make.centerY.equalTo(nameLabel);
+        }];
+        [_identityView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(nameLabel);
+            make.right.equalTo(headerView);
+            make.top.equalTo(nameLabel.mas_bottom);
+            make.bottom.equalTo(teachTypeLabel.mas_top);
+        }];
+        [teachTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(nameLabel);
+            make.bottom.equalTo(headerImageView);
+        }];
+        
+        UIView *bottomView = [UIView new];
+        bottomView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:bottomView];
+        [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(headerView.mas_bottom).offset(7);
+            make.left.equalTo(self).offset(13);
+            make.right.equalTo(self).offset(-13);
+        }];
+        
+        UILabel *carLabel = [UILabel new];
+        carLabel.textColor = TEXT_COLOR_GRAY;
+        carLabel.font = TEXT_FONT(16);
+        carLabel.text = @"绑定车辆 :";
+        [bottomView addSubview:carLabel];
+        [carLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(bottomView).offset(14);
+            make.top.equalTo(bottomView).offset(20);
+        }];
+        
+        UILabel *carValueLabel = [UILabel new];
+        carValueLabel.text = _mineModel.carNo;
+        carValueLabel.textColor = TEXT_COLOR_BLACK;
+        carValueLabel.font = TEXT_FONT(16);
+        [bottomView addSubview:carValueLabel];
+        [carValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(carLabel.mas_right).offset(8);
+            make.centerY.equalTo(carLabel);
+        }];
+        
+        UILabel *caochLabel = [UILabel new];
+        caochLabel.textColor = TEXT_COLOR_GRAY;
+        caochLabel.font = TEXT_FONT(16);
+        caochLabel.text = @"教练标签 :";
+        [bottomView addSubview:caochLabel];
+        [caochLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(carLabel);
+            make.top.equalTo(carLabel.mas_bottom).offset(20);
+        }];
+        
+        [bottomView addSubview:self.coachLabelView];
+        [_coachLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(carLabel.mas_right).offset(8);
+            make.centerY.equalTo(caochLabel);
+            make.right.equalTo(bottomView);
+            make.height.mas_equalTo(20);
+        }];
+        
+        UILabel *presentLabel = [UILabel new];
+        presentLabel.textColor = TEXT_COLOR_GRAY;
+        presentLabel.font = TEXT_FONT(16);
+        presentLabel.text = @"教练简介 :";
+        [bottomView addSubview:presentLabel];
+        [presentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(carLabel);
+            make.width.mas_equalTo([presentLabel sizeThatFits:CGSizeZero].width);
+            make.top.equalTo(caochLabel.mas_bottom).offset(20);
+        }];
+        
+        UILabel *presentValueLabel = [UILabel new];
+        presentValueLabel.text = [NSString stringWithFormat:@"%@",_mineModel.present];
+        presentValueLabel.textColor = TEXT_COLOR_BLACK;
+        presentValueLabel.font = TEXT_FONT(16);
+        presentValueLabel.numberOfLines = 0;
+        [bottomView addSubview:presentValueLabel];
+        [presentValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(presentLabel);
+            make.left.equalTo(presentLabel.mas_right).offset(8);
+            make.right.equalTo(bottomView);
+        }];
+        
+        CGFloat pHeight = [presentValueLabel sizeThatFits:CGSizeMake(245*kAutoSizeScaleX, 0)].height;
+        [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(pHeight + 86 + 72);
+        }];
     }
     return self;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 15;
-    CGFloat y = 22;
-    CGFloat w = 60*kAutoSizeScaleX;
-    CGFloat h = 60*kAutoSizeScaleX;
-    self.headerImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 18;
-    y = 39;
-    w = self.width - (60*kAutoSizeScaleX+18+15+15);
-    h = 12;
-    self.credentialsNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 18;
-    y = CGRectGetMaxY(self.credentialsNumber.frame)+10;
-    w = self.width - (60*kAutoSizeScaleX+18+15+15);
-    h = 12;
-    self.nameLicenseNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = 0;
-    y = CGRectGetMaxY(self.headerImageView.frame)+20;
-    w = self.width;
-    h = .5;
-    self.breakLineView.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.breakLineView.frame) + 10;
-    w = self.width - 30;
-    h = 14;
-    self.schoolAge.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.schoolAge.frame) + 18;
-    w = self.width - 30;
-    h = 16;
-    self.introLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.introLabel.frame) + 10;
-    w = self.width - 30;
-    h = self.height - (CGRectGetMaxY(self.introLabel.frame)+10+13+45+40);
-    self.introDetaile.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.introDetaile.frame) + 39;
-    w = self.width - 30;
-    h = 45;
-    self.confirmButton.frame = CGRectMake(x, y, w, h);
-    
-}
-- (void)valueToView {
-    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.mineModel.photo];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
-    self.credentialsNumber.text = self.mineModel.phone;
-    self.nameLicenseNumber.text = [NSString stringWithFormat:@"%@  %@",self.mineModel.coachName,self.mineModel.carNo];
-    self.schoolAge.text = [NSString stringWithFormat:@"教龄  %@年",self.mineModel.teachAge];
-    self.introDetaile.text = [NSString stringWithFormat:@"%@",self.mineModel.present];
-}
-#pragma mark - Event
-- (void)confirmButtonAction {
-    if (self.introDetaile.text.length <= 500) {
-        if ([self.delegate respondsToSelector:@selector(lx_alterMineMessage:)]) {
-            [self.delegate lx_alterMineMessage:self.introDetaile.text];
-        }
-    }else {
-        [self makeToast:@"个人简介字数不得大于500个"];
-    }
-}
+
 #pragma mark - getter
-- (UIImageView *)headerImageView {
-    if (!_headerImageView) {
-        _headerImageView = [[UIImageView alloc] init];
-        _headerImageView.userInteractionEnabled = YES;
-        _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-        _headerImageView.layer.cornerRadius = 60*kAutoSizeScaleX/2;
-        _headerImageView.clipsToBounds = YES;
-        _headerImageView.layer.borderColor = [UIColor colorWithHexString:@"#DDDDDD"].CGColor;
-        _headerImageView.layer.borderWidth = .5;
-        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+- (UIView *)identityView{
+    if (!_identityView) {
+        _identityView = [[UIView alloc] init];
+        
+        UIScrollView *scrollView = [UIScrollView new];
+        scrollView.showsHorizontalScrollIndicator = false;
+        [_identityView addSubview:scrollView];
+        [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self->_identityView);
+        }];
+        
+        NSArray *array = [_mineModel.identity componentsSeparatedByString:@","];
+        CGFloat x=0;
+        for (NSString *tempStr in array) {
+            UILabel *label = [UILabel new];
+            label.textColor = TEXT_COLOR_RED;
+            label.font = TEXT_FONT(11);
+            label.layer.cornerRadius = 4;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.borderColor = BG_COLOR_RED.CGColor;
+            label.layer.borderWidth = 1;
+            label.text = tempStr;
+            [scrollView addSubview:label];
+            CGFloat width = [label sizeThatFits:CGSizeZero].width + 12;
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(scrollView).offset(x);
+                make.width.mas_equalTo(width);
+                make.height.mas_equalTo(18);
+                make.centerY.equalTo(scrollView);
+            }];
+            x = x + width + 8;
+            scrollView.contentSize = CGSizeMake(x, 20);
+        }
     }
-    return _headerImageView;
+    return _identityView;
 }
-- (UILabel *)credentialsNumber {
-    if (!_credentialsNumber) {
-        _credentialsNumber = [[UILabel alloc] init];
-        _credentialsNumber.font = [UIFont systemFontOfSize:15];
-        _credentialsNumber.textColor = [UIColor colorWithHexString:@"#0A0A0A"];
-        _credentialsNumber.textAlignment = NSTextAlignmentLeft;
+
+-(UIView *)starView{
+    if (!_starView) {
+        _starView = [UIView new];
+        CGFloat x = 16;
+        CGFloat star = [_mineModel.coachStar integerValue]/2.0;
+        for (int i = 5; i > 0; i--) {
+            UIImage *img = nil;
+            if (i <= star) {
+                img = [UIImage imageNamed:@"lx_acount_star_up"];
+            }else if(i > star && i <= star + 0.5){
+                img = [UIImage imageNamed:@"lx_acount_star_half"];
+            }else{
+                img = [UIImage imageNamed:@"lx_acount_star_down"];
+            }
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+            [_starView addSubview:imgView];
+            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self->_starView).offset(-x);
+                make.size.mas_equalTo(img.size);
+                make.centerY.equalTo(self->_starView);
+            }];
+            x = x + img.size.width + 4;
+        }
     }
-    return _credentialsNumber;
+    return _starView;
 }
-- (UILabel *)nameLicenseNumber {
-    if (!_nameLicenseNumber) {
-        _nameLicenseNumber = [[UILabel alloc] init];
-        _nameLicenseNumber.font = [UIFont systemFontOfSize:14];
-        _nameLicenseNumber.textAlignment = NSTextAlignmentLeft;
-        _nameLicenseNumber.textColor = [UIColor colorWithHexString:@"#0A0A0A"];
+
+- (UIView *)coachLabelView{
+    if (!_coachLabelView) {
+        _coachLabelView = [[UIView alloc] init];
+        
+        UIScrollView *scrollView = [UIScrollView new];
+        scrollView.showsHorizontalScrollIndicator = false;
+        [_coachLabelView addSubview:scrollView];
+        [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self->_coachLabelView);
+        }];
+        
+        NSArray *array = [_mineModel.coachLabel componentsSeparatedByString:@","];
+        CGFloat x=0;
+        for (NSString *tempStr in array) {
+            UILabel *label = [UILabel new];
+            label.textColor = TEXT_COLOR_YELLOW;
+            label.font = TEXT_FONT(11);
+            label.layer.cornerRadius = 4;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.borderColor = TEXT_COLOR_YELLOW.CGColor;
+            label.layer.borderWidth = 1;
+            label.text = tempStr;
+            [scrollView addSubview:label];
+            CGFloat width = [label sizeThatFits:CGSizeZero].width + 12;
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(scrollView).offset(x);
+                make.width.mas_equalTo(width);
+                make.height.mas_equalTo(18);
+                make.centerY.equalTo(scrollView);
+            }];
+            x = x + width + 8;
+        }
+        scrollView.contentSize = CGSizeMake(x, 20);
     }
-    return _nameLicenseNumber;
+    return _coachLabelView;
 }
-- (UIView *)breakLineView {
-    if (!_breakLineView) {
-        _breakLineView = [[UIView alloc] init];
-        _breakLineView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-    }
-    return _breakLineView;
-}
-- (UILabel *)schoolAge {
-    if (!_schoolAge) {
-        _schoolAge = [[UILabel alloc] init];
-        _schoolAge.font = [UIFont systemFontOfSize:15];
-        _schoolAge.textColor = [UIColor colorWithHexString:@"#333333"];
-        _schoolAge.textAlignment = NSTextAlignmentLeft;
-    }
-    return _schoolAge;
-}
-- (UILabel *)introLabel {
-    if (!_introLabel) {
-        _introLabel = [[UILabel alloc] init];
-        _introLabel.textAlignment = NSTextAlignmentLeft;
-        _introLabel.font = [UIFont systemFontOfSize:16];
-        _introLabel.textColor = [UIColor colorWithHexString:@"#333333"];
-        _introLabel.text = @"个人简介";
-    }
-    return _introLabel;
-}
-- (UITextView *)introDetaile {
-    if (!_introDetaile) {
-        _introDetaile = [[UITextView alloc] init];
-        _introDetaile.font = [UIFont systemFontOfSize:14];
-        _introDetaile.layer.borderColor = [UIColor colorWithHexString:@"#DDDDDD"].CGColor;
-        _introDetaile.layer.borderWidth = .5;
-    }
-    return _introDetaile;
-}
-- (UIButton *)confirmButton {
-    if (!_confirmButton) {
-        _confirmButton = [[UIButton alloc] init];
-        _confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        [_confirmButton setTintColor:[UIColor whiteColor]];
-        [_confirmButton setBackgroundColor:[UIColor colorWithHexString:@"#309CF5"]];
-        _confirmButton.layer.cornerRadius = 5;
-        [_confirmButton setTitle:@"确认" forState:UIControlStateNormal];
-        [_confirmButton addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _confirmButton;
-}
+
 - (LXMineModel *)mineModel {
     if (!_mineModel) {
         _mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
