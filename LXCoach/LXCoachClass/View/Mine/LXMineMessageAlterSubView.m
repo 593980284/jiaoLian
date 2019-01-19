@@ -32,19 +32,14 @@
     CGFloat h = self.height;
     self.tableView.frame = CGRectMake(x, y, w, h);
     
-    y = 55*3;
-    h = self.height - 55*3;
+    y = self.width;
+    h = 116;
     self.footerView.frame = CGRectMake(x, y, w, h);
     
     x = 15;
-    if (@available(iOS 11, *)) {
-        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
-        y = CGRectGetHeight(self.footerView.frame) - 15 - 45 - keyWindow.safeAreaInsets.bottom;
-    } else {
-        y = CGRectGetHeight(self.footerView.frame) - 15 - 45;
-    }
+    y = 116 - 44;
     w = self.width - 30;
-    h = 45;
+    h = 44;
     self.quiteButton.frame = CGRectMake(x, y, w, h);
     
 }
@@ -102,18 +97,15 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableFooterView = self.footerView;
-       
     }
     return _tableView;
 }
 - (UIView *)footerView {
     if (!_footerView) {
         _footerView = [[UIView alloc] init];
-        _footerView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
-        _footerView.userInteractionEnabled = YES;
     }
     return _footerView;
 }

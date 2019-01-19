@@ -86,7 +86,7 @@
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+        _nameLabel.textColor = TEXT_COLOR_GRAY;
         _nameLabel.font = [UIFont systemFontOfSize:16];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
     }

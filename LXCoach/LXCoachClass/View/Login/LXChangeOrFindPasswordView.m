@@ -49,7 +49,7 @@
         make.top.equalTo(self.step_View.mas_bottom);
         make.left.equalTo(self).offset(20);
         make.right.equalTo(self).offset(-20);
-        make.height.mas_equalTo(48);
+        make.height.mas_equalTo(46);
     }];
     
     UIView *codeView = [[UIView alloc] init];
@@ -57,7 +57,7 @@
     [codeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.acountView);
         make.top.equalTo(self.acountView.mas_bottom);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(46);
     }];
     [codeView addSubview:self.testCodeIconImagge];
     [codeView addSubview:self.testCodeTextField];

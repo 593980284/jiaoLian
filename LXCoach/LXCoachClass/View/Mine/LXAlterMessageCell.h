@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LXAlterMessageCell : UITableViewCell
-@property (nonatomic, copy)NSString *imageName;
 @property (nonatomic, copy)NSString *nameString;
-/**
- 隐藏对应的view
+@end
 
- @param type 1:隐藏label； 2:隐藏imageView
- */
-- (void)hiddenCurrenViewType:(NSInteger)type;
+@interface LXAlterMessageImageCell : UITableViewCell
+@property (nonatomic, copy)NSString *imageName;
 @end

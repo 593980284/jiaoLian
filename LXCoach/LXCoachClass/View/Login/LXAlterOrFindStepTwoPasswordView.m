@@ -50,12 +50,12 @@
         make.top.mas_equalTo(self.stepView.mas_bottom);
         make.left.equalTo(self).offset(20);
         make.right.equalTo(self).offset(-20);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(46);
     }];
     [_newView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.oldView.mas_bottom);
         make.left.right.equalTo(self.oldView);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(46);
     }];
     [_newTwoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.newView.mas_bottom);

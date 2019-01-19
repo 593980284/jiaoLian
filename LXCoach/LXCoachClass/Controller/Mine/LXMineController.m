@@ -130,7 +130,7 @@ static NSString *cell_Identify = @"LXMineCell";
     return cell;
 }
 - (CGFloat)lx_tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 55;
+    return 46;
 }
 - (CGFloat)lx_tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 8;

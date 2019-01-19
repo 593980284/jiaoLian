@@ -58,12 +58,12 @@
         make.top.mas_equalTo(tittleLabel.mas_bottom).offset(53);
         make.left.equalTo(self).offset(20);
         make.right.equalTo(self).offset(-20);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(46);
     }];
     [_passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_accountView.mas_bottom);
         make.left.right.equalTo(self->_accountView);
-        make.height.mas_equalTo(44);
+        make.height.mas_equalTo(46);
     }];
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_passwordView.mas_bottom).offset(kAutoSizeScaleX*86);

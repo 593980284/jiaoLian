@@ -125,23 +125,30 @@ static NSString *alterMessage_Identify = @"LXAlterMessageCell";
 }
 
 - (UITableViewCell *)lx_alterMessageTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LXAlterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:alterMessage_Identify];
-    if (cell == nil) {
-        cell = [[LXAlterMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:alterMessage_Identify];
-    }
     if (indexPath.row == 0) {
-        [cell hiddenCurrenViewType:1];
+        LXAlterMessageImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXAlterMessageImageCell"];
+        if (cell == nil) {
+            cell = [[LXAlterMessageImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LXAlterMessageImageCell"];
+        }
         cell.imageName = self.picUrl;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }else{
-        [cell hiddenCurrenViewType:2];
+        LXAlterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:alterMessage_Identify];
+        if (cell == nil) {
+            cell = [[LXAlterMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:alterMessage_Identify];
+        }
         cell.nameString = self.dataSource[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 - (CGFloat)lx_alterMessageTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 55;
+    if (indexPath.row == 0) {
+        return 123;
+    }
+    return 46;
 }
 - (void)lx_alterMessageTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
