@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIImageView *stepOneImgView;
 @property (nonatomic,strong) UIImageView *stepTwoImgView;
 @property (nonatomic,strong) UILabel *explainLabel;
-@property (nonatomic, assign) NSInteger selectedIndex;
 @end
 
 NS_ASSUME_NONNULL_END

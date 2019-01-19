@@ -16,7 +16,8 @@
         [self addSubview:_imgView];
         
         _textField = [UITextField new];
-        _textField.font = TEXT_FONT(14);
+        _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _textField.font = TEXT_FONT(15);
         _textField.textColor = TEXT_COLOR_BLACK;
         _textField.placeholder = placehold;
         [self addSubview:_textField];

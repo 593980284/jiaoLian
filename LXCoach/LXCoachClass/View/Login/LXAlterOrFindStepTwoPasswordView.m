@@ -9,26 +9,21 @@
 #define INPUT_HEIGHT 55
 
 #import "LXAlterOrFindStepTwoPasswordView.h"
-
+#import "LX_ImageText_View.h"
+#import "LX_Step_View.h"
 @interface LXAlterOrFindStepTwoPasswordView()
-
+//step
+@property (nonatomic, strong) LX_Step_View *stepView;
 /// inputOne
-@property (nonatomic, strong) UIImageView *oneIconImageView;
-@property (nonatomic, strong) UITextField *oneTextFeild;
-@property (nonatomic, strong) UIView *oneBottomView;
-
+@property (nonatomic, strong) LX_ImageText_View *oldView;
 /// inputTwo
-@property (nonatomic, strong) UIImageView *twoIconImageView;
-@property (nonatomic, strong) UITextField *twoTextFeild;
-@property (nonatomic, strong) UIView *twoBottomView;
-
+@property (nonatomic, strong) LX_ImageText_View *newView;
 /// inputThree
-@property (nonatomic, strong) UIImageView *threeIconImageView;
-@property (nonatomic, strong) UITextField *threeTextFeild;
-
+@property (nonatomic, strong) LX_ImageText_View *newTwoView;
+//
+@property (nonatomic,strong) UILabel *explaiLabel;
 /// 确认按钮
 @property (nonatomic, strong) UIButton *affirmButton;
-
 @end
 
 @implementation LXAlterOrFindStepTwoPasswordView
@@ -37,235 +32,124 @@
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
+        self.backgroundColor = [UIColor whiteColor];
         [self subView];
     }
     return self;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 0;
-    CGFloat y = 0;
-    CGFloat w = self.width;
-    CGFloat h = INPUT_HEIGHT * 3 + 1.5;
-    self.bgView.frame = CGRectMake(x, y, w, h);
-    
-    x = 23;
-    y = 18;
-    w = 15;
-    h = 19;
-    self.oneIconImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.oneIconImageView.frame)+15;
-    y = 20;
-    w = self.width - (52+20);
-    h = 16;
-    self.oneTextFeild.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = CGRectGetMaxY(self.oneIconImageView.frame) + 18;
-    w = self.width - 15;
-    h = .5;
-    self.oneBottomView.frame = CGRectMake(x, y, w, h);
-    
-    x = 23;
-    y = CGRectGetMaxY(self.oneBottomView.frame) + 18;
-    w = 15;
-    h = 19;
-    self.twoIconImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.twoIconImageView.frame) + 15;
-    y = CGRectGetMaxY(self.oneBottomView.frame) + 20;
-    w = self.width - (52+20);
-    h = 16;
-    self.twoTextFeild.frame = CGRectMake(x, y, w, h);;
-    
-    x = 15;
-    y = CGRectGetMaxY(self.twoIconImageView.frame) + 18;
-    w = self.width - 15;
-    h = .5;
-    self.twoBottomView.frame = CGRectMake(x, y, w, h);
-    
-    x = 23;
-    y = CGRectGetMaxY(self.twoBottomView.frame) + 18;
-    w = 15;
-    h = 19;
-    self.threeIconImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.threeIconImageView.frame) + 15;
-    y = CGRectGetMaxY(self.twoBottomView.frame) + 20;
-    w = self.width - (52+20);
-    h = 16;
-    self.threeTextFeild.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    if (@available(iOS 11, *)) {
-        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
-        y = self.height-(45+15) - keyWindow.safeAreaInsets.bottom;
-    } else {
-        y = self.height-(45+15);
-    }
-    w = self.width - 30;
-    h = 45;
-    self.affirmButton.frame = CGRectMake(x, y, w, h);
-    
-    if (_type == 1) {
-        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*2 + 1);
-    }else if (_type == 2) {
-        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*3 + 1.5);
-    }else {
-        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*2 + 1);
-    }
-    
-}
-- (void)layoutIfNeeded {
-    [super layoutIfNeeded];
-    
-}
 - (void)subView {
-    [self addSubview:self.bgView];
-    [self.bgView addSubview:self.oneIconImageView];
-    [self.bgView addSubview:self.oneTextFeild];
-    [self.bgView addSubview:self.oneBottomView];
-    [self.bgView addSubview:self.twoIconImageView];
-    [self.bgView addSubview:self.twoTextFeild];
-    [self.bgView addSubview:self.twoBottomView];
-    [self.bgView addSubview:self.threeIconImageView];
-    [self.bgView addSubview:self.threeTextFeild];
+    [self addSubview:self.stepView];
+    [self addSubview:self.oldView];
+    [self addSubview:self.newView];
+    [self addSubview:self.newTwoView];
+    [_stepView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.left.equalTo(self);
+        make.height.mas_equalTo(111*kAutoSizeScaleX);
+    }];
+    [_oldView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.stepView.mas_bottom);
+        make.left.equalTo(self).offset(20);
+        make.right.equalTo(self).offset(-20);
+        make.height.mas_equalTo(44);
+    }];
+    [_newView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.oldView.mas_bottom);
+        make.left.right.equalTo(self.oldView);
+        make.height.mas_equalTo(44);
+    }];
+    [_newTwoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.newView.mas_bottom);
+        make.left.right.height.equalTo(self.newView);
+    }];
     [self addSubview:self.affirmButton];
+    [_affirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.newTwoView.mas_bottom).offset(85 * kAutoSizeScaleX);
+        make.left.right.equalTo(self.newTwoView);
+        make.height.mas_equalTo(44);
+    }];
+    
+    UILabel *explaiLabel = [UILabel new];
+    explaiLabel.text = @"请将密码设置为6位数以上字母或者数字组合";
+    explaiLabel.textColor = TEXT_COLOR_GRAY;
+    explaiLabel.font = TEXT_FONT(12);
+    _explaiLabel = explaiLabel;
+    [self addSubview:explaiLabel];
+    [explaiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.newTwoView);
+        make.top.equalTo(self.newTwoView.mas_bottom);
+        make.height.mas_equalTo(28);
+    }];
 }
 
 #pragma mark - publicMethod
 /*
-根据type值调整界面
-
-@param type type=1 忘记密码确认密码第二步； type=2 修改密码
-*/
+ 根据type值调整界面
+ 
+ @param type type=1 忘记密码确认密码第二步； type=2 修改密码
+ */
 - (void)adjustmentViewType:(NSInteger)type {
     _type = type;
     if (type == 1) {
-        self.oneTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        self.twoTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        self.twoBottomView.hidden = YES;
-        self.threeIconImageView.hidden = YES;
-        self.threeTextFeild.hidden = YES;
-        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*2 + 1);
-        
+        [_oldView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+        _oldView.hidden = YES;
+        _newView.textField.placeholder = @"请输入您的密码";
     }else if (type == 2) {
-        self.twoBottomView.hidden = NO;
-        self.threeIconImageView.hidden = NO;
-        self.threeTextFeild.hidden = NO;
-        self.oneTextFeild.placeholder = @"请输入旧密码";
-        self.twoTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        self.threeTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        self.bgView.frame = CGRectMake(0, 0, self.width, INPUT_HEIGHT*3 + 1.5);
+        [_stepView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(16);
+        }];
+        _stepView.hidden = YES;
+        _explaiLabel.hidden = YES;
     }
 }
 
 #pragma mark - Event
 - (void)affirmButtonAction {
     if ([self.delegate respondsToSelector:@selector(lx_clickAffirmOldPassword:andNewPassword:andAffirmPassword:)]) {
-        if (_type == 1) {
-            // 1 忘记密码确认密码第二步
-            if (self.oneTextFeild.text.length < 6 || self.twoTextFeild.text.length < 6) {
-                [self makeToast:@"输入密码长度不够"];
-                return ;
-            }
-            if (![self.oneTextFeild.text isEqualToString:self.twoTextFeild.text]) {
-                [self makeToast:@"两次输入的密码不一致"];
-                return ;
-            }
-            
-        }else if (_type == 2) {
-            // 2 修改密码
-            if (self.twoTextFeild.text.length < 6 || self.threeTextFeild.text.length < 6) {
-                [self makeToast:@"输入密码长度不够"];
-                return ;
-            }
-            if (![self.twoTextFeild.text isEqualToString:self.threeTextFeild.text]) {
-                [self makeToast:@"两次输入的密码不一致"];
-                return ;
-            }
+        if (_newView.textField.text.length < 6 || _newTwoView.textField.text.length < 6) {
+            [self makeToast:@"输入密码长度不够"];
+            return ;
         }
-        [self.delegate lx_clickAffirmOldPassword:self.oneTextFeild.text andNewPassword:self.twoTextFeild.text andAffirmPassword:self.threeTextFeild.text];
+        if (![_newView.textField.text isEqualToString:_newTwoView.textField.text]) {
+            [self makeToast:@"两次输入的密码不一致"];
+            return ;
+        }
+        [self.delegate lx_clickAffirmOldPassword:_oldView.textField.text andNewPassword:_newView.textField.text andAffirmPassword:_newTwoView.textField.text];
     }
 }
 
 #pragma mark - getter
-- (UIView *)bgView {
-    if (!_bgView) {
-        _bgView = [[UIView alloc] init];
-        _bgView.backgroundColor = [UIColor whiteColor];
+
+- (LX_Step_View *)stepView{
+    if (!_stepView) {
+        _stepView = [LX_Step_View new];
+        _stepView.stepOneImgView.image = [UIImage imageNamed:@"lx_step_one"];
+        _stepView.stepTwoImgView.image = [UIImage imageNamed:@"lx_step_two_true"];
+        _stepView.explainLabel.text = @"确认登录密码";
     }
-    return _bgView;
+    return _stepView;
 }
-- (UIImageView *)oneIconImageView {
-    if (!_oneIconImageView) {
-        _oneIconImageView = [[UIImageView alloc]init];
-        _oneIconImageView.image = [UIImage imageNamed:@"lx_change_testcode"];
+-(LX_ImageText_View *)oldView{
+    if (!_oldView) {
+        _oldView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"请输入您的旧密码"];
+        _oldView.textField.secureTextEntry = YES;
     }
-    return _oneIconImageView;
+    return _oldView;
 }
-- (UITextField *)oneTextFeild {
-    if (!_oneTextFeild) {
-        _oneTextFeild = [[UITextField alloc] init];
-        _oneTextFeild.font = [UIFont systemFontOfSize:16];
-        _oneTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
-        _oneTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        _oneTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _oneTextFeild.secureTextEntry = YES;
+-(LX_ImageText_View *)newView{
+    if (!_newView) {
+        _newView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"请输入6位数以上字母或数字组合"];
+        _newView.textField.secureTextEntry = YES;
     }
-    return _oneTextFeild;
+    return _newView;
 }
-- (UIView *)oneBottomView {
-    if (!_oneBottomView) {
-        _oneBottomView = [[UIView alloc] init];
-        _oneBottomView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
+-(LX_ImageText_View *)newTwoView{
+    if (!_newTwoView) {
+        _newTwoView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"请重复输入新密码"];
+        _newTwoView.textField.secureTextEntry = YES;
     }
-    return _oneBottomView;
-}
-- (UIImageView *)twoIconImageView {
-    if (!_twoIconImageView) {
-        _twoIconImageView = [[UIImageView alloc] init];
-        _twoIconImageView.image = [UIImage imageNamed:@"lx_change_testcode"];
-    }
-    return _twoIconImageView;
-}
-- (UITextField *)twoTextFeild {
-    if (!_twoTextFeild) {
-        _twoTextFeild = [[UITextField alloc] init];
-        _oneTextFeild.font = [UIFont systemFontOfSize:16];
-        _twoTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
-        _twoTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        _twoTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _twoTextFeild.secureTextEntry = YES;
-    }
-    return _twoTextFeild;
-}
-- (UIView *)twoBottomView {
-    if (!_twoBottomView) {
-        _twoBottomView = [[UIView alloc] init];
-        _twoBottomView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-    }
-    return _twoBottomView;
-}
-- (UIImageView *)threeIconImageView {
-    if (!_threeIconImageView) {
-        _threeIconImageView = [[UIImageView alloc] init];
-        _threeIconImageView.image = [UIImage imageNamed:@"lx_change_testcode"];
-    }
-    return _threeIconImageView;
-}
-- (UITextField *)threeTextFeild {
-    if (!_threeTextFeild) {
-        _threeTextFeild = [[UITextField alloc] init];
-        _threeTextFeild.font = [UIFont systemFontOfSize:16];
-        _threeTextFeild.textColor = [UIColor colorWithHexString:@"#9A9A9A"];
-        _threeTextFeild.placeholder = @"请输入六位数以上字母加数字";
-        _threeTextFeild.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _threeTextFeild.secureTextEntry = YES;
-    }
-    return _threeTextFeild;
+    return _newTwoView;
 }
 - (UIButton *)affirmButton {
     if (!_affirmButton) {

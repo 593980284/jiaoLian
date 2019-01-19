@@ -120,6 +120,7 @@
 - (LX_ImageText_View *)passwordView{
     if (!_passwordView) {
         _passwordView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"请输入您的密码"];
+        _passwordView.textField.secureTextEntry = YES;
         _passwordView.textField.text = @"162427";
     }
     return _passwordView;

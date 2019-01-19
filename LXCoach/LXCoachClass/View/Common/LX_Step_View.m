@@ -41,19 +41,15 @@
             make.centerY.equalTo(lineView);
             make.left.equalTo(lineView.mas_right).offset(8);
         }];
+        
+        [_explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.top.equalTo(lineView.mas_bottom).offset(27);
+        }];
     }
     return self;
 }
 
-- (void)setSelectedIndex:(NSInteger)selectedIndex{
-    if (selectedIndex == 2) {
-        _stepOneImgView.image = [UIImage imageNamed:@"lx_step_one"];
-        _stepTwoImgView.image = [UIImage imageNamed:@"lx_step_two_true"];
-    }else{
-        _stepOneImgView.image = [UIImage imageNamed:@"lx_step_one"];
-        _stepTwoImgView.image = [UIImage imageNamed:@"lx_step_two_false"];
-    }
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

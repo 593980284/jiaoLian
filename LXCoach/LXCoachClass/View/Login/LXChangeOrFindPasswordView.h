@@ -29,5 +29,4 @@
 @property (nonatomic, assign) id <LXChangeOrFindPasswordViewDelegate> delegate;
 // 1: 找回密码第一步； 2: 更换手机号第一步 3: 更换手机号第二步
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, strong) UITextField *acountTextField;
 @end

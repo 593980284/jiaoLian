@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- 找回密码第二步 两个输入框
+ 找回密码第二步 两个输入框 一个图
  修改密码 三个输入框
  */
 @interface LXAlterOrFindStepTwoPasswordController : UIViewController
