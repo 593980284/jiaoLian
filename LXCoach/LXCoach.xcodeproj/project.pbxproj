@@ -10,6 +10,12 @@
 		0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */; };
 		25F3FF4D21E9D22500099AA3 /* LX_ImageText_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */; };
 		25F3FF5321EE247D00099AA3 /* LX_Step_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5221EE247D00099AA3 /* LX_Step_View.m */; };
+		25F3FF5721F4B94400099AA3 /* LXMyAffairs_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5621F4B94400099AA3 /* LXMyAffairs_VC.m */; };
+		25F3FF5D21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5C21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m */; };
+		25F3FF6021F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5F21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m */; };
+		25F3FF6521F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */; };
+		25F3FF6821F4C0D000099AA3 /* LXAffairsClassSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */; };
+		25F3FF6E21F4C10B00099AA3 /* LXAffairsDateSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */; };
 		2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */; };
 		2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */; };
 		2F4CE8332143CE2A00275F69 /* LXCodeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */; };
@@ -143,6 +149,18 @@
 		25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX_ImageText_View.m; sourceTree = "<group>"; };
 		25F3FF5121EE247D00099AA3 /* LX_Step_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX_Step_View.h; sourceTree = "<group>"; };
 		25F3FF5221EE247D00099AA3 /* LX_Step_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX_Step_View.m; sourceTree = "<group>"; };
+		25F3FF5521F4B94400099AA3 /* LXMyAffairs_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyAffairs_VC.h; sourceTree = "<group>"; };
+		25F3FF5621F4B94400099AA3 /* LXMyAffairs_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyAffairs_VC.m; sourceTree = "<group>"; };
+		25F3FF5B21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyAffairsToHandle_VC.h; sourceTree = "<group>"; };
+		25F3FF5C21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyAffairsToHandle_VC.m; sourceTree = "<group>"; };
+		25F3FF5E21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyAffairsToClass_VC.h; sourceTree = "<group>"; };
+		25F3FF5F21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyAffairsToClass_VC.m; sourceTree = "<group>"; };
+		25F3FF6321F4C0AD00099AA3 /* LXAffairsHandleSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsHandleSessionTask.h; sourceTree = "<group>"; };
+		25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsHandleSessionTask.m; sourceTree = "<group>"; };
+		25F3FF6621F4C0D000099AA3 /* LXAffairsClassSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsClassSessionTask.h; sourceTree = "<group>"; };
+		25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsClassSessionTask.m; sourceTree = "<group>"; };
+		25F3FF6C21F4C10B00099AA3 /* LXAffairsDateSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsDateSessionTask.h; sourceTree = "<group>"; };
+		25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsDateSessionTask.m; sourceTree = "<group>"; };
 		2F4CE8252143C4A200275F69 /* LXNetWorkResponseBaseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkResponseBaseObject.h; sourceTree = "<group>"; };
 		2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkResponseBaseObject.m; sourceTree = "<group>"; };
 		2F4CE82E2143CD8C00275F69 /* LXCodeUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCodeUrlSessionTask.h; sourceTree = "<group>"; };
@@ -435,6 +453,41 @@
 				25F3FF5221EE247D00099AA3 /* LX_Step_View.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		25F3FF5421F4B7D000099AA3 /* MyAffairs */ = {
+			isa = PBXGroup;
+			children = (
+				25F3FF6221F4C01900099AA3 /* View */,
+				25F3FF6121F4BD9800099AA3 /* SessionTaskModel */,
+				25F3FF5521F4B94400099AA3 /* LXMyAffairs_VC.h */,
+				25F3FF5621F4B94400099AA3 /* LXMyAffairs_VC.m */,
+				25F3FF5B21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.h */,
+				25F3FF5C21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m */,
+				25F3FF5E21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.h */,
+				25F3FF5F21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m */,
+			);
+			path = MyAffairs;
+			sourceTree = "<group>";
+		};
+		25F3FF6121F4BD9800099AA3 /* SessionTaskModel */ = {
+			isa = PBXGroup;
+			children = (
+				25F3FF6321F4C0AD00099AA3 /* LXAffairsHandleSessionTask.h */,
+				25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */,
+				25F3FF6621F4C0D000099AA3 /* LXAffairsClassSessionTask.h */,
+				25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */,
+				25F3FF6C21F4C10B00099AA3 /* LXAffairsDateSessionTask.h */,
+				25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */,
+			);
+			path = SessionTaskModel;
+			sourceTree = "<group>";
+		};
+		25F3FF6221F4C01900099AA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2F4CE8612143DFD600275F69 /* LXToast */ = {
@@ -765,6 +818,7 @@
 		324C4E84214108A60067F95F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				25F3FF5421F4B7D000099AA3 /* MyAffairs */,
 				324C4E9E21410A630067F95F /* Login */,
 				324C4E91214109AF0067F95F /* Course */,
 				324C4E90214109960067F95F /* Messages */,
@@ -1161,6 +1215,7 @@
 				2F4CE8682143E10700275F69 /* UIColor+LXColor.m in Sources */,
 				2F4CE8362143CF0D00275F69 /* LXFindPassWordUrlSessionTask.m in Sources */,
 				2F4CE8712143EA6400275F69 /* LXSaveUserInfoUrlSessionTask.m in Sources */,
+				25F3FF6521F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m in Sources */,
 				6AD7D83F2143F63A000FB4EF /* LXStudentDetaileHeaderView.m in Sources */,
 				2F4CE89D21442BE500275F69 /* LXCourseDetailModel.m in Sources */,
 				25F3FF5321EE247D00099AA3 /* LX_Step_View.m in Sources */,
@@ -1201,8 +1256,10 @@
 				6A5B49F82148B72100206DF3 /* LXUploadCoachImageDataController.m in Sources */,
 				6AD7D8402143F63A000FB4EF /* LXStudentSubView.m in Sources */,
 				6A223A6F214A15C200E20FD0 /* LXFindMyStudentDetilSessionTask.m in Sources */,
+				25F3FF6021F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m in Sources */,
 				6A5B49FC2148BEA700206DF3 /* UIImage+Ext.m in Sources */,
 				6A16203A2147E9A100438E14 /* LXFindMyCouseDateListSessionTask.m in Sources */,
+				25F3FF6821F4C0D000099AA3 /* LXAffairsClassSessionTask.m in Sources */,
 				6A48092C214B535800A39074 /* LXFindMyCouseListByDateSessionTask.m in Sources */,
 				324C4E89214109180067F95F /* LXTabBarController.m in Sources */,
 				2FB7E2D8213BBDFF00583B5C /* main.m in Sources */,
@@ -1223,6 +1280,7 @@
 				2F4CE8572143D8CF00275F69 /* LXChangePhoneNumUrlSessionTask.m in Sources */,
 				2F4CE8742143FE2C00275F69 /* LXCourseCell.m in Sources */,
 				6A7FF05E214F598C0067D6AC /* LXMyCoachEvaluationStudentsSessionTask.m in Sources */,
+				25F3FF5721F4B94400099AA3 /* LXMyAffairs_VC.m in Sources */,
 				6A457A4C214D011100CDAA87 /* LXMyCoachAttendanceStudentSessionTask.m in Sources */,
 				324C4EA521410AB70067F95F /* LXAlterOrFindStepTwoPasswordController.m in Sources */,
 				6A223A63214A109200E20FD0 /* LXFindCourseRecordModel.m in Sources */,
@@ -1258,10 +1316,12 @@
 				6AD7D83E2143F63A000FB4EF /* LXStudentSubViewCell.m in Sources */,
 				6A4F37C42145495B007E41B8 /* LXStudentDetaileListController.m in Sources */,
 				6A5B4A002148BEE700206DF3 /* LZActionSheet.m in Sources */,
+				25F3FF5D21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m in Sources */,
 				324C4E7A2140DC9B0067F95F /* LXMineMainSubView.m in Sources */,
 				324C4EA721410AB70067F95F /* LXChangeOrFindPasswordController.m in Sources */,
 				324C4EC52141646E0067F95F /* LXIntroMineSubView.m in Sources */,
 				2F4CE83C2143D2F600275F69 /* LXSavePassWordUrlSessionTask.m in Sources */,
+				25F3FF6E21F4C10B00099AA3 /* LXAffairsDateSessionTask.m in Sources */,
 				489625272170900E00B25D13 /* NSObject+LXTimeExchangeDate.m in Sources */,
 				2F4CE88621441CB100275F69 /* LXCourseDetailController.m in Sources */,
 				2F4CE86E2143E9CF00275F69 /* LXUserInfoDataController.m in Sources */,

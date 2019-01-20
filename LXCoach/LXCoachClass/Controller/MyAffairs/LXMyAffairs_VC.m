@@ -1,30 +1,22 @@
 //
-//  LXCourceListController.m
+//  LXMyAffairs_VC.m
 //  LXCoach
 //
-//  Created by 李玉琴 on 2018/9/6.
-//  Copyright © 2018年 LeXiang. All rights reserved.
+//  Created by slardar on 2019/1/20.
+//  Copyright © 2019年 LeXiang. All rights reserved.
 //
 
-#import "LXCourceListController.h"
+#import "LXMyAffairs_VC.h"
 #import <VTMagic/VTMagic.h>
-#import "LXFindCoachCourseRecordSessionTask.h"
-#import "LXCoureListSubViewController.h"
 #import "LXCommonNavView.h"
-#import "LXMineModel.h"
-#import "LXFindCourseRecordArrModel.h"
-#import "LXFindCourseRecordModel.h"
-
-@interface LXCourceListController ()<VTMagicViewDelegate,VTMagicViewDataSource,LXCommonNavViewDelegate>
+#import "LXMyAffairsToClass_VC.h"
+#import "LXMyAffairsToHandle_VC.h"
+@interface LXMyAffairs_VC ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
-@property (nonatomic, strong) LXFindCoachCourseRecordSessionTask *courseDataController;
-/// 课程Arr
-@property (nonatomic, strong) NSMutableArray *courseArr;
-
 @end
 
-@implementation LXCourceListController
+@implementation LXMyAffairs_VC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,37 +26,6 @@
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
     [self.view addSubview:self.navView];
-}
-#pragma mark - request
-// 查询教练课程记录
-- (void)requestMyCourceListViewController:(LXCoureListSubViewController *)viewController andPageIndex:(NSInteger)pageIndex{
-    [self.courseDataController lxReuqestFindCoachCourseRecordWithCompletionBlock:^(LXFindCoachCourseResponseObject *responseModel) {
-        if (responseModel.flg == 1) {
-            if (pageIndex == 0) {
-                self.courseArr = [[NSMutableArray alloc] init];
-                NSArray *clistArr = [NSArray yy_modelArrayWithClass:[LXFindCourseRecordModel class] json:[responseModel.data.clist yy_modelToJSONData]];
-                for (LXFindCourseRecordModel *model in  clistArr) {
-                    model.courseState = 0;
-                    [self.courseArr addObject:model];
-                }
-            }else if (pageIndex == 1) {
-                self.courseArr = [[NSMutableArray alloc] init];
-                NSArray *ulist = [NSArray yy_modelArrayWithClass:[LXFindCourseRecordModel class] json:[responseModel.data.ulist yy_modelToJSONData]];
-                for (LXFindCourseRecordModel *model in ulist) {
-                    model.courseState = 1;
-                    [self.courseArr addObject:model];
-                }
-            }
-            viewController.dataArr = self.courseArr;
-        }else {
-            [self.view makeToast:responseModel.msg];
-        }
-    }];
-}
-
-#pragma mark - LXCommonNavViewDelegate
-- (void)lx_clickLeftButton {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - VTMagicViewDataSource
@@ -76,7 +37,7 @@
  *  @return header数组
  */
 - (NSArray<__kindof NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView{
-    NSArray *titleArr = @[@"已完成课程",@"未完成课程"];
+    NSArray *titleArr = @[@"待上课信息",@"待处理课程"];
     return titleArr;
 }
 /**
@@ -114,24 +75,36 @@
  *  @return 页面控制器
  */
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex{
-    static NSString *string = @"LXCoureListSubViewController";
-    LXCoureListSubViewController *tableView = [magicView dequeueReusablePageWithIdentifier:string];
-    if (!tableView) {
-        tableView = [[LXCoureListSubViewController alloc]init];
+    if (pageIndex == 0) {
+        static NSString *string = @"LXMyAffairsToClass_VC";
+        LXMyAffairsToClass_VC *vc = [magicView dequeueReusablePageWithIdentifier:string];
+        if (!vc) {
+            vc = [[LXMyAffairsToClass_VC alloc]init];
+        }
+        return vc;
+    }else{
+        static NSString *string = @"LXMyAffairsToHandle_VC";
+        LXMyAffairsToHandle_VC *vc = [magicView dequeueReusablePageWithIdentifier:string];
+        if (!vc) {
+            vc = [[LXMyAffairsToHandle_VC alloc]init];
+        }
+        return vc;
     }
-    return tableView;
 }
 - (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex {
-    [self requestMyCourceListViewController:viewController andPageIndex:pageIndex];
+    if (pageIndex == 0) {
+        LXMyAffairsToClass_VC *vc = viewController;
+        [vc loadLXMyAffairsToClassData];
+    }else{
+        LXMyAffairsToHandle_VC *vc = viewController;
+        [vc loadLXMyAffairsToHandleData];
+    }
 }
-
 
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {
-        _navView = [[LXCommonNavView alloc] initWithTitle:@"课程记录"];
-        _navView.delegate = self;
-        _navView.leftButtonImage = [UIImage imageNamed:@"lx_nav_back"];
+        _navView = [[LXCommonNavView alloc] initWithTitle:@"我的事务"];
     }
     return _navView;
 }
@@ -152,25 +125,13 @@
         _magicController.magicView.sliderColor = [UIColor colorWithHexString:@"#309CF5"];
         _magicController.magicView.bubbleRadius = 0;
         _magicController.magicView.headerHidden = NO;
-//        [_magicController.magicView setSliderView:self.myCustomliderView];
     }
     return _magicController;
-}
-- (LXFindCoachCourseRecordSessionTask *)courseDataController {
-    if (!_courseDataController) {
-        LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-        _courseDataController = [[LXFindCoachCourseRecordSessionTask alloc] init];
-        _courseDataController.certNo = mineModel.certNo;
-        _courseDataController.rows = 20;
-        _courseDataController.page = 1;
-    }
-    return _courseDataController;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

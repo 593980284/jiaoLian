@@ -62,6 +62,14 @@ static NSString * const kFindMyStudentList = @"coach/findMyStudent";
 /// 我的学员详情
 static NSString * const kFindMyStudentDetil = @"coach/findMyStudentDetil";
 
+// -------------- 学员 -----------------
+/// 待处理课程接口
+static NSString * const kFindMyAffairsToHandleList = @"course/findMyAffairsToHandleList";
+/// 待上课接口
+static NSString * const kFindMyAffairsToClassList = @"course/findMyAffairsToClassList";
+/// 我的事务待处理日期接口
+static NSString * const kFindMyAffairsToHandleDateList = @"course/findMyAffairsToHandleDateList";
+
 // -------------- 消息 -----------------
 
 /// 查询此教练消息列表

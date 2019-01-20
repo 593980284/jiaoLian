@@ -9,7 +9,7 @@
 #import "LXTabBarController.h"
 #import "LXNavigationController.h"
 #import "LXStudentController.h"
-#import "LXMessageController.h"
+#import "LXMyAffairs_VC.h"
 #import "LXCourseController.h"
 #import "LXMineController.h"
 
@@ -28,7 +28,7 @@
 
 - (void)addChildViewController {
     self.delegate = self;
-    NSArray *itemControllerArray = @[@"LXCourseController", @"LXMessageController", @"LXStudentController", @"LXMineController"];
+    NSArray *itemControllerArray = @[@"LXCourseController", @"LXMyAffairs_VC", @"LXStudentController", @"LXMineController"];
     NSArray *itemTitleArray = @[@"我的课表", @"我的事务", @"我的学员", @"个人中心"];
     NSArray *itemImageArray = @[@"lx_tabbar_class_normal", @"lx_tabbar_news_normal", @"lx_tabbar_student_normal", @"lx_tabbar_mine_normal"];
     NSArray *itemSelectImageArray = @[@"lx_tabbar_class_select", @"lx_tabbar_news_select", @"lx_tabbar_student_select", @"lx_tabbar_mine_select"];
