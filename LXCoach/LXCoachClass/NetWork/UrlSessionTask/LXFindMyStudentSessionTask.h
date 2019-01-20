@@ -17,6 +17,8 @@
 @interface LXFindMyStudentSessionTask : LXBaseUrlSessionTask
 /// 教练证号
 @property (nonatomic, copy) NSString *certNo;
+@property (nonatomic, assign)NSInteger page;
+@property (nonatomic, assign)NSInteger rows;
 
 - (void)lxReuqestFindMyStudentWithCompletionBlock:(void(^)(LXFindMyStudentResponseObject *responseModel))block;
 

@@ -11,7 +11,6 @@
 #import "LXCommonNavView.h"
 #import "LXStudentSubView.h"
 #import "LXStudentSubViewCell.h"
-#import "LXStudentDataController.h"
 #import "LXFindMyStudentSessionTask.h"
 #import "LXMineModel.h"
 #import "LXMyStudentListModel.h"
@@ -24,7 +23,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXStudentSubView *subView;
 @property (nonatomic, strong) NSArray *dataSourceArr;
-@property (nonatomic, strong) LXStudentDataController *studentDataController;
+@property (nonatomic, strong) LXFindMyStudentSessionTask *studentDataController;
 @end
 
 @implementation LXStudentController
@@ -38,11 +37,14 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     [self.view addSubview:self.navView];
     [self.view addSubview:self.subView];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestStudentList];
+}
 
 #pragma mark - request
 - (void)requestStudentList {
-    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    [self.studentDataController lxReuqestFindMyStudentListWithCertNo:mineModel.certNo completionBlock:^(LXFindMyStudentResponseObject *responseModel) {
+    [self.studentDataController lxReuqestFindMyStudentWithCompletionBlock:^(LXFindMyStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             self.dataSourceArr = [NSArray yy_modelArrayWithClass:[LXMyStudentListModel class] json:[[responseModel.data objectForKey:@"list"] yy_modelToJSONData]];
             [self.subView reloadTableView];
@@ -109,9 +111,13 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     return _subView;
 }
 
-- (LXStudentDataController *)studentDataController {
+- (LXFindMyStudentSessionTask *)studentDataController {
     if (!_studentDataController) {
-        _studentDataController = [[LXStudentDataController alloc] init];
+        LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+        _studentDataController = [[LXFindMyStudentSessionTask alloc] init];
+        _studentDataController.certNo = mineModel.certNo;
+        _studentDataController.rows = 20;
+        _studentDataController.page = 1;
     }
     return _studentDataController;
 }
