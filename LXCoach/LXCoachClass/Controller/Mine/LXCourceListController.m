@@ -8,7 +8,6 @@
 
 #import "LXCourceListController.h"
 #import <VTMagic/VTMagic.h>
-#import "LXCourseDataController.h"
 #import "LXFindCoachCourseRecordSessionTask.h"
 #import "LXCoureListSubViewController.h"
 #import "LXCommonNavView.h"
@@ -19,7 +18,7 @@
 @interface LXCourceListController ()<VTMagicViewDelegate,VTMagicViewDataSource,LXCommonNavViewDelegate>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
-@property (nonatomic, strong) LXCourseDataController *courseDataController;
+@property (nonatomic, strong) LXFindCoachCourseRecordSessionTask *courseDataController;
 /// 课程Arr
 @property (nonatomic, strong) NSMutableArray *courseArr;
 
@@ -39,8 +38,7 @@
 #pragma mark - request
 // 查询教练课程记录
 - (void)requestMyCourceListViewController:(LXCoureListSubViewController *)viewController andPageIndex:(NSInteger)pageIndex{
-    LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
-    [self.courseDataController lxReuqestFindCoachCourseRecordListWithCertNo:mineModel.certNo completionBlock:^(LXFindCoachCourseResponseObject *responseModel) {
+    [self.courseDataController lxReuqestFindCoachCourseRecordWithCompletionBlock:^(LXFindCoachCourseResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             if (pageIndex == 0) {
                 self.courseArr = [[NSMutableArray alloc] init];
@@ -62,7 +60,6 @@
             [self.view makeToast:responseModel.msg];
         }
     }];
-    
 }
 
 #pragma mark - LXCommonNavViewDelegate
@@ -95,9 +92,16 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:[UIColor colorWithHexString:@"#333333"] forState:UIControlStateNormal];
-        [menuItem setTitleColor:[UIColor colorWithHexString:@"#309CF5"] forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont systemFontOfSize:16];
+        menuItem.titleLabel.font = [UIFont systemFontOfSize:13];
+        [menuItem setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
+        [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
+        UIImage *imgU = [UIImage imageNamed:@"lx_btn_selected_n"];
+        UIImage *imgS = [UIImage imageNamed:@"lx_btn_selected_y"];
+        [menuItem setImage:imgU forState:UIControlStateNormal];
+        [menuItem setImage:imgS forState:UIControlStateSelected];
+        [menuItem setImageEdgeInsets:UIEdgeInsetsMake(0, 13 * 5/2, 0, -13 * 5/2)];
+        [menuItem setTitleEdgeInsets:UIEdgeInsetsMake(0, -imgS.size.width/2, 0, imgS.size.width/2)];
     }
     return menuItem;
 }
@@ -152,9 +156,13 @@
     }
     return _magicController;
 }
-- (LXCourseDataController *)courseDataController {
+- (LXFindCoachCourseRecordSessionTask *)courseDataController {
     if (!_courseDataController) {
-        _courseDataController = [[LXCourseDataController alloc] init];
+        LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
+        _courseDataController = [[LXFindCoachCourseRecordSessionTask alloc] init];
+        _courseDataController.certNo = mineModel.certNo;
+        _courseDataController.rows = 20;
+        _courseDataController.page = 1;
     }
     return _courseDataController;
 }

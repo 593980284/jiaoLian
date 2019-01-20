@@ -13,98 +13,66 @@
 @interface LXCourseListCell ()
 /// 头像
 @property (nonatomic, strong) UIImageView *headerImageView;
-/// 科目几 / 姓名
+/// 科目几
 @property (nonatomic, strong) UILabel *subjectNumber;
 /// 驾校名称
-@property (nonatomic, strong) UILabel *drivingSchoolName;
-/// 时间
-@property (nonatomic, strong)  UILabel *time;
-/// 学员人数 缺课人数
-@property (nonatomic, strong) UILabel *studentState;
-/// 分割线
-@property (nonatomic, strong) UIView *bottomLine;
-
+@property (nonatomic, strong) UILabel *contentLabel;
 @end
 
 @implementation LXCourseListCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self.contentView addSubview:self.headerImageView];
-        [self.contentView addSubview:self.subjectNumber];
-//        [self.contentView addSubview:self.borderSubjectAge];
-        [self.contentView addSubview:self.drivingSchoolName];
-        [self.contentView addSubview:self.time];
-        [self.contentView addSubview: self.studentState];
-        [self.contentView addSubview:self.bottomLine];
+        self.backgroundColor = [UIColor clearColor];
+        UIView *bgView = [UIView new];
+        bgView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:bgView];
+        [bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(8, 12, 0, 12));
+        }];
+        [bgView addSubview:self.headerImageView];
+        [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(bgView);
+            make.left.mas_equalTo(8);
+            make.size.mas_equalTo(56);
+        }];
+        [bgView addSubview:self.subjectNumber];
+        [_subjectNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.headerImageView);
+            make.left.equalTo(self.headerImageView.mas_right).offset(8);
+            make.right.equalTo(bgView);
+        }];
+        [bgView addSubview:self.contentLabel];
+        [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.subjectNumber);
+            make.bottom.equalTo(self.headerImageView);
+        }];
     }
     return self;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 15;
-    CGFloat y = 15;
-    CGFloat w = 70 *kAutoSizeScaleX;
-    CGFloat h = 70 *kAutoSizeScaleX;
-    self.headerImageView.frame = CGRectMake(x, y, w, h);
-    self.headerImageView.centerY = self.contentView.centerY;
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 10;
-    y = 19;
-    w = 150;
-    h = 15;
-    self.subjectNumber.frame = CGRectMake(x, y, w, h);
-    
-//    x = CGRectGetMaxX(self.subjectNumber.frame) + 15;
-//    y = 19;
-//    w = 98;
-//    h = 15;
-//    self.borderSubjectAge.frame = CGRectMake(x, y, w, h);
-
-    x = self.width - (16+100);
-    y = 22;
-    w = 100;
-    h = 12;
-    self.drivingSchoolName.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 10;
-    y = CGRectGetMaxY(self.subjectNumber.frame) + 10;
-    w = self.width - (15+10+70 *kAutoSizeScaleX+15);
-    h = 9;
-    self.time.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.headerImageView.frame) + 10;
-    y = CGRectGetMaxY(self.time.frame) + 12;
-    w = self.width - (15+10+70 *kAutoSizeScaleX+15);
-    h = 12;
-    self.studentState.frame = CGRectMake(x, y, w, h);
-    
-    x = 0;
-    y = self.height - .5;
-    w = self.width;
-    h = .5;
-    self.bottomLine.frame = CGRectMake(x, y, w, h);
-    
-}
-- (void)valueToSubView {
-    self.subjectNumber.text = @"科目一";
-    self.drivingSchoolName.text = @"小白驾校";
-    self.time.text = @"2018-05-28   14:00:00-16:00:00";
-    self.studentState.text = @"学员：3人   缺课人员：0人";
-}
-
 #pragma mark - publicMethod
 - (void)configCellValue:(LXFindCourseRecordModel *)model {
-    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.subjectPhoto];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
-    self.subjectNumber.text = model.subjectName;
-    self.drivingSchoolName.text = model.schoolName;
-    self.time.text = model.periodTime;
-    if (model.courseState == 0) {
-        self.studentState.text = [NSString stringWithFormat:@"学员：%ld人     缺课人员：%ld人",(long)model.reachStuNum,(long)model.noReachStuNum];
-    }else if (model.courseState == 1) {
-        self.studentState.text = [NSString stringWithFormat:@"学员：%ld     学时：%ld学时",(long)model.reachStuNum,(long)model.hours];
+    CGFloat subjectId = [model.subjectId integerValue];
+    UIImage *sImg = [UIImage imageNamed:@"lx_kemu_1"];
+    if (subjectId == 2) {
+        sImg = [UIImage imageNamed:@"lx_kemu_2"];
+    }else if (subjectId == 3){
+        sImg = [UIImage imageNamed:@"lx_kemu_3"];
+    }else if (subjectId == 4){
+        sImg = [UIImage imageNamed:@"lx_kemu_4"];
     }
+    _headerImageView.image = sImg;
+    
+    _subjectNumber.text = model.subjectName;
+    
+    _contentLabel.text = [NSString stringWithFormat:@"%@ | %@ | 已约课%ld/%ld",model.periodTime,model.className,model.appointmentNum,model.maxNum];
+//    self.drivingSchoolName.text = model.schoolName;
+//    self.time.text = model.periodTime;
+//    if (model.courseState == 0) {
+//        self.studentState.text = [NSString stringWithFormat:@"学员：%ld人     缺课人员：%ld人",(long)model.reachStuNum,(long)model.noReachStuNum];
+//    }else if (model.courseState == 1) {
+//        self.studentState.text = [NSString stringWithFormat:@"学员：%ld     学时：%ld学时",(long)model.reachStuNum,(long)model.hours];
+//    }
     
 }
 
@@ -112,9 +80,6 @@
 - (UIImageView *)headerImageView {
     if (!_headerImageView) {
         _headerImageView = [[UIImageView alloc] init];
-        _headerImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-        _headerImageView.layer.cornerRadius = 70 *kAutoSizeScaleX/2;
-        _headerImageView.clipsToBounds = YES;
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _headerImageView;
@@ -123,56 +88,21 @@
     if (!_subjectNumber) {
         _subjectNumber = [[UILabel alloc] init];
         _subjectNumber.textAlignment = NSTextAlignmentLeft;
-        _subjectNumber.font = [UIFont systemFontOfSize:16];
-        _subjectNumber.textColor = [UIColor colorWithHexString:@"#333333"];
+        _subjectNumber.font = [UIFont systemFontOfSize:18];
+        _subjectNumber.textColor = TEXT_COLOR_BLACK;
     }
     return _subjectNumber;
 }
-//- (UILabel *)borderSubjectAge {
-//    if (!_borderSubjectAge) {
-//        _borderSubjectAge = [[UILabel alloc] init];
-//        _borderSubjectAge.layer.borderWidth = .5;
-//        _borderSubjectAge.layer.borderColor = [UIColor colorWithHexString:@"#333333"].CGColor;
-//        _borderSubjectAge.layer.cornerRadius = 3;
-//        _borderSubjectAge.textAlignment = NSTextAlignmentCenter;
-//        _borderSubjectAge.font = [UIFont systemFontOfSize:12];
-//        _borderSubjectAge.textColor = [UIColor colorWithHexString:@"#333333"];
-//    }
-//    return _borderSubjectAge;
-//}
-- (UILabel *)drivingSchoolName {
-    if (!_drivingSchoolName) {
-        _drivingSchoolName = [[UILabel alloc] init];
-        _drivingSchoolName.textColor = [UIColor colorWithHexString:@"#333333"];
-        _drivingSchoolName.textAlignment = NSTextAlignmentRight;
-        _drivingSchoolName.font = [UIFont systemFontOfSize:12];
+
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+        _contentLabel.numberOfLines = 2;
+        _contentLabel.font = [UIFont systemFontOfSize:12];
+        _contentLabel.textColor = TEXT_COLOR_GRAY;
+        _contentLabel.textAlignment = NSTextAlignmentLeft;
     }
-    return _drivingSchoolName;
-}
-- (UILabel *)time {
-    if (!_time) {
-        _time = [[UILabel alloc] init];
-        _time.textColor = [UIColor colorWithHexString:@"#333333"];
-        _time.textAlignment = NSTextAlignmentLeft;
-        _time.font = [UIFont systemFontOfSize:12];
-    }
-    return _time;
-}
-- (UILabel *)studentState {
-    if (!_studentState) {
-        _studentState = [[UILabel alloc] init];
-        _studentState.font = [UIFont systemFontOfSize:12];
-        _studentState.textColor = [UIColor colorWithHexString:@"#333333"];
-        _studentState.textAlignment = NSTextAlignmentLeft;
-    }
-    return _studentState;
-}
-- (UIView *)bottomLine {
-    if (!_bottomLine) {
-        _bottomLine = [[UIView alloc] init];
-        _bottomLine.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-    }
-    return _bottomLine;
+    return _contentLabel;
 }
 
 @end

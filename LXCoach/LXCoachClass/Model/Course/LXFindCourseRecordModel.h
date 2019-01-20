@@ -22,6 +22,8 @@
 @property (nonatomic, copy) NSString *subjectId;
 /// 科目名称
 @property (nonatomic, copy) NSString *subjectName;
+/// 班级名称
+@property (nonatomic, copy) NSString *className;
 /// 约课时间段
 @property (nonatomic, copy) NSString *periodTime;
 /// 教练头像路径
@@ -36,7 +38,8 @@
 @property (nonatomic, assign) NSInteger hours;
 /// 课程状态 0:已完成 1:未完成
 @property (nonatomic, assign) NSInteger courseState;
-
+/// 总人数
+@property (nonatomic, assign) NSInteger maxNum;
 /// 报名人数
 @property (nonatomic, assign) NSInteger appointmentNum;
 /// 剩余人数
