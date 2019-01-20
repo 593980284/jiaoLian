@@ -23,5 +23,13 @@
 @property (nonatomic, copy)NSString *mobile;
 /// 科目名称
 @property (nonatomic, copy)NSString *subjectName;
+//班级
+@property (nonatomic, copy)NSString *className;
+//男女
+@property (nonatomic, copy)NSString *sex;
+//学时
+@property (nonatomic, copy)NSString *useCount;
+@property (nonatomic, copy)NSString *allCount;
+
 
 @end

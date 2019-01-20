@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIImageView *headerImageView;
 /// 科目几
 @property (nonatomic, strong) UILabel *subjectNumber;
-/// 驾校名称
+/// 内容
 @property (nonatomic, strong) UILabel *contentLabel;
 @end
 
@@ -66,14 +66,6 @@
     _subjectNumber.text = model.subjectName;
     
     _contentLabel.text = [NSString stringWithFormat:@"%@ | %@ | 已约课%ld/%ld",model.periodTime,model.className,model.appointmentNum,model.maxNum];
-//    self.drivingSchoolName.text = model.schoolName;
-//    self.time.text = model.periodTime;
-//    if (model.courseState == 0) {
-//        self.studentState.text = [NSString stringWithFormat:@"学员：%ld人     缺课人员：%ld人",(long)model.reachStuNum,(long)model.noReachStuNum];
-//    }else if (model.courseState == 1) {
-//        self.studentState.text = [NSString stringWithFormat:@"学员：%ld     学时：%ld学时",(long)model.reachStuNum,(long)model.hours];
-//    }
-    
 }
 
 #pragma mark - getter

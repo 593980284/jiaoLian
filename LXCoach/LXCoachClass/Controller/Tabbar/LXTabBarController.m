@@ -29,7 +29,7 @@
 - (void)addChildViewController {
     self.delegate = self;
     NSArray *itemControllerArray = @[@"LXCourseController", @"LXMessageController", @"LXStudentController", @"LXMineController"];
-    NSArray *itemTitleArray = @[@"我的课程", @"我的消息", @"我的学员", @"我的"];
+    NSArray *itemTitleArray = @[@"我的课表", @"我的事务", @"我的学员", @"个人中心"];
     NSArray *itemImageArray = @[@"lx_tabbar_class_normal", @"lx_tabbar_news_normal", @"lx_tabbar_student_normal", @"lx_tabbar_mine_normal"];
     NSArray *itemSelectImageArray = @[@"lx_tabbar_class_select", @"lx_tabbar_news_select", @"lx_tabbar_student_select", @"lx_tabbar_mine_select"];
     NSMutableArray *controllersArray = [NSMutableArray new];

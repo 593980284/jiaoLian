@@ -14,78 +14,77 @@
 @property (nonatomic, strong) UIView *borderView;
 /// 图片
 @property (nonatomic, strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UIImageView *sexImgView;
 /// 姓名
 @property (nonatomic, strong) UILabel *nameLabel;
 /// 科目
 @property (nonatomic, strong) UILabel *subjectNumber;
 @property (nonatomic, strong) UILabel *iphoneNumber;
 /// 拨打电话按钮
-@property (nonatomic, strong) UIImageView *callMobile;
+@property (nonatomic, strong) UIButton *callMobile;
 @end
 
 @implementation LXStudentSubViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.userInteractionEnabled = YES;
-        [self.contentView addSubview:self.borderView];
-        [self.borderView addSubview:self.iconImageView];
-        [self.borderView addSubview:self.nameLabel];
-        [self.borderView addSubview:self.subjectNumber];
-        [self.borderView addSubview:self.iphoneNumber];
-        [self.borderView addSubview:self.callMobile];
-//        [self valueToSubView];
+        self.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.borderView];
+        [_borderView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(UIEdgeInsetsMake(8, 12, 0, 12));
+        }];
+        
+        [_borderView addSubview:self.iconImageView];
+        [_iconImageView addSubview:self.sexImgView];
+        [_borderView addSubview:self.nameLabel];
+        [_borderView addSubview:self.iphoneNumber];
+        [_borderView addSubview:self.subjectNumber];
+        [_borderView addSubview:self.callMobile];
+        
+        [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.left.mas_equalTo(8);
+            make.size.mas_equalTo(65);
+        }];
+        [_sexImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.bottom.equalTo(self.iconImageView);
+            make.width.height.mas_equalTo(25);
+        }];
+        [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.iconImageView);
+            make.left.equalTo(self.iconImageView.mas_right).offset(8);
+            make.right.mas_equalTo(0);
+        }];
+        [_iphoneNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.nameLabel);
+            make.bottom.equalTo(self.subjectNumber.mas_top).offset(-4);
+        }];
+        [_subjectNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.nameLabel);
+            make.bottom.equalTo(self.iconImageView);
+        }];
+        [_callMobile mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(80, 33));
+            make.right.mas_equalTo(-8);
+        }];
     }
     return self;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGFloat x = 15;
-    CGFloat y = 15;
-    CGFloat w = self.width - 30;
-    CGFloat h = self.height - 15;
-    self.borderView.frame = CGRectMake(x, y, w, h);
-    
-    x = 15;
-    y = 15 * kAutoSizeScaleX;
-    w = 80 * kAutoSizeScaleX;
-    h = 64 * kAutoSizeScaleX;
-    self.iconImageView.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.iconImageView.frame) + 10;
-    y = 26;
-    w = 60;
-    h = 15;
-    self.nameLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.nameLabel.frame) + 10;
-    y = 26;
-    w = 50;
-    h = 15;
-    self.subjectNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMaxX(self.iconImageView.frame) + 10;
-    y = CGRectGetMaxY(self.nameLabel.frame) + 14;
-    w = 200;
-    self.iphoneNumber.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetWidth(self.borderView.frame) - (15 + 33);
-    y = 31*kAutoSizeScaleX;
-    w = 33*kAutoSizeScaleX;
-    h = 33*kAutoSizeScaleX;
-    self.callMobile.frame = CGRectMake(x, y, w, h);
-}
-- (void)valueToSubView {
-    self.nameLabel.text = @"张三";
-    self.subjectNumber.text = @"科目二";
-    self.iphoneNumber.text = @"17598785623";
-}
+
 #pragma mark - publicMethod
-- (void)configStudentListModel:(LXMyStudentListModel *)model {    
+- (void)configStudentListModel:(LXMyStudentListModel *)model {
+    UIImage *img = nil;
+    if ([model.sex isEqualToString:@"男"]) {
+        img = [UIImage imageNamed:@"lx_man"];
+    }else if ([model.sex isEqualToString:@"女"]){
+        img = [UIImage imageNamed:@"lx_woman"];
+    }
+    _sexImgView.image = img;
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
-    self.nameLabel.text = model.studentName;
-    self.subjectNumber.text = model.subjectName;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ · %@",model.studentName,model.subjectName];
+    self.subjectNumber.text = [NSString stringWithFormat:@"%@ | 完成学时%@/%@",model.className,model.useCount,model.allCount];
     self.iphoneNumber.text = model.mobile;
 }
 #pragma mark - Gesture
@@ -97,26 +96,29 @@
 - (UIView *)borderView {
     if (!_borderView) {
         _borderView = [[UIView alloc] init];
-        _borderView.userInteractionEnabled = YES;
-        _borderView.layer.borderWidth = 1;
-        _borderView.layer.borderColor = [UIColor colorWithHexString:@"#DDDDDD"].CGColor;
-        _borderView.layer.cornerRadius = 5;
+        _borderView.layer.cornerRadius = 8;
+        _borderView.backgroundColor = [UIColor whiteColor];
     }
     return _borderView;
 }
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-        _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
+}
+
+- (UIImageView *)sexImgView{
+    if (!_sexImgView) {
+        _sexImgView = [[UIImageView alloc] init];
+    }
+    return _sexImgView;
 }
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = [UIColor colorWithHexString:@"##333333"];
-        _nameLabel.font = [UIFont systemFontOfSize:16];
+        _nameLabel.textColor = TEXT_COLOR_BLACK;
+        _nameLabel.font = [UIFont systemFontOfSize:18];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _nameLabel;
@@ -124,31 +126,29 @@
 - (UILabel *)subjectNumber {
     if (!_subjectNumber) {
         _subjectNumber = [[UILabel alloc] init];
-        _subjectNumber.textAlignment = NSTextAlignmentCenter;
-        _subjectNumber.textColor = [UIColor colorWithHexString:@"#666666"];
+        _subjectNumber.textColor = TEXT_COLOR_GRAY;
         _subjectNumber.font = [UIFont systemFontOfSize:12];
-        _subjectNumber.layer.cornerRadius = 3;
-        _subjectNumber.layer.borderColor = [UIColor colorWithHexString:@"#666666"].CGColor;
-        _subjectNumber.layer.borderWidth = .5;
     }
     return _subjectNumber;
 }
 - (UILabel *)iphoneNumber {
     if (!_iphoneNumber) {
         _iphoneNumber = [[UILabel alloc] init];
-        _iphoneNumber.font = [UIFont systemFontOfSize:16];
-        _iphoneNumber.textColor = [UIColor colorWithHexString:@"#666666"];
+        _iphoneNumber.font = [UIFont systemFontOfSize:12];
+        _iphoneNumber.textColor = TEXT_COLOR_GRAY;
         _iphoneNumber.textAlignment = NSTextAlignmentLeft;
     }
     return _iphoneNumber;
 }
-- (UIImageView *)callMobile {
+- (UIButton *)callMobile {
     if (!_callMobile) {
-        _callMobile = [[UIImageView alloc] init];
-        _callMobile.userInteractionEnabled = YES;
-        _callMobile.image = [UIImage imageNamed:@"lx_student_callmobile"];
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callMobileAction)];
-        [_callMobile addGestureRecognizer:tapGesture];
+        _callMobile = [UIButton buttonWithType:UIButtonTypeCustom];
+        _callMobile.backgroundColor = BG_COLOR_BLUE;
+        _callMobile.layer.cornerRadius = 4.0;
+        [_callMobile setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_callMobile setTitle:@"一键呼叫" forState:UIControlStateNormal];
+        _callMobile.titleLabel.font = TEXT_FONT(15);
+        [_callMobile addTarget:self action:@selector(callMobileAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _callMobile;
 }
