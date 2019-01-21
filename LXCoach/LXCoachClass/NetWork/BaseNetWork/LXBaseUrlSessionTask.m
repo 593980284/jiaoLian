@@ -28,6 +28,10 @@
     NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
     
     [LXNetWorkManager requestWithType:LXHttpRequestTypePost withUrlString:urlString withParaments:postParameters withSuccessBlock:^(NSDictionary *object) {
+//        if ([urlString containsString:kFindMyAffairsToClassList]) {
+//            NSArray *list = @[@{@"className":@"C1普通班"},@{@"className":@"C1普通班"},@{@"className":@"C1普通班"}];
+//            object = @{@"flg":@1,@"data":@{@"list":list}};
+//        }
         if (block) {
             LXNetWorkResponseBaseObject *responseModel = [LXNetWorkResponseBaseObject yy_modelWithJSON:object];
             NSInteger status = responseModel.flg;

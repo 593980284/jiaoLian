@@ -8,6 +8,7 @@
 
 #import "LXBaseUrlSessionTask.h"
 @class LXAffairsDateResponseObject;
+@class LXAffairsDateModelList;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXAffairsDateSessionTask : LXBaseUrlSessionTask
@@ -18,6 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface LXAffairsDateResponseObject : LXNetWorkResponseBaseObject
-
+@property (nonatomic, strong) LXAffairsDateModelList *data;
 @end
 NS_ASSUME_NONNULL_END

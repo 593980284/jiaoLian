@@ -99,7 +99,7 @@
 - (LXCalendarView *)topDateView {
     if (!_topDateView) {
         _topDateView = [[LXCalendarView alloc] init];
-        _topDateView.frame = CGRectMake(0, 0, self.width, 120);
+        _topDateView.frame = CGRectMake(0, 0, self.width, 118);
     }
     return _topDateView;
 }

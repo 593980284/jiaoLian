@@ -19,7 +19,7 @@
 
 @implementation LXCalendarView
 {
-    LXCalendarCourseCell *tendCell;
+    NSInteger selectedIndex;
 }
 - (instancetype)init {
     if (self = [super init]) {
@@ -33,18 +33,17 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat x = 0;
-    CGFloat y = 15;
+    CGFloat x = 18;
+    CGFloat y = 0;
     CGFloat w = self.width;
-    CGFloat h = 15;
+    CGFloat h = 46;
     self.currentOptionDate.frame = CGRectMake(x, y, w, h);
     
     x = 0 ;
     y = CGRectGetMaxY(self.currentOptionDate.frame);
     w = self.width;
-    h = 120 - (15+15);
+    h = self.height - 46;
     self.collectionView.frame = CGRectMake(x, y, w, h);
-    
 }
 
 #pragma mark - delegate
@@ -57,54 +56,28 @@
     LXCalendarCourseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
     LXCourseFindDateListModel *model = self.dataArr[indexPath.row];
     [cell congfigCourseFindDateListModel:model];
-    if (model.firstIsOption == 1) {
-        cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
-        cell.dateLabel.textColor = [UIColor whiteColor];
-        tendCell = cell;
-    }else {
-        cell.dateLabel.backgroundColor = [UIColor whiteColor];
-        cell.dateLabel.textColor = [UIColor colorWithHexString:@"666666"];
-    }
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.width/7, self.height);
-    
+    return CGSizeMake(self.width/7, self.collectionView.height);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tendCell != nil) {
-        tendCell.dateLabel.backgroundColor = [UIColor clearColor];
-        tendCell.dateLabel.textColor = [UIColor colorWithHexString:@"#666666"];
-        /// 修改默认选中的状态值
-        LXCourseFindDateListModel *model = [self.dataArr firstObject];
-        model.firstIsOption = 0;
-        [self.dataArr replaceObjectAtIndex:0 withObject:model];
-        tendCell = nil;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (selectedIndex != indexPath.row) {
+        //选择不一样
+        //改变旧值
+        LXCourseFindDateListModel *selectModel = self.dataArr[selectedIndex];
+        selectModel.firstIsOption = 0;
+        //改变新值
+        LXCourseFindDateListModel *selectModel1 = self.dataArr[indexPath.row];
+        selectModel1.firstIsOption = 1;
+        self.currentOptionDate.text = selectModel1.yearAndMonth;
+        selectedIndex = indexPath.row;
+        [self.collectionView reloadData];
     }
-    LXCalendarCourseCell * cell = (LXCalendarCourseCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.dateLabel.backgroundColor = [UIColor colorWithHexString:@"#309CF5"];
-    cell.dateLabel.textColor = [UIColor whiteColor];
-    // 存储已经是选中状态
-    LXCourseFindDateListModel *selectModel = self.dataArr[indexPath.row];
-    selectModel.firstIsOption = 1;
-    [self.dataArr replaceObjectAtIndex:indexPath.row withObject:selectModel];
     self.collectionCellDidSelectBlock(indexPath.row);
-    self.currentOptionDate.text = selectModel.yearAndMonth;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    LXCalendarCourseCell * cell = (LXCalendarCourseCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.dateLabel.backgroundColor = [UIColor clearColor];
-    cell.dateLabel.textColor = [UIColor colorWithHexString:@"#666666"];
-    // 存储取消选中状态
-    LXCourseFindDateListModel *deselectModel = self.dataArr[indexPath.row];
-    deselectModel.firstIsOption = 0;
-    [self.dataArr replaceObjectAtIndex:indexPath.row withObject:deselectModel];
 }
 
 #pragma mark - setter
@@ -121,7 +94,7 @@
         _currentOptionDate = [[UILabel alloc] init];
         _currentOptionDate.font = [UIFont systemFontOfSize:16];
         _currentOptionDate.textColor = [UIColor colorWithHexString:@"#333333"];
-        _currentOptionDate.textAlignment = NSTextAlignmentCenter;
+        _currentOptionDate.textAlignment = NSTextAlignmentLeft;
     }
     return _currentOptionDate;
 }

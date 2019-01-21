@@ -15,14 +15,17 @@
 
 /// 科目名称
 @property (nonatomic, copy)   NSString *subjectName;
+@property (nonatomic, copy)   NSString *subjectId;
+@property (nonatomic, copy)   NSString *className;
+@property (nonatomic, copy)   NSString *maxNum;
 /// 课程id
 @property (nonatomic, assign) NSInteger appointmentId;
 /// 约课时间段
-@property (nonatomic, copy)   NSString *periodTime;
+@property (nonatomic, copy) NSString *periodTime;
 /// 报名人数
-@property (nonatomic, assign) NSInteger appointmentNum;
+@property (nonatomic, copy) NSString *appointmentNum;
 /// 剩余人数
-@property (nonatomic, assign) NSInteger noAppointmentNum;
+@property (nonatomic, copy) NSString *noAppointmentNum;
 /// 图片地址
 @property (nonatomic, copy) NSString *subjectPhoto;
 

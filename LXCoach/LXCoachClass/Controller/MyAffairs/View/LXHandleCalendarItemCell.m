@@ -1,27 +1,24 @@
 //
-//  LXCalendarCourseCell.m
+//  LXHandleCalendarItemCell.m
 //  LXCoach
 //
-//  Created by GDD on 2018/9/14.
-//  Copyright © 2018年 LeXiang. All rights reserved.
+//  Created by slardar on 2019/1/21.
+//  Copyright © 2019年 LeXiang. All rights reserved.
 //
 
-#import "LXCalendarCourseCell.h"
-#import "LXCourseFindDateListModel.h"
-
-@interface LXCalendarCourseCell ()
+#import "LXHandleCalendarItemCell.h"
+@interface LXHandleCalendarItemCell ()
 /// 星期
 @property (nonatomic, strong) UILabel *weekLabel;
-/// 有预约显示的点
-@property (nonatomic, strong) UILabel *reservationLabel;
+/// 日期
+@property (nonatomic, strong) UILabel *dateLabel;
 @end
 
-@implementation LXCalendarCourseCell
+@implementation LXHandleCalendarItemCell
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.weekLabel];
         [self addSubview:self.dateLabel];
-        [self addSubview:self.reservationLabel];
         [_weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.equalTo(self);
         }];
@@ -30,15 +27,11 @@
             make.centerX.equalTo(self);
             make.size.mas_equalTo(27);
         }];
-        [_reservationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self);
-            make.top.equalTo(self.dateLabel.mas_bottom);
-        }];
     }
     return self;
 }
 #pragma mark - publicMethod
-- (void)congfigCourseFindDateListModel:(LXCourseFindDateListModel *)model {
+- (void)congfigCourseFindDateListModel:(LXAffairsDateModel *)model {
     self.weekLabel.text = model.week;
     self.dateLabel.text = model.oneDate;
     if (model.firstIsOption == 1) {
@@ -47,12 +40,6 @@
     }else {
         _dateLabel.backgroundColor = [UIColor whiteColor];
         _dateLabel.textColor = TEXT_COLOR_BLACK;
-    }
-    if (model.has == 1) {
-        self.dateLabel.textColor = [UIColor colorWithRed:123/255.0 green:192/255.0 blue:100/255.0 alpha:1];
-        self.reservationLabel.hidden = NO;
-    }else {
-        self.reservationLabel.hidden = YES;
     }
 }
 
@@ -75,16 +62,5 @@
         _dateLabel.layer.cornerRadius =  13.5;
     }
     return _dateLabel;
-}
-- (UILabel *)reservationLabel {
-    if (!_reservationLabel) {
-        _reservationLabel = [[UILabel alloc] init];
-        _reservationLabel.textAlignment = NSTextAlignmentCenter;
-        _reservationLabel.font = [UIFont systemFontOfSize:12];
-        _reservationLabel.textColor = [UIColor colorWithRed:123/255.0 green:192/255.0 blue:100/255.0 alpha:1];
-        _reservationLabel.text = @"已排课";
-        _reservationLabel.hidden = YES;
-    }
-    return _reservationLabel;
 }
 @end

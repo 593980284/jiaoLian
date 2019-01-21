@@ -8,6 +8,7 @@
 
 #import "LXBaseUrlSessionTask.h"
 @class LXAffairsHandleResponseObject;
+@class LXAffairsHandleModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXAffairsHandleSessionTask : LXBaseUrlSessionTask
@@ -21,6 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface LXAffairsHandleResponseObject : LXNetWorkResponseBaseObject
-
+@property (nonatomic, strong) LXAffairsHandleModel *data;
 @end
 NS_ASSUME_NONNULL_END

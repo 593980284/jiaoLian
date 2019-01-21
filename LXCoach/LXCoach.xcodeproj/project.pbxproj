@@ -16,6 +16,13 @@
 		25F3FF6521F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */; };
 		25F3FF6821F4C0D000099AA3 /* LXAffairsClassSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */; };
 		25F3FF6E21F4C10B00099AA3 /* LXAffairsDateSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */; };
+		25F3FF7121F5F09300099AA3 /* LXAffairsClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7021F5F09300099AA3 /* LXAffairsClassModel.m */; };
+		25F3FF7421F5F20100099AA3 /* LXMyAffairClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7321F5F20100099AA3 /* LXMyAffairClassCell.m */; };
+		25F3FF7721F6196600099AA3 /* LXHadleCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7621F6196600099AA3 /* LXHadleCalendarView.m */; };
+		25F3FF7A21F61A8C00099AA3 /* LXHandleCalendarItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7921F61A8C00099AA3 /* LXHandleCalendarItemCell.m */; };
+		25F3FF7D21F61C2500099AA3 /* LXAffairsHandleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7C21F61C2500099AA3 /* LXAffairsHandleModel.m */; };
+		25F3FF8021F61C3400099AA3 /* LXAffairsDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF7F21F61C3400099AA3 /* LXAffairsDateModel.m */; };
+		25F3FF8321F61F7D00099AA3 /* LXHandleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF8221F61F7D00099AA3 /* LXHandleCell.m */; };
 		2F4CE8272143C4A200275F69 /* LXNetWorkResponseBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */; };
 		2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE82F2143CD8C00275F69 /* LXCodeUrlSessionTask.m */; };
 		2F4CE8332143CE2A00275F69 /* LXCodeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F4CE8322143CE2A00275F69 /* LXCodeDataController.m */; };
@@ -161,6 +168,20 @@
 		25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsClassSessionTask.m; sourceTree = "<group>"; };
 		25F3FF6C21F4C10B00099AA3 /* LXAffairsDateSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsDateSessionTask.h; sourceTree = "<group>"; };
 		25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsDateSessionTask.m; sourceTree = "<group>"; };
+		25F3FF6F21F5F09300099AA3 /* LXAffairsClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsClassModel.h; sourceTree = "<group>"; };
+		25F3FF7021F5F09300099AA3 /* LXAffairsClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsClassModel.m; sourceTree = "<group>"; };
+		25F3FF7221F5F20100099AA3 /* LXMyAffairClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyAffairClassCell.h; sourceTree = "<group>"; };
+		25F3FF7321F5F20100099AA3 /* LXMyAffairClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyAffairClassCell.m; sourceTree = "<group>"; };
+		25F3FF7521F6196600099AA3 /* LXHadleCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHadleCalendarView.h; sourceTree = "<group>"; };
+		25F3FF7621F6196600099AA3 /* LXHadleCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHadleCalendarView.m; sourceTree = "<group>"; };
+		25F3FF7821F61A8C00099AA3 /* LXHandleCalendarItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHandleCalendarItemCell.h; sourceTree = "<group>"; };
+		25F3FF7921F61A8C00099AA3 /* LXHandleCalendarItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHandleCalendarItemCell.m; sourceTree = "<group>"; };
+		25F3FF7B21F61C2500099AA3 /* LXAffairsHandleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsHandleModel.h; sourceTree = "<group>"; };
+		25F3FF7C21F61C2500099AA3 /* LXAffairsHandleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsHandleModel.m; sourceTree = "<group>"; };
+		25F3FF7E21F61C3400099AA3 /* LXAffairsDateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAffairsDateModel.h; sourceTree = "<group>"; };
+		25F3FF7F21F61C3400099AA3 /* LXAffairsDateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAffairsDateModel.m; sourceTree = "<group>"; };
+		25F3FF8121F61F7D00099AA3 /* LXHandleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHandleCell.h; sourceTree = "<group>"; };
+		25F3FF8221F61F7D00099AA3 /* LXHandleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHandleCell.m; sourceTree = "<group>"; };
 		2F4CE8252143C4A200275F69 /* LXNetWorkResponseBaseObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNetWorkResponseBaseObject.h; sourceTree = "<group>"; };
 		2F4CE8262143C4A200275F69 /* LXNetWorkResponseBaseObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNetWorkResponseBaseObject.m; sourceTree = "<group>"; };
 		2F4CE82E2143CD8C00275F69 /* LXCodeUrlSessionTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCodeUrlSessionTask.h; sourceTree = "<group>"; };
@@ -462,10 +483,10 @@
 				25F3FF6121F4BD9800099AA3 /* SessionTaskModel */,
 				25F3FF5521F4B94400099AA3 /* LXMyAffairs_VC.h */,
 				25F3FF5621F4B94400099AA3 /* LXMyAffairs_VC.m */,
-				25F3FF5B21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.h */,
-				25F3FF5C21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m */,
 				25F3FF5E21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.h */,
 				25F3FF5F21F4B9BD00099AA3 /* LXMyAffairsToClass_VC.m */,
+				25F3FF5B21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.h */,
+				25F3FF5C21F4B9AA00099AA3 /* LXMyAffairsToHandle_VC.m */,
 			);
 			path = MyAffairs;
 			sourceTree = "<group>";
@@ -475,10 +496,16 @@
 			children = (
 				25F3FF6321F4C0AD00099AA3 /* LXAffairsHandleSessionTask.h */,
 				25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */,
+				25F3FF7B21F61C2500099AA3 /* LXAffairsHandleModel.h */,
+				25F3FF7C21F61C2500099AA3 /* LXAffairsHandleModel.m */,
 				25F3FF6621F4C0D000099AA3 /* LXAffairsClassSessionTask.h */,
 				25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */,
+				25F3FF6F21F5F09300099AA3 /* LXAffairsClassModel.h */,
+				25F3FF7021F5F09300099AA3 /* LXAffairsClassModel.m */,
 				25F3FF6C21F4C10B00099AA3 /* LXAffairsDateSessionTask.h */,
 				25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */,
+				25F3FF7E21F61C3400099AA3 /* LXAffairsDateModel.h */,
+				25F3FF7F21F61C3400099AA3 /* LXAffairsDateModel.m */,
 			);
 			path = SessionTaskModel;
 			sourceTree = "<group>";
@@ -486,6 +513,14 @@
 		25F3FF6221F4C01900099AA3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25F3FF7221F5F20100099AA3 /* LXMyAffairClassCell.h */,
+				25F3FF7321F5F20100099AA3 /* LXMyAffairClassCell.m */,
+				25F3FF7521F6196600099AA3 /* LXHadleCalendarView.h */,
+				25F3FF7621F6196600099AA3 /* LXHadleCalendarView.m */,
+				25F3FF7821F61A8C00099AA3 /* LXHandleCalendarItemCell.h */,
+				25F3FF7921F61A8C00099AA3 /* LXHandleCalendarItemCell.m */,
+				25F3FF8121F61F7D00099AA3 /* LXHandleCell.h */,
+				25F3FF8221F61F7D00099AA3 /* LXHandleCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1241,6 +1276,7 @@
 				2FB7E32B213BD3BF00583B5C /* LXLoginView.m in Sources */,
 				2F4CE8942144207D00275F69 /* LXCourseDetailHeadView.m in Sources */,
 				6A16203D2147EB4E00438E14 /* LXCourseFindDateListModel.m in Sources */,
+				25F3FF7D21F61C2500099AA3 /* LXAffairsHandleModel.m in Sources */,
 				32C65C3F21422DE700B9CD1B /* LXCoureListSubViewController.m in Sources */,
 				6A223A66214A12B000E20FD0 /* LXFindCourseRecordArrModel.m in Sources */,
 				2F4CE86B2143E89A00275F69 /* LXUserInfoUrlSessionTask.m in Sources */,
@@ -1287,19 +1323,24 @@
 				6A7FF0772150F9640067D6AC /* LXAboutOursSubView.m in Sources */,
 				2FB7E317213BC7FE00583B5C /* LXBaseUrlSessionTask.m in Sources */,
 				6A480935214BE8C000A39074 /* LXFindMyCouseDetailListSessionTask.m in Sources */,
+				25F3FF7A21F61A8C00099AA3 /* LXHandleCalendarItemCell.m in Sources */,
 				2F4CE85A2143D8F700275F69 /* LXChangePhoneNumDataController.m in Sources */,
+				25F3FF7421F5F20100099AA3 /* LXMyAffairClassCell.m in Sources */,
 				324C4E772140DBD80067F95F /* LXCommonNavView.m in Sources */,
 				324C4E97214109EC0067F95F /* LXStudentController.m in Sources */,
 				6A48092F214BAB5C00A39074 /* LXCalendarView.m in Sources */,
 				6A223A7F214A1E1F00E20FD0 /* LXFfindCoachMsgSessionTask.m in Sources */,
+				25F3FF7121F5F09300099AA3 /* LXAffairsClassModel.m in Sources */,
 				324C4EB5214133CB0067F95F /* LXMineMessageAlterController.m in Sources */,
 				6A223A76214A1B6100E20FD0 /* LXMyStudentDetailSubjectModel.m in Sources */,
 				2F4CE8912144205D00275F69 /* LXCourseDetailView.m in Sources */,
 				6A7FF0672150B0C70067D6AC /* LXCoachEvaluationStudentSessionTask.m in Sources */,
+				25F3FF8321F61F7D00099AA3 /* LXHandleCell.m in Sources */,
 				2F4CE8602143DCB500275F69 /* LXSaveNewPhoneNumDataController.m in Sources */,
 				6A223A60214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.m in Sources */,
 				2F4CE8302143CD8C00275F69 /* LXCodeUrlSessionTask.m in Sources */,
 				2FB7E2EA213BBFA900583B5C /* LXMineModel.m in Sources */,
+				25F3FF7721F6196600099AA3 /* LXHadleCalendarView.m in Sources */,
 				6A73F86F215655FE00EB8E00 /* LXMessgeDetaileController.m in Sources */,
 				6A223A73214A164100E20FD0 /* LXMyStudentListModel.m in Sources */,
 				6A16202821477E4B00438E14 /* UIButton+LXCountDown.m in Sources */,
@@ -1326,6 +1367,7 @@
 				2F4CE88621441CB100275F69 /* LXCourseDetailController.m in Sources */,
 				2F4CE86E2143E9CF00275F69 /* LXUserInfoDataController.m in Sources */,
 				324C4E9A21410A1E0067F95F /* LXMessageController.m in Sources */,
+				25F3FF8021F61C3400099AA3 /* LXAffairsDateModel.m in Sources */,
 				2FB7E320213BD12B00583B5C /* LXLoginDataController.m in Sources */,
 				2FB7E2CA213BBDFE00583B5C /* AppDelegate.m in Sources */,
 				324C4EC12141433F0067F95F /* LXAboutOursViewController.m in Sources */,

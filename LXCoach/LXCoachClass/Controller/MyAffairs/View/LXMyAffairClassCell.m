@@ -1,18 +1,15 @@
 //
-//  LXCourseCell.m
+//  LXMyAffairClassCell.m
 //  LXCoach
 //
-//  Created by tanghaiyang on 2018/9/8.
-//  Copyright © 2018年 LeXiang. All rights reserved.
+//  Created by slardar on 2019/1/21.
+//  Copyright © 2019年 LeXiang. All rights reserved.
 //
 
-#import "LXCourseCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <FLAnimatedImage/FLAnimatedImageView.h>
-#import "LXCourseListModel.h"
-#import "LXUrlApi.h"
+#import "LXMyAffairClassCell.h"
+#import "LXAffairsClassModel.h"
 
-@interface LXCourseCell()
+@interface LXMyAffairClassCell()
 /// 头像
 @property (nonatomic, strong) UIImageView *headerImageView;
 /// 科目几
@@ -22,7 +19,7 @@
 
 @end
 
-@implementation LXCourseCell
+@implementation LXMyAffairClassCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -53,12 +50,9 @@
     }
     return self;
 }
-
-#pragma mark - setter
-- (void)setCourseListModel:(LXCourseListModel *)courseListModel {
-    _courseListModel = courseListModel;
-    
-    CGFloat subjectId = [courseListModel.subjectId integerValue];
+#pragma mark - publicMethod
+- (void)configCellValue:(LXMyAffairsClassModel *)model {
+    CGFloat subjectId = [model.subjectId integerValue];
     UIImage *sImg = [UIImage imageNamed:@"lx_kemu_1"];
     if (subjectId == 2) {
         sImg = [UIImage imageNamed:@"lx_kemu_2"];
@@ -69,9 +63,9 @@
     }
     _headerImageView.image = sImg;
     
-    _subjectNumber.text = courseListModel.subjectName;
+    _subjectNumber.text = model.subjectName;
     
-    _contentLabel.text = [NSString stringWithFormat:@"%@ | %@ | 已约课%@/%@",courseListModel.periodTime,courseListModel.className,courseListModel.appointmentNum,courseListModel.maxNum];
+    _contentLabel.text = [NSString stringWithFormat:@"%@ | %@ | 已约课%@/%@",model.periodTime,model.className,model.appointmentNum,model.maxNum];
 }
 
 #pragma mark - getter
@@ -102,4 +96,5 @@
     }
     return _contentLabel;
 }
+
 @end
