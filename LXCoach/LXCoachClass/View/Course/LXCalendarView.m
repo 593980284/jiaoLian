@@ -83,6 +83,7 @@
 #pragma mark - setter
 - (void)setDataArr:(NSMutableArray<LXCourseFindDateListModel *> *)dataArr {
     _dataArr = dataArr;
+    selectedIndex = 0;
     [self.collectionView reloadData];
     LXCourseFindDateListModel *model = [self.dataArr firstObject];
     self.currentOptionDate.text = model.yearAndMonth;

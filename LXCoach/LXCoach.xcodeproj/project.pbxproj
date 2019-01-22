@@ -494,10 +494,6 @@
 		25F3FF6121F4BD9800099AA3 /* SessionTaskModel */ = {
 			isa = PBXGroup;
 			children = (
-				25F3FF6321F4C0AD00099AA3 /* LXAffairsHandleSessionTask.h */,
-				25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */,
-				25F3FF7B21F61C2500099AA3 /* LXAffairsHandleModel.h */,
-				25F3FF7C21F61C2500099AA3 /* LXAffairsHandleModel.m */,
 				25F3FF6621F4C0D000099AA3 /* LXAffairsClassSessionTask.h */,
 				25F3FF6721F4C0D000099AA3 /* LXAffairsClassSessionTask.m */,
 				25F3FF6F21F5F09300099AA3 /* LXAffairsClassModel.h */,
@@ -506,6 +502,10 @@
 				25F3FF6D21F4C10B00099AA3 /* LXAffairsDateSessionTask.m */,
 				25F3FF7E21F61C3400099AA3 /* LXAffairsDateModel.h */,
 				25F3FF7F21F61C3400099AA3 /* LXAffairsDateModel.m */,
+				25F3FF6321F4C0AD00099AA3 /* LXAffairsHandleSessionTask.h */,
+				25F3FF6421F4C0AD00099AA3 /* LXAffairsHandleSessionTask.m */,
+				25F3FF7B21F61C2500099AA3 /* LXAffairsHandleModel.h */,
+				25F3FF7C21F61C2500099AA3 /* LXAffairsHandleModel.m */,
 			);
 			path = SessionTaskModel;
 			sourceTree = "<group>";
@@ -1500,7 +1500,7 @@
 				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = VTKB7X6455;
+				DEVELOPMENT_TEAM = T586HGP9C9;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
 				INFOPLIST_FILE = LXCoach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1512,10 +1512,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nav.enjoylearning;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meeruu.sharegoods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = AnHuiCoachDev;
+				PROVISIONING_PROFILE_SPECIFIER = devXiuGou;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1527,9 +1527,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LXCoach/LXCoach.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = VTKB7X6455;
+				DEVELOPMENT_TEAM = T586HGP9C9;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LXCoach/LX-Prfix.pch";
 				INFOPLIST_FILE = LXCoach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1541,9 +1541,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/QQ_XGPush/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nav.enjoylearning;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meeruu.sharegoods;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AnHuiCoachDev;
+				PROVISIONING_PROFILE_SPECIFIER = productXiuGou;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

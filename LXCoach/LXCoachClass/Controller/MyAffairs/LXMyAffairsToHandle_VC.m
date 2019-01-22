@@ -10,11 +10,11 @@
 #import "LXAffairsHandleSessionTask.h"
 #import "LXAffairsDateSessionTask.h"
 #import "LXMineModel.h"
+
 #import "LXHadleCalendarView.h"
 #import "LXHandleCell.h"
-#import "LXAffairsHandleModel.h"
+
 #import "LXCyhCalenbardate.h"
-#import "LXAffairsDateModel.h"
 @interface LXMyAffairsToHandle_VC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) LXAffairsHandleSessionTask *handleTask;
 @property (nonatomic, strong) LXAffairsDateSessionTask *dateTask;
@@ -29,6 +29,11 @@
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.topDateView];
+    @weakify(self);
+    [_topDateView setCollectionCellDidSelectBlock:^(LXAffairsDateModel *model) {
+        @strongify(self);
+        [self loadLXMyAffairsToHandleWithModel:model];
+    }];
     // Do any additional setup after loading the view.
 }
 
@@ -51,6 +56,16 @@
         }
     }];
 }
+
+- (void)loadLXMyAffairsToHandleWithModel:(LXAffairsDateModel *)model{
+    self.handleTask.date = model.date;
+    [self.handleTask lxReuqestWithCompletionBlock:^(LXAffairsHandleResponseObject * _Nonnull responseModel) {
+        if (responseModel.flg == 1) {
+            
+        }
+    }];
+}
+
 #pragma mark - delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -67,7 +82,6 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 //    LXAffairsHandleModel *courseListModel = self.dataArray[indexPath.row];
 //    LXCourseDetailController *courseDetailController = [[LXCourseDetailController alloc]init];
 //    courseDetailController.appointmentId = courseListModel.appointmentId;
@@ -95,10 +109,7 @@
 - (LXHadleCalendarView *)topDateView {
     if (!_topDateView) {
         _topDateView = [[LXHadleCalendarView alloc] init];
-        _topDateView.frame = CGRectMake(0, 0, self.view.width, 118);
-        [_topDateView setCollectionCellDidSelectBlock:^(NSInteger index) {
-            
-        }];
+        _topDateView.frame = CGRectMake(0, 0, self.view.width, 63);
     }
     return _topDateView;
 }

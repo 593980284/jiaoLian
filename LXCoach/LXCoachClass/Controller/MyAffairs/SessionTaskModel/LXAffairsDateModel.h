@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *week;
 @property (nonatomic, copy) NSString *oneDate;
-@property (nonatomic, copy) NSString *firstIsOption;
+@property (nonatomic, assign) NSInteger firstIsOption;
 
 @end
 

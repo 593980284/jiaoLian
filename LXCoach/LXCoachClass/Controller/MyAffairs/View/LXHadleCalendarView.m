@@ -7,7 +7,6 @@
 //
 
 #import "LXHadleCalendarView.h"
-#import "LXHandleCalendarItemCell.h"
 @interface LXHadleCalendarView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
@@ -46,24 +45,29 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if (selectedIndex != indexPath.row) {
-//        //选择不一样
-//        //改变旧值
-//        LXCourseFindDateListModel *selectModel = self.dataArr[selectedIndex];
-//        selectModel.firstIsOption = 0;
-//        //改变新值
-//        LXCourseFindDateListModel *selectModel1 = self.dataArr[indexPath.row];
-//        selectModel1.firstIsOption = 1;
-//        self.currentOptionDate.text = selectModel1.yearAndMonth;
-//        selectedIndex = indexPath.row;
-//        [self.collectionView reloadData];
-//    }
-//    self.collectionCellDidSelectBlock(indexPath.row);
+    if (selectedIndex != indexPath.row) {
+        //选择不一样
+        //改变旧值
+        LXAffairsDateModel *selectModel = self.dataArr[selectedIndex];
+        selectModel.firstIsOption = 0;
+        //改变新值
+        LXAffairsDateModel *selectModel1 = self.dataArr[indexPath.row];
+        selectModel1.firstIsOption = 1;
+        selectedIndex = indexPath.row;
+        [self.collectionView reloadData];
+    }
+    self.collectionCellDidSelectBlock(self.dataArr[selectedIndex]);
 }
 
 #pragma mark - setter
 - (void)setDataArr:(NSArray *)dataArr {
     _dataArr = dataArr;
+    //默认第一个
+    selectedIndex = 0;
+    LXAffairsDateModel *model = [self.dataArr firstObject];
+    model.firstIsOption = 1;
+    //请求数据
+    _collectionCellDidSelectBlock(model);
     [self.collectionView reloadData];
 }
 

@@ -23,7 +23,7 @@
             make.left.right.top.equalTo(self);
         }];
         [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom).offset(-21);
+            make.bottom.equalTo(self.mas_bottom).offset(-8);
             make.centerX.equalTo(self);
             make.size.mas_equalTo(27);
         }];

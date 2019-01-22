@@ -84,6 +84,7 @@
                 dateModel.yearAndMonth = [LXCyhCalenbardate obtainDateYearAndMonth:dateModel.date];
                 [self.dateSourceArr addObject:dateModel];
             }
+            
             self.courseSubView.dateArr = self.dateSourceArr;
             
             LXCourseFindDateListModel * model = [self.dateSourceArr firstObject];

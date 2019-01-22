@@ -8,5 +8,15 @@
 
 #import "LXAffairsHandleModel.h"
 @implementation LXAffairsHandleModel
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"list" : [LXAffairsHandleList class]};
+}
+@end
+@implementation LXAffairsHandleList
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"sslist" : [LXAffairsHandleSSlist class]};
+}
+@end
+@implementation LXAffairsHandleSSlist
 
 @end

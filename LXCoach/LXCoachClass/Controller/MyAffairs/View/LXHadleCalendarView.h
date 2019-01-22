@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LXHandleCalendarItemCell.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXHadleCalendarView : UIView
 
 @property (nonatomic, strong) NSArray *dataArr;
-@property (nonatomic, copy) void (^collectionCellDidSelectBlock)(NSInteger);
+@property (nonatomic, copy) void (^collectionCellDidSelectBlock)(LXAffairsDateModel *);
 
 @end
 
