@@ -9,21 +9,26 @@
 #import "LXMyAffairsToHandle_VC.h"
 #import "LXAffairsHandleSessionTask.h"
 #import "LXAffairsDateSessionTask.h"
+#import "LXCourseDataController.h"
 #import "LXMineModel.h"
 
 #import "LXHadleCalendarView.h"
 #import "LXHandleCell.h"
 
 #import "LXCyhCalenbardate.h"
-@interface LXMyAffairsToHandle_VC ()<UITableViewDelegate,UITableViewDataSource>
+#import "LXMyCoachAttendanceStudentSessionTask.h"
+@interface LXMyAffairsToHandle_VC ()<UITableViewDelegate,UITableViewDataSource,LXHandleCellDelegate>
 @property (nonatomic, strong) LXAffairsHandleSessionTask *handleTask;
 @property (nonatomic, strong) LXAffairsDateSessionTask *dateTask;
 @property (nonatomic, strong) LXHadleCalendarView *topDateView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) LXCourseDataController *dataController;
 @end
 
-@implementation LXMyAffairsToHandle_VC
+@implementation LXMyAffairsToHandle_VC{
+    LXAffairsDateModel *_selectedDateModel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,52 +63,84 @@
 }
 
 - (void)loadLXMyAffairsToHandleWithModel:(LXAffairsDateModel *)model{
+    _selectedDateModel = model;
     self.handleTask.date = model.date;
     [self.handleTask lxReuqestWithCompletionBlock:^(LXAffairsHandleResponseObject * _Nonnull responseModel) {
         if (responseModel.flg == 1) {
-            
+            self.dataArray = responseModel.data.list;
+            [self.tableView reloadData];
         }
     }];
 }
 
+- (void)cellActionWithModel:(LXAffairsHandleSSlist *)model andType:(NSInteger)type{
+    if (type == 1) {
+        // 缺勤 3
+        [self.dataController lxReuqestMyCoachAttendanceStudentWithCourseRecordId:[NSNumber numberWithInteger:[model.courseRecordId integerValue]] andStatus:[NSNumber numberWithInteger:3] completionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
+            if (responseModel.flg ==1) {
+                [self.view makeToast:responseModel.msg];
+                [self loadLXMyAffairsToHandleWithModel:self->_selectedDateModel];
+            }
+        }];
+    }else{
+        //已到 学员点击签到 2;  学员未点击签到 5;
+        NSInteger status = 0;
+        if ([model.status integerValue] == 1) {
+            // 学员点击了签到
+            status = 2;
+        }else if ([model.status integerValue] == 4) {
+            // 学员未点击签到
+            status = 5;
+        }
+        [self.dataController lxReuqestMyCoachAttendanceStudentWithCourseRecordId:[NSNumber numberWithInteger:[model.courseRecordId integerValue]] andStatus:[NSNumber numberWithInteger:status] completionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
+            if (responseModel.flg == 1) {
+                [self loadLXMyAffairsToHandleWithModel:self->_selectedDateModel];
+                [self.view makeToast:responseModel.msg];
+            }
+        }];
+    }
+}
+
 #pragma mark - delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.dataArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    LXAffairsHandleList *model = _dataArray[section];
+    return model.sslist.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kIdentifier = @"LXHandleCell";
     LXHandleCell *cell = [tableView dequeueReusableCellWithIdentifier:kIdentifier];
     if (!cell) {
-        cell = [[LXHandleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifier];
+        cell = [[LXHandleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kIdentifier];
+        cell.delegate = self;
     }
+    LXAffairsHandleList *model = _dataArray[indexPath.section];
+    [cell updateWithModel:model.sslist[indexPath.row]];
     return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    LXAffairsHandleModel *courseListModel = self.dataArray[indexPath.row];
-//    LXCourseDetailController *courseDetailController = [[LXCourseDetailController alloc]init];
-//    courseDetailController.appointmentId = courseListModel.appointmentId;
-//    courseDetailController.cheekPageOption = 1;
-//    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseDetailController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    return 126;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
-}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
+    LXAffairsHandleList *model = _dataArray[section];
+    UILabel *headerLabel = [UILabel new];
+    headerLabel.text = model.shortPeriodTime;
+    headerLabel.textAlignment = NSTextAlignmentCenter;
+    headerLabel.textColor = TEXT_COLOR_GRAY;
+    headerLabel.font = TEXT_FONT(12);
+    return headerLabel;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10;
+    return 30;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
 }
+
 
 #pragma mark - getter
 - (LXHadleCalendarView *)topDateView {
@@ -116,7 +153,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topDateView.frame), CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-CGRectGetHeight(self.topDateView.frame)) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topDateView.frame), kScreenWidth, self.view.height-LXNavigationStatusBar -45-63 - CGRectGetHeight(self.tabBarController.tabBar.frame)) style:UITableViewStyleGrouped];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.tableFooterView = [UIView new];
@@ -149,6 +186,12 @@
         _dateTask.certNo = model.certNo;
     }
     return _dateTask;
+}
+- (LXCourseDataController *)dataController {
+    if (!_dataController) {
+        _dataController = [[LXCourseDataController alloc] init];
+    }
+    return _dataController;
 }
 /*
 #pragma mark - Navigation

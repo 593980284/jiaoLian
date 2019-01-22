@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D0D1F47D0EDF168C4D1CEF4 /* libPods-LXCoach.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */; };
+		25E90AEB21F76EFF000C2CC0 /* LXStudentDetail_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E90AEA21F76EFF000C2CC0 /* LXStudentDetail_VC.m */; };
+		25E90AF921F77608000C2CC0 /* LXStudentDetail_Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E90AF821F77607000C2CC0 /* LXStudentDetail_Cell.m */; };
 		25F3FF4D21E9D22500099AA3 /* LX_ImageText_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */; };
 		25F3FF5321EE247D00099AA3 /* LX_Step_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5221EE247D00099AA3 /* LX_Step_View.m */; };
 		25F3FF5721F4B94400099AA3 /* LXMyAffairs_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 25F3FF5621F4B94400099AA3 /* LXMyAffairs_VC.m */; };
@@ -152,6 +154,10 @@
 
 /* Begin PBXFileReference section */
 		1836406EC186ECA6D98A28E9 /* Pods-LXCoach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXCoach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXCoach/Pods-LXCoach.debug.xcconfig"; sourceTree = "<group>"; };
+		25E90AE921F76EFF000C2CC0 /* LXStudentDetail_VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetail_VC.h; sourceTree = "<group>"; };
+		25E90AEA21F76EFF000C2CC0 /* LXStudentDetail_VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetail_VC.m; sourceTree = "<group>"; };
+		25E90AF721F77607000C2CC0 /* LXStudentDetail_Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStudentDetail_Cell.h; sourceTree = "<group>"; };
+		25E90AF821F77607000C2CC0 /* LXStudentDetail_Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStudentDetail_Cell.m; sourceTree = "<group>"; };
 		25F3FF4B21E9D22500099AA3 /* LX_ImageText_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX_ImageText_View.h; sourceTree = "<group>"; };
 		25F3FF4C21E9D22500099AA3 /* LX_ImageText_View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX_ImageText_View.m; sourceTree = "<group>"; };
 		25F3FF5121EE247D00099AA3 /* LX_Step_View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX_Step_View.h; sourceTree = "<group>"; };
@@ -463,6 +469,15 @@
 				48717F37B3B60C39D7EE1FF9 /* libPods-LXCoach.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25E90AF021F77551000C2CC0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25E90AF721F77607000C2CC0 /* LXStudentDetail_Cell.h */,
+				25E90AF821F77607000C2CC0 /* LXStudentDetail_Cell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		25F3FF4721E9CC1000099AA3 /* Common */ = {
@@ -913,12 +928,15 @@
 		324C4E8F214109720067F95F /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				25E90AF021F77551000C2CC0 /* View */,
 				324C4E96214109EC0067F95F /* LXStudentController.h */,
 				324C4E95214109EC0067F95F /* LXStudentController.m */,
 				6AD7D82D2143F5A6000FB4EF /* LXStudentDetailController.h */,
 				6AD7D82C2143F5A6000FB4EF /* LXStudentDetailController.m */,
 				6A4F37C22145495B007E41B8 /* LXStudentDetaileListController.h */,
 				6A4F37C32145495B007E41B8 /* LXStudentDetaileListController.m */,
+				25E90AE921F76EFF000C2CC0 /* LXStudentDetail_VC.h */,
+				25E90AEA21F76EFF000C2CC0 /* LXStudentDetail_VC.m */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -1324,6 +1342,7 @@
 				2FB7E317213BC7FE00583B5C /* LXBaseUrlSessionTask.m in Sources */,
 				6A480935214BE8C000A39074 /* LXFindMyCouseDetailListSessionTask.m in Sources */,
 				25F3FF7A21F61A8C00099AA3 /* LXHandleCalendarItemCell.m in Sources */,
+				25E90AEB21F76EFF000C2CC0 /* LXStudentDetail_VC.m in Sources */,
 				2F4CE85A2143D8F700275F69 /* LXChangePhoneNumDataController.m in Sources */,
 				25F3FF7421F5F20100099AA3 /* LXMyAffairClassCell.m in Sources */,
 				324C4E772140DBD80067F95F /* LXCommonNavView.m in Sources */,
@@ -1335,6 +1354,7 @@
 				6A223A76214A1B6100E20FD0 /* LXMyStudentDetailSubjectModel.m in Sources */,
 				2F4CE8912144205D00275F69 /* LXCourseDetailView.m in Sources */,
 				6A7FF0672150B0C70067D6AC /* LXCoachEvaluationStudentSessionTask.m in Sources */,
+				25E90AF921F77608000C2CC0 /* LXStudentDetail_Cell.m in Sources */,
 				25F3FF8321F61F7D00099AA3 /* LXHandleCell.m in Sources */,
 				2F4CE8602143DCB500275F69 /* LXSaveNewPhoneNumDataController.m in Sources */,
 				6A223A60214A0BE400E20FD0 /* LXFindCoachCourseRecordSessionTask.m in Sources */,

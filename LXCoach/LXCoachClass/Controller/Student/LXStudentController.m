@@ -7,7 +7,6 @@
 //
 
 #import "LXStudentController.h"
-#import "LXStudentDetailController.h"
 #import "LXCommonNavView.h"
 #import "LXStudentSubView.h"
 #import "LXStudentSubViewCell.h"
@@ -16,6 +15,7 @@
 #import "LXMyStudentListModel.h"
 #import "LXLoginController.h"
 #import "LXNavigationController.h"
+#import "LXStudentDetail_VC.h"
 
 static NSString *studentList_Identify = @"LXStudentSubViewCell";
 
@@ -88,10 +88,10 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
     return 15 + 94 * kAutoSizeScaleX;
 }
 - (void)lx_myStudentListTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LXStudentDetailController *studentDetailVC = [[LXStudentDetailController alloc] init];
+    LXStudentDetail_VC *studentDetailVC = [[LXStudentDetail_VC alloc] init];
     LXMyStudentListModel *model = self.dataSourceArr[indexPath.row];
-    studentDetailVC.headerModel = model;
-    studentDetailVC.cerNoState = YES;
+//    studentDetailVC.headerModel = model;
+//    studentDetailVC.cerNoState = YES;
     [self.navigationController pushViewController:studentDetailVC animated:YES];
     
 }

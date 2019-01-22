@@ -20,7 +20,8 @@
         [self addSubview:self.weekLabel];
         [self addSubview:self.dateLabel];
         [_weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.equalTo(self);
+            make.left.right.equalTo(self);
+            make.bottom.equalTo(self.dateLabel.mas_top).offset(-8);
         }];
         [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(-8);

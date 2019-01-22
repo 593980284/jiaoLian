@@ -10,9 +10,14 @@
 #import "LXAffairsHandleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol LXHandleCellDelegate <NSObject>
 
+- (void)cellActionWithModel:(LXAffairsHandleSSlist *)model andType:(NSInteger)type;
+
+@end
 @interface LXHandleCell : UITableViewCell
-
+@property (nonatomic,weak) id<LXHandleCellDelegate> delegate;
+- (void)updateWithModel:(LXAffairsHandleSSlist *)model;
 @end
 
 NS_ASSUME_NONNULL_END
