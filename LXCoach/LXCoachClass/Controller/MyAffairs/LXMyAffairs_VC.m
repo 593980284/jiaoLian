@@ -11,6 +11,8 @@
 #import "LXCommonNavView.h"
 #import "LXMyAffairsToClass_VC.h"
 #import "LXMyAffairsToHandle_VC.h"
+#import "LXMessageController.h"
+
 @interface LXMyAffairs_VC ()<VTMagicViewDelegate,VTMagicViewDataSource>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
@@ -26,6 +28,10 @@
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
     [self.view addSubview:self.navView];
+}
+
+- (void)lx_clickRightButton{
+    [self.navigationController pushViewController:[LXMessageController new] animated:YES];
 }
 
 #pragma mark - VTMagicViewDataSource
@@ -105,6 +111,8 @@
 - (LXCommonNavView *)navView {
     if (!_navView) {
         _navView = [[LXCommonNavView alloc] initWithTitle:@"我的事务"];
+        _navView.rightButtonImage = [UIImage imageNamed:@"lx_message_no"];
+        _navView.delegate = self;
     }
     return _navView;
 }

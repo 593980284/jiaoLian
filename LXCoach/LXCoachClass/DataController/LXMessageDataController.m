@@ -23,6 +23,8 @@
     LXFfindCoachMsgSessionTask *task = [[LXFfindCoachMsgSessionTask alloc] init];
     task.certNo = certNo;
     task.type = type;
+    task.rows = 500;
+    task.page = 1;
     [task lxReuqestFindCoachMsgWithCompletionBlock:^(LXFindCoachMsgResponseObject *responseModel) {
         block(responseModel);
     }];

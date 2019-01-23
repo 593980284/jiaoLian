@@ -18,8 +18,9 @@
 #import "LXCyhCalenbardate.h"
 #import "LXLoginController.h"
 #import "LXNavigationController.h"
+#import "LXMessageController.h"
 
-@interface LXCourseController ()<LXCourseSubViewDelegate>
+@interface LXCourseController ()<LXCourseSubViewDelegate,LXCommonNavViewDelegate>
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) LXCourseSubView *courseSubView;
 @property (nonatomic, strong) LXCourseDataController *dataController;
@@ -57,6 +58,10 @@
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+}
+
+- (void)lx_clickRightButton{
+    [self.navigationController pushViewController:[LXMessageController new] animated:YES];
 }
 
 #pragma mark - request
@@ -127,6 +132,8 @@
 - (LXCommonNavView *)navView {
     if (!_navView) {
         _navView = [[LXCommonNavView alloc] initWithTitle:@"我的课程"];
+        _navView.rightButtonImage = [UIImage imageNamed:@"lx_message_no"];
+        _navView.delegate = self;
     }
     return _navView;
 }

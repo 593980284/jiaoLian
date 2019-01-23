@@ -16,7 +16,7 @@
 #import "LXLoginController.h"
 #import "LXNavigationController.h"
 
-@interface LXMessageController ()<VTMagicViewDelegate,VTMagicViewDataSource>
+@interface LXMessageController ()<VTMagicViewDelegate,VTMagicViewDataSource,LXCommonNavViewDelegate>
 @property (nonatomic, strong) VTMagicController *magicController;
 @property (nonatomic, strong) LXCommonNavView *navView;
 @property (nonatomic, strong) NSArray *dataArr;
@@ -35,6 +35,11 @@
     [self.view addSubview:self.magicController.view];
     [self.magicController.magicView reloadData];
     [self.view addSubview:self.navView];
+}
+
+#pragma mark - LXCommonNavViewDelegate
+- (void)lx_clickLeftButton {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - request
@@ -115,6 +120,8 @@
 - (LXCommonNavView *)navView {
     if (!_navView) {
         _navView = [[LXCommonNavView alloc] initWithTitle:@"我的消息"];
+        _navView.leftButtonImage = [UIImage imageNamed:@"lx_nav_back"];
+        _navView.delegate = self;
     }
     return _navView;
 }

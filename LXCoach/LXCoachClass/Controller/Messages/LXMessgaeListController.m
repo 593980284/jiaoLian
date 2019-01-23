@@ -106,9 +106,8 @@ static NSString *messageList_Identify = @"LXMessageListCell";
 - (UITableView *)tableView {
     if (!_tableView) {
         CGFloat navHeight = LXNavigationViewHeight+CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame]);
-        CGFloat tabBarHeight = CGRectGetHeight(self.tabBarController.tabBar.frame);
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height-(navHeight+45+tabBarHeight));
+        _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height-(navHeight+45));
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];

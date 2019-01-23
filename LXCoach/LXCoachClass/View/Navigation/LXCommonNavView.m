@@ -52,8 +52,8 @@ static CGFloat const kShadowOpacity = 0.4;
         self.leftButton.frame = CGRectMake(0, statusBarHeight, kLXNavigationButtonWidth, kLXNavigationButtonWidth);
         
         // 添加右侧按钮
-//        [self addSubview:self.rightButton];
-//        self.rightButton.frame = CGRectMake(self.width-(kLXNavigationButtonWidth+10), statusBarHeight, kLXNavigationButtonWidth, kLXNavigationButtonWidth);
+        [self addSubview:self.rightButton];
+        self.rightButton.frame = CGRectMake(self.width-(kLXNavigationButtonWidth+10), statusBarHeight, kLXNavigationButtonWidth, kLXNavigationButtonWidth);
     }
     return self;
 }
@@ -170,7 +170,7 @@ static CGFloat const kShadowOpacity = 0.4;
         [_leftButton addTarget:self action:@selector(clickLeftButton) forControlEvents:UIControlEventTouchUpInside];
         _leftButtonImageView = [[UIImageView alloc] init];
         [_leftButton addSubview:_leftButtonImageView];
-        _leftButtonImageView.frame = CGRectMake(CGRectGetMinX(_leftButton.frame)+kHorizontalMargin, CGRectGetMinY(self.leftButton.frame)+13, 10, 18);
+        _leftButtonImageView.frame = CGRectMake(CGRectGetMinX(_leftButton.frame)+kHorizontalMargin, CGRectGetMinY(_leftButton.frame)+13, 10, 18);
         
 //        _leftButtonTitleLabel = [[UILabel alloc] init];
 //        _leftButtonTitleLabel.font = [UIFont systemFontOfSize:kFontSize];
@@ -187,19 +187,18 @@ static CGFloat const kShadowOpacity = 0.4;
     return _leftButton;
 }
 
-//- (UIButton *)rightButton {
-//    if (!_rightButton) {
-//        _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _rightButton.hidden = YES;
-//        [_rightButton addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
-//        _rightButtonImageView = [[UIImageView alloc] init];
-//        [_rightButton addSubview:_rightButtonImageView];
-//        [_rightButtonImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.right.offset(-kHorizontalMargin);
-//            make.left.offset(kHorizontalMargin);
-//            make.centerY.equalTo(_rightButton.mas_centerY);
-//        }];
-//
+- (UIButton *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightButton.hidden = YES;
+        [_rightButton addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
+        _rightButtonImageView = [[UIImageView alloc] init];
+        [_rightButton addSubview:_rightButtonImageView];
+        _rightButtonImageView.frame = CGRectMake(CGRectGetMinX(_rightButton.frame)+kHorizontalMargin, CGRectGetMinY(_rightButton.frame)+13, 10, 18);
+        [_rightButtonImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(_rightButton);
+        }];
+
 //        _rightButtonTitleLabel = [[UILabel alloc] init];
 //        _rightButtonTitleLabel.font = [UIFont systemFontOfSize:kFontSize];
 //        _rightButtonTitleLabel.textColor = [UIColor blackColor];
@@ -209,8 +208,8 @@ static CGFloat const kShadowOpacity = 0.4;
 //            make.left.offset(kHorizontalMargin);
 //            make.centerY.equalTo(_rightButton.mas_centerY);
 //        }];
-//    }
-//    return _rightButton;
-//}
+    }
+    return _rightButton;
+}
 
 @end

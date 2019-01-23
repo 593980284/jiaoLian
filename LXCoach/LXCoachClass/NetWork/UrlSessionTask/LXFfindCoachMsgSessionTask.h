@@ -20,6 +20,9 @@
 /// 操作系统 1：系统消息，2：驾校消息
 @property (nonatomic, copy)NSString *type;
 
+@property (nonatomic,assign) NSInteger page;
+@property (nonatomic,assign) NSInteger rows;
+
 - (void)lxReuqestFindCoachMsgWithCompletionBlock:(void(^)(LXFindCoachMsgResponseObject *responseModel))block;
 
 @end
