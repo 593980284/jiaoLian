@@ -90,10 +90,9 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
 - (void)lx_myStudentListTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LXStudentDetail_VC *studentDetailVC = [[LXStudentDetail_VC alloc] init];
     LXMyStudentListModel *model = self.dataSourceArr[indexPath.row];
-//    studentDetailVC.headerModel = model;
-//    studentDetailVC.cerNoState = YES;
+    studentDetailVC.headerModel = model;
+    studentDetailVC.cerNoState = YES;
     [self.navigationController pushViewController:studentDetailVC animated:YES];
-    
 }
 #pragma mark - getter
 - (LXCommonNavView *)navView {

@@ -10,6 +10,7 @@
 #import "LXUrlApi.h"
 
 @interface LXHandleCell()
+@property (nonatomic,strong) UIView *bgView;
 @property (nonatomic,strong) UIImageView *iconImgView;
 @property (nonatomic,strong) UIImageView *sexImgView;
 @property (nonatomic,strong) UILabel *nameLabel;
@@ -28,6 +29,7 @@
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         UIView *bgView = [UIView new];
+        _bgView = bgView;
         bgView.layer.cornerRadius = 8;
         bgView.backgroundColor = [UIColor whiteColor];
         _iconImgView = [UIImageView new];
@@ -93,7 +95,16 @@
     }
 }
 
-- (void)updateWithModel:(LXAffairsHandleSSlist *)model{
+- (void)updateWithModel:(LXAffairsHandleSSlist *)model andRowIndex:(NSInteger)rowIndex{
+    if (rowIndex == 0) {
+        [_bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(0);
+        }];
+    }else{
+        [_bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(8);
+        }];
+    }
     _model = model;
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];

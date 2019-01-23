@@ -13,7 +13,7 @@
 #import "LXCourseDetailModel.h"
 #import "LXCourseListModel.h"
 #import "LXMyStudentListModel.h"
-#import "LXStudentDetailController.h"
+#import "LXStudentDetail_VC.h"
 #import "LXCourseEvaluateController.h"
 #import "LXCourseDataController.h"
 #import "LXFindCoachEvaluationStudentSessionTask.h"
@@ -121,7 +121,7 @@
         studentModel.studentPhoto = model.studentPhoto;
         studentModel.mobile = model.mobile;
         studentModel.subjectName = model.subjectName;
-        LXStudentDetailController *detailVC = [[LXStudentDetailController alloc] init];
+        LXStudentDetail_VC *detailVC = [[LXStudentDetail_VC alloc] init];
         detailVC.headerModel = studentModel;
         detailVC.cerNoState = NO;
         [[LXNavigationManager lx_currentNavigationController] pushViewController:detailVC animated:YES];

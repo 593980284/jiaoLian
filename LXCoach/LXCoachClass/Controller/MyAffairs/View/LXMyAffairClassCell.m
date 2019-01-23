@@ -72,7 +72,6 @@
 - (UIImageView *)headerImageView {
     if (!_headerImageView) {
         _headerImageView = [[UIImageView alloc] init];
-        _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _headerImageView;
 }

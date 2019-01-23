@@ -117,7 +117,7 @@
         cell.delegate = self;
     }
     LXAffairsHandleList *model = _dataArray[indexPath.section];
-    [cell updateWithModel:model.sslist[indexPath.row]];
+    [cell updateWithModel:model.sslist[indexPath.row] andRowIndex:indexPath.row];
     return cell;
 }
 

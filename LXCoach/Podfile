@@ -18,4 +18,9 @@ target 'LXCoach' do
   pod 'QQ_XGPush'
   pod 'Masonry'
   pod 'IQKeyboardManager'
+  pod 'UMCCommon'
+  pod 'UMCSecurityPlugins'
+  pod 'UMCAnalytics'
+  pod 'MJRefresh'
+  
 end

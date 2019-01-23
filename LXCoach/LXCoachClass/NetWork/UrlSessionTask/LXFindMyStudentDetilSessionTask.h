@@ -17,6 +17,9 @@
 @property (nonatomic, copy) NSString *certNo;
 /// 学员id
 @property (nonatomic, copy) NSString *studentId;
+@property (nonatomic, assign) NSInteger rows;
+@property (nonatomic, assign) NSInteger page;
+
 
 - (void)lxReuqestFindMyStudentDetilWithCompletionBlock:(void(^)(LXFindMyStudentDetilResponseObject *responseModel))block;
 

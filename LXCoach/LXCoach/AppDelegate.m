@@ -20,6 +20,8 @@
 #import "LXNavigationManager.h"
 #import "LXMessgeDetaileController.h"
 #import "IQKeyboardManager.h"
+#import <UMCommon/UMCommon.h>
+
 @interface AppDelegate ()<XGPushDelegate>
 
 @end
@@ -54,6 +56,8 @@
     [[XGPush defaultManager] startXGWithAppID:2200312050 appKey:@"IHFU54S128VR" delegate:self];
     [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
     [[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
+    //友盟
+    [UMConfigure initWithAppkey:@"5c4181f7b465f55e30001828" channel:@"App Store"];
     
     LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
     if (mineModel == nil) {

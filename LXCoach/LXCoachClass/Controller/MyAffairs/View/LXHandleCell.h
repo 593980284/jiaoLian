@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface LXHandleCell : UITableViewCell
 @property (nonatomic,weak) id<LXHandleCellDelegate> delegate;
-- (void)updateWithModel:(LXAffairsHandleSSlist *)model;
+- (void)updateWithModel:(LXAffairsHandleSSlist *)model andRowIndex:(NSInteger)rowIndex;
 @end
 
 NS_ASSUME_NONNULL_END

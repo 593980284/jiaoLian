@@ -11,7 +11,6 @@
 #import "LXMineModel.h"
 #import "LXAffairsClassModel.h"
 #import "LXMyAffairClassCell.h"
-#import "LXCourseDetailController.h"
 @interface LXMyAffairsToClass_VC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) LXAffairsClassSessionTask *classTask;
 @property (nonatomic, strong) UITableView *tableView;
@@ -61,14 +60,6 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    LXMyAffairsClassModel *recordModel = self.dataArr[indexPath.row];
-//    LXCourseDetailController *detailVC = [[LXCourseDetailController alloc] init];
-//    detailVC.appointmentId = [recordModel.appointmentId integerValue];
-//    detailVC.cheekPageOption = 2;
-//    [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - getter
 - (UITableView *)tableView {

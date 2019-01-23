@@ -9,5 +9,12 @@
 #import "LXMyStudentDetailSubjectModel.h"
 
 @implementation LXMyStudentDetailSubjectModel
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"list" : [LXMyStudentDetailModel class]};
+}
+@end
+
+@implementation LXMyStudentDetailModel
 
 @end
+
