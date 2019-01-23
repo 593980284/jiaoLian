@@ -70,7 +70,7 @@
 #pragma mark - getter
 - (LXCommonNavView *)navView {
     if (!_navView) {
-        _navView = [[LXCommonNavView alloc]initWithTitle:@"我的学员"];
+        _navView = [[LXCommonNavView alloc]initWithTitle:@"学员详情"];
         _navView.delegate = self;
         _navView.leftButtonImage = [UIImage imageNamed:@"lx_nav_back"];
     }

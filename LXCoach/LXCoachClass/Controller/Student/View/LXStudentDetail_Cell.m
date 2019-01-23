@@ -47,7 +47,7 @@
         [_statusImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self);
             make.size.mas_equalTo(CGSizeMake(62, 20));
-            make.right.mas_equalTo(8);
+            make.right.mas_equalTo(-8);
         }];
     }
     return self;
@@ -74,8 +74,32 @@
         default:
             break;
     }
+    UIImage *statusImg = nil;
+    NSInteger status = [model.status integerValue];
+    if (status == 2 || status == 6) {
+        //已完成
+        statusImg = [UIImage imageNamed:@"lx_detail_ywc"];
+    }else if (status == 3 || status == 7){
+        //缺勤
+        statusImg = [UIImage imageNamed:@"lx_detail_queq"];
+    }else if (status == 0){
+        //已预约
+        statusImg = [UIImage imageNamed:@"lx_detail_yiyuyue"];
+    }else if (status == 1){
+        //学员签到
+        statusImg = [UIImage imageNamed:@"lx_detail_xyqd"];
+    }else if (status == 4){
+        //未签到
+        statusImg = [UIImage imageNamed:@"lx_detail_wqd"];
+    }else if (status == 5){
+        //等待确认
+        statusImg = [UIImage imageNamed:@"lx_detail_ddqr"];
+    }else if (status == 10){
+        //已取消
+    }
     _subjuctNameLabel.text = subStr;
     _contentLabel.text = [NSString stringWithFormat:@"%@ | %@",model.date,model.time];
+    _statusImgView.image = statusImg;
 }
 
 - (UILabel *)subjuctNameLabel{
