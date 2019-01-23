@@ -115,7 +115,7 @@ static NSString *studentList_Identify = @"LXStudentSubViewCell";
         LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
         _studentDataController = [[LXFindMyStudentSessionTask alloc] init];
         _studentDataController.certNo = mineModel.certNo;
-        _studentDataController.rows = 20;
+        _studentDataController.rows = 500;
         _studentDataController.page = 1;
     }
     return _studentDataController;

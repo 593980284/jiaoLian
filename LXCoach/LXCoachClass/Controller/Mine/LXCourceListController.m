@@ -161,7 +161,7 @@
         LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
         _courseDataController = [[LXFindCoachCourseRecordSessionTask alloc] init];
         _courseDataController.certNo = mineModel.certNo;
-        _courseDataController.rows = 20;
+        _courseDataController.rows = 500;
         _courseDataController.page = 1;
     }
     return _courseDataController;

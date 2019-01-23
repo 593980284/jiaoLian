@@ -198,7 +198,7 @@
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
     if (!_headView) {
-        _headView = [[LXCourseDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 135)];
+        _headView = [[LXCourseDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 103)];
     }
     return _headView;
 }

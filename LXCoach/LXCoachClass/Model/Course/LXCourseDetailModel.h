@@ -27,10 +27,13 @@
 @property (nonatomic, copy) NSString *subjectName;
 /// 约课时间段
 @property (nonatomic, copy) NSString *periodTime;
+@property (nonatomic, copy) NSString *className;
 /// 报名人数
 @property (nonatomic, assign) NSInteger appointmentNum;
 /// 剩余人数
 @property (nonatomic, assign) NSInteger noAppointmentNum;
+@property (nonatomic, assign) NSInteger maxNum;
+@property (nonatomic, assign) NSInteger cancelNum;
 /// 学员列表
 @property (nonatomic, strong) NSArray *list;
 @end

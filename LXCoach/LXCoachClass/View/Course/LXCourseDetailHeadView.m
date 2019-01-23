@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UILabel *subjectLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
-@property (nonatomic, strong) UIView *lineView;
 @end
 
 @implementation LXCourseDetailHeadView
@@ -36,8 +35,8 @@
     
     CGFloat x = 15;
     CGFloat y = 15;
-    CGFloat w = 119;
-    CGFloat h = 95;
+    CGFloat w = 64;
+    CGFloat h = 64;
     self.leftImageView.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.leftImageView.frame)+10;
@@ -45,42 +44,43 @@
     w = kScreenWidth-x-15;
     h = 16;
     self.subjectLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMinX(self.subjectLabel.frame);
-    y = CGRectGetMaxY(self.subjectLabel.frame)+15;
-    w = kScreenWidth-x-15;
-    h = 13;
-    self.numberLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMinX(self.subjectLabel.frame);
-    y = CGRectGetMaxY(self.numberLabel.frame)+15;
-    w = kScreenWidth-x-15;
-    h = 11;
-    self.timeLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = 0;
-    y = CGRectGetMaxY(self.leftImageView.frame)+15;
-    w = kScreenWidth;
-    h = 10;
-    self.lineView.frame = CGRectMake(x, y, w, h);
 }
 
 - (void)createUI {
     [self addSubview:self.leftImageView];
     [self addSubview:self.subjectLabel];
-    [self addSubview:self.numberLabel];
     [self addSubview:self.timeLabel];
-    [self addSubview:self.lineView];
+    [self addSubview:self.numberLabel];
+    
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.leftImageView.mas_right).offset(10);
+        make.bottom.equalTo(self.numberLabel.mas_top).offset(-4);
+        make.right.equalTo(self);
+    }];
+    [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.leftImageView.mas_right).offset(10);
+        make.bottom.equalTo(self.leftImageView);
+        make.right.equalTo(self);
+    }];
 }
 
 #pragma mark - setter
 - (void)setCourseListModel:(LXCourseDetailModel *)courseListModel {
     _courseListModel = courseListModel;
-    NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:courseListModel.subjectPhoto];
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    
+    NSInteger subjectId = courseListModel.subjectId ;
+    UIImage *sImg = [UIImage imageNamed:@"lx_kemu_1"];
+    if (subjectId == 2) {
+        sImg = [UIImage imageNamed:@"lx_kemu_2"];
+    }else if (subjectId == 3){
+        sImg = [UIImage imageNamed:@"lx_kemu_3"];
+    }else if (subjectId == 4){
+        sImg = [UIImage imageNamed:@"lx_kemu_4"];
+    }
+    _leftImageView.image = sImg;
     self.subjectLabel.text = _courseListModel.subjectName;
-    self.numberLabel.text = [NSString stringWithFormat:@"报名 %ld     剩余 %ld", _courseListModel.appointmentNum, (long)_courseListModel.noAppointmentNum];
     self.timeLabel.text = _courseListModel.periodTime;
+    _numberLabel.text = [NSString stringWithFormat:@"%@ | 已约课%ld/%ld | 已取消%ld",courseListModel.className,courseListModel.appointmentNum,courseListModel.maxNum,courseListModel.cancelNum];
 }
 
 #pragma mark - getter
@@ -123,12 +123,5 @@
     return _timeLabel;
 }
 
-- (UIView *)lineView {
-    if (!_lineView) {
-        _lineView = [[UIView alloc]init];
-        _lineView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
-    }
-    return _lineView;
-}
 
 @end

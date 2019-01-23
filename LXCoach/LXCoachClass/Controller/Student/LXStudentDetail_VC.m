@@ -95,7 +95,7 @@
     if (!_studentDetailTask) {
         LXMineModel *mineModel = [LXCacheManager objectForKey:@"LXMineModel"];
         _studentDetailTask = [[LXFindMyStudentDetilSessionTask alloc] init];
-        _studentDetailTask.rows = 20;
+        _studentDetailTask.rows = 500;
         _studentDetailTask.page = 1;
         NSString *cerNo;
         if (self.cerNoState) {

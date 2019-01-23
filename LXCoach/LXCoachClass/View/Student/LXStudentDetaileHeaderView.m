@@ -38,8 +38,8 @@
     [super layoutSubviews];
     CGFloat x = 15;
     CGFloat y = 15;
-    CGFloat w = 100 * kAutoSizeScaleX;
-    CGFloat h = 80 *kAutoSizeScaleX;
+    CGFloat w = 80;
+    CGFloat h = 80;
     self.iconImageView.frame = CGRectMake(x, y, w, h);
     
     x = CGRectGetMaxX(self.iconImageView.frame) + 10;

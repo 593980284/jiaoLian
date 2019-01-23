@@ -112,7 +112,7 @@
 -(LX_ImageText_View *)accountView{
     if (!_accountView) {
         _accountView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_bmobile"] placehold:@"请输入您的教练证号"];
-        _accountView.textField.text = @"152321198003162427";
+//        _accountView.textField.text = @"152321198003162427";
     }
     return _accountView;
 }
@@ -121,7 +121,7 @@
     if (!_passwordView) {
         _passwordView = [[LX_ImageText_View alloc] initWithImage:[UIImage imageNamed:@"lx_login_password"] placehold:@"请输入您的密码"];
         _passwordView.textField.secureTextEntry = YES;
-        _passwordView.textField.text = @"162427";
+//        _passwordView.textField.text = @"162427";
     }
     return _passwordView;
 }
