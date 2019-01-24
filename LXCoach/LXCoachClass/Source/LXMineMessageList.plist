@@ -29,14 +29,6 @@
 		</dict>
 		<dict>
 			<key>imageName</key>
-			<string>lx_mine_message_jcgx</string>
-			<key>textName</key>
-			<string>检查更新</string>
-			<key>clickType</key>
-			<string>4</string>
-		</dict>
-		<dict>
-			<key>imageName</key>
 			<string>lx_mine_message_gywm</string>
 			<key>textName</key>
 			<string>关于我们</string>
