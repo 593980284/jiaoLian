@@ -169,25 +169,23 @@
         NSArray *array = [_mineModel.identity componentsSeparatedByString:@","];
         CGFloat x=0;
         for (NSString *tempStr in array) {
-            UILabel *label = [UILabel new];
-            label.textColor = TEXT_COLOR_RED;
-            label.font = TEXT_FONT(11);
-            label.layer.cornerRadius = 4;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.layer.borderColor = BG_COLOR_RED.CGColor;
-            label.layer.borderWidth = 1;
-            label.text = tempStr;
-            [scrollView addSubview:label];
-            CGFloat width = [label sizeThatFits:CGSizeZero].width + 12;
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            UIImage *img = nil;
+            if ([tempStr isEqualToString:@"131000"]) {//金牌
+                img = [UIImage imageNamed:@"lx_jiaoljp"];
+            }else if ([tempStr isEqualToString:@"132000"]){//党员
+                img = [UIImage imageNamed:@"lx_jiaoldy"];
+            }
+            UIImageView *imgView = [UIImageView new];
+            imgView.image = img;
+            [scrollView addSubview:imgView];
+            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(scrollView).offset(x);
-                make.width.mas_equalTo(width);
-                make.height.mas_equalTo(18);
+                make.size.mas_equalTo(img.size);
                 make.centerY.equalTo(scrollView);
             }];
-            x = x + width + 8;
-            scrollView.contentSize = CGSizeMake(x, 20);
+            x = x + (img?img.size.width :0) + 8;
         }
+        scrollView.contentSize = CGSizeMake(x, 20);
     }
     return _identityView;
 }
