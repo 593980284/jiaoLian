@@ -48,7 +48,7 @@
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.image = [UIImage imageNamed:@"lx_mine_logo"];
+        _iconImageView.image = [UIImage imageNamed:@"logo_content_icon_default"];
     }
     return _iconImageView;
 }
