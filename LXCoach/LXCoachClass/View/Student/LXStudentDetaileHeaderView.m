@@ -73,7 +73,11 @@
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = model.studentName;
     self.phoneNumber.text = model.mobile;
-    self.subjectLabel.text = [NSString stringWithFormat:@"%@ | 完成学时%@/%@",model.subjectName,model.useCount,model.allCount];
+    if (!!model.useCount && !! model.allCount) {
+        self.subjectLabel.text = [NSString stringWithFormat:@"%@ | 完成学时%@/%@",model.subjectName,model.useCount,model.allCount];
+    }else{
+        self.subjectLabel.text = [NSString stringWithFormat:@"%@",model.subjectName];
+    }
 }
 
 #pragma mark - getter
@@ -81,7 +85,6 @@
     if (!_iconImageView) {
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor colorWithHexString:@"#DDDDDD"];
-        _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _iconImageView;
 }

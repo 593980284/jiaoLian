@@ -11,21 +11,16 @@
 #import <FLAnimatedImage/FLAnimatedImageView.h>
 #import "LXCourseDetailModel.h"
 #import "LXUrlApi.h"
+#import "LXNavigationManager.h"
+
 @interface LXCourseDetailCell()
 
 @property (nonatomic, strong) FLAnimatedImageView *leftImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *subjectNameLabel;
-/// 评分
-@property (nonatomic, strong) UILabel *studentScoreLabel;
-@property (nonatomic, strong) UIView *lineView;
-/// 星星的父视图
-@property (nonatomic, strong) UIView * startFatherView;
-
-@property (nonatomic, strong) NSMutableArray *startArr;
-
 @property (nonatomic, strong) UIButton *button1;
 @property (nonatomic, strong) UIButton *button2;
+@property (nonatomic,strong) UIImageView *statusImgView;
 
 @end
 
@@ -34,85 +29,89 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = [UIColor clearColor];
         [self createUI];
     }
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)createUI {
+    UIView *bgView = [UIView new];
+    bgView.backgroundColor = [UIColor whiteColor];
+    bgView.layer.cornerRadius = 8.0;
     
-    CGFloat x = 15;
-    CGFloat y = 15;
-    CGFloat w = 100;
-    CGFloat h = 80;
-    self.leftImageView.frame = CGRectMake(x, y, w, h);
+    _statusImgView = [UIImageView new];
     
-    x = CGRectGetMaxX(self.leftImageView.frame)+10;
-    y = 20;
-    w = kScreenWidth-x-15;
-    h = 16;
-    self.nameLabel.frame = CGRectMake(x, y, w, h);
+    [self addSubview:bgView];
+    [bgView addSubview:self.leftImageView];
+    [bgView addSubview:self.nameLabel];
+    [bgView addSubview:self.subjectNameLabel];
+    [bgView addSubview:self.button1];
+    [bgView addSubview:self.button2];
+    [bgView addSubview:_statusImgView];
     
-    x = CGRectGetMinX(self.nameLabel.frame);
-    y = CGRectGetMaxY(self.nameLabel.frame)+15;
-    w = 120;
-    h = 13;
-    self.subjectNameLabel.frame = CGRectMake(x, y, w, h);
-    
-    x = CGRectGetMinX(self.nameLabel.frame);
-    y = CGRectGetMaxY(self.subjectNameLabel.frame)+ 10;
-    w = 15*kAutoSizeScaleX * 5 + 4 * 5;
-    h = 15*kAutoSizeScaleX;
-    self.startFatherView.frame = CGRectMake(x, y, w, h);
-    
-    [self.startArr enumerateObjectsUsingBlock:^(UIImageView  *imageViewObj, NSUInteger idx, BOOL * _Nonnull stop) {
-        imageViewObj.frame = CGRectMake((15*kAutoSizeScaleX+5) * idx , 0, 15*kAutoSizeScaleX, 15*kAutoSizeScaleX);
+    [bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(8, 12, 0, 12));
     }];
     
-    x = CGRectGetMaxX(self.startFatherView.frame)+10;
-    y = CGRectGetMaxY(self.subjectNameLabel.frame)+11;
-    w = 45;
-    h = 13;
-    self.studentScoreLabel.frame = CGRectMake(x, y, w, h);
+    [_leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(12);
+        make.left.mas_equalTo(8);
+        make.size.mas_equalTo(56);
+    }];
     
-    x = 0;
-    y = CGRectGetMaxY(self.leftImageView.frame)+14;
-    w = kScreenWidth;
-    h = 1;
-    self.lineView.frame = CGRectMake(x, y, w, h);
+    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.leftImageView);
+        make.left.equalTo(self.leftImageView.mas_right).offset(8);
+        make.right.equalTo(self.statusImgView.mas_left);
+    }];
     
-    x = self.contentView.width - (10 + 72*kAutoSizeScaleX);
-    y = 15;
-    w = 72*kAutoSizeScaleX;
-    h = 30;
-    self.button1.frame = CGRectMake(x, y, w, h);
+    [_subjectNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.nameLabel);
+        make.bottom.equalTo(self.leftImageView);
+    }];
     
-    x = CGRectGetMinX(self.button1.frame) - (8+72*kAutoSizeScaleX);
-    y = 15;
-    w = 72*kAutoSizeScaleX;
-    h = 30;
-    self.button2.frame = CGRectMake(x, y, w, h);
-}
-
-- (void)createUI {
-    [self.contentView addSubview:self.leftImageView];
-    [self.contentView addSubview:self.nameLabel];
-    [self.contentView addSubview:self.subjectNameLabel];
-    [self.contentView addSubview:self.startFatherView];
-    [self.contentView addSubview:self.studentScoreLabel];
-    [self.contentView addSubview:self.lineView];
-    [self.contentView addSubview:self.button1];
-    [self.contentView addSubview:self.button2];
+    [_statusImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.leftImageView);
+        make.size.mas_equalTo(CGSizeMake(62, 20));
+        make.right.mas_equalTo(-8);
+    }];
+    
+    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-8);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+        make.bottom.mas_equalTo(-12);
+    }];
+    
+    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.button1.mas_left).offset(-12);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+        make.bottom.mas_equalTo(-12);
+    }];
 }
 
 #pragma mark - Event
 - (void)button1Action:(UIButton *)button {
-    self.studentOperationBtn1Block();
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_courseStudentModel.mobile];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
 - (void)button2Action:(UIButton *)button {
-    self.studentOperationBtn2Block();
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"学员考勤" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *missAction = [UIAlertAction actionWithTitle:@"缺勤" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.studentOperationBtn1Block();
+    }];
+    UIAlertAction *upAction = [UIAlertAction actionWithTitle:@"已到" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.studentOperationBtn2Block();
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:missAction];
+    [alertController addAction:upAction];
+    UIViewController *vc = [LXNavigationManager lx_currentController];
+    [vc presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - setter
@@ -121,65 +120,35 @@
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.courseStudentModel.studentPhoto];
     [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
-    self.subjectNameLabel.text = [NSString stringWithFormat:@"%@  %ld学时",self.courseStudentModel.subjectName, (long)self.courseStudentModel.hours];
-    if (self.courseStudentModel.studentScore.length == 0) {
-        self.studentScoreLabel.text = @"0分";
-    }else {
-        self.studentScoreLabel.text = [NSString stringWithFormat:@"%@分",self.courseStudentModel.studentScore];
-    }
+    self.subjectNameLabel.text = self.courseStudentModel.className;
     
-    // 根据status来判断显示的按钮
-    if (courseStudentModel.status == 0) {
-        // 已预约（显示状态）
-        self.button2.hidden = YES;
-        self.button1.hidden = NO;
-        self.button1.enabled = NO;
-        [self.button1 setTitle:@"已预约" forState:UIControlStateNormal];
-        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
-        
-    }else if (courseStudentModel.status == 1 || courseStudentModel.status == 4) {
-        // 1 学员点击了签到（显示已到、缺勤按钮） 4 学员未点击签到（显示已到、缺勤按钮）
-        self.button1.hidden = NO;
-        self.button2.hidden = NO;
-        self.button1.enabled = YES;
-        self.button2.enabled = YES;
-        [self.button1 setTitle:@"缺勤" forState:UIControlStateNormal];
-        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#FF3F3F"]];
-        [self.button2 setTitle:@"已到" forState:UIControlStateNormal];
-        [self.button2 setBackgroundColor:[UIColor colorWithHexString:@"#35B2ED"]];
-        
-    }else if (courseStudentModel.status == 2  || courseStudentModel.status == 6) {
-        // 已到（显示状态）
-        self.button2.hidden = YES;
-        self.button1.hidden = NO;
-        self.button1.enabled = NO;
-        [self.button1 setTitle:@"已到" forState:UIControlStateNormal];
-        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
-    }else if (courseStudentModel.status == 3 || courseStudentModel.status == 7) {
-        // 缺勤（显示状态）
-        self.button2.hidden = YES;
-        self.button1.hidden = NO;
-        self.button1.enabled = NO;
-        [self.button1 setTitle:@"缺勤" forState:UIControlStateNormal];
-        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
-    }else if (courseStudentModel.status == 5) {
-        // 未确认（显示状态）
-        self.button2.hidden = YES;
-        self.button1.hidden = NO;
-        self.button1.enabled = NO;
-        [self.button1 setTitle:@"未确认" forState:UIControlStateNormal];
-        [self.button1 setBackgroundColor:[UIColor colorWithHexString:@"#999999"]];
+    UIImage *statusImg = nil;
+    NSInteger status = courseStudentModel.status;
+    _button2.hidden = YES;
+    if (status == 2 || status == 6) {
+        //已完成
+        statusImg = [UIImage imageNamed:@"lx_detail_ywc"];
+    }else if (status == 3 || status == 7){
+        //缺勤
+        statusImg = [UIImage imageNamed:@"lx_detail_queq"];
+    }else if (status == 0){
+        //已预约
+        statusImg = [UIImage imageNamed:@"lx_detail_yiyuyue"];
+    }else if (status == 1){
+        //学员签到
+        _button2.hidden = NO;
+        statusImg = [UIImage imageNamed:@"lx_detail_xyqd"];
+    }else if (status == 4){
+        //学员未签到
+        _button2.hidden = NO;
+        statusImg = [UIImage imageNamed:@"lx_detail_wqd"];
+    }else if (status == 5){
+        //等待确认
+        statusImg = [UIImage imageNamed:@"lx_detail_ddqr"];
+    }else if (status == 10){
+        //已取消
     }
-}
-
-- (void)setOptionStartNumber:(NSInteger)optionStartNumber {
-    _optionStartNumber = optionStartNumber;
-    if (_optionStartNumber > 0 && _optionStartNumber <= 5) {
-        for (NSInteger i = 0; i < _optionStartNumber; i++) {
-            UIImageView *imageView = [self viewWithTag:10+i];
-            imageView.image = [UIImage imageNamed:@"lx_cource_star_selected"];
-        }
-    }
+    _statusImgView.image = statusImg;
 }
 
 #pragma mark - getter
@@ -187,7 +156,6 @@
     if (!_leftImageView) {
         _leftImageView = [[FLAnimatedImageView alloc]init];
         _leftImageView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
-        _leftImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _leftImageView;
 }
@@ -212,41 +180,12 @@
     return _subjectNameLabel;
 }
 
-- (UIView *)startFatherView {
-    if (!_startFatherView) {
-        _startFatherView = [[UIView alloc] init];
-        for (NSInteger i = 0; i < 5; i++) {
-            UIImageView *startImageView = [[UIImageView alloc] init];
-            startImageView.image = [UIImage imageNamed:@"lx_cource_star_normal"];
-            startImageView.tag = 10 + i;
-            [_startFatherView addSubview:startImageView];
-            [self.startArr addObject:startImageView];
-        }
-    }
-    return _startFatherView;
-}
-
-- (UILabel *)studentScoreLabel {
-    if (!_studentScoreLabel) {
-        _studentScoreLabel = [[UILabel alloc]init];
-        _studentScoreLabel.textColor = [UIColor colorWithHexString:@"#999999"];
-        _studentScoreLabel.font = [UIFont systemFontOfSize:14];
-        _studentScoreLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _studentScoreLabel;
-}
-
-- (UIView *)lineView {
-    if (!_lineView) {
-        _lineView = [[UIView alloc]init];
-        _lineView.backgroundColor = [UIColor colorWithHexString:@"#F9F9F9"];
-    }
-    return _lineView;
-}
-
 - (UIButton *)button1 {
     if (!_button1) {
         _button1 = [[UIButton alloc] init];
+        _button1.backgroundColor = BG_COLOR_BLUE;
+        [_button1 setTitle:@"一键呼叫" forState:UIControlStateNormal];
+        [_button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _button1.titleLabel.font = [UIFont systemFontOfSize:14];
         [_button1 addTarget:self action:@selector(button1Action:) forControlEvents:UIControlEventTouchUpInside];
         _button1.layer.cornerRadius = 5;
@@ -257,6 +196,9 @@
 - (UIButton *)button2 {
     if (!_button2) {
         _button2 = [[UIButton alloc] init];
+        _button2.backgroundColor = BG_COLOR_BLUE;
+        [_button2 setTitle:@"学员考勤" forState:UIControlStateNormal];
+        [_button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _button2.titleLabel.font = [UIFont systemFontOfSize:14];
         [_button2 addTarget:self action:@selector(button2Action:) forControlEvents:UIControlEventTouchUpInside];
         _button2.layer.cornerRadius = 5;
@@ -264,10 +206,4 @@
     return _button2;
 }
 
-- (NSMutableArray *)startArr {
-    if (!_startArr) {
-        _startArr = [[NSMutableArray alloc] init];
-    }
-    return _startArr;
-}
 @end

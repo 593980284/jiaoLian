@@ -57,7 +57,7 @@ static NSString *courseList_Identify = @"LXCourseListCell";
     LXFindCourseRecordModel *recordModel = self.dataArr[indexPath.row];
     LXCourseDetailController *detailVC = [[LXCourseDetailController alloc] init];
     detailVC.appointmentId = [recordModel.appointmentId integerValue];
-    detailVC.cheekPageOption = 2;
+//    detailVC.cheekPageOption = 2;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

@@ -42,6 +42,7 @@
 
 /// 学员名称
 @property (nonatomic, copy)   NSString *studentName;
+@property (nonatomic, copy)   NSString *className;
 /// 学员相片路径
 @property (nonatomic, copy)   NSString *studentPhoto;
 /// 学员评分

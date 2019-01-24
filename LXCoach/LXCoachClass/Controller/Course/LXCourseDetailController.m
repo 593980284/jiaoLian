@@ -63,7 +63,7 @@
             self.courseDetailView.topSubjectModel = responseModel.data;
             self.courseDetailView.courseDetailArr = responseModel.data.list;
             self.courceListArr = [NSArray arrayWithArray:responseModel.data.list];
-            self.courseDetailView.isEvaluate = responseModel.data.isEvaluate;
+//            self.courseDetailView.isEvaluate = responseModel.data.isEvaluate;
         }
     }];
 }
@@ -80,6 +80,7 @@
     [self.dataController lxReuqestMyCoachAttendanceStudentWithCourseRecordId:[NSNumber numberWithInteger:model.courseRecordId] andStatus:[NSNumber numberWithInteger:3] completionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             [self requestMyCouseDetailList];
+            [self.view makeToast:responseModel.msg];
         }
     }];
 }
@@ -98,6 +99,7 @@
     [self.dataController lxReuqestMyCoachAttendanceStudentWithCourseRecordId:[NSNumber numberWithInteger:model.courseRecordId] andStatus:[NSNumber numberWithInteger:status] completionBlock:^(LXMyCoachAttendanceStudentResponseObject *responseModel) {
         if (responseModel.flg == 1) {
             [self requestMyCouseDetailList];
+            [self.view makeToast:responseModel.msg];
         }
     }];
 }
@@ -116,7 +118,7 @@
     if (!_courseDetailView) {
         _courseDetailView = [[LXCourseDetailView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.navView.frame), kScreenWidth, kScreenHeight-CGRectGetHeight(self.navView.frame))];
         _courseDetailView.delegate = self;
-        _courseDetailView.cheekPageOption = self.cheekPageOption;
+//        _courseDetailView.cheekPageOption = self.cheekPageOption;
     }
     return _courseDetailView;
 }

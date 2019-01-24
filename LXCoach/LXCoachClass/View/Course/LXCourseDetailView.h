@@ -30,7 +30,7 @@
 0：未评价
 1：评价
 */
-@property (nonatomic, assign) NSInteger isEvaluate;
+//@property (nonatomic, assign) NSInteger isEvaluate;
 /// 区分查看的是我的学员还是查看评价详情 1:学员详情 2:查看评价
-@property (nonatomic, assign) NSInteger cheekPageOption;
+//@property (nonatomic, assign) NSInteger cheekPageOption;
 @end

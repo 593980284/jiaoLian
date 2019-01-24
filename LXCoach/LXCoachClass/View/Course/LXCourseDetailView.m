@@ -25,7 +25,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) LXCourseDetailHeadView *headView;
 /// 评价button
-@property (nonatomic, strong) UIButton *judgeButton;
+//@property (nonatomic, strong) UIButton *judgeButton;
 
 @property (nonatomic, strong) LXCourseDataController *dataController;
 
@@ -43,46 +43,46 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.judgeButton.frame = CGRectMake(15, self.height-45-5, self.width-30, 45);
-    if (self.courseDetailArr.count == 0 || self.cheekPageOption == 2) {
+//    self.judgeButton.frame = CGRectMake(15, self.height-45-5, self.width-30, 45);
+//    if (self.courseDetailArr.count == 0 || self.cheekPageOption == 2) {
         self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame);
-    }else {
-        self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame)-CGRectGetHeight(self.judgeButton.frame)-10;
-    }
+//    }else {
+//        self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame)-CGRectGetHeight(self.judgeButton.frame)-10;
+//    }
     
 }
 
 - (void)createUI {
     [self addSubview:self.headView];
-    [self addSubview:self.judgeButton];
+//    [self addSubview:self.judgeButton];
     [self addSubview:self.tableView];
 }
 
 #pragma mark - Event
 /// 课程评价
 - (void)judgeButtonAction:(UIButton *)button {
-    if (self.isEvaluate == 0) {
-        NSString * periodTime =  self.topSubjectModel.periodTime;
-        NSArray *timeArray = [periodTime componentsSeparatedByString:@" "];
-        NSArray *ourArray = [[timeArray lastObject] componentsSeparatedByString:@"-"];
-        NSString *lastTimeString = [NSString stringWithFormat:@"%@ %@:00",[timeArray firstObject],[ourArray lastObject]];
-        // 后台返回时间段 - 时间戳
-        NSInteger backTimeSp = [NSObject exchangeTimeSwitchTimeStamp:@"YYYY-MM-dd hh:mm:ss" andFormatter:lastTimeString];
-        // 当前时间戳 1539342000
-        NSInteger currentTimeSp = [NSObject currentTimeStamp]; //1539332876
-        if (backTimeSp >= currentTimeSp) {
-            [self makeToast:@"请在课程结束后评价"];
-        }else {
-            // 去评价
-            LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
-            courseEvaluateController.studentListArr = self.courseDetailArr;
-            courseEvaluateController.topSubjectModel = self.topSubjectModel;
-            courseEvaluateController.isEvaluate = self.isEvaluate;
-            [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
-        }
-        
-        
-    }
+//    if (self.isEvaluate == 0) {
+//        NSString * periodTime =  self.topSubjectModel.periodTime;
+//        NSArray *timeArray = [periodTime componentsSeparatedByString:@" "];
+//        NSArray *ourArray = [[timeArray lastObject] componentsSeparatedByString:@"-"];
+//        NSString *lastTimeString = [NSString stringWithFormat:@"%@ %@:00",[timeArray firstObject],[ourArray lastObject]];
+//        // 后台返回时间段 - 时间戳
+//        NSInteger backTimeSp = [NSObject exchangeTimeSwitchTimeStamp:@"YYYY-MM-dd hh:mm:ss" andFormatter:lastTimeString];
+//        // 当前时间戳 1539342000
+//        NSInteger currentTimeSp = [NSObject currentTimeStamp]; //1539332876
+//        if (backTimeSp >= currentTimeSp) {
+//            [self makeToast:@"请在课程结束后评价"];
+//        }else {
+//            // 去评价
+//            LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+//            courseEvaluateController.studentListArr = self.courseDetailArr;
+//            courseEvaluateController.topSubjectModel = self.topSubjectModel;
+//            courseEvaluateController.isEvaluate = self.isEvaluate;
+//            [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+//        }
+//        
+//        
+//    }
 }
 #pragma mark - delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -96,7 +96,6 @@
     }
     LXCourseToStudentModel *detaileModel = self.courseDetailArr[indexPath.row];
     cell.courseStudentModel = detaileModel;
-    cell.optionStartNumber = [detaileModel.studentScore integerValue] / 2;
     @weakify(self);
     [cell setStudentOperationBtn1Block:^{
         @strongify(self);
@@ -112,7 +111,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.cheekPageOption == 1) {
+//    if (self.cheekPageOption == 1) {
         // 跳转去学员详情
         LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
         LXMyStudentListModel *studentModel = [[LXMyStudentListModel alloc] init];
@@ -125,36 +124,36 @@
         detailVC.headerModel = studentModel;
         detailVC.cerNoState = NO;
         [[LXNavigationManager lx_currentNavigationController] pushViewController:detailVC animated:YES];
-    }else if (self.cheekPageOption == 2) {
-        // 查看评价
-        // 1. 请求数据是否有对应的评价
-        LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
-        [self.dataController lxReuqestFindCoachEvaluationStudentWithCourseRecordId:[NSString stringWithFormat:@"%ld",model.courseRecordId] completionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
-            if (responseModel.flg == 1) {
-                if (responseModel.data.studentScore==0 && [responseModel.data.studentEvaluationContent isEqualToString:@""]) {
-                    // 1.1 没有评价 --- 去评价
-                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
-                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
-                    courseEvaluateController.courseJudgeType = 1;
-                    courseEvaluateController.studentName = model.studentName;
-                    courseEvaluateController.courseRecordId = model.courseRecordId;
-                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
-                } else {
-                    // 1.2 有评价 ---查看评价
-                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
-                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
-                    courseEvaluateController.courseJudgeType = 2;
-                    responseModel.data.studentName = model.studentName;
-                    courseEvaluateController.readCourseRecordModel = responseModel.data;
-                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
-                }
-            }
-        }];
-    }
+//    }else if (self.cheekPageOption == 2) {
+//        // 查看评价
+//        // 1. 请求数据是否有对应的评价
+//        LXCourseToStudentModel *model = self.courseDetailArr[indexPath.row];
+//        [self.dataController lxReuqestFindCoachEvaluationStudentWithCourseRecordId:[NSString stringWithFormat:@"%ld",model.courseRecordId] completionBlock:^(LXFindCoachEvaluationStudentResponseObject *responseModel) {
+//            if (responseModel.flg == 1) {
+//                if (responseModel.data.studentScore==0 && [responseModel.data.studentEvaluationContent isEqualToString:@""]) {
+//                    // 1.1 没有评价 --- 去评价
+//                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+//                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
+//                    courseEvaluateController.courseJudgeType = 1;
+//                    courseEvaluateController.studentName = model.studentName;
+//                    courseEvaluateController.courseRecordId = model.courseRecordId;
+//                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+//                } else {
+//                    // 1.2 有评价 ---查看评价
+//                    LXCourseEvaluateController *courseEvaluateController = [[LXCourseEvaluateController alloc]init];
+//                    courseEvaluateController.topSubjectModel = self.topSubjectModel;
+//                    courseEvaluateController.courseJudgeType = 2;
+//                    responseModel.data.studentName = model.studentName;
+//                    courseEvaluateController.readCourseRecordModel = responseModel.data;
+//                    [[LXNavigationManager lx_currentNavigationController] pushViewController:courseEvaluateController animated:YES];
+//                }
+//            }
+//        }];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    return 130;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [UIView new];
@@ -179,21 +178,21 @@
     [self.tableView reloadData];
 }
 - (void)setIsEvaluate:(NSInteger)isEvaluate {
-    _isEvaluate = isEvaluate;
-    if (self.isEvaluate == 0) {
-        self.judgeButton.hidden = NO;
-        [self.judgeButton setTitle:@"课程评价" forState:UIControlStateNormal];
-        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame)-CGRectGetHeight(self.judgeButton.frame)-10;
-    }else if (self.isEvaluate == 1){
-        self.judgeButton.hidden = YES;
-        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame);
-    }
+//    _isEvaluate = isEvaluate;
+//    if (self.isEvaluate == 0) {
+//        self.judgeButton.hidden = YES;
+//        [self.judgeButton setTitle:@"课程评价" forState:UIControlStateNormal];
+//        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame)-CGRectGetHeight(self.judgeButton.frame)-10;
+//    }else if (self.isEvaluate == 1){
+//        self.judgeButton.hidden = YES;
+//        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame);
+//    }
 }
 - (void)setCheekPageOption:(NSInteger)cheekPageOption {
-    _cheekPageOption = cheekPageOption;
-    if (self.cheekPageOption == 2) {
-        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame);
-    }
+//    _cheekPageOption = cheekPageOption;
+//    if (self.cheekPageOption == 2) {
+//        self.tableView.height = self.tableView.height = CGRectGetHeight(self.frame)- CGRectGetHeight(self.headView.frame);
+//    }
 }
 #pragma mark - getter
 - (LXCourseDetailHeadView *)headView {
@@ -222,18 +221,18 @@
     }
     return _tableView;
 }
-- (UIButton *)judgeButton {
-    if (!_judgeButton) {
-        _judgeButton = [[UIButton alloc] init];
-        [_judgeButton setTitle:@"课程评价" forState:UIControlStateNormal];
-        [_judgeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_judgeButton setBackgroundColor:[UIColor colorWithHexString:@"#309CF5"]];
-        _judgeButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        _judgeButton.layer.cornerRadius = 5;
-        [_judgeButton addTarget:self action:@selector(judgeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _judgeButton;
-}
+//- (UIButton *)judgeButton {
+//    if (!_judgeButton) {
+//        _judgeButton = [[UIButton alloc] init];
+//        [_judgeButton setTitle:@"课程评价" forState:UIControlStateNormal];
+//        [_judgeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_judgeButton setBackgroundColor:[UIColor colorWithHexString:@"#309CF5"]];
+//        _judgeButton.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+//        _judgeButton.layer.cornerRadius = 5;
+//        [_judgeButton addTarget:self action:@selector(judgeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _judgeButton;
+//}
 - (LXCourseDataController *)dataController {
     if (!_dataController) {
         _dataController = [[LXCourseDataController alloc] init];
