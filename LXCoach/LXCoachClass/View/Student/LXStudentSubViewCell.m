@@ -82,7 +82,8 @@
     }
     _sexImgView.image = img;
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+//   NSString *imageUrl = [NSString stringWithFormat:@"%@/%@",kBaseImageUrl, model.studentPhoto];
+    [self.iconImageView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = [NSString stringWithFormat:@"%@ · %@",model.studentName,model.subjectName];
     self.subjectNumber.text = [NSString stringWithFormat:@"%@ | 完成学时%@/%@",model.className,model.useCount,model.allCount];
     self.iphoneNumber.text = model.mobile;

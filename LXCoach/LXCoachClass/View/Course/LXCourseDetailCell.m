@@ -118,7 +118,7 @@
 - (void)setCourseStudentModel:(LXCourseToStudentModel *)courseStudentModel {
     _courseStudentModel = courseStudentModel;
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.courseStudentModel.studentPhoto];
-    [self.leftImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    [self.leftImageView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     self.nameLabel.text = self.courseStudentModel.studentName;
     self.subjectNameLabel.text = self.courseStudentModel.className;
     

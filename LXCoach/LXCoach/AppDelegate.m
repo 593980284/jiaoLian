@@ -31,6 +31,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+     [[SDWebImageDownloader sharedDownloader] setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     //

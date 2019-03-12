@@ -127,7 +127,7 @@
     self.topStudentNumber.text = [NSString stringWithFormat:@"%@位",headerModel.studentNum];
     self.topDrivingName.text = [NSString stringWithFormat:@"%@",headerModel.schoolName];    
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:headerModel.photo];
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    [self.headerImageView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
     
 }
 

@@ -107,7 +107,7 @@
     }
     _model = model;
     NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:model.studentPhoto];
-    [_iconImgView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
+    [_iconImgView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_placeholder_image"]];
     
     UIImage *img = nil;
     if ([model.studentSex isEqualToString:@"男"]) {

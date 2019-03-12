@@ -33,7 +33,7 @@
         UIImageView *headerImageView = [UIImageView new];
         [headerView addSubview:headerImageView];
         NSString *imageUrl = [kBaseImageUrl stringByAppendingPathComponent:self.mineModel.photo];
-        [headerImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+        [headerImageView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
         //名称
         UILabel *nameLabel = [UILabel new];
         nameLabel.text = _mineModel.coachName;

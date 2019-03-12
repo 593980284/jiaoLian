@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.0</string>
+	<string>3.2.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -28,11 +28,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;乐享-教练&quot;上传头像功能，需要申请访问相机权限</string>
+	<string>"乐享-教练"上传头像功能，需要申请访问相机权限</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>&quot;乐享-教练&quot;为您添加照片</string>
+	<string>"乐享-教练"为您添加照片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;乐享-教练&quot;上传头像功能，需要申请访问相册权限</string>
+	<string>"乐享-教练"上传头像功能，需要申请访问相册权限</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -41,6 +41,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

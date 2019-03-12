@@ -120,7 +120,7 @@
 - (void)setImageName:(NSString *)imageName {
     _imageName = imageName;
     NSString *imageUrl  = [kBaseImageUrl stringByAppendingPathComponent:self.imageName];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
+    [self.iconImageView lx_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"lx_header_placeholder"]];
 }
 
 - (UIImageView *)iconImageView {

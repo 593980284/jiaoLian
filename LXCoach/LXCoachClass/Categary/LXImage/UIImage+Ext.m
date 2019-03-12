@@ -2,12 +2,30 @@
 //  UIImage+Ext.m
 //  WuXianTaiZhou
 //
-//  Created by mmc on 12-8-23.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
-//
-
+//  Created by mmc on 12-8-23.url    NSURL *    @"http://111.39.245.156:8087/files/stuimg/20180111_152321198705232418B.jpg"    0x00006000004a0580
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.、
+//url    NSURL *    @"http:/111.39.245.156:8087/files/stuimg/20180111_152321198705232418B.jpg"    0x0000600001f85920
+#import "LXUrlApi.h"
 #import "UIImage+Ext.h"
+@implementation UIImageView (Ext)
+- (void)lx_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder
+{
 
+    NSString * urlStr  = url.absoluteString;
+
+    if ([urlStr hasPrefix:@"http"]) {
+        if (![urlStr hasPrefix:@"http://"] && ![urlStr hasPrefix:@"https://"]) {
+            urlStr = [urlStr stringByReplacingOccurrencesOfString:@"http:/" withString:@"http://"];
+            urlStr = [urlStr stringByReplacingOccurrencesOfString:@"https:/" withString:@"https://"];
+        }
+    }else{
+     urlStr = [NSString stringWithFormat:@"%@/%@",kBaseImageUrl, url.absoluteString];
+    }
+    
+    NSString*hString = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self sd_setImageWithURL:[NSURL URLWithString:hString] placeholderImage:placeholder options:SDWebImageRetryFailed];
+}
+@end
 @implementation UIImage (Ext)
 
 - (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize
